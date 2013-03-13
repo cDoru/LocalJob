@@ -1,0 +1,5 @@
+INDEX VERSION 1.126+C:\Users\Cavo\Documents\GitHub\LocalJob\.metadata\.plugins\org.eclipse.jdt.core
+96292332.index
+2475274971.index
+3127068622.index
+4009407619.index
