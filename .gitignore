@@ -18,3 +18,11 @@
 .metadata/.plugins/org.eclipse.ui.workbench/dialog_settings.xml
 
 .metadata/.plugins/org.eclipse.jdt.ui/dialog_settings.xml
+
+*.tree
+
+*.prefs
+
+*.index
+
+.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps
