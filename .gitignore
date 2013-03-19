@@ -165,3 +165,7 @@ pip-log.txt
 *.class
 
 *.properties
+
+*.index
+
+*.class
