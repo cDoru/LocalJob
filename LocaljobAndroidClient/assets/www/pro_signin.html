@@ -48,12 +48,34 @@
         margin-top: 28px;
       }
       
+      /* Parte del form */
       
-      .row-fluid{
-      	margin: 15px 0;
-      	/*background-color: #FF0000;*/
+      
+      .form-signin {
+        max-width: 400px;
+        padding: 1px 1px 29px;
+        margin: 50px auto 20px;
+        /*background-color: #fff;*/
+        /*border: 1px solid #e5e5e5;*/
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
       }
-      
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        /*width: auto;*/
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
     </style>
     <link href="./css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -79,26 +101,16 @@
 	
       <div class="jumbotron">
       	<p><img src="./img/logo_prova.png" /></p>
-      </div> 
-      <div class="row-fluid">
-  			<div class="offset3 span3">
-  				<button class="btn btn-large" type="button" onclick="javascript:window.location='user_signin.html'" >
-  					<img src="./img/user_pic_pic.png" alt="">
-      				<h4>Consumatore</h4>
-      				<p>Sei interessato a trovare artigiani e professionisti più vicini alla tua posizione.</p>
-  				</button>		
-    		</div>
-  			<div class="span3">
-				<button class="btn btn-large" type="button" onclick="javascript:window.location='pro_signin.html'">
-      				<img src="./img/pro_pic_pic.png" alt="">
-      				<h4>Lavoratore</h4>
-      				<p>Sei un lavoratore artigiano o professionista in cerca di nuovi clienti.</p>
-    			</button>
-			</div>
-		</div>
       
+        <form class="form-signin" action="javascript:pro_signin();">
+        	<input id="signP_user" type="text" class="input-block-level" placeholder="Username">
+        	<input id="signP_mail" type="text" class="input-block-level" placeholder="Email adress">
+        	<input id="signP_password1" type="password" class="input-block-level" placeholder="Password">
+        	<input id="signP_password2" type="password" class="input-block-level" placeholder=" Repeat Password">
+        	<button class="btn btn-large" type="submit">Sign In</button>
+      	</form>
         
-    
+      </div>
 
 
     </div> <!-- /container -->
