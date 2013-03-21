@@ -54,7 +54,7 @@
       .form-signin {
         max-width: 400px;
         padding: 1px 1px 29px;
-        margin: 50px auto 20px;
+        margin: 20px auto 20px;
         /*background-color: #fff;*/
         /*border: 1px solid #e5e5e5;*/
         -webkit-border-radius: 5px;
@@ -114,14 +114,20 @@
 
     <div class="container-narrow">
 	
-      <div class="jumbotron">
-      	<p><img src="./img/logo_prova.png" /></p>
-      
+    	<div class="jumbotron">
+      		<p><img src="./img/logo_prova.png" /></p>
+      	</div>
+      	
+       	<div class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<h4>Registrazione Professionista</h4>
+			Compila il form seguente per registrarti e accedere al sistema. Successivamente potrai
+			inserire tutti i dati della tua attività e cominciare a trovare nuovi clienti.
+		</div>
+			 
         <form action="javascript:pro_signin();" id="contact-form" class="form-signin">
 		<fieldset>
- 			<legend>Per registrarti compila il form seguente</legend>
- 			
-    		<div class="control-group">
+ 			<div class="control-group">
       			<div class="controls">
         			<input type="text" class="input-block-level" name="signP_user" id="signP_user" placeholder="Username">
      			</div>
@@ -141,13 +147,18 @@
         			<input type="password" class="input-block-level" name="signP_password2" id="signP_password2" placeholder="Repeat password">
      			</div>
     		</div>
-    		<button type="submit" class="btn btn-large">Sign In</button>
-      		<button type="reset" class="btn btn-large">Cancel</button>
-  	</fieldset>
-	</form>
+    		<div align="center">
+    			<button type="submit" class="btn btn-large">Sign In</button>
+      			<button type="reset" class="btn btn-large">Cancel</button>
+      		</div>
+  		</fieldset>
+		</form>
         
-    </div>
-
+		<ul class="breadcrumb">
+					<li><a href="#">Registrazione</a> <span class="divider">/</span></li>
+					<li><a href="#">Professionista</a> <span class="divider">/</span></li>
+					<li class="active">Inserisci i dati</li>
+		</ul>
 	
 	
     </div> <!-- /container -->

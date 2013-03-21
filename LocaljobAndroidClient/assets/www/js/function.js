@@ -51,12 +51,30 @@
 });
 
 
+/*
+ * Funzioni per cambi dinamici pagine
+ * 
+ * */
+
+function cambia_login(){
+	$('#contenitore').html("<form class='form-signin' action='javascript:login();'>" +
+			"<input id='user' type='text' class='input-block-level' placeholder='Username'>" +
+			"<input id='password' type='password' class='input-block-level' placeholder='Password'>" +
+			"<label class='checkbox'><p align='left'><input type='checkbox' value='remember-me'> Remember me</p>" +
+			"</label><div align='center'><button class='btn btn-large' type='submit'>Log In</button></div></form>");
+}
+
+/*
+ * Funzioni chiamate al server
+ * 
+ * */
+
 function login()	//gestisce il login dell'utente
 {
 	//alert("prova!");
 	user =  $('#user').val(); 
 	password =  $('#password').val(); 
-	alert("user: "+ user + " e password: " + password);
+	//alert("user: "+ user + " e password: " + password);
 	$.ajax({
           type: 'POST',
           url: 'http://95.141.45.174/login',
@@ -116,7 +134,8 @@ function pro_signin()
 
 
 function ajaxLOGIN(data){
-	alert(data);
+	//alert(data);
+	window.location='interventi-attivi.html';
 }
 
 function ajaxSIGNIN(data){
