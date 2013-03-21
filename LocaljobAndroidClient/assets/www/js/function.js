@@ -1,6 +1,53 @@
 ﻿$(document).ready(function()	//funzioni che si avviano al caricamento della pagina
 {
 	jQuery.support.cors = true;
+	
+	//roba per la validazione email
+	$('#contact-form').validate(
+	{
+	rules: {
+		 signP_user: {
+			 minlength: 2,
+			 maxlength: 30,
+			 required: true
+		 },
+		 signP_mail: {
+			 required: true,
+			 email: true
+		 },
+		 password: {
+		     minlength: 8,
+		     required: true
+		},
+		signP_password2: {
+			minlength: 8,
+			equalTo: "#password",
+		    required: true
+	    },
+		signU_user: {
+			 minlength: 2,
+			 maxlength: 30,
+			 required: true
+		 },
+		 signU_mail: {
+			 required: true,
+			 email: true
+		 },
+		signU_password2: {
+			minlength: 8,
+			equalTo: "#password",
+		    required: true
+	    }
+	},
+	highlight: function(element) {
+	    $(element).closest('.control-group').removeClass('success').addClass('error');
+	},
+	success: function(element) {
+	    element
+	    //.text('OK!').addClass('valid')
+	    .closest('.control-group').removeClass('error').addClass('success');
+	}
+	});
 });
 
 
@@ -27,47 +74,44 @@ function login()	//gestisce il login dell'utente
 function user_signin()
 {
 	user =  $('#signU_user').val(); 
-	password1 =  $('#signU_password1').val();
-	password2 =  $('#signU_password2').val();
-	mail =  $('signU_mail').val();
+	password =  $('#signU_password2').val();
+	mail =  $('#signU_mail').val();
 	tipoUtente = "cliente";
 	
-	if(password1 != password2){
-		alert("Le due password sono diverse");
-	}
-	else 
-	//fai il controllo che sia inserita una mail corretta
-	//if
-	//else
-	{
-		$.ajax({
+	//alert("user: "+user+" Password: "+password+" email "+mail+" tipo utente: "+tipoUtente);
+	
+	$.ajax({
 	          type: 'POST',
 	          url: 'http://95.141.45.174/register',
 	          //contentType:"application/json",
 	          //dataType:'jsonp',
 	          contentType: 'application/x-www-form-urlencoded',
 	          crossDomain: true,
-	          data: {'userId': user, 'password': password, 'email': mail, 'password': password, 'tipoUtente': tipoUtente},
+	          data: {'userId': user, 'password': password, 'email': mail, 'tipoUtente': tipoUtente},
 	          success: ajaxSIGNIN,
 	          error: errorHandler
-	   })
-	}
+	})
 }
 
 //Registrazione Professionista
 function pro_signin()
 {
 	user =  $('#signP_user').val(); 
-	password1 =  $('#signP_password1').val();
-	password2 =  $('#signP_password2').val();
-	mail =  $('signP_mail').val();
+	password =  $('#signP_password2').val();
+	mail =  $('#signP_mail').val();
+	tipoUtente = "professionista";
 	
-	if(password1 != password2){
-		alert("Le due password sono diverse");
-	}
-	else{
-		alert("ok");
-	}
+	$.ajax({
+        type: 'POST',
+        url: 'http://95.141.45.174/register',
+        //contentType:"application/json",
+        //dataType:'jsonp',
+        contentType: 'application/x-www-form-urlencoded',
+        crossDomain: true,
+        data: {'userId': user, 'password': password, 'email': mail, 'tipoUtente': tipoUtente},
+        success: ajaxSIGNIN,
+        error: errorHandler
+	})
 }
 
 

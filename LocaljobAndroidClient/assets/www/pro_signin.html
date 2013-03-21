@@ -76,6 +76,23 @@
         margin-bottom: 15px;
         padding: 7px 9px;
       }
+      
+      /* Per Validator */
+
+		label.valid {
+		  width: 24px;
+		  height: 24px;
+		  background: url(./img/valid.png) center center no-repeat;
+		  display: inline-block;
+		  text-indent: -9999px;
+		}
+		label.error {
+			font-weight: bold;
+			color: red;
+			padding: 2px 8px;
+			margin-top: 2px;
+		}
+      
     </style>
     <link href="./css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -91,8 +108,6 @@
                     <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="./ico/favicon.png">
                                    
-  <script type="text/javascript" src="./jquery-1.9.1.js"></script>
-  <script src="./function.js" type="text/javascript" charset="utf-8"></script>
   </head>
 
   <body>
@@ -102,35 +117,48 @@
       <div class="jumbotron">
       	<p><img src="./img/logo_prova.png" /></p>
       
-        <form class="form-signin" action="javascript:pro_signin();">
-        	<input id="signP_user" type="text" class="input-block-level" placeholder="Username">
-        	<input id="signP_mail" type="text" class="input-block-level" placeholder="Email adress">
-        	<input id="signP_password1" type="password" class="input-block-level" placeholder="Password">
-        	<input id="signP_password2" type="password" class="input-block-level" placeholder=" Repeat Password">
-        	<button class="btn btn-large" type="submit">Sign In</button>
-      	</form>
+        <form action="javascript:pro_signin();" id="contact-form" class="form-signin">
+		<fieldset>
+ 			<legend>Per registrarti compila il form seguente</legend>
+ 			
+    		<div class="control-group">
+      			<div class="controls">
+        			<input type="text" class="input-block-level" name="signP_user" id="signP_user" placeholder="Username">
+     			</div>
+    		</div>
+    		<div class="control-group">
+      			<div class="controls">
+        			<input type="text" class="input-block-level" name="signP_mail" id="signP_mail" placeholder="Email adress">
+     			</div>
+    		</div>
+    		<div class="control-group">
+      			<div class="controls">
+        			<input type="password" class="input-block-level" name="password" id="password" placeholder="Password">
+     			</div>
+    		</div>
+    		<div class="control-group">
+      			<div class="controls">
+        			<input type="password" class="input-block-level" name="signP_password2" id="signP_password2" placeholder="Repeat password">
+     			</div>
+    		</div>
+    		<button type="submit" class="btn btn-large">Sign In</button>
+      		<button type="reset" class="btn btn-large">Cancel</button>
+  	</fieldset>
+	</form>
         
-      </div>
+    </div>
 
-
+	
+	
     </div> <!-- /container -->
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="./js/jquery.js"></script>
-    <script src="./js/bootstrap-transition.js"></script>
-    <script src="./js/bootstrap-alert.js"></script>
-    <script src="./js/bootstrap-modal.js"></script>
-    <script src="./js/bootstrap-dropdown.js"></script>
-    <script src="./js/bootstrap-scrollspy.js"></script>
-    <script src="./js/bootstrap-tab.js"></script>
-    <script src="./js/bootstrap-tooltip.js"></script>
-    <script src="./js/bootstrap-popover.js"></script>
-    <script src="./js/bootstrap-button.js"></script>
-    <script src="./js/bootstrap-collapse.js"></script>
-    <script src="./js/bootstrap-carousel.js"></script>
-    <script src="./js/bootstrap-typeahead.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/function.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/jquery.validate.js"></script>
 
   </body>
 </html>
