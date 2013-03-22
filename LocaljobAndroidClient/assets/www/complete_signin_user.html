@@ -49,7 +49,22 @@
       }
       
       /* Parte del form */
-      
+   
+     .form-inline {
+     	font-size: 16px;
+        height: auto;
+        max-width: 400px;
+        padding: 3px 10px 3px;
+        margin: 0px auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
       
       .form-signin {
         max-width: 400px;
@@ -76,6 +91,8 @@
         margin-bottom: 15px;
         padding: 7px 9px;
       }
+      
+      
       
       /* Per Validator */
 
@@ -120,31 +137,87 @@
       	
     <div class="alert alert-info">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<h4>Registrazione Consumatore</h4>
-			Compila il form seguente per registrarti e accedere al sistema. Successivamente potrai
-			inserire tutti i dati necessari per inviare le richieste.
+			<h4>Completa la tua registrazione</h4>
+			Completa la registrazione per inviare le richieste oppure fallo più tardi.
 	</div>
 		
 		
-    <form action="javascript:user_signin();" id="contact-form" class="form-signin">
+    <form action="javascript:user_complete_signin();" id="contact-form" class="form-signin">
 	<fieldset>
  		<div class="control-group">
     		<div class="controls">
-        		<input type="text" class="input-block-level" name="signU_user" id="signU_user" placeholder="Username">
+        		<input type="text" class="input-block-level" name="U_name" id="U_name" placeholder="Nome">
      		</div>
-      		<div class="controls">
-        		<input type="text" class="input-block-level" name="signU_mail" id="signU_mail" placeholder="Indirizzo Email">
+     		<div class="controls">
+        		<input type="text" class="input-block-level" name="U_surname" id="U_surname" placeholder="Cognome">
      		</div>
-      		<div class="controls">
-        		<input type="password" class="input-block-level" name="password" id="password" placeholder="Password">
+     		
+     		<div class="form-inline">
+     			<label style="font-size: 17px;">Data di nascita: </label>
+     			<select class="span1">
+     				<option>1</option>       
+				    <option>2</option>       
+				    <option>3</option>       
+				    <option>4</option>       
+				    <option>5</option>       
+				    <option>6</option>       
+				    <option>7</option>       
+				    <option>8</option>       
+				    <option>9</option>       
+				    <option>10</option>       
+				    <option>11</option>       
+				    <option>12</option>       
+				    <option>13</option>       
+				    <option>14</option>       
+				    <option>15</option>       
+				    <option>16</option>       
+				    <option>17</option>       
+				    <option>18</option>       
+				    <option>19</option>       
+				    <option>20</option>       
+				    <option>21</option>       
+				    <option>22</option>       
+				    <option>23</option>       
+				    <option>24</option>       
+				    <option>25</option>       
+				    <option>26</option>       
+				    <option>27</option>       
+				    <option>28</option>       
+				    <option>29</option>       
+				    <option>30</option>       
+				    <option>31</option>     
+     			</select>
+     			<label style="font-size: 17px;"> / </label>
+     				<select class="span1">
+     				<option value="01">Gennaio</option>       
+				    <option value="02">Febbraio</option>       
+				    <option value="03">Marzo</option>
+				    <option value="04">Aprile</option>  
+				    <option value="05">Maggio</option>  
+				    <option value="06">Giugno</option>  
+				    <option value="07">Luglio</option>  
+				    <option value="08">Agosto</option>  
+				    <option value="09">Settembre</option> 
+				    <option value="10">Ottobre</option> 
+				    <option value="11">Novembre</option> 
+				    <option value="12">Dicembre</option>    
+     			</select>
+     			<label style="font-size: 17px;"> / </label>
+     			<select id="anni" class="span1">
+     			</select>
+			</div>
+			<div class="controls">
+        		<input type="text" class="input-block-level" name="U_phone" id="U_phone" placeholder="Num. Telefono">
      		</div>
-      		<div class="controls">
-        		<input type="password" class="input-block-level" name="signU_password2" id="signU_password2" placeholder="Ripeti password">
+     		<div class="form-inline">
+     			<label style="font-size: 17px;">Immagine Profilo: </label>
+        		<input type="file" class="input-block-level">
      		</div>
-    	</div>
+    	</div>	
     	<div align="center">
-    		<button type="submit" class="btn btn-large">Registrati</button>
-      		<button type="reset" class="btn btn-large">Cancel</button>
+    		<button class="btn btn-large" onclick="">Ignora</button>
+    		<button type="submit" class="btn btn-large">Avanti</button>
+      		
       	</div>
   	</fieldset>
 	</form>

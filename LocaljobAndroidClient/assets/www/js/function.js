@@ -1,6 +1,16 @@
-﻿$(document).ready(function()	//funzioni che si avviano al caricamento della pagina
+﻿var tipoUtente;
+
+$(document).ready(function()	//funzioni che si avviano al caricamento della pagina
 {
 	jQuery.support.cors = true;
+	
+	//script per il form della data di nascita
+	var firstYear = 1920;
+	var lastYear = 1999;
+	for(var i =firstYear; i<=lastYear; i++) {
+	       $('#anni').append('<option>'+i+'</option>')
+	}
+	
 	
 	//roba per la validazione email
 	$('#contact-form').validate(
@@ -41,6 +51,7 @@
 	},
 	highlight: function(element) {
 	    $(element).closest('.control-group').removeClass('success').addClass('error');
+		//$(element).closest('.control-group').addClass('error');
 	},
 	success: function(element) {
 	    element
@@ -139,7 +150,14 @@ function ajaxLOGIN(data){
 }
 
 function ajaxSIGNIN(data){
-	alert(data);
+	if(tipoUtente=="cliente"){
+		//alert("cliente registrato");
+		window.location='complete_signin_user.html';
+	}
+	else if(tipoUtente=="professionista"){
+		//alert("professionista registrato");
+		window.location='complete_signin_pro.html';
+	}
 }
 
 function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
