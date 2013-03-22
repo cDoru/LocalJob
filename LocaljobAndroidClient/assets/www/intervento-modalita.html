@@ -24,13 +24,12 @@
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="./ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="./ico/favicon.png">
   </head>
 
   <body>
-
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -39,71 +38,62 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#"><!--<img src="./img/logolocaljobmini.png">-->LocalJob</a>
-     <!--      <div class="nav-collapse collapse"> --> 
-             <ul class="nav"> 
-           <li><a href="#"><i class="icon-comment icon-white"></i></a></li>
-            <li><a href="#about"><i class="icon-wrench icon-white"></i></a></li>
-      
-            </ul> 
-         <!-- </div>/.nav-collapse -->
-      </div> 
+          <a class="brand" href="#">LocalJob</a>
+          <ul class="nav"> 
+          	<li><a href="#"><i class="icon-comment icon-white"></i></a></li>
+           	<li><a href="#about"><i class="icon-wrench icon-white"></i></a></li>
+          </ul> 
+      	</div> 
       </div>
     </div>
 
-    <div class="container">
-		<div class="row-fluid">
-			<div class="span12" style="text-align:center;">
-				<form>
-	  				<fieldset>
-	    				<input type="text" class="input-xxlarge" placeholder="Tipo di problema"><br/>  		
-	    		
-	    				<select class="input-xxlarge">
- 					 		<option>Intervento da richiedere</option>
-  					 		<option>Idraulico</option>
-  					 		<option>Elettricista</option>
-  					 		<option>Muratore</option>
-  					 		<option>Lezioni e ripetizioni</option>
-  					 		<option>Fabbro</option>
-						</select><br/>
-						
-						<textarea class="input-xxlarge" rows="5" placeholder="Descrizione del problema"></textarea><br/>
-						
-						<button class="btn btn-large btn-primary btn-block" type="button"><i class="icon-picture icon-white"></i> Inserisci foto</button><br/>
-					
-						<button class="btn btn-large btn-primary" type="button"><i class="icon-fullscreen icon-white"></i> </button>
-						<button class="btn btn-large btn-primary" type="button"><i class="icon-home icon-white"></i> </button>
-						<button class="btn btn-large btn-primary" type="button">Avanti <i class="icon-chevron-right icon-white"></i></button>
-						
-					</fieldset>
-	    		
-	    			<!-- <div class="btn-group" style="width:100%;">
-	  					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%;">
-	  					Intervento richiesto
-	  					<span class="caret"></span>
-	  					</a>
-	  						<ul class="dropdown-menu">
-	    					<li><a href="#"> Idraulico</a></li>
-	    					<li><a href="#"> Muratore</a></li>
-	    					<li><a href="#"> Lezioni private</a></li>
-	    					<li><a href="#"> Fabbro</a></li>
-	    					<li class="divider"></li>
-	    					<li><a href="#"><i class="i"></i> Altro</a></li>
-	  						</ul>
-	  				
-					</div> -->
-				</form>
-			</div>
-   		
-  	  		 
-  			
 
-		
+			 <h4>Scegli il tuo tipo di richiesta</h4>
+			 
+			 <div>
+				<button style="width:49%; float:left; margin-right:1%" class="btn btn-large" type="button" style="height:400px;">
+				 <img src="./img/img_sample.jpg" alt="">
+				 <div>
+				 	<h4>Asta</h4>
+				 	<p>L'offerta migliore tra i professionisti in zona</p>
+			 	</div>
+			 </button> 
+
+		 </div>
+		 <div>
+			<button style="width:49%; float:left; margin-left:1%" class="btn btn-large" type="button" style="height:400px;">
+				<img src="./img/img_sample.jpg" alt="">
+				<div>
+					<h4>Urgenza</h4>
+					<p>I professionisti più veloci in zona</p>
+				</div>
+			</button> 
 		</div>
-
-    </div> <!-- /container -->
-   
-
+		
+		<div style="clear:both;"></div><br/>
+		<button class="btn btn-large btn-block btn-primary" type="button"><i class="icon-search icon-white"></i> Ricerca standard</button><br/>
+		
+		<div class="alert alert-info">
+				 <button type="button" class="close" data-dismiss="alert">&times;</button>
+				 Visualizza tutti i professionisti e scegli quello che meglio risponde alle tue necessità
+		</div>
+		
+		<!-- Ti faccio anche la finestrella popup modale per la durata dell'asta. Dovrà essere richiamata nel javascript -->
+		<div class="modal hide fade">
+ 			<div class="modal-header">
+    			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    			<h3>Durata dell'asta</h3>
+  			</div>
+  			<div class="modal-body">
+    			<p>SLIDER da settare in javascript. Lascio il link della guida http://www.eyecon.ro/bootstrap-slider/</p>
+  			</div>
+  			<div class="modal-footer">
+    			<a href="#" class="btn">Chiudi</a>
+    			<a href="#" class="btn btn-primary">OK</a>
+  			</div>
+		</div>
+		
+	
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
