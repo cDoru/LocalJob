@@ -47,7 +47,19 @@ $(document).ready(function()	//funzioni che si avviano al caricamento della pagi
 			minlength: 8,
 			equalTo: "#password",
 		    required: true
-	    }
+	    },
+		 U_name: {
+			 required: false,
+			 //digits: true
+		 },
+		 U_surname: {
+			 required: false,
+			 //digits: true
+		 },
+		 U_phone: {
+			 required: false,
+			 number: true
+		 }
 	},
 	highlight: function(element) {
 	    $(element).closest('.control-group').removeClass('success').addClass('error');
@@ -122,6 +134,31 @@ function user_signin()
 	})
 }
 
+//Completa la registrazione
+function user_complete_signin()
+{
+	/*user =  $('#signU_user').val(); 
+	password =  $('#signU_password2').val();
+	mail =  $('#signU_mail').val();
+	tipoUtente = "cliente";
+	
+	//alert("user: "+user+" Password: "+password+" email "+mail+" tipo utente: "+tipoUtente);
+	
+	$.ajax({
+	          type: 'POST',
+	          url: 'http://95.141.45.174/register',
+	          //contentType:"application/json",
+	          //dataType:'jsonp',
+	          contentType: 'application/x-www-form-urlencoded',
+	          crossDomain: true,
+	          data: {'userId': user, 'password': password, 'email': mail, 'tipoUtente': tipoUtente},
+	          success: ajaxSIGNIN,
+	          error: errorHandler
+	})*/
+	window.location='complete_signin_user2.html';
+}
+
+
 //Registrazione Professionista
 function pro_signin()
 {
@@ -143,6 +180,40 @@ function pro_signin()
 	})
 }
 
+function cambiaBottone(testo){
+	$('#bottone_via').html(testo+" <span class='caret'></span>"); 
+	if (testo=="Viale"){
+		$('#lista_vie').html("<li><a href='javascript:cambiaBottone(\"Via\");'>Via</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Largo\");'>Largo</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Piazza\");'>Piazza</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Piazzale\");'>Piazzale</a></li>"); 
+	}
+	else if(testo=="Largo"){
+		$('#lista_vie').html("<li><a href='javascript:cambiaBottone(\"Via\");'>Via</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Viale\");'>Viale</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Piazza\");'>Piazza</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Piazzale\");'>Piazzale</a></li>"); 
+	}
+	else if(testo=="Piazza"){
+		$('#lista_vie').html("<li><a href='javascript:cambiaBottone(\"Via\");'>Via</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Viale\");'>Viale</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Largo\");'>Largo</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Piazzale\");'>Piazzale</a></li>"); 
+	}
+	else if(testo=="Piazzale"){
+		$('#lista_vie').html("<li><a href='javascript:cambiaBottone(\"Via\");'>Via</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Viale\");'>Viale</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Largo\");'>Largo</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Piazza\");'>Piazza</a></li>"); 
+	}
+	else if(testo=="Via"){
+		$('#lista_vie').html("<li><a href='javascript:cambiaBottone(\"Viale\");'>Viale</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Largo\");'>Largo</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Piazza\");'>Piazza</a></li>" +
+				"<li><a href='javascript:cambiaBottone(\"Piazzale\");'>Piazzale</a></li>"); 
+	}
+	
+}
 
 function ajaxLOGIN(data){
 	//alert(data);

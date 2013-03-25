@@ -49,7 +49,22 @@
       }
       
       /* Parte del form */
-      
+   
+     .form-inline {
+     	font-size: 16px;
+        height: auto;
+        max-width: 400px;
+        padding: 3px 10px 3px;
+        margin: 0px auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
       
       .form-signin {
         max-width: 400px;
@@ -76,6 +91,8 @@
         margin-bottom: 15px;
         padding: 7px 9px;
       }
+      
+      
       
       /* Per Validator */
 
@@ -120,35 +137,37 @@
       	
     <div class="alert alert-info">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<h4>Registrazione Consumatore</h4>
-			Compila il form seguente per registrarti e accedere al sistema. Successivamente potrai
-			inserire tutti i dati necessari per inviare le richieste.
+			<h4>Completa la tua registrazione</h4>
+			Completa la registrazione per inviare le richieste oppure fallo più tardi.
 	</div>
 		
-	<!-- La classe control-group e controls sono quelle per verificare la correttezza dei 
-	dati lato client. Il CSS è sopra e il javascript con le regole è in function.js 
-	(Bisogna vedere come togliere quello spazio che viene creato al tutto ok e migliorare il css)
-	-->
-	
-    <form action="javascript:user_signin();" id="contact-form" class="form-signin">
+		
+    <form action="javascript:user_complete_signin();" id="contact-form" class="form-inline">
 	<fieldset>
- 		<div class="control-group">
-    		<div class="controls">
-        		<input type="text" class="input-block-level" name="signU_user" id="signU_user" placeholder="Username">
-     		</div>
-      		<div class="controls">
-        		<input type="text" class="input-block-level" name="signU_mail" id="signU_mail" placeholder="Indirizzo Email">
-     		</div>
-      		<div class="controls">
-        		<input type="password" class="input-block-level" name="password" id="password" placeholder="Password">
-     		</div>
-      		<div class="controls">
-        		<input type="password" class="input-block-level" name="signU_password2" id="signU_password2" placeholder="Ripeti password">
-     		</div>
-    	</div>
+		<!-- Qui per ora ho fatto solo il giochino del via/piazza/viale ecc... l'input text
+		non si allinea se rimpicciolisci al bordo -->
+		<div class="input-prepend">
+  			<div class="btn-group">
+    			<button id="bottone_via" class="btn dropdown-toggle" data-toggle="dropdown">
+      				Via <span class="caret"></span>
+   				</button>
+    			<ul class="dropdown-menu" id="lista_vie">
+					<li><a href="javascript:cambiaBottone('Viale');">Viale</a></li>
+					<li><a href="javascript:cambiaBottone('Largo');">Largo</a></li>
+					<li><a href="javascript:cambiaBottone('Piazza');">Piazza</a></li>
+					<li><a href="javascript:cambiaBottone('Piazzale');">Piazzale</a></li>
+				</ul>
+  			</div>
+  			<input type="text" class="span2" name="U_address" id="U_address" placeholder="Indirizzo">
+		</div>
+	
+	
+	
+ 		
     	<div align="center">
-    		<button type="submit" class="btn btn-large">Registrati</button>
-      		<button type="reset" class="btn btn-large">Cancel</button>
+    		<button class="btn btn-large" onclick="">Ignora</button>
+    		<button type="submit" class="btn btn-large">Avanti</button>
+      		
       	</div>
   	</fieldset>
 	</form>
