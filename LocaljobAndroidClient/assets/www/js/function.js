@@ -48,22 +48,22 @@ $(document).ready(function()	//funzioni che si avviano al caricamento della pagi
 			equalTo: "#password",
 		    required: true
 	    },
-		 U_name: {
-			 required: false,
+		 signU_name: {
+			 required: true
 			 //digits: true
 		 },
-		 U_surname: {
-			 required: false,
+		 signU_surname: {
+			 required: true
 			 //digits: true
 		 },
-		 U_phone: {
+		 signU_phone: {
 			 required: false,
 			 number: true
 		 }
 	},
 	highlight: function(element) {
 	    $(element).closest('.control-group').removeClass('success').addClass('error');
-		//$(element).closest('.control-group').addClass('error');
+		$(element).closest('.control-group').addClass('error');
 	},
 	success: function(element) {
 	    element
@@ -114,6 +114,9 @@ function login()	//gestisce il login dell'utente
 //Registrazione utente
 function user_signin()
 {
+	nome = $('#signU_name').val(); 
+	cognome = $('#signU_surname').val(); 
+	//
 	user =  $('#signU_user').val(); 
 	password =  $('#signU_password2').val();
 	mail =  $('#signU_mail').val();
@@ -121,7 +124,8 @@ function user_signin()
 	
 	//alert("user: "+user+" Password: "+password+" email "+mail+" tipo utente: "+tipoUtente);
 	
-	$.ajax({
+	/* Lo metto sotto commento perchè voglio provare subito come si vede
+	 $.ajax({
 	          type: 'POST',
 	          url: 'http://95.141.45.174/register',
 	          //contentType:"application/json",
@@ -132,6 +136,8 @@ function user_signin()
 	          success: ajaxSIGNIN,
 	          error: errorHandler
 	})
+	*/
+	window.location='interventi-attivi.html';
 }
 
 //Completa la registrazione

@@ -2,79 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>LocalJob</title>
+    <title>Bootstrap, from Twitter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
     <link href="./css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
+    <style>
       body {
-        padding-top: 0px;
-        padding-bottom: 40px;
-        background-color:#007E94;
-      }
-
-      /* Custom container */
-      .container-narrow {
-        margin: 0 auto;
-        max-width: 700px;
-      }
-      .container-narrow > hr {
-        margin: 30px 0;
-      }
-
-      /* Main marketing message and sign up button */
-      .jumbotron {
-        margin: 10px 0;
-        text-align: center;
-        /*background-color:#FF0000;*/
-      }
-      .jumbotron h1 {
-        font-size: 72px;
-        line-height: 1;
-      }
-      .jumbotron .btn {
-        font-size: 21px;
-        padding: 14px 24px;
-      }
-
-      /* Supporting marketing content */
-      .marketing {
-        margin: 60px 0;
-      }
-      .marketing p + h4 {
-        margin-top: 28px;
-      }
-      
-      /* Parte del form */
-      
-      
-      .form-signin {
-        max-width: 400px;
-        padding: 1px 1px 29px;
-        margin: 20px auto 20px;
-        /*background-color: #fff;*/
-        /*border: 1px solid #e5e5e5;*/
-        -webkit-border-radius: 5px;
-           -moz-border-radius: 5px;
-                border-radius: 5px;
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-                box-shadow: 0 1px 2px rgba(0,0,0,.05);
-      }
-      .form-signin .form-signin-heading,
-      .form-signin .checkbox {
-        margin-bottom: 10px;
-      }
-      .form-signin input[type="text"],
-      .form-signin input[type="password"] {
-        font-size: 16px;
-        height: auto;
-        /*width: auto;*/
-        margin-bottom: 15px;
-        padding: 7px 9px;
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
       
       /* Per Validator */
@@ -98,7 +35,7 @@
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="../js/html5shiv.js"></script>
+      <script src="./js/html5shiv.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -107,59 +44,63 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="./ico/favicon.png">
-  
   </head>
 
   <body>
 
-    <div class="container-narrow">
-	
- 	<div class="jumbotron">
-    	<p><img src="./img/logo_prova.png" /></p>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">LocalJob</a>
+             <ul class="nav"> 
+           <li><a href="#"><i class="icon-comment icon-white"></i></a></li>
+            <li><a href="#about"><i class="icon-wrench icon-white"></i></a></li>
+      
+            </ul> 
+      </div> 
+      </div>
     </div>
-      	
-    <div class="alert alert-info">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<h4>Registrazione Consumatore</h4>
-			Compila il form seguente per registrarti e accedere al sistema. Successivamente potrai
-			inserire tutti i dati necessari per inviare le richieste.
-	</div>
-		
-	<!-- La classe control-group e controls sono quelle per verificare la correttezza dei 
-	dati lato client. Il CSS è sopra e il javascript con le regole è in function.js 
-	(Bisogna vedere come togliere quello spazio che viene creato al tutto ok e migliorare il css)
-	-->
-	
-    <form action="javascript:user_signin();" id="contact-form" class="form-signin">
-	<fieldset>
- 		<div class="control-group">
-    		<div class="controls">
-        		<input type="text" class="input-block-level" name="signU_user" id="signU_user" placeholder="Username">
-     		</div>
-      		<div class="controls">
-        		<input type="text" class="input-block-level" name="signU_mail" id="signU_mail" placeholder="Indirizzo Email">
-     		</div>
-      		<div class="controls">
-        		<input type="password" class="input-block-level" name="password" id="password" placeholder="Password">
-     		</div>
-      		<div class="controls">
-        		<input type="password" class="input-block-level" name="signU_password2" id="signU_password2" placeholder="Ripeti password">
-     		</div>
-    	</div>
-    	<div align="center">
-    		<button type="submit" class="btn btn-large">Registrati</button>
-      		<button type="reset" class="btn btn-large">Cancel</button>
-      	</div>
-  	</fieldset>
-	</form>
 
-	<ul class="breadcrumb">
-		<li><a href="#">Registrazione</a> <span class="divider">/</span></li>
-		<li><a href="#">Consumatore</a> <span class="divider">/</span></li>
-		<li class="active">Inserisci i dati</li>
-	</ul>
+    <div class="container">
+    	<form action="javascript:user_signin();" id="contact-form" class="form-signin">
+	    	<div class="control-group"> <!-- Serve per il validator -->
+		    	<div class="row-fluid" style="margin-bottom:15px;">
+		    		<div style="width:43%; float:left; margin-right:1%; height:100%; text-align:center">
+		    			<a href="#"><img src="./img/example_photo.png" width="80px" height="80px"></a>
+		    		</div>
+		    			<!-- La classe controls serve per il validator -->
+		    			<div class="controls" style="width:55%; float:right; height:100%; margin-left:1%;">
+		    				<input type="text" class="input-block-level" name="signU_name" id="signU_name" placeholder="Nome">
+		    				<input type="text" class="input-block-level" name="signU_surname" id="signU_surname" placeholder="Cognome">
+		    			</div>	
+		    	</div>
+				<!-- Parte con il form normale -->
+	    		<div class="controls">
+	        		<input type="text" class="input-block-level" name="signU_user" id="signU_user" placeholder="Username">
+	 			</div>
+	 			<div class="controls">
+	        		<input type="text" class="input-block-level" name="signU_mail" id="signU_mail" placeholder="Indirizzo Email">
+	     		</div>
+	     		<div class="controls">
+	        		<input type="password" class="input-block-level" name="password" id="password" placeholder="Password">
+	     		</div>
+	     		<div class="controls">
+	        		<input type="password" class="input-block-level" name="signU_password2" id="signU_password2" placeholder="Ripeti password">
+	     		</div>
+	   		</div>
+	   		<div align="center">
+	   			<button type="reset" class="btn btn-large">Cancel</button>
+	    		<button type="submit" class="btn btn-large">Registrati</button>    		
+	      	</div>
+    	</form>
 
     </div> <!-- /container -->
+   
 
     <!-- Le javascript
     ================================================== -->
