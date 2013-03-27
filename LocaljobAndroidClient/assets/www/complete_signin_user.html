@@ -153,27 +153,16 @@
 	- La data di nascita fa schifo...va messa bene
 	- Vanno iseriti anche i controlli nel javascript (le regole) perchè ora lascio tutto ok
 	-->
-	<div class="media">
-  		<a class="pull-left" href="#">
-    		<img class="media-object" src="./img/example_photo.png" width="80px" height="80px">
 
-  		</a>
-  		<div class="media-body">
-    		<div class="controls">
-        		<input type="text" class="input-block-level" name="U_name" id="U_name" placeholder="Nome">
-     		</div>
-     		<div class="controls">
-        		<input type="text" class="input-block-level" name="U_surname" id="U_surname" placeholder="Cognome">
-     		</div>
-    	</div>
-	</div>
 	
  		<div class="control-group">
     		
      		<!-- <div class="controls">
         		<input type="date" class="input-block-level" name="U_date" id="U_date" placeholder="Cognome">
      		</div> -->
-     		<div class="form-inline">
+     		
+     		
+     	 <div class="form-inline">
      			<label style="font-size: 17px;">Data di nascita: </label>
      			<select class="span1">
      				<option>1</option>       
@@ -227,14 +216,27 @@
      			<select id="anni" class="span1">
      			</select>
 			</div>
+			
+			<div class="input-prepend">
+  			<div class="btn-group">
+    			<button id="bottone_via" class="btn dropdown-toggle" data-toggle="dropdown">
+      				Via <span class="caret"></span>
+   				</button>
+    			<ul class="dropdown-menu" id="lista_vie">
+					<li><a href="javascript:cambiaBottone('Viale');">Viale</a></li>
+					<li><a href="javascript:cambiaBottone('Largo');">Largo</a></li>
+					<li><a href="javascript:cambiaBottone('Piazza');">Piazza</a></li>
+					<li><a href="javascript:cambiaBottone('Piazzale');">Piazzale</a></li>
+				</ul>
+  			</div>
+  			<input type="text" class="span2" name="U_address" id="U_address" placeholder="Indirizzo">
+		</div>
+		
+			
 			<div class="controls">
         		<input type="text" class="input-block-level" name="U_phone" id="U_phone" placeholder="Num. Telefono">
      		</div>
-     		<input type="file" class="span2">
-     		<div class="form-inline">
-     			<label style="font-size: 17px;">Immagine Profilo: </label>
-        		<input type="file" class="span2">
-     		</div>
+     		
     	</div>	
     	<div align="center">
     		<button class="btn btn-large" onclick="">Ignora</button>
