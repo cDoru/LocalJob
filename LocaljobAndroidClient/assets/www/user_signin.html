@@ -49,22 +49,15 @@
   <body>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-      	<ul class="nav"> 
-      		<li><button class="btn btn-primary" type="button" onclick="javascript:history.go(-1);"><i class="icon-arrow-left icon-white"></i> Indietro</button></li>	
-      	</ul>
-      
-          <!-- <button type="button" class="btn btn-navbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button> -->
-          <a class="brand" href="#">LocalJob</a>
-             
-   
-      </div>
-    </div>
-	<h4>Crea account consumatore</h4>
+    	<div class="navbar-inner" style="line-height:30px;">
+      		<ul class="nav"> 
+      			<li><button class="btn btn-large btn-inverse" type="button" onclick="javascript:history.go(-1);"><img src="./img/glyphicons/white_ver/225.PNG"></button></li>	
+      		</ul>  
+          	<a class="brand" href="#" >LocalJob</a>       	
+		</div>
+	</div>
+    
+	<h4>Crea account professionista</h4>
     <div class="container">
     	<form action="javascript:user_signin();" id="contact-form" class="form-signin">
 	    	<div class="control-group"> <!-- Serve per il validator -->
@@ -95,7 +88,7 @@
 	   		<div align="center">
 	   			<button type="reset" class="btn btn-large">Cancel</button>
 	    		<button type="submit" class="btn btn-large">Registrati</button>
-	    		<button type="button" onclick="javascript:user_signin();" class="btn btn-large">bottone di prova</button>    		
+	    		<button type="button" onclick="javascript:window.location='interventi-attivi.html';" class="btn btn-large">bottone di prova</button>    		
 	      	</div>
     	</form>
 

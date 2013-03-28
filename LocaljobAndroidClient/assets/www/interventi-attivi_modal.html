@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+     	background-color:#007E94;
+      }
+    </style>
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="./js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="./ico/favicon.png">
+  </head>
+
+  <body>
+	
+    <div class="navbar navbar-inverse navbar-fixed-top"> <!-- bar corretta -->
+      <div class="navbar-inner">
+        <div class="container">
+			<a class="brand" href="#"><!--<img src="./img/logolocaljobmini.png">-->LocalJob</a>
+     <!--      <div class="nav-collapse collapse"> --> 
+             <ul class="nav"> 
+             
+  				<li><div class="btn-group">
+  				<button class="btn btn-primary" type="button"><i class="icon-comment icon-white"></i></button>
+            	<button class="btn btn-primary" type="button"><i class="icon-wrench icon-white"></i></button>
+            	<button class="btn btn-primary" type="button" id="prova" data-toggle="popover" title="Notifiche:"><i class="badge badge-important">2</i></button>
+            	
+			</div></li>
+           
+      		
+            </ul> 
+
+      </div> 
+
+      </div>
+    </div>
+	
+	
+	
+    <div id="prova_prova" class="container">
+		<div class="row-fluid" align="center">
+            <div class="span12">
+    		  <button class="btn btn-block btn-large" style="height:60px" type="button"><img src="./img/glyphicons/black_ver/glyphicons_190_circle_plus.png" style= "margin-right:10%"/> NUOVO INTERVENTO <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png" style= "margin-left:10%"/></button><br/>
+    		  </div>
+    	</div>
+    	
+    	
+    	
+    	<div class="tabbable"> <!-- Only required for left/right tabs -->
+  			<ul class="nav nav-tabs">
+    			<li class="active"><a href="#tab1" data-toggle="tab">Interventi Attivi</a></li>
+    		</ul>
+  			<div class="tab-content">
+    			<div class="tab-pane active" id="tab1">
+      				<!-- Interno degli interventi attivi
+      				Qui bisognerebbe fare la chiamata al server che ti controlla se ci sono
+      				interventi attivi -->
+      				
+      				<!-- Primo intervento attivo -->
+      				<div class="alert alert-info">
+						<p>
+				      	<div class="row-fluid">
+				      		<div class="span1"><img src="..." class="img-polaroid"></div>
+				      		<div class="span8"><h6>Titolo intervento</h6>
+				      		Imbiancatura casa, 4 stanze in totale, casa ammobiliata, carta da parati in due 
+				      		stanze.</div>		
+				      	</div>
+				      	</p>
+				      	<p>
+				      	<div class="row-fluid">
+				      		<div class="span12">
+				      			<div class="progress progress-info progress-striped active">
+				  					<div class="bar" style="width: 20%;"></div>
+								</div>
+				      		</div>
+				      	</div>
+				      	</p> 
+					</div>
+			        
+			        <!-- Secondo intervento attivo -->
+			        <div class="alert alert-info">
+					    <p>
+				      		<div class="row-fluid">
+				      			<div class="span1"><img src="..." class="img-polaroid"></div>
+				      			<div class="span8"><h6>Titolo Altro intervento</h6>
+				      			Il water sta esplodendo, ho acqua ovunque. Aiuto!!!! Fermate tutto!!
+				      			</div>
+				      		</div>
+				      	</p>
+				      	<p>
+			      			<div class="row-fluid">
+			      				<div class="span12">
+			      					<div class="progress progress-info progress-striped active">
+			  							<div class="bar" style="width: 50%;"></div>
+									</div>
+			      				</div>
+			      			</div>
+			      		</p>
+			    	</div>
+			      				
+			    </div>
+			</div>			
+		</div>
+    	
+  	
+  	
+        
+  
+    </div>
+      
+     
+
+   
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/function.js"></script>
+  </body>
+</html>

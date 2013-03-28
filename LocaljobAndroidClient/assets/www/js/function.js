@@ -4,6 +4,9 @@ $(document).ready(function()	//funzioni che si avviano al caricamento della pagi
 {
 	jQuery.support.cors = true;
 	
+	
+	
+	
 	//script per il form della data di nascita
 	var firstYear = 1920;
 	var lastYear = 1999;
@@ -53,6 +56,10 @@ function login()	//gestisce il login dell'utente
           url: 'http://95.141.45.174/login',
           //contentType:"application/json",
           //dataType:'jsonp',
+          //prova della schermata di attesa
+          ajaxStart: function(){
+        	  window.location='wait.html';
+          },
           contentType: 'application/x-www-form-urlencoded',
           crossDomain: true,
           data: {'userId': user, 'password': password},
@@ -74,24 +81,22 @@ function user_signin()
 	
 	//alert("user: "+user+" Password: "+password+" email "+mail+" tipo utente: "+tipoUtente);
 	
-	/* Lo metto sotto commento perchè voglio provare subito come si vede
 	 $.ajax({
 	          type: 'POST',
 	          url: 'http://95.141.45.174/register',
 	          //contentType:"application/json",
 	          //dataType:'jsonp',
+	          //prova della schermata di attesa
 	          contentType: 'application/x-www-form-urlencoded',
 	          crossDomain: true,
 	          data: {'userId': user, 'password': password, 'email': mail, 'tipoUtente': tipoUtente},
 	          success: ajaxSIGNIN,
 	          error: errorHandler
 	})
-	*/
-	window.location='interventi-attivi.html';
 }
 
 //Completa la registrazione
-function user_complete_signin()
+function update_user_profile()
 {
 	/*user =  $('#signU_user').val(); 
 	password =  $('#signU_password2').val();

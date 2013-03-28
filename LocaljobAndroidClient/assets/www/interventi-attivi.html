@@ -14,6 +14,13 @@
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
      	background-color:#007E94;
       }
+      
+      #prova {
+      	background-image:url('./img/glyphicons/white_ver/246.PNG');
+      	background-repeat: no-repeat;
+      	background-position:center; 
+      	color:#000000;
+      }
     </style>
     <link href="./css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -32,33 +39,28 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          
-          <a class="brand" href="#"><!--<img src="./img/logolocaljobmini.png">-->LocalJob</a>
-     <!--      <div class="nav-collapse collapse"> --> 
-             <ul class="nav"> 
-             
-  				<li><div class="btn-group">
-  				<button class="btn btn-primary" type="button"><i class="icon-comment icon-white"></i></button>
-            	<button class="btn btn-primary" type="button"><i class="icon-wrench icon-white"></i></button>
-            	<button class="btn btn-primary" type="button" id="prova" data-toggle="popover" title="Notifiche:"><i class="badge badge-important">2</i></button>
-            	
-			</div></li>
-           
-      		
-            </ul> 
-         <!-- </div> -->
-      </div> 
-      </div>
-    </div>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+    	<div class="navbar-inner">  
+    		<div class="container">   
+	          	<a class="brand" href="#" >LocalJob</a>       
+	          	<ul class="nav pull-right">
+	          		<li><div class="btn-group">
+	  					<!-- <i class="badge badge-important">2</i> -->
+	            		
+	            		<button style="line-height:30px;" class="btn btn-large btn-inverse" type="button" id="prova" data-toggle="popover" title="Notifiche:">2</button>
+	            		<button style="line-height:30px;" class="btn btn-large btn-inverse" type="button"><img src="./img/glyphicons/white_ver/243.PNG" height="60%" ></button>
+	            		<button style="line-height:30px;" class="btn btn-large btn-inverse" type="button"><img src="./img/glyphicons/white_ver/138.PNG" height="60%" ></button>
+					</div></li>
+	          	</ul>
+	    	</div>	
+		</div>
+	</div>
 
 	
     <div id="prova_prova" class="container">
 		<div class="row-fluid" align="center">
             <div class="span12">
-    		  <button class="btn btn-block btn-large" style="height:60px" type="button"><i class="icon-plus-sign"></i> Nuovo Intervento <i class="icon-chevron-right"></i></button><br/>
+    		  <button class="btn btn-block btn-large" style="height:60px" type="button"><img src="./img/glyphicons/black_ver/glyphicons_190_circle_plus.png" style= "margin-right:3%"/> NUOVO INTERVENTO <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png" style= "margin-left:3%"/></button><br/>
     		  </div>
     	</div>
     	
@@ -77,12 +79,16 @@
       				<!-- Primo intervento attivo -->
       				<div class="alert alert-info">
 						<p>
-				      	<div class="row-fluid">
-				      		<div class="span1"><img src="..." class="img-polaroid"></div>
-				      		<div class="span8"><h6>Titolo intervento</h6>
-				      		Imbiancatura casa, 4 stanze in totale, casa ammobiliata, carta da parati in due 
-				      		stanze.</div>		
-				      	</div>
+						<div class="row-fluid" style="margin-bottom:15px;">
+		    				<div style="width:43%; float:left; margin-right:1%; height:100%; text-align:center">
+		    					<img src="..." class="img-polaroid">
+		    				</div>
+		    				<div style="width:55%; float:right; height:100%; margin-left:1%;">
+		    					<h6>Titolo intervento</h6>
+		    				</div>	
+		    				Imbiancatura casa, 4 stanze in totale, casa ammobiliata, carta da parati in due 
+				      			stanze.
+		    			</div>
 				      	</p>
 				      	<p>
 				      	<div class="row-fluid">
