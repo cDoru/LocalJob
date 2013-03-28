@@ -36,8 +36,8 @@ function cambia_login(){
 	$('#contenitore').html("<form class='form-signin' action='javascript:login();'>" +
 			"<input id='user' type='text' class='input-block-level' placeholder='Username'>" +
 			"<input id='password' type='password' class='input-block-level' placeholder='Password'>" +
-			"<label class='checkbox'><p align='left'><input type='checkbox' value='remember-me'> Remember me</p>" +
-			"</label><div align='center'><button class='btn btn-large' type='submit'>Log In</button></div></form>");
+			"<div align='center'><button class='btn btn-large btn-block btn-inverse' type='submit'>Accedi</button></div>" +
+			"<div align='center' id='password_link'><a href='#'>Hai dimenticato la password?</a></div></form>");
 }
 
 /*
