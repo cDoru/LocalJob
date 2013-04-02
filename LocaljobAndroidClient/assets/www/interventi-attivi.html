@@ -11,12 +11,12 @@
     <link href="./css/bootstrap.css" rel="stylesheet">
     <style>
       body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        padding-top: 125px; /* 60px to make the container go all the way to the bottom of the topbar */
      	background-color:#007E94;
       }
       
     </style>
-    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+ <link href="./css/bootstrap-responsive.css" rel="stylesheet"> 
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -34,15 +34,25 @@
   <body>
 
 	<div class="navbar navbar-inverse navbar-fixed-top">
-    	<div class="navbar-inner" style="line-height:10%; height:10%;">  
-    		<!-- <div class="container" >  -->  
-	          	<img src="./img/logo_cropped.png" width="36%" style="margin-top:0.5%;"> 
-	          	<div class="btn-group pull-right" style="margin-top:0;">	            		
-	            	<button style="height:30%" class="btn btn-large btn-inverse" type="button" id="prova" data-toggle="popover" title="Notifiche:"><span style="margin-top:5%; margin-bottom:5%" class="badge badge-important">4</span></button>
-	            	<button style="height:30%" class="btn btn-large btn-inverse" type="button"><img src="./img/glyphicons/resized22/ico_(16).png"></button>
-	            	<button style="height:30%" class="btn btn-large btn-inverse" type="button"><img src="./img/glyphicons/resized22/ico_(15).png"></button>
-				</div>
-	    	<!-- </div>	-->
+    	<div class="navbar-inner"> <!--style="line-height:8%; height:5%;">-->
+    		 <div class="container"> <!-- era commentato -->  
+          <!--<a class="brand">-->
+
+              <!-- Ho usato un barbatrucco, ho cambiato l'immagine con una ridimensionata...-->
+	          	<img src="./img/logo_rimpicc.png" style="margin-top:0.5%;"> 
+              
+              <!--<ul class="nav pull-right">-->
+            
+	          	<div class=" btn-group pull-right" style="margin-top:0.5%; margin-bottom:0.5%;">          		
+	            	
+                <button class="btn btn-large btn-inverse" type="button" id="prova" data-toggle="popover" title="Notifiche:"><span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span></button>
+	            	<button  class="btn btn-large btn-inverse" type="button"><img src="./img/glyphicons/resized22/ico_(16).png"></button>
+	            	<button class="btn btn-large btn-inverse" type="button"><img src="./img/glyphicons/resized22/ico_(15).png"></button>
+              </div>
+         
+             <!-- </a>-->
+				<!--</div>-->
+	    	 </div> <!--era comment	-->
 		</div>
 	</div>
 	
@@ -67,47 +77,48 @@
       				Qui bisognerebbe fare la chiamata al server che ti controlla se ci sono
       				interventi attivi -->
       				
-      				<!-- Primo intervento attivo -->
-      				<div class="alert alert-info">
-						<p>
-						<div class="row-fluid" style="margin-bottom:15px;">
-		    				<div style="width:43%; float:left; margin-right:1%; height:100%; text-align:center">
-		    					<img src="..." class="img-polaroid">
-		    				</div>
-		    				<div style="width:55%; float:right; height:100%; margin-left:1%;">
-		    					<h6>Titolo intervento</h6>
-		    				</div>	
-		    				Imbiancatura casa, 4 stanze in totale, casa ammobiliata, carta da parati in due 
-				      			stanze.
-		    			</div>
-				      	</p>
-				      	<p>
-				      	<div class="row-fluid">
-				      		<div class="span12">
-				      			<div class="progress progress-info progress-striped active">
-				  					<div class="bar" style="width: 20%;"></div>
-								</div>
-				      		</div>
-				      	</div>
-				      	</p> 
-					</div>
-			        
+              
+              <!-- Primo intervento attivo -->
+              <div class="alert alert-info">
+               <p>
+                <div class="row-fluid">
+                  <div class="span1"><img src="..." class="img-polaroid"></div>
+                  <div style="width:90%; float:right; height:100%; margin-left:1%;">
+                  <div class="span8"><h6>Titolo Primo intervento</h6>
+                  Devo ridipingere casa. Ho 5 stanze, la carta da parati da togliere ed è ammobigliata.
+                  </div>
+                </div> <!--added-->
+                </div>
+              </p>
+              <p>
+                <div class="row-fluid">
+                  <div class="span12">
+                    <div class="progress progress-info progress-striped active">
+                      <div class="bar" style="width: 20%;"></div>
+                     </div>
+                    </div>
+                  </div>
+                </p>
+            </div>
+
 			        <!-- Secondo intervento attivo -->
 			        <div class="alert alert-info">
-					    <p>
-				      		<div class="row-fluid">
-				      			<div class="span1"><img src="..." class="img-polaroid"></div>
-				      			<div class="span8"><h6>Titolo Altro intervento</h6>
-				      			Il water sta esplodendo, ho acqua ovunque. Aiuto!!!! Fermate tutto!!
-				      			</div>
+					     <p>
+				      	<div class="row-fluid">
+				      		<div class="span1"><img src="..." class="img-polaroid"></div>
+                  <div style="width:90%; float:right; height:100%; margin-left:1%;">
+				      		<div class="span8"><h6>Titolo Altro intervento</h6>
+				      		Il water sta esplodendo, ho acqua ovunque. Aiuto!!!! Fermate tutto!!
 				      		</div>
-				      	</p>
-				      	<p>
-			      			<div class="row-fluid">
-			      				<div class="span12">
-			      					<div class="progress progress-info progress-striped active">
+                </div>
+				      	</div>
+				      </p>
+				      <p>
+			      	  <div class="row-fluid">
+			      			<div class="span12">
+			      				<div class="progress progress-info progress-striped active">
 			  							<div class="bar" style="width: 50%;"></div>
-									</div>
+									   </div>
 			      				</div>
 			      			</div>
 			      		</p>
@@ -116,9 +127,6 @@
 			    </div>
 			</div>			
 		</div>
-    	
-  
-        
   
     </div>
       
