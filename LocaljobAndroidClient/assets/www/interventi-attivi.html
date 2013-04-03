@@ -14,6 +14,9 @@
         padding-top: 125px; /* 60px to make the container go all the way to the bottom of the topbar */
      	background-color:#007E94;
       }
+      a {
+      	color:#FFFFFF;
+      }
       
     </style>
  <link href="./css/bootstrap-responsive.css" rel="stylesheet"> 
@@ -35,7 +38,7 @@
 
 	<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
     	<div class="navbar-inner">
-	    	<img src="./img/logo_cropped.png" width="25%" style="max-width:180px; margin:auto 0; margin-left:5px;">
+	    	<img src="./img/logo_cropped.png" width="35%" style="max-width:180px; margin:auto 0; margin-left:5px;">
             
 	          	<div class=" btn-group pull-right" style="margin:0.7% 0;">          		
 	                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
@@ -65,26 +68,29 @@
     	
     	
     	<div class="tabbable"> <!-- Only required for left/right tabs -->
-  			<ul class="nav nav-tabs">
-    			<li class="active"><a href="#tab1" data-toggle="tab">Interventi Attivi</a></li>
-    		</ul>
-  			<div class="tab-content">
+		  <ul class="nav nav-tabs">
+		    <li class="active"><a href="#tab1" data-toggle="tab">Interventi attivi</a></li>
+		    <li><a href="#tab2" data-toggle="tab">Intorno a te</a></li>
+		  </ul>
+		  <div class="tab-content">
+		    <div class="tab-pane active" id="tab1">
+		      
+		    <!-- contenuto tab 1 inizia qui -->
+
+			<div class="tab-content">
     			<div class="tab-pane active" id="tab1">
       				<!-- Interno degli interventi attivi
-      				Qui bisognerebbe fare la chiamata al server che ti controlla se ci sono
-      				interventi attivi -->
+      				Qui bisognerebbe fare la chiamata al server che ti controlla se ci sono	interventi attivi -->
       				
-              
-              <!-- Primo intervento attivo -->
-              <div class="alert alert-info">
-               <p>
+              <div id="attivi" class="alert alert-info"> <!-- sfondo -->
+               <p>	<!-- Primo intervento -->
                 <div class="row-fluid">
                   <div class="span1"><img src="..." class="img-polaroid"></div>
                   <div style="width:90%; float:right; height:100%; margin-left:1%;">
                   <div class="span8"><h6>Titolo Primo intervento</h6>
-                  Devo ridipingere casa. Ho 5 stanze, la carta da parati da togliere ed è ammobigliata.
+                  		Devo ridipingere casa. Ho 5 stanze, la carta da parati da togliere ed è ammobigliata.
                   </div>
-                </div> <!--added-->
+                </div>
                 </div>
               </p>
               <p>
@@ -96,20 +102,19 @@
                     </div>
                   </div>
                 </p>
-            </div>
-
-			        <!-- Secondo intervento attivo -->
-			        <div class="alert alert-info">
-					     <p>
-				      	<div class="row-fluid">
-				      		<div class="span1"><img src="..." class="img-polaroid"></div>
-                  <div style="width:90%; float:right; height:100%; margin-left:1%;">
+               
+                <hr>
+                
+                <p>		<!-- Secondo intervento -->
+				   <div class="row-fluid">
+				   		<div class="span1"><img src="..." class="img-polaroid"></div>
+                   		<div style="width:90%; float:right; height:100%; margin-left:1%;">
 				      		<div class="span8"><h6>Titolo Altro intervento</h6>
-				      		Il water sta esplodendo, ho acqua ovunque. Aiuto!!!! Fermate tutto!!
+				      			Il water sta esplodendo, ho acqua ovunque. Aiuto!!!! Fermate tutto!!
 				      		</div>
-                </div>
-				      	</div>
-				      </p>
+                		</div>
+				    </div>
+				 </p>
 				      <p>
 			      	  <div class="row-fluid">
 			      			<div class="span12">
@@ -119,13 +124,80 @@
 			      				</div>
 			      			</div>
 			      		</p>
-			    	</div>
-			      				
-			    </div>
-			</div>			
+			      		
+			      <hr>
+                
+                <p>		<!-- Terzo intervento -->
+				   <div class="row-fluid">
+				   		<div class="span1"><img src="..." class="img-polaroid"></div>
+                   		<div style="width:90%; float:right; height:100%; margin-left:1%;">
+				      		<div class="span8"><h6>Titolo Altro intervento</h6>
+				      			Il water sta esplodendo, ho acqua ovunque. Aiuto!!!! Fermate tutto!!
+				      		</div>
+                		</div>
+				    </div>
+				 </p>
+				      <p>
+			      	  <div class="row-fluid">
+			      			<div class="span12">
+			      				<div class="progress progress-info progress-striped active">
+			  							<div class="bar" style="width: 50%;"></div>
+									   </div>
+			      				</div>
+			      			</div>
+			      		</p>
+                
+            	</div>      				
+			</div>
 		</div>
-  
-    </div>
+		
+			<!-- contenuto tab 1 finisce qui -->
+			
+		    </div>
+		    <div class="tab-pane" id="tab2">
+			
+			<!-- contenuto tab 2 inizia qui -->
+			
+			<div class="tab-content">
+    			<div class="tab-pane active" id="tab1">
+      				<!-- Interno degli interventi attivi
+      				Qui bisognerebbe fare la chiamata al server che ti controlla se ci sono	interventi attivi -->
+      				
+              <div id="attivi" class="alert alert-info"> <!-- sfondo -->
+               <p>	<!-- Primo intervento -->
+                <div class="row-fluid">
+                  <div class="span1"><img src="..." class="img-polaroid"></div>
+                  <div style="width:90%; float:right; height:100%; margin-left:1%;">
+                  <div class="span8"><h6>Titolo Primo intervento</h6>
+                  		Devo ridipingere casa. Ho 5 stanze, la carta da parati da togliere ed è ammobigliata.
+                  </div>
+                </div>
+                </div>
+              </p>
+              <p>
+                <div class="row-fluid">
+                  <div class="span12">
+                    <div class="progress progress-info progress-striped active">
+                      <div class="bar" style="width: 20%;"></div>
+                     </div>
+                    </div>
+                  </div>
+                </p>               
+            	</div>      				
+			</div>
+		</div>
+			
+			<!-- contenuto tab 2 finisce qui -->
+			
+		    </div>
+		  </div>
+		</div>
+    		
+    		
+  					
+		
+					
+	</div>
       
      
 
