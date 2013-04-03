@@ -1,4 +1,7 @@
 ﻿var tipoUtente;
+var problemTitle;
+var problemType;
+var problemDesription;
 
 $(document).ready(function()	//funzioni che si avviano al caricamento della pagina
 {
@@ -38,6 +41,19 @@ function cambia_login(){
 			"<input id='password' type='password' class='input-block-level' placeholder='Password'>" +
 			"<div align='center'><button class='btn btn-large btn-block btn-inverse' type='submit'>Accedi</button></div>" +
 			"<div align='center' id='password_link'><a href='#'>Hai dimenticato la password?</a></div></form>");
+}
+
+/*
+ * Funzione che salva tutti i dati del problema, e rimanda alla pagina dove ti geolocalizza
+ * 
+ * */
+function saveProblem(){
+	problemTitle =  $('#problemTitle').val(); 
+	problemType =  $('#problemType').val(); 
+	problemDesription =  $('#problemDesription').val(); 
+	alert("prova: "+problemTitle+" - "+problemType+" - "+problemDesription);
+	
+	window.location='where-are-you.html';
 }
 
 /*

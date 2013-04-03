@@ -30,6 +30,30 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="./ico/favicon.png">
+  
+  <script>
+    inCasoDiSuccesso = function(position){
+       alert( "Posizione delle: " + position.timestamp.getHours() + ":" + position.timestamp.getMinutes() + "\n" +
+              "Accuratezza delle coordinate: " + position.coords.accuracy + " mt; \n" +
+              "Latitudine: " + position.coords.latitude + " gradi; \n" +
+              "Longitudine: " + position.coords.longitude + "gradi; \n" +
+              "Accuratezza dell'altezza: " + position.coords.altitudeAccuracy + " mt; \n" +
+              "Altezza: " + position.coords.altitude + " mt; \n" +
+              "Direzione: " + position.coords.heading + " gradi\n(0 = Nord, 90 = Ovest, 180 = Sud, 270 = Est);\n" +
+              "Velocita: " + position.coords.speed + " m/s;"
+       );
+       
+    }
+    opzInCasoDiErrore = function(error){
+        alert( "Errore " + error.code + ": " + error.message);
+    }
+    
+    window.onload = function(){
+        navigator.geolocation.getCurrentPosition(inCasoDiSuccesso, opzInCasoDiErrore);
+    }
+    </script>
+  
+  
   </head>
 
   <body>
@@ -57,43 +81,9 @@
     <div class="container contNotifiche">
 		<div class="row-fluid">
 			<div class="span12" style="text-align:center;">
-				<form>
-	  				<fieldset>
-	    				<input type="text" id="problemTitle" class="input-xxlarge" placeholder="Tipo di problema"><br/>  		
-	    		
-	    				<select id="problemType" class="input-xxlarge">
- 					 		<option>Intervento da richiedere</option>
-  					 		<option>Idraulico</option>
-  					 		<option>Muratore</option>
-  					 		<option>Lezioni e ripetizioni</option>
-  					 		<option>Fabbro</option>
-						</select><br/>
-						
-						<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea><br/>
-						
-						<div class="fileupload fileupload-new" data-provides="fileupload">
-  							<div class="fileupload-new thumbnail" style="width: 50px; height: 50px;"><img src="http://www.placehold.it/50x50/EFEFEF/AAAAAA" /></div>
-  							<div class="fileupload-preview fileupload-exists thumbnail" style="width: 50px; height: 50px;"></div>
- 							<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
-  							<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-						</div>
-						
-						
-						
-						<!-- <button class="btn btn-large btn-primary btn-block" type="button"><i class="icon-picture icon-white"></i> Inserisci foto</button><br/> -->
-						<button class="btn btn-large btn-block" type="button" onclick="javascript:saveProblem();">AVANTI <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
-						
-						
-						<!--  
-						<button class="btn btn-large" type="button"><i class="icon-fullscreen"></i> </button>
-						<button class="btn btn-large" type="button"><i class="icon-home"></i> </button>
-						<button class="btn btn-large" type="button">AVANTI <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
-						-->
-						
-					</fieldset>
-	    		
-	    			
-				</form>
+				
+				
+				
 			</div>
    		
   	  		 
@@ -112,5 +102,6 @@
     <script src="./js/bootstrap.js"></script>
     <script src="./js/jasny-bootstrap.js"></script>
 	<script src="./js/function.js"></script>
+	<!--  <script src="./js/function_geoloc.js"></script> -->
   </body>
 </html>
