@@ -15,14 +15,14 @@ $(document).ready(function()	//funzioni che si avviano al caricamento della pagi
 	}
 	
 	//roba per il tooltip
-	$('#prova').popover({
+	$('.notifiche').popover({
 		'html': 'true',
         'selector': '',
         'placement': 'bottom',
         'title': 'Notifiche',
         'content': '<div class="well well-small">Guarda il tutorial di Local Job</div>'+
         '<div class="well well-small">Aggiorna il tuo profilo per iniziare</div>',
-        'container': '#prova_prova'
+        'container': '.contNotifiche'
       });
 });
 
