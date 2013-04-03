@@ -24,7 +24,24 @@ $(document).ready(function()	//funzioni che si avviano al caricamento della pagi
         '<div class="well well-small">Aggiorna il tuo profilo per iniziare</div>',
         'container': '.contNotifiche'
       });
+
+
+	// Controller per il TILT LANDSCAPE-PORTRAIT
+	window.addEventListener("orientationchange", orientationChange, true);
 });
+
+/*
+ * Orientation Changer
+ */
+ function orientationChange(e) {
+   var orientation="portrait";
+   if(window.orientation == -90 || window.orientation == 90) orientation = "landscape";
+
+   if orientation="portrait"
+      alert("Sono in portrait!");
+   else
+   	  alert("Sono in landscape!");
+}
 
 
 /*
