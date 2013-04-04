@@ -48,21 +48,59 @@
         controlloIndirizzo();
     }
     
+    
+    
+    
     function controlloIndirizzo(){
+    	
+    	//Chiamata al server che controlla se l'utente ha già un indirizzo predefinito oppure no
+    	
     	//ora per prova facciamo finta che non abbia indirizzo
-    	indirizzo = "";
+    	indirizzo = "a";
     	
     	//se non ha indirizzo vai sul tab altro, lo geolocalizzi, ti trova lat e long
     	//e ti inserisce l'indirizzo nel form (da fare)
     	if (indirizzo == ""){
-    		alert("non ha indirizzo");	
+    		goTabAltro(indirizzo);	
+    	}
+    	//se ha l'indirizzo vai sul tab casa, prende dal database tutte le info
+    	//e le mostra nel form 
+    	else{
+    		goTabCasa(indirizzo);
     		
-    		$('#tab_casa').attr('class','disabled');
+    	}
+    	
+    }
+    
+    function goTabAltro(indirizzo){
+    	//Funzione che manda al tab altro (quindi con geolocalizzazione)
+    	
+    	//Fai prima un controllo...se non ha indirizzi predefiniti...non ha la 
+    	//possibilità di cliccare nel tab casa ... altrimenti si
+    		
+    		if (indirizzo == ""){	
+	    		alert("non ha indirizzo casa");
+	    		//Il tab casa deve essere disabilitato e non ci si può cliccare nulla
+	    		$('#tab_casa').attr('class','disabled');
+	    		$('#tab_casa').html('<a>Casa</a>');
+    		}
+    		else{
+    			$('#tab_casa').attr('class','');
+    			$('#tab_casa').html('<a href="javascript:goTabCasa();" data-toggle="tab">Casa</a>');
+    		}
+    		//Il tab altro è attivato e viene mostrato il div #tabAltro
     		$('#tab_altro').attr('class','active');
+    		$('#tab_altro').html('<a href="#tabAltro" data-toggle="tab">Altro</a>');
     		
+    		//Attivo la pagina tabAltro e disattivo tabCasa
+    		$('#tabAltro').attr('class','tab-pane active');
+    		$('#tabCasa').attr('class','tab-pane');
+    		
+    		//Fa partire la geolocalizzazione
     		id_watch = navigator.geolocation.watchPosition(inCasoDiSuccesso);
     		
-    		$('#map').html('<h2>La tua posizione attuale</h2><span id="posizione_corrente"></span>');
+    		//Mostra il punto sulla mappa
+    		$('#map_altro').html('<h2>La tua posizione attuale</h2><span id="posizione_corrente"></span>');
     		
     		//una volta che mi darà la posizione corrente, dalle google API trovo indirizzo ecc
     		//dati di prova
@@ -70,21 +108,68 @@
     		nciv="2";
     		cap="40127";
     		citta="bologna";
-    		provincia="bologna";
+    		provincia="BO";
     		//
-    		
-    		
-    		
-    	}
-    	//se ha l'indirizzo vai sul tab casa, prende dal database tutte le info
-    	//e le mostra nel form 
-    	else{
-    		alert("ha indirizzo");
-    		
-    		$('#tab_casa').attr('class','active');
-    		$('#tab_altro').attr('class','');
-    	}
+    		//Inserisco i valori nel form
+    		$('#Indirizzo_altro').attr('value',indirizzo);
+    		$('#nCiv_altro').attr('value',nciv);
+    		$('#CAP_altro').attr('value',cap);
+    		$('#Citta_altro').attr('value',citta);
+    		$('#Provincia_altro').attr('value',provincia);
+	
+    }
+    
+    function goTabCasa(indirizzo){
+		//Funzione che manda al tab casa (quindi senza geolocalizzazione)
+    	alert("ha indirizzo");
     	
+		//Tira giù i dati della casa dal DB
+		//Poi fai un controllo...se ha più indirizzi salvati...se ne ha 1 
+    	//visualizzi il tab normale senò quello con più opzioni
+    	
+		numero_case = 1; //il numero di case viene richiesto dal server
+
+		//Fa un controllo, se c'è solo una casa mostra il tab normale, altrimenti mostra
+		//l'elenco
+		if(numero_case < 2){
+			//Il tab casa è attivato e viene mostrato il div #tabCasa
+	    	$('#tab_casa').attr('class','active');
+	    	$('#tab_casa').html('<a href="#tabCasa" data-toggle="tab">Casa</a>');	
+		}
+		else{
+			$('#tab_casa').attr('class','dropdown');
+	    	$('#tab_casa').html('<a href="#tabCasa" class="dropdown-toggle" data-toggle="dropdown">Casa <b class="caret"></b></a>'+
+	    		'<ul class="dropdown-menu">'+
+	    		'<li>Casa Mare</li>'+
+	    		'<li>Ufficio</li>'+
+	    		'</ul>');	
+		}
+			
+		//Il tab altro è cliccabile e viene mostrato il div #tabAltro
+		$('#tab_altro').attr('class','');
+		$('#tab_altro').html('<a href="javascript:goTabAltro(\"adfdsf\");" data-toggle="tab">Altro</a>');
+		
+		//Attivo la pagina tabCasa e disattivo tabAltro
+		$('#tabAltro').attr('class','tab-pane');
+		$('#tabCasa').attr('class','tab-pane active');
+		
+
+		//Mostra la casa sulla mappa
+		$('#map_casa').html('<h2>La posizione della casa</h2><span id="posizione_casa"></span>');
+		
+		//faccio chiamata al database e mi darà tutti i dati della casa
+		//dati di prova
+		indirizzo ="via cantoncello";
+		nciv="31";
+		cap="40026";
+		citta="Imola";
+		provincia="BO";
+		//
+		$('#Indirizzo_casa').attr('value',indirizzo);
+		$('#nCiv_casa').attr('value',nciv);
+		$('#CAP_casa').attr('value',cap);
+		$('#Citta_casa').attr('value',citta);
+		$('#Provincia_casa').attr('value',provincia);
     }
     
     </script>
@@ -120,41 +205,49 @@
 			
 				<div class="tabbable"> <!-- Only required for left/right tabs -->
   					<ul class="nav nav-tabs span12">
+  					
+  						<li id="tab_casa" class="" style="width:50%">Casa</li>
+    					<li id="tab_altro" class="" style="width:50%">Altro</li>
   						
   						<!-- Tab con il menu (quando avrà più case)
   						<!--
-  						<li class="dropdown" style="width:30%">
-  							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Casa <b class="caret"></b></a>
-  							<ul class="dropdown-menu">
-			      				<li>Casa Mare</li>
-			      				<li>Ufficio</li>
-    						</ul>
-    					</li>
-    					-->
-    					
+  						
+    							
     					<li id="tab_casa" class="" style="width:50%"><a href="#tabCasa" data-toggle="tab">Casa</a></li>
     					<li id="tab_altro" class="" style="width:50%"><a href="#tabAltro" data-toggle="tab">Altro</a></li>
+  						-->
   					</ul>
   					
     					<div class="tab-content">
-    					<div class="tab-pane" id="tabCasa">
-      						
-      						<!--  Sezione Casa  -->
-      						
-	      					<!-- Parte dove ci andrà la mappa di google -->
-								<div id="map" style="border: 1px solid #999;">
-									<h2>La posizione della casa</h2>
-				    				<span id="posizione_corrente"></span>    
-								</div>
+    					
+	    					<!--  Sezione Casa  -->
+	    					<div class="tab-pane" id="tabCasa">
+	    					
+								<!-- Parte dove ci andrà la mappa di google -->
+								<div id="map_casa" style="border: 1px solid #999;"></div>
 								<!-- Fine parte dove ci andrà la mappa di google -->
-      						
-    					</div>
-    					<div class="tab-pane active" id="tabAltro">
+	      						
+	      						<!-- Form per indirizzo -->
+								<br />
+								<form class="form-horizontal">
+									<div class="controls">
+	  									<input id="Indirizzo_casa" type="text" style="width:70%" value="Indirizzo"><br /><br />
+	  									<input id="nCiv_casa" type="text" style="width:70%" value="N. Civ."><br /><br />
+	  									<input id="CAP_casa" type="text" style="width:70%" value="CAP"><br /><br />
+	  									<input id="Citta_casa" type="text" style="width:70%" value="Citta"><br /><br />
+	  									<input id="Provincia_casa" type="text" style="width:70%" value="Prov."><br /><br />
+									</div>
+									<button class="btn btn-large btn-block btn-inverse" type="button" onclick="javascript:#();">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
+								</form>
+	      						
+	    					</div>
+    					
+    					<div class="tab-pane" id="tabAltro">
       						
       						<!--  Sezione Altro  -->
       						
       						<!-- Parte dove ci andrà la mappa di google -->
-							<div id="map" style="border: 1px solid #999;">
+							<div id="map_altro" style="border: 1px solid #999;">
 							    <!-- <menu type="toolbar">
 							        <button type="button" onclick="sospendiLaRicezione()">
 							            sospendi la ricezione di dati geospaziali
@@ -169,11 +262,11 @@
 							<form class="form-horizontal">
 
 								<div class="controls">
-  									<input id="Indirizzo" type="text" style="width:70%" placeholder="Indirizzo"><br /><br />
-  									<input id="nCiv" type="text" style="width:70%" placeholder="N. Civ."><br /><br />
-  									<input id="CAP" type="text" style="width:70%" placeholder="CAP"><br /><br />
-  									<input id="Citta" type="text" style="width:70%" placeholder="Citta"><br /><br />
-  									<input id="Provincia" type="text" style="width:70%" placeholder="Prov."><br /><br />
+  									<input id="Indirizzo_altro" type="text" style="width:70%" value="Indirizzo"><br /><br />
+  									<input id="nCiv_altro" type="text" style="width:70%" value="N. Civ."><br /><br />
+  									<input id="CAP_altro" type="text" style="width:70%" value="CAP"><br /><br />
+  									<input id="Citta_altro" type="text" style="width:70%" value="Citta"><br /><br />
+  									<input id="Provincia_altro" type="text" style="width:70%" value="Prov."><br /><br />
 								</div>
 								<button class="btn btn-large btn-block btn-success" type="button" onclick="javascript:#();">Salva Luogo</button>
 								<button class="btn btn-large btn-block btn-inverse" type="button" onclick="javascript:#();">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
@@ -184,15 +277,9 @@
     					</div>
   					</div>
 				</div>
-				
-				
-				
+			
 			</div>
-   		
-  	  		 
-  			
 
-		
 		</div>
 
     </div> <!-- /container -->
