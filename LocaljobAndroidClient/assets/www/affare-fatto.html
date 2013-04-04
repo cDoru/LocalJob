@@ -32,32 +32,41 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          
-          <a class="brand" href="#"><!--<img src="./img/logolocaljobmini.png">-->LocalJob</a>
-     <!--      <div class="nav-collapse collapse"> --> 
-              <ul class="nav pull-right"> 
-           <li><a href="#"><i class="icon-comment icon-white"></i></a></li>
-            <li><a href="#about"><i class="icon-wrench icon-white"></i></a></li>
-      
-            </ul> 
-         <!-- </div>/.nav-collapse -->
-      </div> 
-      </div>
-    </div>
-
-    <div class="container" align="center">
-		<h4 align="center">Affare fatto!</h4>
-		<p style="text-align:justify; width:80%; margin-top:50px; margin-bottom:50px;">Il tuo numero è stato comunicato al professionista. Verrai contattato il prima possibile per prendere accordi.</p>
-		<button class="btn btn-block btn-large" style="height:60px" type="button"><i class="icon-ok"></i> Torna alla home</button>  
-    </div>
-      
-     
-
-   
-
+    	<!-- FIXATA!! -->
+		<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
+	    	<div class="navbar-inner" style="text-align:center;">
+	            
+		          	<div class=" btn-group" style="margin:0.7% 0;">
+		          		<button class="btn btn-large btn-inverse" type="button" onclick="javascript:history.go(-1);">
+		          			<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover -->
+	      					<img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">
+	      				</button>
+	      				<button class="btn btn-large btn-primary" type="button" onclick="javascript:history.go(-1);" style="line-height:22px;">
+	      					LOGO
+	      				</button>         		
+		                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
+		                	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
+		                </button>
+			            <button  class="btn btn-large btn-inverse" type="button">
+			            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
+			            </button>
+			            <button class="btn btn-large btn-inverse" type="button">
+			            	<img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
+			            </button>
+	              </div>
+	              
+		    </div>
+		</div>
+		
+		<div class="alert alert-info" style="margin-top:3%;">
+			<h4 align="center">Affare fatto!</h4><br/>
+			<p style="text-align:justify;">
+				Il tuo numero è stato comunicato al professionista. Verrai contattato il prima possibile per prendere accordi.
+			</p>
+		</div>
+		<button class="btn btn-block btn-large" style="height:60px" type="button"><i class="icon-ok"></i> Torna alla home</button>
+		
+	
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

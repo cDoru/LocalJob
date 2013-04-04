@@ -34,72 +34,75 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
-    	<div class="navbar-inner">
-	    	<img src="./img/logo_cropped.png" width="35%" style="max-width:180px; margin:auto 0; margin-left:5px;">
-            
-	          	<div class=" btn-group pull-right" style="margin:0.7% 0;">          		
-	                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
-	                	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
-	                </button>
-		            <button  class="btn btn-large btn-inverse" type="button">
-		            	<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover di cui sopra -->
-		            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
-		            </button>
-		            <button class="btn btn-large btn-inverse" type="button">
-		            	<img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
-		            </button>
-              </div>
-	    </div>
-	</div>
+    	<!-- FIXATA!! -->
+		<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
+	    	<div class="navbar-inner" style="text-align:center;">
+	            
+		          	<div class=" btn-group" style="margin:0.7% 0;">
+		          		<button class="btn btn-large btn-inverse" type="button" onclick="javascript:history.go(-1);">
+		          			<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover -->
+	      					<img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">
+	      				</button>
+	      				<button class="btn btn-large btn-primary" type="button" onclick="javascript:history.go(-1);" style="line-height:22px;">
+	      					LOGO
+	      				</button>         		
+		                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
+		                	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
+		                </button>
+			            <button  class="btn btn-large btn-inverse" type="button">
+			            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
+			            </button>
+			            <button class="btn btn-large btn-inverse" type="button">
+			            	<img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
+			            </button>
+	              </div>
+	              
+		    </div>
+		</div>
 
 
-    <div class="container contNotifiche">
-		<div class="row-fluid">
-			<div class="span12" style="text-align:center;">
-				<form>
-	  				<fieldset>
-	    				<input type="text" id="problemTitle" class="input-xxlarge" placeholder="Tipo di problema"><br/>  		
-	    		
-	    				<select id="problemType" class="input-xxlarge">
- 					 		<option>Intervento da richiedere</option>
-  					 		<option>Idraulico</option>
-  					 		<option>Muratore</option>
-  					 		<option>Lezioni e ripetizioni</option>
-  					 		<option>Fabbro</option>
-						</select><br/>
-						
-						<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea><br/>
-						
-						<div class="fileupload fileupload-new" data-provides="fileupload">
-  							<div class="fileupload-new thumbnail" style="width: 50px; height: 50px;"><img src="http://www.placehold.it/50x50/EFEFEF/AAAAAA" /></div>
-  							<div class="fileupload-preview fileupload-exists thumbnail" style="width: 50px; height: 50px;"></div>
- 							<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
-  							<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-						</div>
-						
-						
-						
-						<!-- <button class="btn btn-large btn-primary btn-block" type="button"><i class="icon-picture icon-white"></i> Inserisci foto</button><br/> -->
-						<button class="btn btn-large btn-block" type="button" onclick="javascript:saveProblem();">AVANTI <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
-						
-						
-						<!--  
-						<button class="btn btn-large" type="button"><i class="icon-fullscreen"></i> </button>
-						<button class="btn btn-large" type="button"><i class="icon-home"></i> </button>
-						<button class="btn btn-large" type="button">AVANTI <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
-						-->
-						
-					</fieldset>
-	    		
-	    			
-				</form>
-			</div>
+	    <div class="container contNotifiche" style="margin-top:3%;">
+			<div class="row-fluid">
+				<div class="span12" style="text-align:center;">
+					<form>
+		  				<fieldset>
+		    				<input type="text" id="problemTitle" class="input-xxlarge" placeholder="Tipo di problema"><br/>  		
+		    		
+		    				<select id="problemType" class="input-xxlarge">
+	 					 		<option>Intervento da richiedere</option>
+	  					 		<option>Idraulico</option>
+	  					 		<option>Muratore</option>
+	  					 		<option>Lezioni e ripetizioni</option>
+	  					 		<option>Fabbro</option>
+							</select><br/>
+							
+							<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea><br/>
+							
+							<div class="fileupload fileupload-new" data-provides="fileupload">
+	  							<div class="fileupload-new thumbnail" style="width: 50px; height: 50px;"><img src="http://www.placehold.it/50x50/EFEFEF/AAAAAA" /></div>
+	  							<div class="fileupload-preview fileupload-exists thumbnail" style="width: 50px; height: 50px;"></div>
+	 							<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+	  							<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+							</div>
+							
+							
+							
+							<!-- <button class="btn btn-large btn-primary btn-block" type="button"><i class="icon-picture icon-white"></i> Inserisci foto</button><br/> -->
+							<button class="btn btn-large btn-block" type="button" onclick="javascript:saveProblem();">AVANTI <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
+							
+							
+							<!--  
+							<button class="btn btn-large" type="button"><i class="icon-fullscreen"></i> </button>
+							<button class="btn btn-large" type="button"><i class="icon-home"></i> </button>
+							<button class="btn btn-large" type="button">AVANTI <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
+							-->
+							
+						</fieldset>
+		    		
+		    			
+					</form>
+				</div>
    		
-  	  		 
-  			
-
-		
 		</div>
 
     </div> <!-- /container -->
