@@ -15,11 +15,11 @@
      	background-color:#007E94;
       }
       a {
-      	color:#FFFFFF;
+      	color:black;
       }
       
     </style>
- <link href="./css/bootstrap-responsive.css" rel="stylesheet"> 
+ 	<link href="./css/bootstrap-responsive.css" rel="stylesheet"> 
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -29,51 +29,53 @@
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="./ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="./ico/favicon.png">
+    
   </head>
 
   <body>
 
+	<!-- FIXATA!! -->
 	<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
     	<div class="navbar-inner">
-	    	<img src="./img/logo_cropped.png" width="35%" style="max-width:180px; margin:auto 0; margin-left:5px;">
             
-	          	<div class=" btn-group pull-right" style="margin:0.7% 0;">          		
+	          	<div class=" btn-group" style="margin:0.7% 0;">
+	          		<button class="btn btn-large btn-inverse" type="button" onclick="javascript:history.go(-1);">
+	          			<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover -->
+      					<img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">
+      				</button>          		
 	                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
 	                	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
 	                </button>
 		            <button  class="btn btn-large btn-inverse" type="button">
-		            	<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover di cui sopra -->
 		            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
 		            </button>
 		            <button class="btn btn-large btn-inverse" type="button">
 		            	<img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
 		            </button>
               </div>
+              <img src="./img/logo_cropped.png" align="right" width="32%" style="max-width:150px; margin:0.3% 0;">
+              
 	    </div>
 	</div>
 
-	
-
-	
+		
     <div class="container contNotifiche">
 		<div class="row-fluid" align="center">
-            <div class="span12">
-    		  <button class="btn btn-block btn-large" style="height:60px" type="button" onclick="javascript:window.location='intervento-nuovo.html';"><img src="./img/glyphicons/black_ver/glyphicons_190_circle_plus.png" style= "margin-right:3%"/> NUOVO INTERVENTO <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png" style= "margin-left:3%"/></button><br/>
-    		  </div>
+        	<div class="span12">
+    			<button class="btn btn-block btn-large" style="height:60px" type="button" onclick="javascript:window.location='intervento-nuovo.html';"><img src="./img/glyphicons/black_ver/glyphicons_190_circle_plus.png" style= "margin-right:3%"/> NUOVO INTERVENTO <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png" style= "margin-left:3%"/></button><br/>
+    		</div>
     	</div>
     	
-    	
-    	
     	<div class="tabbable"> <!-- Only required for left/right tabs -->
-		  <ul class="nav nav-tabs">
-		    <li class="active"><a href="#tab1" data-toggle="tab">Interventi attivi</a></li>
-		    <li><a href="#tab2" data-toggle="tab">Intorno a te</a></li>
-		  </ul>
-		  <div class="tab-content">
-		    <div class="tab-pane active" id="tab1">
+			<ul class="nav nav-tabs">
+		    	<li class="active"><a href="#tab1" data-toggle="tab" style="border:1px solid #ffffff;">Interventi attivi</a></li>
+		    	<li><a href="#tab2" data-toggle="tab" style="border:1px solid #ffffff;">Intorno a te</a></li>
+		  	</ul>
+		  	<div class="tab-content">
+		    	<div class="tab-pane active" id="tab1">
 		      
 		    <!-- contenuto tab 1 inizia qui -->
 
@@ -83,69 +85,46 @@
       				Qui bisognerebbe fare la chiamata al server che ti controlla se ci sono	interventi attivi -->
       				
               <div id="attivi" class="alert alert-info"> <!-- sfondo -->
-               <p>	<!-- Primo intervento -->
-                <div class="row-fluid">
-                  <div class="span1"><img src="..." class="img-polaroid"></div>
-                  <div style="width:90%; float:right; height:100%; margin-left:1%;">
-                  <div class="span8"><h6>Titolo Primo intervento</h6>
-                  		Devo ridipingere casa. Ho 5 stanze, la carta da parati da togliere ed è ammobigliata.
-                  </div>
-                </div>
-                </div>
-              </p>
-              <p>
-                <div class="row-fluid">
-                  <div class="span12">
-                    <div class="progress progress-info progress-striped active">
-                      <div class="bar" style="width: 20%;"></div>
-                     </div>
-                    </div>
-                  </div>
-                </p>
                
+               <!-- Primo intervento -->
+               		
+               		<div style="width:30%; float:left;">
+               			<img src="./img/img_sample.jpg" class="img-polaroid">
+               		</div>
+	               <div style="width:65%; float:right;">
+	               		<h6>Titolo Primo intervento</h6>
+	               		<p style="text-align:justify;">Devo ridipingere casa. Ho 5 stanze, la carta da parati da togliere ed è ammobigliata.</p>
+	               </div>
+	               <div class="row-fluid" style="clear:both;">
+	               		<div class="span12" style="margin:2%;">
+	               			<div class="progress progress-info progress-striped active" style="margin-bottom:-10px;">
+	               				<div class="bar" style="width: 20%;"></div>
+	               			</div>
+	               		</div>
+	               </div>
+	               
+	            <!-- Fine primo intervento -->
+               		               
                 <hr>
                 
-                <p>		<!-- Secondo intervento -->
-				   <div class="row-fluid">
-				   		<div class="span1"><img src="..." class="img-polaroid"></div>
-                   		<div style="width:90%; float:right; height:100%; margin-left:1%;">
-				      		<div class="span8"><h6>Titolo Altro intervento</h6>
-				      			Il water sta esplodendo, ho acqua ovunque. Aiuto!!!! Fermate tutto!!
-				      		</div>
-                		</div>
-				    </div>
-				 </p>
-				      <p>
-			      	  <div class="row-fluid">
-			      			<div class="span12">
-			      				<div class="progress progress-info progress-striped active">
-			  							<div class="bar" style="width: 50%;"></div>
-									   </div>
-			      				</div>
-			      			</div>
-			      		</p>
-			      		
-			      <hr>
-                
-                <p>		<!-- Terzo intervento -->
-				   <div class="row-fluid">
-				   		<div class="span1"><img src="..." class="img-polaroid"></div>
-                   		<div style="width:90%; float:right; height:100%; margin-left:1%;">
-				      		<div class="span8"><h6>Titolo Altro intervento</h6>
-				      			Il water sta esplodendo, ho acqua ovunque. Aiuto!!!! Fermate tutto!!
-				      		</div>
-                		</div>
-				    </div>
-				 </p>
-				      <p>
-			      	  <div class="row-fluid">
-			      			<div class="span12">
-			      				<div class="progress progress-info progress-striped active">
-			  							<div class="bar" style="width: 50%;"></div>
-									   </div>
-			      				</div>
-			      			</div>
-			      		</p>
+                <!-- Secondo intervento -->
+               		
+               		<div style="width:30%; float:left;">
+               			<img src="./img/img_sample.jpg" class="img-polaroid">
+               		</div>
+	               <div style="width:65%; float:right;">
+	               		<h6>Titolo Primo intervento</h6>
+	               		<p style="text-align:justify;">Devo ridipingere casa. Ho 5 stanze, la carta da parati da togliere ed è ammobigliata.</p>
+	               </div>
+	               <div class="row-fluid" style="clear:both;">
+	               		<div class="span12" style="margin:2%;">
+	               			<div class="progress progress-info progress-striped active" style="margin-bottom:-10px;">
+	               				<div class="bar" style="width: 20%;"></div>
+	               			</div>
+	               		</div>
+	               </div>
+	               
+	            <!-- Fine secondo intervento -->
                 
             	</div>      				
 			</div>
@@ -163,26 +142,27 @@
       				<!-- Interno degli interventi attivi
       				Qui bisognerebbe fare la chiamata al server che ti controlla se ci sono	interventi attivi -->
       				
-              <div id="attivi" class="alert alert-info"> <!-- sfondo -->
-               <p>	<!-- Primo intervento -->
-                <div class="row-fluid">
-                  <div class="span1"><img src="..." class="img-polaroid"></div>
-                  <div style="width:90%; float:right; height:100%; margin-left:1%;">
-                  <div class="span8"><h6>Titolo Primo intervento</h6>
-                  		Devo ridipingere casa. Ho 5 stanze, la carta da parati da togliere ed è ammobigliata.
-                  </div>
-                </div>
-                </div>
-              </p>
-              <p>
-                <div class="row-fluid">
-                  <div class="span12">
-                    <div class="progress progress-info progress-striped active">
-                      <div class="bar" style="width: 20%;"></div>
-                     </div>
-                    </div>
-                  </div>
-                </p>               
+              	<div id="attivi" class="alert alert-info"> <!-- sfondo -->
+               
+               	<!-- Primo intervento -->
+               		
+               		<div style="width:30%; float:left;">
+               			<img src="./img/img_sample.jpg" class="img-polaroid">
+               		</div>
+	               <div style="width:65%; float:right;">
+	               		<h6>Titolo Primo intervento</h6>
+	               		<p style="text-align:justify;">Devo ridipingere casa. Ho 5 stanze, la carta da parati da togliere ed è ammobigliata.</p>
+	               </div>
+	               <div class="row-fluid" style="clear:both;">
+	               		<div class="span12" style="margin:2%;">
+	               			<div class="progress progress-info progress-striped active" style="margin-bottom:-10px;">
+	               				<div class="bar" style="width: 20%;"></div>
+	               			</div>
+	               		</div>
+	               </div>
+	               
+	            <!-- Fine primo intervento -->
+                              
             	</div>      				
 			</div>
 		</div>
