@@ -40,8 +40,9 @@ $(document).ready(function()	//funzioni che si avviano al caricamento della pagi
    var orientation="portrait";
    if(window.orientation == -90 || window.orientation == 90) orientation = "landscape";
 
-   if orientation="portrait"
+   if (orientation="portrait"){
       alert("Sono in portrait!");
+   }
    else
    	  alert("Sono in landscape!");
 }
