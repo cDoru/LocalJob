@@ -32,25 +32,61 @@
                                    <link rel="shortcut icon" href="./ico/favicon.png">
   
   <script>
+    var id_watch = null;
+    
     inCasoDiSuccesso = function(position){
-       alert( "Posizione delle: " + position.timestamp.getHours() + ":" + position.timestamp.getMinutes() + "\n" +
-              "Accuratezza delle coordinate: " + position.coords.accuracy + " mt; \n" +
-              "Latitudine: " + position.coords.latitude + " gradi; \n" +
-              "Longitudine: " + position.coords.longitude + "gradi; \n" +
-              "Accuratezza dell'altezza: " + position.coords.altitudeAccuracy + " mt; \n" +
-              "Altezza: " + position.coords.altitude + " mt; \n" +
-              "Direzione: " + position.coords.heading + " gradi\n(0 = Nord, 90 = Ovest, 180 = Sud, 270 = Est);\n" +
-              "Velocita: " + position.coords.speed + " m/s;"
+       document.getElementById("posizione_corrente").insertAdjacentHTML('beforeend',
+        "<li> Lat: " + position.coords.latitude + ", Lon: " + position.coords.longitude + "</li>"
        );
-       
     }
-    opzInCasoDiErrore = function(error){
-        alert( "Errore " + error.code + ": " + error.message);
+    
+    sospendiLaRicezione = function(){
+        navigator.geolocation.clearWatch(id_watch);
     }
     
     window.onload = function(){
-        navigator.geolocation.getCurrentPosition(inCasoDiSuccesso, opzInCasoDiErrore);
+        controlloIndirizzo();
     }
+    
+    function controlloIndirizzo(){
+    	//ora per prova facciamo finta che non abbia indirizzo
+    	indirizzo = "";
+    	
+    	//se non ha indirizzo vai sul tab altro, lo geolocalizzi, ti trova lat e long
+    	//e ti inserisce l'indirizzo nel form (da fare)
+    	if (indirizzo == ""){
+    		alert("non ha indirizzo");	
+    		
+    		$('#tab_casa').attr('class','disabled');
+    		$('#tab_altro').attr('class','active');
+    		
+    		id_watch = navigator.geolocation.watchPosition(inCasoDiSuccesso);
+    		
+    		$('#map').html('<h2>La tua posizione attuale</h2><span id="posizione_corrente"></span>');
+    		
+    		//una volta che mi darà la posizione corrente, dalle google API trovo indirizzo ecc
+    		//dati di prova
+    		indirizzo ="via mura anteo zamboni";
+    		nciv="2";
+    		cap="40127";
+    		citta="bologna";
+    		provincia="bologna";
+    		//
+    		
+    		
+    		
+    	}
+    	//se ha l'indirizzo vai sul tab casa, prende dal database tutte le info
+    	//e le mostra nel form 
+    	else{
+    		alert("ha indirizzo");
+    		
+    		$('#tab_casa').attr('class','active');
+    		$('#tab_altro').attr('class','');
+    	}
+    	
+    }
+    
     </script>
   
   
@@ -81,6 +117,73 @@
     <div class="container contNotifiche">
 		<div class="row-fluid">
 			<div class="span12" style="text-align:center;">
+			
+				<div class="tabbable"> <!-- Only required for left/right tabs -->
+  					<ul class="nav nav-tabs span12">
+  						
+  						<!-- Tab con il menu (quando avrà più case)
+  						<!--
+  						<li class="dropdown" style="width:30%">
+  							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Casa <b class="caret"></b></a>
+  							<ul class="dropdown-menu">
+			      				<li>Casa Mare</li>
+			      				<li>Ufficio</li>
+    						</ul>
+    					</li>
+    					-->
+    					
+    					<li id="tab_casa" class="" style="width:50%"><a href="#tabCasa" data-toggle="tab">Casa</a></li>
+    					<li id="tab_altro" class="" style="width:50%"><a href="#tabAltro" data-toggle="tab">Altro</a></li>
+  					</ul>
+  					
+    					<div class="tab-content">
+    					<div class="tab-pane" id="tabCasa">
+      						
+      						<!--  Sezione Casa  -->
+      						
+	      					<!-- Parte dove ci andrà la mappa di google -->
+								<div id="map" style="border: 1px solid #999;">
+									<h2>La posizione della casa</h2>
+				    				<span id="posizione_corrente"></span>    
+								</div>
+								<!-- Fine parte dove ci andrà la mappa di google -->
+      						
+    					</div>
+    					<div class="tab-pane active" id="tabAltro">
+      						
+      						<!--  Sezione Altro  -->
+      						
+      						<!-- Parte dove ci andrà la mappa di google -->
+							<div id="map" style="border: 1px solid #999;">
+							    <!-- <menu type="toolbar">
+							        <button type="button" onclick="sospendiLaRicezione()">
+							            sospendi la ricezione di dati geospaziali
+							        </button>
+							    </menu>   -->  
+							</div>
+							<!-- Fine parte dove ci andrà la mappa di google -->
+							
+							
+							<!-- Form per indirizzo -->
+							<br />
+							<form class="form-horizontal">
+
+								<div class="controls">
+  									<input id="Indirizzo" type="text" style="width:70%" placeholder="Indirizzo"><br /><br />
+  									<input id="nCiv" type="text" style="width:70%" placeholder="N. Civ."><br /><br />
+  									<input id="CAP" type="text" style="width:70%" placeholder="CAP"><br /><br />
+  									<input id="Citta" type="text" style="width:70%" placeholder="Citta"><br /><br />
+  									<input id="Provincia" type="text" style="width:70%" placeholder="Prov."><br /><br />
+								</div>
+								<button class="btn btn-large btn-block btn-success" type="button" onclick="javascript:#();">Salva Luogo</button>
+								<button class="btn btn-large btn-block btn-inverse" type="button" onclick="javascript:#();">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
+							
+
+							</form>
+	
+    					</div>
+  					</div>
+				</div>
 				
 				
 				
