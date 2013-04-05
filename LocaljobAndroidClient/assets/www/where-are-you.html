@@ -219,82 +219,83 @@
     				<div class="tab-content">
 	    				<!--  Sezione Casa  -->
 	    				<div class="tab-pane active" id="tab1">
-	    					
-							<!-- Parte dove ci andrà la mappa di google -->
-							<div align="center"><div id="map_casa" style="border: 1px solid #999; width:70%; margin-bottom:2%;"></div></div>
-							<!-- Fine parte dove ci andrà la mappa di google -->
-		      					
-		      				<!-- Form per indirizzo -->
-							<div class="controls">
-		  						<input id="Indirizzo_casa" class="input-block-level" type="text" value="Indirizzo"><br />
-		  					</div>
-		  					<div class="controls">
-		  						<input id="nCiv_casa" class="input-block-level" type="text" value="N. Civ."><br />
-		  					</div>
-		  					<div class="controls">
-		  						<input id="CAP_casa" class="input-block-level" type="text" value="CAP"><br />
-		  					</div>
-		  					<div class="controls">
-		  						<input id="Citta_casa" class="input-block-level" type="text" value="Citta"><br />
-		  					</div>
-		  					<div class="controls">
-		  						<input id="Provincia_casa" class="input-block-level" type="text" value="Prov."><br /><br/>
-		  					</div>
-								<button class="btn btn-large btn-block btn-inverse" type="button" onclick="javascript:#();">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
+	    					<div id="attivi" class="alert alert-info">
+								<!-- Parte dove ci andrà la mappa di google -->
+								<div align="center"><div id="map_casa" style="border: 1px solid #999; width:70%; margin-bottom:2%;"></div></div>
+								<!-- Fine parte dove ci andrà la mappa di google -->
+			      					
+			      				<!-- Form per indirizzo -->
+								<div class="controls">
+			  						<input id="Indirizzo_casa" class="input-block-level" type="text" value="Indirizzo"><br />
+			  					</div>
+			  					<div class="controls">
+			  						<input id="nCiv_casa" class="input-block-level" type="text" value="N. Civ."><br />
+			  					</div>
+			  					<div class="controls">
+			  						<input id="CAP_casa" class="input-block-level" type="text" value="CAP"><br />
+			  					</div>
+			  					<div class="controls">
+			  						<input id="Citta_casa" class="input-block-level" type="text" value="Citta"><br />
+			  					</div>
+			  					<div class="controls">
+			  						<input id="Provincia_casa" class="input-block-level" type="text" value="Prov."><br /><br/>
+			  					</div>
+									<button class="btn btn-large btn-block" type="button" onclick="javascript:#();">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
+	    					</div>
 	    				</div>
     					
     					<div class="tab-pane" id="tab2">
-      						
-      						<!--  Sezione Altro  -->
-      						
-      						<!-- Parte dove ci andrà la mappa di google -->
-							<div align="center">
-								<div id="map_altro" style="border: 1px solid #999; width:70%; margin-bottom:2%;">
-								    <!-- <menu type="toolbar">
-								        <button type="button" onclick="sospendiLaRicezione()">
-								            sospendi la ricezione di dati geospaziali
-								        </button>
-								    </menu>   -->  
+      						<div id="attivi" class="alert alert-info">
+	      						<!--  Sezione Altro  -->
+	      						
+	      						<!-- Parte dove ci andrà la mappa di google -->
+								<div align="center">
+									<div id="map_altro" style="border: 1px solid #999; width:70%; margin-bottom:2%;">
+									    <!-- <menu type="toolbar">
+									        <button type="button" onclick="sospendiLaRicezione()">
+									            sospendi la ricezione di dati geospaziali
+									        </button>
+									    </menu>   -->  
+									</div>
+								</div>
+								<!-- Fine parte dove ci andrà la mappa di google -->
+								
+								
+								<!-- Form per indirizzo -->
+									<div class="controls">
+	  									<input id="Indirizzo_altro" type="text" class="input-block-level" value="Indirizzo"><br />
+	  								</div>
+	  								<div class="controls">
+	  									<input id="nCiv_altro" type="text" class="input-block-level" value="N. Civ."><br />
+	  								</div>
+									<div class="controls">
+	  									<input id="CAP_altro" type="text" class="input-block-level" value="CAP"><br />
+	  								</div>
+	  								<div class="controls">
+	  									<input id="Citta_altro" type="text" class="input-block-level" value="Citta"><br />
+	  								</div>
+	  								<div class="controls">
+	  									<input id="Provincia_altro" type="text" class="input-block-level" value="Prov."><br /><br/>
+									</div>
+									<a href="#myModal" role="button" class="btn btn-large btn-block" data-toggle="modal">Salva Luogo</a>
+									<button class="btn btn-large btn-block" type="button" onclick="javascript:#();">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
+								
+								<!-- Modal -->
+								<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-header">
+								    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								    <h3 id="myModalLabel">Nome Luogo</h3>
+								  </div>
+								  <div class="modal-body">
+								    <p>Assegna un nome al luogo</p>
+								    <input id="nome_luogo" type="text" placeholder="Luogo">
+								  </div>
+								  <div class="modal-footer">	
+								    	<button class="btn btn-large btn-block" data-dismiss="modal" aria-hidden="true">Annulla</button>
+								    	<button class="btn btn-large btn-block" onclick="">Salva</button>
+								  </div>
 								</div>
 							</div>
-							<!-- Fine parte dove ci andrà la mappa di google -->
-							
-							
-							<!-- Form per indirizzo -->
-								<div class="controls">
-  									<input id="Indirizzo_altro" type="text" class="input-block-level" value="Indirizzo"><br />
-  								</div>
-  								<div class="controls">
-  									<input id="nCiv_altro" type="text" class="input-block-level" value="N. Civ."><br />
-  								</div>
-								<div class="controls">
-  									<input id="CAP_altro" type="text" class="input-block-level" value="CAP"><br />
-  								</div>
-  								<div class="controls">
-  									<input id="Citta_altro" type="text" class="input-block-level" value="Citta"><br />
-  								</div>
-  								<div class="controls">
-  									<input id="Provincia_altro" type="text" class="input-block-level" value="Prov."><br /><br/>
-								</div>
-								<a href="#myModal" role="button" class="btn btn-large btn-block btn-success" data-toggle="modal">Salva Luogo</a>
-								<button class="btn btn-large btn-block btn-inverse" type="button" onclick="javascript:#();">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
-							
-							<!-- Modal -->
-							<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							  <div class="modal-header">
-							    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-							    <h3 id="myModalLabel">Nome Luogo</h3>
-							  </div>
-							  <div class="modal-body">
-							    <p>Assegna un nome al luogo</p>
-							    <input id="nome_luogo" type="text" placeholder="Luogo">
-							  </div>
-							  <div class="modal-footer">	
-							    	<button class="btn" data-dismiss="modal" aria-hidden="true">Annulla</button>
-							    	<button class="btn btn-primary" onclick="">Salva</button>
-							  </div>
-							</div>
-	
     					</div>
   					</div>
 				</div>
