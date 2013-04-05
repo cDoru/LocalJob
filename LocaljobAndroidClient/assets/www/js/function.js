@@ -236,8 +236,6 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
    alert(thrownError);
 }
 
-
-
 function controlloIndirizzo(){
 	
 	//Chiamata al server che controlla se l'utente ha già un indirizzo predefinito oppure no
@@ -357,4 +355,40 @@ function goTabCasa(indirizzo){
 	$('#CAP_casa').attr('value',cap);
 	$('#Citta_casa').attr('value',citta);
 	$('#Provincia_casa').attr('value',provincia);
+}
+
+// Parte di richi
+function ricercaInZona() {
+	$.ajax({
+			async: false,
+			type: 'GET',
+			url: 'http://95.141.45.174/search?latitudine=44.499184&longitudine=11.353726',			
+			crossDomain:true,		
+			success: ricercaInZonaSuccess,
+			error: errorHandler
+			});	
+}
+
+function ricercaInZonaSuccess(xml) {
+	
+	var xmlString = $(xml);	
+	$(xmlString).find("worker").each(function () {		
+		var $worker = $(this);
+		var nickname = $worker.find('nickname').text();
+		var nome = $worker.find('nome').text();
+		var cognome = $worker.find('cognome').text();
+		var avatar = $worker.find('avatarPath').text();
+		var ragione = $worker.find('ragioneSociale').text();
+		var numInterventi = $worker.find('interventiFatti').text();
+		var costService = $worker.find('costService').text();
+		var costHour = $worker.find('costPerHour').text();
+		var address = $worker.find('address').text();
+		var rating = $worker.find('rating').text();
+		var distance = $worker.find('distance').text();
+        var lati = $worker.find('latitudine').text();
+        var longi = $worker.find('longitude').text();
+        
+        out = "Nick: "+nickname+" Nome: "+nome+" Cognome: "+cognome;
+        alert(out);
+	});
 }
