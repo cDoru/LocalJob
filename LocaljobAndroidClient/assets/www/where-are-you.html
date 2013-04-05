@@ -212,13 +212,14 @@
     <div class="container contNotifiche" style="margin-top:3%;">
 				<div class="tabbable">
   					<ul class="nav nav-tabs">
-  						<li class="active" style="width:50%; text-align:center;"><a href="#tab1" data-toggle="tab" style="border:1px solid #ffffff;">Casa</a></li>
-    					<li style="width:50%; text-align:center;"><a href="#tab2" data-toggle="tab" style="border:1px solid #ffffff;">Altro</a></li>	
+  						<li id="tab_casa" style="width:50%; text-align:center;">Casa</li>
+    					<li id="tab_altro" style="width:50%; text-align:center;">Altro</li>	
   					</ul>
   					
     				<div class="tab-content">
+    				
 	    				<!--  Sezione Casa  -->
-	    				<div class="tab-pane active" id="tab1">
+	    				<div class="tab-pane" id="tabCasa">
 	    					<div id="attivi" class="alert alert-info">
 								<!-- Parte dove ci andrà la mappa di google -->
 								<div align="center"><div id="map_casa" style="border: 1px solid #999; width:70%; margin-bottom:2%;"></div></div>
@@ -240,11 +241,12 @@
 			  					<div class="controls">
 			  						<input id="Provincia_casa" class="input-block-level" type="text" value="Prov."><br /><br/>
 			  					</div>
-									<button class="btn btn-large btn-block" type="button" onclick="javascript:#();">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
+									<button class="btn btn-large btn-block" type="button" onclick="javascript:window.location='intervento-modalita.html';">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
 	    					</div>
 	    				</div>
     					
-    					<div class="tab-pane" id="tab2">
+    					
+    					<div class="tab-pane" id="tabAltro">
       						<div id="attivi" class="alert alert-info">
 	      						<!--  Sezione Altro  -->
 	      						
@@ -277,42 +279,13 @@
 	  								<div class="controls">
 	  									<input id="Provincia_altro" type="text" class="input-block-level" value="Prov."><br /><br/>
 									</div>
+									
+									<a href="#myModal" role="button" class="btn btn-large btn-block btn-success" data-toggle="modal">Salva Luogo</a>
 									<button class="btn btn-large btn-block btn-inverse" type="button" onclick="javascript:window.location='intervento-modalita.html';">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
-								</form>
-	      						
+	      							
+	      							
 	    					</div>
     					
-    					<div class="tab-pane" id="tabAltro">
-      						
-      						<!--  Sezione Altro  -->
-      						
-      						<!-- Parte dove ci andrà la mappa di google -->
-							<div id="map_altro" style="border: 1px solid #999;">
-							    <!-- <menu type="toolbar">
-							        <button type="button" onclick="sospendiLaRicezione()">
-							            sospendi la ricezione di dati geospaziali
-							        </button>
-							    </menu>   -->  
-							</div>
-							<!-- Fine parte dove ci andrà la mappa di google -->
-							
-							
-							<!-- Form per indirizzo -->
-							<br />
-							<form class="form-horizontal">
-
-								<div class="controls">
-  									<input id="Indirizzo_altro" type="text" style="width:70%" value="Indirizzo"><br /><br />
-  									<input id="nCiv_altro" type="text" style="width:70%" value="N. Civ."><br /><br />
-  									<input id="CAP_altro" type="text" style="width:70%" value="CAP"><br /><br />
-  									<input id="Citta_altro" type="text" style="width:70%" value="Citta"><br /><br />
-  									<input id="Provincia_altro" type="text" style="width:70%" value="Prov."><br /><br />
-								</div>
-								<a href="#myModal" role="button" class="btn btn-large btn-block btn-success" data-toggle="modal">Salva Luogo</a>
-								<button class="btn btn-large btn-block btn-inverse" type="button" onclick="javascript:window.location='intervento-modalita.html';">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
-							
-
-							</form>
 							
 							<!-- Modal -->
 							<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -332,7 +305,6 @@
     					</div>
   					</div>
 				</div>
-
     </div> <!-- /container -->
    
 
