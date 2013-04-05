@@ -78,40 +78,41 @@
 		
 		
 	    <div class="container" style="margin-top:3%;">
-	    	<h4 align="center">Crea account professionista</h4><br/>
-	    	<form action="javascript:pro_signin();" id="contact-form" class="form-signin">
-		    	<div class="control-group"> <!-- Serve per il validator -->
-			    	<div class="row-fluid" style="margin-bottom:15px;">
-			    		<div style="width:43%; float:left; margin-right:1%; height:100%; text-align:center">
-			    			<a href="#"><img src="./img/example_photo.png" width="80px" height="80px"></a>
-			    		</div>
-			    			<!-- La classe controls serve per il validator -->
-			    			<div class="controls" style="width:55%; float:right; height:100%; margin-left:1%;">
-			    				<input type="text" class="input-block-level" name="signP_name" id="signP_name" placeholder="Nome">
-			    				<input type="text" class="input-block-level" name="signP_surname" id="signP_surname" placeholder="Cognome">
-			    			</div>	
-			    	</div>
-					<!-- Parte con il form normale -->
-		    		<div class="controls">
-		        		<input type="text" class="input-block-level" name="signP_user" id="signP_user" placeholder="Username">
-		 			</div>
-		 			<div class="controls">
-		        		<input type="text" class="input-block-level" name="signP_mail" id="signP_mail" placeholder="Indirizzo Email">
-		     		</div>
-		     		<div class="controls">
-		        		<input type="password" class="input-block-level" name="password" id="password" placeholder="Password">
-		     		</div>
-		     		<div class="controls">
-		        		<input type="password" class="input-block-level" name="signP_password2" id="signP_password2" placeholder="Ripeti password">
-		     		</div>
-		   		</div>
-		   		<div align="center">
-		   			<button type="reset" class="btn btn-large">Cancel</button>
-		    		<button type="submit" class="btn btn-large">Registrati</button><br/>
-		    		<button type="button" onclick="javascript:window.location='interventi-attivi.html';" class="btn btn-large">bottone di prova</button>    		
-		      	</div>
-	    	</form>
-	
+		   	<div id="attivi" class="alert alert-info">
+		    	<h4 align="center">Crea account professionista</h4><br/>
+		    	<form action="javascript:pro_signin();" id="contact-form" class="form-signin">
+			    	<div class="control-group"> <!-- Serve per il validator -->
+				    	<div class="row-fluid" style="margin-bottom:15px;">
+				    		<div style="width:43%; float:left; margin-right:1%; height:100%; text-align:center">
+				    			<a href="#"><img src="./img/example_photo.png" width="80px" height="80px"></a>
+				    		</div>
+				    			<!-- La classe controls serve per il validator -->
+				    			<div class="controls" style="width:55%; float:right; height:100%; margin-left:1%;">
+				    				<input type="text" class="input-block-level" name="signP_name" id="signP_name" placeholder="Nome">
+				    				<input type="text" class="input-block-level" name="signP_surname" id="signP_surname" placeholder="Cognome">
+				    			</div>	
+				    	</div>
+						<!-- Parte con il form normale -->
+			    		<div class="controls">
+			        		<input type="text" class="input-block-level" name="signP_user" id="signP_user" placeholder="Username">
+			 			</div>
+			 			<div class="controls">
+			        		<input type="text" class="input-block-level" name="signP_mail" id="signP_mail" placeholder="Indirizzo Email">
+			     		</div>
+			     		<div class="controls">
+			        		<input type="password" class="input-block-level" name="password" id="password" placeholder="Password">
+			     		</div>
+			     		<div class="controls">
+			        		<input type="password" class="input-block-level" name="signP_password2" id="signP_password2" placeholder="Ripeti password">
+			     		</div>
+			   		</div>
+			   		<div align="center">
+			   			<button type="reset" class="btn btn-large">Cancel</button>
+			    		<button type="submit" class="btn btn-large">Registrati</button><br/>
+			    		<button type="button" onclick="javascript:window.location='interventi-attivi.html';" class="btn btn-large">bottone di prova</button>    		
+			      	</div>
+		    	</form>
+			</div>
 	    </div> <!-- /container -->
 
     <!-- Le javascript
