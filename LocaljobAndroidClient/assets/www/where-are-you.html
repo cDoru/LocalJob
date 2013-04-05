@@ -56,11 +56,11 @@
     	//Chiamata al server che controlla se l'utente ha già un indirizzo predefinito oppure no
     	
     	//ora per prova facciamo finta che non abbia indirizzo
-    	indirizzo = "a";
+    	indirizzo = true;
     	
     	//se non ha indirizzo vai sul tab altro, lo geolocalizzi, ti trova lat e long
     	//e ti inserisce l'indirizzo nel form (da fare)
-    	if (indirizzo == ""){
+    	if (indirizzo == false){
     		goTabAltro(indirizzo);	
     	}
     	//se ha l'indirizzo vai sul tab casa, prende dal database tutte le info
@@ -78,7 +78,7 @@
     	//Fai prima un controllo...se non ha indirizzi predefiniti...non ha la 
     	//possibilità di cliccare nel tab casa ... altrimenti si
     		
-    		if (indirizzo == ""){	
+    		if (indirizzo == false){	
 	    		alert("non ha indirizzo casa");
 	    		//Il tab casa deve essere disabilitato e non ci si può cliccare nulla
 	    		$('#tab_casa').attr('class','disabled');
@@ -86,7 +86,7 @@
     		}
     		else{
     			$('#tab_casa').attr('class','');
-    			$('#tab_casa').html('<a href="javascript:goTabCasa();" data-toggle="tab">Casa</a>');
+    			$('#tab_casa').html('<a onclick="goTabCasa(true);" data-toggle="tab">Casa</a>');
     		}
     		//Il tab altro è attivato e viene mostrato il div #tabAltro
     		$('#tab_altro').attr('class','active');
@@ -147,7 +147,7 @@
 			
 		//Il tab altro è cliccabile e viene mostrato il div #tabAltro
 		$('#tab_altro').attr('class','');
-		$('#tab_altro').html('<a href="javascript:goTabAltro(\"adfdsf\");" data-toggle="tab">Altro</a>');
+		$('#tab_altro').html('<a onclick="goTabAltro(true)" data-toggle="tab">Altro</a>');
 		
 		//Attivo la pagina tabCasa e disattivo tabAltro
 		$('#tabAltro').attr('class','tab-pane');
@@ -209,13 +209,6 @@
   						<li id="tab_casa" class="" style="width:50%">Casa</li>
     					<li id="tab_altro" class="" style="width:50%">Altro</li>
   						
-  						<!-- Tab con il menu (quando avrà più case)
-  						<!--
-  						
-    							
-    					<li id="tab_casa" class="" style="width:50%"><a href="#tabCasa" data-toggle="tab">Casa</a></li>
-    					<li id="tab_altro" class="" style="width:50%"><a href="#tabAltro" data-toggle="tab">Altro</a></li>
-  						-->
   					</ul>
   					
     					<div class="tab-content">
@@ -268,11 +261,27 @@
   									<input id="Citta_altro" type="text" style="width:70%" value="Citta"><br /><br />
   									<input id="Provincia_altro" type="text" style="width:70%" value="Prov."><br /><br />
 								</div>
-								<button class="btn btn-large btn-block btn-success" type="button" onclick="javascript:#();">Salva Luogo</button>
+								<a href="#myModal" role="button" class="btn btn-large btn-block btn-success" data-toggle="modal">Salva Luogo</a>
 								<button class="btn btn-large btn-block btn-inverse" type="button" onclick="javascript:#();">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
 							
 
 							</form>
+							
+							<!-- Modal -->
+							<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  <div class="modal-header">
+							    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							    <h3 id="myModalLabel">Nome Luogo</h3>
+							  </div>
+							  <div class="modal-body">
+							    <p>Assegna un nome al luogo</p>
+							    <input id="nome_luogo" type="text" placeholder="Luogo">
+							  </div>
+							  <div class="modal-footer">	
+							    	<button class="btn" data-dismiss="modal" aria-hidden="true">Annulla</button>
+							    	<button class="btn btn-primary" onclick="">Salva</button>
+							  </div>
+							</div>
 	
     					</div>
   					</div>
