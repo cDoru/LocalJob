@@ -15,6 +15,9 @@
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       	background-color:#007E94;
       }
+      a {
+      	color:white;
+      }
     </style>
     <link href="./css/bootstrap-responsive.css" rel="stylesheet">
     <link href="./css/jasny-bootstrap-responsive.css" rel="stylesheet">
@@ -179,93 +182,102 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
-    	<div class="navbar-inner">
-	    	<img src="./img/logo_cropped.png" width="35%" style="max-width:180px; margin:auto 0; margin-left:5px;">
-            
-	          	<div class=" btn-group pull-right" style="margin:0.7% 0;">          		
-	                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
-	                	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
-	                </button>
-		            <button  class="btn btn-large btn-inverse" type="button">
-		            	<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover di cui sopra -->
-		            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
-		            </button>
-		            <button class="btn btn-large btn-inverse" type="button">
-		            	<img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
-		            </button>
-              </div>
-	    </div>
-	</div>
+	    <!-- FIXATA!! -->
+		<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
+	    	<div class="navbar-inner" style="text-align:center;">
+	            
+		          	<div class=" btn-group" style="margin:0.7% 0;">
+		          		<button class="btn btn-large btn-inverse" type="button" onclick="javascript:history.go(-1);">
+		          			<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover -->
+	      					<img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">
+	      				</button>
+	      				<button class="btn btn-large btn-primary" type="button" onclick="javascript:history.go(-1);" style="line-height:22px;">
+	      					LOGO
+	      				</button>         		
+		                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
+		                	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
+		                </button>
+			            <button  class="btn btn-large btn-inverse" type="button">
+			            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
+			            </button>
+			            <button class="btn btn-large btn-inverse" type="button">
+			            	<img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
+			            </button>
+	              </div>
+	              
+		    </div>
+		</div>
 
 
-    <div class="container contNotifiche">
-		<div class="row-fluid">
-			<div class="span12" style="text-align:center;">
-			
-				<div class="tabbable"> <!-- Only required for left/right tabs -->
-  					<ul class="nav nav-tabs span12">
-  					
-  						<li id="tab_casa" class="" style="width:50%">Casa</li>
-    					<li id="tab_altro" class="" style="width:50%">Altro</li>
-  						
+    <div class="container contNotifiche" style="margin-top:3%;">
+				<div class="tabbable">
+  					<ul class="nav nav-tabs">
+  						<li class="active" style="width:50%; text-align:center;"><a href="#tab1" data-toggle="tab" style="border:1px solid #ffffff;">Casa</a></li>
+    					<li style="width:50%; text-align:center;"><a href="#tab2" data-toggle="tab" style="border:1px solid #ffffff;">Altro</a></li>	
   					</ul>
   					
-    					<div class="tab-content">
-    					
-	    					<!--  Sezione Casa  -->
-	    					<div class="tab-pane" id="tabCasa">
+    				<div class="tab-content">
+	    				<!--  Sezione Casa  -->
+	    				<div class="tab-pane active" id="tab1">
 	    					
-								<!-- Parte dove ci andrà la mappa di google -->
-								<div id="map_casa" style="border: 1px solid #999;"></div>
-								<!-- Fine parte dove ci andrà la mappa di google -->
-	      						
-	      						<!-- Form per indirizzo -->
-								<br />
-								<form class="form-horizontal">
-									<div class="controls">
-	  									<input id="Indirizzo_casa" type="text" style="width:70%" value="Indirizzo"><br /><br />
-	  									<input id="nCiv_casa" type="text" style="width:70%" value="N. Civ."><br /><br />
-	  									<input id="CAP_casa" type="text" style="width:70%" value="CAP"><br /><br />
-	  									<input id="Citta_casa" type="text" style="width:70%" value="Citta"><br /><br />
-	  									<input id="Provincia_casa" type="text" style="width:70%" value="Prov."><br /><br />
-									</div>
-									<button class="btn btn-large btn-block btn-inverse" type="button" onclick="javascript:#();">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
-								</form>
-	      						
-	    					</div>
+							<!-- Parte dove ci andrà la mappa di google -->
+							<div align="center"><div id="map_casa" style="border: 1px solid #999; width:70%; margin-bottom:2%;"></div></div>
+							<!-- Fine parte dove ci andrà la mappa di google -->
+		      					
+		      				<!-- Form per indirizzo -->
+							<div class="controls">
+		  						<input id="Indirizzo_casa" class="input-block-level" type="text" value="Indirizzo"><br />
+		  					</div>
+		  					<div class="controls">
+		  						<input id="nCiv_casa" class="input-block-level" type="text" value="N. Civ."><br />
+		  					</div>
+		  					<div class="controls">
+		  						<input id="CAP_casa" class="input-block-level" type="text" value="CAP"><br />
+		  					</div>
+		  					<div class="controls">
+		  						<input id="Citta_casa" class="input-block-level" type="text" value="Citta"><br />
+		  					</div>
+		  					<div class="controls">
+		  						<input id="Provincia_casa" class="input-block-level" type="text" value="Prov."><br /><br/>
+		  					</div>
+								<button class="btn btn-large btn-block btn-inverse" type="button" onclick="javascript:#();">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
+	    				</div>
     					
-    					<div class="tab-pane" id="tabAltro">
+    					<div class="tab-pane" id="tab2">
       						
       						<!--  Sezione Altro  -->
       						
       						<!-- Parte dove ci andrà la mappa di google -->
-							<div id="map_altro" style="border: 1px solid #999;">
-							    <!-- <menu type="toolbar">
-							        <button type="button" onclick="sospendiLaRicezione()">
-							            sospendi la ricezione di dati geospaziali
-							        </button>
-							    </menu>   -->  
+							<div align="center">
+								<div id="map_altro" style="border: 1px solid #999; width:70%; margin-bottom:2%;">
+								    <!-- <menu type="toolbar">
+								        <button type="button" onclick="sospendiLaRicezione()">
+								            sospendi la ricezione di dati geospaziali
+								        </button>
+								    </menu>   -->  
+								</div>
 							</div>
 							<!-- Fine parte dove ci andrà la mappa di google -->
 							
 							
 							<!-- Form per indirizzo -->
-							<br />
-							<form class="form-horizontal">
-
 								<div class="controls">
-  									<input id="Indirizzo_altro" type="text" style="width:70%" value="Indirizzo"><br /><br />
-  									<input id="nCiv_altro" type="text" style="width:70%" value="N. Civ."><br /><br />
-  									<input id="CAP_altro" type="text" style="width:70%" value="CAP"><br /><br />
-  									<input id="Citta_altro" type="text" style="width:70%" value="Citta"><br /><br />
-  									<input id="Provincia_altro" type="text" style="width:70%" value="Prov."><br /><br />
+  									<input id="Indirizzo_altro" type="text" class="input-block-level" value="Indirizzo"><br />
+  								</div>
+  								<div class="controls">
+  									<input id="nCiv_altro" type="text" class="input-block-level" value="N. Civ."><br />
+  								</div>
+								<div class="controls">
+  									<input id="CAP_altro" type="text" class="input-block-level" value="CAP"><br />
+  								</div>
+  								<div class="controls">
+  									<input id="Citta_altro" type="text" class="input-block-level" value="Citta"><br />
+  								</div>
+  								<div class="controls">
+  									<input id="Provincia_altro" type="text" class="input-block-level" value="Prov."><br /><br/>
 								</div>
 								<a href="#myModal" role="button" class="btn btn-large btn-block btn-success" data-toggle="modal">Salva Luogo</a>
 								<button class="btn btn-large btn-block btn-inverse" type="button" onclick="javascript:#();">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
-							
-
-							</form>
 							
 							<!-- Modal -->
 							<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -286,10 +298,6 @@
     					</div>
   					</div>
 				</div>
-			
-			</div>
-
-		</div>
 
     </div> <!-- /container -->
    
