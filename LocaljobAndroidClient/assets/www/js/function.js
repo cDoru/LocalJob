@@ -357,8 +357,16 @@ function goTabCasa(indirizzo){
 	$('#Provincia_casa').attr('value',provincia);
 }
 
+
+
 // Parte di richi
 function ricercaInZona() {
+	
+	//Attivo la pagina tabIntorno e disattivo tabAttivi (la class alert alert-info è per lo sfondo)
+	$('#tabAttivi').attr('class','tab-pane');
+	$('#tabIntorno').attr('class','tab-pane active alert alert-info');
+	$('#tabIntorno').html('');
+	
 	$.ajax({
 			async: false,
 			type: 'GET',
@@ -388,7 +396,26 @@ function ricercaInZonaSuccess(xml) {
         var lati = $worker.find('latitudine').text();
         var longi = $worker.find('longitude').text();
         
-        out = "Nick: "+nickname+" Nome: "+nome+" Cognome: "+cognome;
-        alert(out);
+        //out = "Nick: "+nickname+" Nome: "+nome+" Cognome: "+cognome+" distanza: "+distance+" rating: "+rating;
+        //alert(out);
+
+
+        $('#tabIntorno').append('<div style="width:45%; float:left; margin-right:1%; margin-top:0; height:100%; font-size:0.9em; text-align:center">'+
+        		'<p><b>'+nome+' '+cognome+'</b></p>'+
+        		'<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i>'+
+        		'<p>A 15 km da te</p></div>'+
+        		'<div style="width:45%; float:right; height:100%; margin-left:1%;">'+
+        		'<button class="btn btn-block disabled" style="margin-bottom:0;"><i class="icon-headphones"></i> '+costService+' €</button>'+
+        		'<button class="btn btn-block disabled"><i class="icon-shopping-cart"></i> '+costHour+' €/h</button>'+
+        		'</div><div style="clear:both;"><hr></div>');
+        
 	});
+} 
+
+function ricercaAttivi() {
+	
+	//Attivo la pagina tabAttivi e disattivo tabIntorno
+	$('#tabAttivi').attr('class','tab-pane active');
+	$('#tabIntorno').attr('class','tab-pane');
+	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
 }
