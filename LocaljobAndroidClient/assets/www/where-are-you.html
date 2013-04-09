@@ -36,26 +36,15 @@
   
   <script>
     var id_watch = null;
-    
-    inCasoDiSuccesso = function(position){
-       document.getElementById("posizione_corrente").insertAdjacentHTML('beforeend',
-        "<li> Lat: " + position.coords.latitude + ", Lon: " + position.coords.longitude + "</li>"
-       );
-    }
-    
-    sospendiLaRicezione = function(){
-        navigator.geolocation.clearWatch(id_watch);
-    }
-    
+    var position_lat = null;
+    var position_long = null;
+    var prova = null;
+ 
     window.onload = function(){
+    	//var prova = "ciao!";
+    	//alert(problemTitle);
         controlloIndirizzo();
-    }
-    
-    
-    
-    
-    
-    
+    }   
     </script>
   
   

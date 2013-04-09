@@ -1,15 +1,19 @@
 ﻿var tipoUtente;
-var problemTitle;
-var problemType;
-var problemDesription;
 
-$(document).ready(function()	//funzioni che si avviano al caricamento della pagina
-{
+
+var problemTitle = "";
+var problemType = "";
+var problemDesription = "";
+var lat = "";
+var long = "";
+
+/*
+ * funzioni che si avviano al caricamento della pagina
+ */
+$(document).ready(function(){
+	
 	jQuery.support.cors = true;
-	
-	
-	
-	
+
 	//script per il form della data di nascita
 	var firstYear = 1920;
 	var lastYear = 1999;
@@ -49,8 +53,7 @@ $(document).ready(function()	//funzioni che si avviano al caricamento della pagi
 
 
 /*
- * Funzioni per cambi dinamici pagine
- * 
+ * Funzioni per cambi dinamici pagine 
  * */
 
 function cambia_login(){
@@ -61,6 +64,7 @@ function cambia_login(){
 			"<div align='center' id='password_link'><a href='#'>Hai dimenticato la password?</a></div></form>");
 }
 
+
 /*
  * Funzione che salva tutti i dati del problema, e rimanda alla pagina dove ti geolocalizza
  * 
@@ -69,9 +73,191 @@ function saveProblem(){
 	problemTitle =  $('#problemTitle').val(); 
 	problemType =  $('#problemType').val(); 
 	problemDesription =  $('#problemDesription').val(); 
-	alert("prova: "+problemTitle+" - "+problemType+" - "+problemDesription);
+	//alert("prova: "+problemTitle+" - "+problemType+" - "+problemDesription);	
+	
+	// probabilmente è il window.location che da problemi, è come se ricarichi la pagina quindi
+	// ri resettano le variabili locali
 	
 	window.location='where-are-you.html';
+	//location.href = 'where-are-you.html';
+	
+	
+	
+}
+
+
+/*
+ * Chiamata al server che controlla se l'utente ha già un indirizzo predefinito oppure no 
+ * */
+function controlloIndirizzo(){
+	//ora per prova facciamo finta che non abbia indirizzo
+	indirizzo = true;
+	
+	//se non ha indirizzo vai sul tab altro, lo geolocalizzi, ti trova lat e long
+	//e ti inserisce l'indirizzo nel form (da fare)
+	if (indirizzo == false){
+		goTabAltro(indirizzo);	
+	}
+	//se ha l'indirizzo vai sul tab casa, prende dal database tutte le info
+	//e le mostra nel form 
+	else{
+		goTabCasa(indirizzo);
+		
+	}
+	
+}
+
+function goTabAltro(indirizzo){
+	//Funzione che manda al tab altro (quindi con geolocalizzazione)
+	
+	//Fai prima un controllo...se non ha indirizzi predefiniti...non ha la 
+	//possibilità di cliccare nel tab casa ... altrimenti si
+		
+		if (indirizzo == false){	
+    		alert("non ha indirizzo casa");
+    		//Il tab casa deve essere disabilitato e non ci si può cliccare nulla
+    		$('#tab_casa').attr('class','disabled');
+    		$('#tab_casa').html('<a>Casa</a>');
+		}
+		else{
+			$('#tab_casa').attr('class','');
+			$('#tab_casa').html('<a onclick="goTabCasa(true);" data-toggle="tab">Casa</a>');
+		}
+		//Il tab altro è attivato e viene mostrato il div #tabAltro
+		$('#tab_altro').attr('class','active');
+		$('#tab_altro').html('<a href="#tabAltro" data-toggle="tab">Altro</a>');
+		
+		//Attivo la pagina tabAltro e disattivo tabCasa
+		$('#tabAltro').attr('class','tab-pane active');
+		$('#tabCasa').attr('class','tab-pane');
+		
+		
+		//Fa partire la geolocalizzazione
+		
+		id_watch = navigator.geolocation.watchPosition(inCasoDiSuccesso);
+		
+		function inCasoDiSuccesso(position){
+		       position_lat = position.coords.latitude;
+		       position_long = position.coords.longitude;
+		       //alert (position_lat+" - "+position_long);
+		       //prova = "bellaaaaa!";
+		       //alert("è entrato");
+		       
+		       document.getElementById("posizione_corrente").insertAdjacentHTML('beforeend',
+		    		   "<li> Lat: " + position_lat + ", Lon: " + position_long + "</li>"
+				       );
+		       /*
+		       var latlon=position.coords.latitude+","+position.coords.longitude;
+
+		       var img_url="http://maps.googleapis.com/maps/api/staticmap?center="
+		       +latlon+"&zoom=14&size=400x300&sensor=false";
+		       document.getElementById("mapholder").innerHTML="<img src='"+img_url+"'>";
+		       */
+		}
+		
+		function sospendiLaRicezione(){
+	        navigator.geolocation.clearWatch(id_watch);
+	    }
+		
+		//Mostra il punto sulla mappa
+		
+		$('#map_altro').html('<h2>La tua posizione attuale</h2><span id="posizione_corrente"></span>');
+		
+		//alert("prova: "+position_lat+" - "+position_long);
+		//alert("la variabile prova : "+prova);
+		//NON PRENDE UN CAZZO!!!!!
+		//uso queste per ora
+		lat_prova = 44.497102;
+		long_prova = 11.356237;
+		//44.497102,11.356237
+		
+		
+		//una volta che mi darà la posizione corrente, dalle google API trovo indirizzo ecc
+		/*$.ajax({
+			async: false,
+			type: 'GET',
+			url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+lat_prova+','+long_prova+'&sensor=true_or_false',			
+			crossDomain:true,		
+			success: geocodeSuccess,
+			error: errorHandler
+			});	
+		*/
+		
+		
+		//dati di prova
+		indirizzo ="via mura anteo zamboni";
+		nciv="2";
+		cap="40127";
+		citta="bologna";
+		provincia="BO";
+		//
+		//Inserisco i valori nel form
+		$('#Indirizzo_altro').attr('value',indirizzo);
+		$('#nCiv_altro').attr('value',nciv);
+		$('#CAP_altro').attr('value',cap);
+		$('#Citta_altro').attr('value',citta);
+		$('#Provincia_altro').attr('value',provincia);
+
+}
+
+function goTabCasa(indirizzo){
+	//Funzione che manda al tab casa (quindi senza geolocalizzazione)
+	alert("ha indirizzo");
+	
+	//Tira giù i dati della casa dal DB
+	//Poi fai un controllo...se ha più indirizzi salvati...se ne ha 1 
+	//visualizzi il tab normale senò quello con più opzioni
+	
+	numero_case = 1; //il numero di case viene richiesto dal server
+
+	//Fa un controllo, se c'è solo una casa mostra il tab normale, altrimenti mostra
+	//l'elenco
+	if(numero_case < 2){
+		//Il tab casa è attivato e viene mostrato il div #tabCasa
+    	$('#tab_casa').attr('class','active');
+    	$('#tab_casa').html('<a href="#tabCasa" data-toggle="tab">Casa</a>');	
+	}
+	else{
+		$('#tab_casa').attr('class','dropdown');
+    	$('#tab_casa').html('<a href="#tabCasa" class="dropdown-toggle" data-toggle="dropdown">Casa <b class="caret"></b></a>'+
+    		'<ul class="dropdown-menu">'+
+    		'<li>Casa Mare</li>'+
+    		'<li>Ufficio</li>'+
+    		'</ul>');	
+	}
+		
+	//Il tab altro è cliccabile e viene mostrato il div #tabAltro
+	$('#tab_altro').attr('class','');
+	$('#tab_altro').html('<a onclick="goTabAltro(true)" data-toggle="tab">Altro</a>');
+	
+	//Attivo la pagina tabCasa e disattivo tabAltro
+	$('#tabAltro').attr('class','tab-pane');
+	$('#tabCasa').attr('class','tab-pane active');
+	
+
+	//Mostra la casa sulla mappa
+	$('#map_casa').html('<h2>La posizione della casa</h2><span id="posizione_casa"></span>');
+	
+	//faccio chiamata al database e mi darà tutti i dati della casa
+	//dati di prova
+	indirizzo ="Via Camillo Ranzani";
+	nciv="11";
+	cap="40127";
+	citta="Bologna";
+	provincia="BO";
+	lat="44.500821";
+	long="11.35878";
+	//
+	$('#Indirizzo_casa').attr('value',indirizzo);
+	$('#nCiv_casa').attr('value',nciv);
+	$('#CAP_casa').attr('value',cap);
+	$('#Citta_casa').attr('value',citta);
+	$('#Provincia_casa').attr('value',provincia);
+}
+
+
+function geocodeSuccess(data){
+	alert(data);
 }
 
 /*
@@ -236,126 +422,7 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
    alert(thrownError);
 }
 
-function controlloIndirizzo(){
-	
-	//Chiamata al server che controlla se l'utente ha già un indirizzo predefinito oppure no
-	
-	//ora per prova facciamo finta che non abbia indirizzo
-	indirizzo = true;
-	
-	//se non ha indirizzo vai sul tab altro, lo geolocalizzi, ti trova lat e long
-	//e ti inserisce l'indirizzo nel form (da fare)
-	if (indirizzo == false){
-		goTabAltro(indirizzo);	
-	}
-	//se ha l'indirizzo vai sul tab casa, prende dal database tutte le info
-	//e le mostra nel form 
-	else{
-		goTabCasa(indirizzo);
-		
-	}
-	
-}
 
-function goTabAltro(indirizzo){
-	//Funzione che manda al tab altro (quindi con geolocalizzazione)
-	
-	//Fai prima un controllo...se non ha indirizzi predefiniti...non ha la 
-	//possibilità di cliccare nel tab casa ... altrimenti si
-		
-		if (indirizzo == false){	
-    		alert("non ha indirizzo casa");
-    		//Il tab casa deve essere disabilitato e non ci si può cliccare nulla
-    		$('#tab_casa').attr('class','disabled');
-    		$('#tab_casa').html('<a>Casa</a>');
-		}
-		else{
-			$('#tab_casa').attr('class','');
-			$('#tab_casa').html('<a onclick="goTabCasa(true);" data-toggle="tab">Casa</a>');
-		}
-		//Il tab altro è attivato e viene mostrato il div #tabAltro
-		$('#tab_altro').attr('class','active');
-		$('#tab_altro').html('<a href="#tabAltro" data-toggle="tab">Altro</a>');
-		
-		//Attivo la pagina tabAltro e disattivo tabCasa
-		$('#tabAltro').attr('class','tab-pane active');
-		$('#tabCasa').attr('class','tab-pane');
-		
-		//Fa partire la geolocalizzazione
-		id_watch = navigator.geolocation.watchPosition(inCasoDiSuccesso);
-		
-		//Mostra il punto sulla mappa
-		$('#map_altro').html('<h2>La tua posizione attuale</h2><span id="posizione_corrente"></span>');
-		
-		//una volta che mi darà la posizione corrente, dalle google API trovo indirizzo ecc
-		//dati di prova
-		indirizzo ="via mura anteo zamboni";
-		nciv="2";
-		cap="40127";
-		citta="bologna";
-		provincia="BO";
-		//
-		//Inserisco i valori nel form
-		$('#Indirizzo_altro').attr('value',indirizzo);
-		$('#nCiv_altro').attr('value',nciv);
-		$('#CAP_altro').attr('value',cap);
-		$('#Citta_altro').attr('value',citta);
-		$('#Provincia_altro').attr('value',provincia);
-
-}
-
-function goTabCasa(indirizzo){
-	//Funzione che manda al tab casa (quindi senza geolocalizzazione)
-	alert("ha indirizzo");
-	
-	//Tira giù i dati della casa dal DB
-	//Poi fai un controllo...se ha più indirizzi salvati...se ne ha 1 
-	//visualizzi il tab normale senò quello con più opzioni
-	
-	numero_case = 1; //il numero di case viene richiesto dal server
-
-	//Fa un controllo, se c'è solo una casa mostra il tab normale, altrimenti mostra
-	//l'elenco
-	if(numero_case < 2){
-		//Il tab casa è attivato e viene mostrato il div #tabCasa
-    	$('#tab_casa').attr('class','active');
-    	$('#tab_casa').html('<a href="#tabCasa" data-toggle="tab">Casa</a>');	
-	}
-	else{
-		$('#tab_casa').attr('class','dropdown');
-    	$('#tab_casa').html('<a href="#tabCasa" class="dropdown-toggle" data-toggle="dropdown">Casa <b class="caret"></b></a>'+
-    		'<ul class="dropdown-menu">'+
-    		'<li>Casa Mare</li>'+
-    		'<li>Ufficio</li>'+
-    		'</ul>');	
-	}
-		
-	//Il tab altro è cliccabile e viene mostrato il div #tabAltro
-	$('#tab_altro').attr('class','');
-	$('#tab_altro').html('<a onclick="goTabAltro(true)" data-toggle="tab">Altro</a>');
-	
-	//Attivo la pagina tabCasa e disattivo tabAltro
-	$('#tabAltro').attr('class','tab-pane');
-	$('#tabCasa').attr('class','tab-pane active');
-	
-
-	//Mostra la casa sulla mappa
-	$('#map_casa').html('<h2>La posizione della casa</h2><span id="posizione_casa"></span>');
-	
-	//faccio chiamata al database e mi darà tutti i dati della casa
-	//dati di prova
-	indirizzo ="via cantoncello";
-	nciv="31";
-	cap="40026";
-	citta="Imola";
-	provincia="BO";
-	//
-	$('#Indirizzo_casa').attr('value',indirizzo);
-	$('#nCiv_casa').attr('value',nciv);
-	$('#CAP_casa').attr('value',cap);
-	$('#Citta_casa').attr('value',citta);
-	$('#Provincia_casa').attr('value',provincia);
-}
 
 
 
@@ -418,4 +485,29 @@ function ricercaAttivi() {
 	$('#tabAttivi').attr('class','tab-pane active');
 	$('#tabIntorno').attr('class','tab-pane');
 	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
+}
+
+/*
+ * Funzione per inviare la richiesta dell'urgenza
+ */
+function inviaUrgenza(){
+	alert("Problem Type: "+problemTitle+" \n " +
+			"Request Type: "+problemType+" \n " +
+			"Description: "+problemDesription+" \n"+
+			"Lat e Long: "+lat+" , "+long);
+	
+	/*
+	$.ajax({
+          type: 'POST',
+          url: 'http://95.141.45.174/request/emergency',
+          ajaxStart: function(){
+        	  window.location='wait.html';
+          },
+          contentType: 'application/x-www-form-urlencoded',
+          crossDomain: true,
+          data: {'problemType': problemTitle, 'requestType': problemType, 'description': problemDesription, 'latitude': lat, 'longitude': long},
+          success: ajaxEMERGENCY,
+          error: errorHandler
+       })
+       */
 }
