@@ -79,9 +79,12 @@ function saveProblem(){
 	// ri resettano le variabili locali
 	
 	window.location='where-are-you.html';
-	//location.href = 'where-are-you.html';
+	//location.href = 'where-are-you.html
 	
-	
+	//Salvo i valori nel sessionStorage
+	sessionStorage.problemTitle = problemTitle;
+	sessionStorage.problemType = problemType;
+	sessionStorage.problemDesription = problemDesription;
 	
 }
 
@@ -108,6 +111,7 @@ function controlloIndirizzo(){
 }
 
 function goTabAltro(indirizzo){
+	
 	//Funzione che manda al tab altro (quindi con geolocalizzazione)
 	
 	//Fai prima un controllo...se non ha indirizzi predefiniti...non ha la 
@@ -120,6 +124,7 @@ function goTabAltro(indirizzo){
     		$('#tab_casa').html('<a>Casa</a>');
 		}
 		else{
+			
 			$('#tab_casa').attr('class','');
 			$('#tab_casa').html('<a onclick="goTabCasa(true);" data-toggle="tab">Casa</a>');
 		}
@@ -203,6 +208,9 @@ function goTabAltro(indirizzo){
 function goTabCasa(indirizzo){
 	//Funzione che manda al tab casa (quindi senza geolocalizzazione)
 	alert("ha indirizzo");
+	
+	alert("Questa è una prova: "+sessionStorage.problemTitle+" "+sessionStorage.problemType+" "+sessionStorage.problemDesription);
+	
 	
 	//Tira giù i dati della casa dal DB
 	//Poi fai un controllo...se ha più indirizzi salvati...se ne ha 1 
