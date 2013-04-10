@@ -202,7 +202,6 @@ function goTabAltro(indirizzo){
 		$('#CAP_altro').attr('value',cap);
 		$('#Citta_altro').attr('value',citta);
 		$('#Provincia_altro').attr('value',provincia);
-
 }
 
 function goTabCasa(indirizzo){
