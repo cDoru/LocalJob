@@ -47,6 +47,7 @@ function importaSuccesso(xml) {
 	reliability = $(xmlString).find("reliabilityRating").text();
 	kindness = $(xmlString).find("kindnessRating").text();
 	avatar = $(xmlString).find("avatarPath").text();
+	numInterventi = $(xmlString).find("numInterventi").text();
 	//telefono = $(xmlString).find("numTelefono").text();			//queste info le facciamo vedere all'utente?
 	//indirizzo = $(xmlString).find("indirizzo").text();
 	//ragioneSociale = $(xmlString).find("ragioneSociale").text();
@@ -56,6 +57,7 @@ function importaSuccesso(xml) {
 	$('#descrizione').html(descrizione);
 	$('#costoChiamata').html(costService + ' euro');
 	$('#costoOrario').html(costoOrario + ' euro');
+	$('#numInterventi').html(numInterventi);
 	
 	if(avatar == 'photo' || avatar == '' || avatar.length == 0){
 		$('#avatar').attr('src', './img/example_photo.png');
