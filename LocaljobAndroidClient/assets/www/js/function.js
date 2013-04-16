@@ -1,12 +1,5 @@
 ﻿var tipoUtente;
 
-
-var problemTitle = "";
-var problemType = "";
-var problemDesription = "";
-var lat = "";
-var long = "";
-
 /*
  * funzioni che si avviano al caricamento della pagina
  */
@@ -37,6 +30,7 @@ $(document).ready(function(){
 	window.addEventListener("orientationchange", orientationChange, true);
 });
 
+
 /*
  * Orientation Changer
  */
@@ -53,7 +47,8 @@ $(document).ready(function(){
 
 
 /*
- * Funzioni per cambi dinamici pagine 
+ * Funzioni per cambi dinamici pagine
+ *  
  * */
 
 function cambia_login(){
@@ -73,27 +68,22 @@ function saveProblem(){
 	problemTitle =  $('#problemTitle').val(); 
 	problemType =  $('#problemType').val(); 
 	problemDesription =  $('#problemDesription').val(); 
-	//alert("prova: "+problemTitle+" - "+problemType+" - "+problemDesription);	
-	
-	// probabilmente è il window.location che da problemi, è come se ricarichi la pagina quindi
-	// ri resettano le variabili locali
-	
-	window.location='where-are-you.html';
-	//location.href = 'where-are-you.html
-	
+
 	//Salvo i valori nel sessionStorage
 	sessionStorage.problemTitle = problemTitle;
 	sessionStorage.problemType = problemType;
 	sessionStorage.problemDesription = problemDesription;
 	
+	window.location='where-are-you.html';	
 }
 
 
 /*
  * Chiamata al server che controlla se l'utente ha già un indirizzo predefinito oppure no 
+ *
  * */
 function controlloIndirizzo(){
-	//ora per prova facciamo finta che non abbia indirizzo
+	//ora per prova facciamo finta che abbia un indirizzo
 	indirizzo = true;
 	
 	//se non ha indirizzo vai sul tab altro, lo geolocalizzi, ti trova lat e long
@@ -246,14 +236,15 @@ function goTabCasa(indirizzo){
 	$('#map_casa').html('<h2>La posizione della casa</h2><span id="posizione_casa"></span>');
 	
 	//faccio chiamata al database e mi darà tutti i dati della casa
-	//dati di prova
+	//dati di prova, questi servono solo per la visualizzazione
 	indirizzo ="Via Camillo Ranzani";
 	nciv="11";
 	cap="40127";
 	citta="Bologna";
 	provincia="BO";
-	lat="44.500821";
-	long="11.35878";
+	//questi servono per la chiamata al server
+	sessionStorage.lat="44.500821";
+	sessionStorage.long="11.35878";
 	//
 	$('#Indirizzo_casa').attr('value',indirizzo);
 	$('#nCiv_casa').attr('value',nciv);
@@ -498,10 +489,11 @@ function ricercaAttivi() {
  * Funzione per inviare la richiesta dell'urgenza
  */
 function inviaUrgenza(){
-	alert("Problem Type: "+problemTitle+" \n " +
-			"Request Type: "+problemType+" \n " +
-			"Description: "+problemDesription+" \n"+
-			"Lat e Long: "+lat+" , "+long);
+	
+	alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
+			"Request Type: "+sessionStorage.problemType+" \n " +
+			"Description: "+sessionStorage.problemDesription+" \n"+
+			"Lat e Long: "+sessionStorage.lat+" , "+sessionStorage.long);
 	
 	/*
 	$.ajax({
@@ -512,7 +504,7 @@ function inviaUrgenza(){
           },
           contentType: 'application/x-www-form-urlencoded',
           crossDomain: true,
-          data: {'problemType': problemTitle, 'requestType': problemType, 'description': problemDesription, 'latitude': lat, 'longitude': long},
+          data: {'problemType': sessionStorage.problemTitle, 'requestType': sessionStorage.problemType, 'description': sessionStorage.problemDesription, 'latitude': sessionStorage.lat, 'longitude': sessionStorage.long},
           success: ajaxEMERGENCY,
           error: errorHandler
        })
