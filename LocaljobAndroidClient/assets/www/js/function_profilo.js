@@ -25,7 +25,7 @@ function importaDatiProf() {	//richiama i dati del professionista
 	$.ajax({
 		async: false,
 		type: 'GET',
-		url: 'http://95.141.45.174/professional/viu/',			
+		url: 'http://95.141.45.174/professional/alugli/',			
 		crossDomain:true,		
 		success: importaSuccesso,
 		error: errorLogout
@@ -63,7 +63,7 @@ function importaSuccesso(xml) {
 		$('#avatar').attr('src', './img/example_photo.png');
 	}
 	else{
-		$('#avatar').attr('src', avatar);
+		$('#avatar').attr('src', 'http://95.141.45.174'+avatar);
 	}
 	
 	rating(quality, 1);		//il secondo parametro serve per capire dove mostrare l'info
@@ -93,7 +93,7 @@ function commentami() {		//richiama i commenti sul professionista
 	$.ajax({
 		async: false,
 		type: 'GET',
-		url: 'http://95.141.45.174/professional/viu/comments',			
+		url: 'http://95.141.45.174/professional/alugli/comments',			
 		crossDomain:true,		
 		success: caricaCommenti,
 		error: errorLogout

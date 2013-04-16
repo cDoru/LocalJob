@@ -68,7 +68,9 @@ $(document).ready(function()	//funzioni che si avviano al caricamento della pagi
 	    //.text('OK!').addClass('valid')
 	    .closest('.control-group').removeClass('error').addClass('success');
 	}
-	});
-	
+	});	
 });
+
+//function getImgForm(){}
+
 
