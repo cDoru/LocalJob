@@ -75,10 +75,10 @@
 				    	<div class="row-fluid" style="margin-bottom:15px;">
 				    		<div style="width:43%; float:left; margin-right:1%; height:100%; text-align:center">
 				    		
-				    			<div id="up" class="fileupload fileupload-new" data-provides="fileupload">
+				    			<div class="fileupload fileupload-new" data-provides="fileupload">
 	  								<div class="fileupload-new thumbnail" style="width: 100px; height: 100px;"><img src="./img/example_photo.png" /></div>
 	  								<div class="fileupload-preview fileupload-exists thumbnail" style="width: 100px; height: 100px;"></div><br/>
-	 								<span class="btn btn-file"><span class="fileupload-new" id="photo">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+	 								<span class="btn btn-file"><span class="fileupload-new" id="photo">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="signU_img" id="signU_img"/></span>
 	  								<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
 	  								
 								</div>
@@ -98,7 +98,7 @@
 			     		</div>
 			   		</div>
 			   		<div align="center">
-			   			<button type="reset" class="btn btn-large">Cancel</button>
+			   			<button type="reset" class="btn btn-large" onClick="javascript:provissimaMary()">Cancel</button>
 			    		<button type="submit" class="btn btn-large">Registrati</button><br/>
 			    		<button type="button" onclick="javascript:window.location='interventi-attivi.html';" class="btn btn-large">bottone di prova</button>    		
 			      	</div>
