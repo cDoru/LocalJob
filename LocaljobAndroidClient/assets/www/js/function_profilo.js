@@ -38,7 +38,18 @@ function importaSuccesso(xml) {
 	nome = $(xmlString).find("name").text();
 	cognome = $(xmlString).find("cognome").text();
 	descrizione = $(xmlString).find("description").text();
-	badge = $(xmlString).find("badge").text();						//inutilizzato
+	//
+	var tag ="";
+	$(xmlString).find("professionType").each(function( index ) {
+		  tag = tag+$(this).text()+"\n";
+	});
+	//badge = $(xmlString).find("badge").text();
+	//da sistemare
+	var badge ="";
+	$(xmlString).find("badge").each(function( index ) {
+		  badge = badge+$(this).text()+"\n";
+	});
+	//
 	latitudine = $(xmlString).find("latitude").text();				//serve altrove?
 	longitudine = $(xmlString).find("longitude").text();			//serve altrove?
 	costService = $(xmlString).find("costService").text();
@@ -48,12 +59,16 @@ function importaSuccesso(xml) {
 	kindness = $(xmlString).find("kindnessRating").text();
 	avatar = $(xmlString).find("avatarPath").text();
 	numInterventi = $(xmlString).find("numInterventi").text();
-	//telefono = $(xmlString).find("numTelefono").text();			//queste info le facciamo vedere all'utente?
+	///////////////////queste info non ha senso che le facciamo vedere all'utente
+	//telefono = $(xmlString).find("numTelefono").text();
 	//indirizzo = $(xmlString).find("indirizzo").text();
 	//ragioneSociale = $(xmlString).find("ragioneSociale").text();
 	
 	$('#nome').html(nome + ' ');
 	$('#cognome').html(cognome);
+	//
+	$('#tag').html(tag);
+	$('#badge').html(badge);
 	$('#descrizione').html(descrizione);
 	$('#costoChiamata').html(costService + ' euro');
 	$('#costoOrario').html(costoOrario + ' euro');
