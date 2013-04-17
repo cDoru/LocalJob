@@ -510,3 +510,17 @@ function inviaUrgenza(){
        })
        */
 }
+
+
+/* Funzione per il menu a tendina per mostrare sul bottone l'elemento selezionato */
+
+function menuTendina(){
+  
+  $(".dropdown-menu li a").click(function(){
+    
+    $("#tendina:first-child").html($(this).text()+ ' <span class="caret"></span>');
+     $("#tendina:first-child").val($(this).text());
+  });
+
+};
+
