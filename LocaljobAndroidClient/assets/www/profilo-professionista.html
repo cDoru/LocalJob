@@ -11,13 +11,39 @@
     <link href="./css/bootstrap.css" rel="stylesheet">
     <style>
       body {
-        padding-top: 60px; background-color:#007E94;
+        padding-top: 60px;
+        background-color:#007E94;
       }
       #commentList {
       	display:none;
       }
       #avatar {
-      	width:40%; margin:5px;
+      	width:50%;
+      	margin:5px;
+      }
+      #descrizione {
+      	width:90%;
+      	text-align:center;
+      	margin:10px 5%;
+      	background:url('./img/apice-dx.png') top left no-repeat;
+      }
+      #descrizione2 {
+      	 padding:20px;
+	     background:url('./img/apice-sx.png') bottom right no-repeat;
+      }
+      .post {
+      	width:90%;
+      	margin:5px 5%;
+      	background:url('./img/apice-dx-small.png') top left no-repeat;
+      	display:block;
+      }
+      .post2 {
+      	padding:10px;
+	    background:url('./img/apice-sx-small.png') bottom right no-repeat;
+      }
+      h5{
+      	text-align:left;
+      	margin-bottom:-2px;
       }
     </style>
     <link href="./css/bootstrap-responsive.css" rel="stylesheet">
@@ -62,10 +88,13 @@
 		    </div>
 		</div>
 
-	    <div class="container">
-	    	<div class="alert alert-info" style="margin-top:3%;">
-		    	<div class="row-fluid" style="margin-bottom:15px;">
-		    		<div style="width:35%; float:left; margin-right:1%; height:100%; text-align:center">
+	    <div class="container" style="margin-top:3%; text-align:center;">
+	    	<button class="btn btn-large btn-primary btn-block" type="button"><img src="./img/glyphicons/white_ver/153.PNG"/> CONTATTA <span id="nominativo" style="text-transform:uppercase;"></span></button><br/>
+	    
+	    	<div class="alert alert-info">
+	    		
+	    		<div class="row-fluid">
+		    		<div style="width:35%; float:left; margin-right:1%; height:100%;">
 		    			<img id="avatar" src="" /><br/>
 		    			<h4><span id="nome"></span><span id="cognome"></span></h4>
 		    		</div>
@@ -76,38 +105,34 @@
 		    		</div>
 		    	</div>
 	    		
-	    		<div id="descrizione" style="width:100%; text-align:center; margin-bottom:10px; border:1px solid black;">...</div>
-	    		<div style="width:100%; text-align:center; margin-bottom:10px;">
-	    			<span style="font-weight:bold; margin-right:5px;">CATEGORIE: </span><span id="tag">...</span><br/>
-	    			<span style="font-weight:bold; margin-right:5px;">INTERVENTI EFFETTUATI: </span><span id="numInterventi">#</span>
+	    		<div class="row-fluid">
+		    		<div id="descrizione"><p id="descrizione2"></p></div>
+		    		<div style="width:100%; margin-bottom:10px;">
+		    			<span style="font-weight:bold; margin-right:5px;">CATEGORIE: </span><span id="tag">...</span><br/>
+		    			<span style="font-weight:bold; margin-right:5px;">INTERVENTI EFFETTUATI: </span><span id="numInterventi">#</span>
+		    		</div>
 	    		</div>
-		    		    		
-	    		<b>Riassunto valutazioni:</b><br/>	    		
-	    		<button class="btn btn-block disabled" style="margin-bottom:0;">
-	    			<span style="font-weight:bold; text-align:right;">Qualit&agrave;</span>
-	    			<span id="quality">...</span>
-	    		</button>
-	    		<button class="btn btn-block disabled" style="margin-bottom:0;">
-	    			<span style="font-weight:bold; text-align:right;">Affidabilit&agrave;</span>
-	    			<span id="reliability">...</span>
-	    		</button>
-	    		<button class="btn btn-block disabled" style="margin-bottom:0;">
-	    			<span style="font-weight:bold; text-align:right;">Gentilezza</span>
-	    			<span id="kindness">...</span>
-	    		</button>
-		    </div>
+		    		
+		    	<div class="row-fluid">	    		
+		    		<h5>Riassunto valutazioni:</h5>	    		
+		    		<button class="btn btn-block disabled" style="margin-bottom:0;">
+		    			<span style="font-weight:bold; text-align:right;">Qualit&agrave;</span>
+		    			<span id="quality">...</span>
+		    		</button>
+		    		<button class="btn btn-block disabled" style="margin-bottom:0;">
+		    			<span style="font-weight:bold; text-align:right;">Affidabilit&agrave;</span>
+		    			<span id="reliability">...</span>
+		    		</button>
+		    		<button class="btn btn-block disabled" style="margin-bottom:0;">
+		    			<span style="font-weight:bold; text-align:right;">Gentilezza</span>
+		    			<span id="kindness">...</span>
+		    		</button>
+	    		</div>
+		    </div>	<!-- /sfondo -->
 	    
-			<div class="row-fluid">
-				<div class="span12" style="text-align:center;">
-					<button class="btn btn-large btn-primary" type="button"><i class="icon-ok icon-white"></i> Contatta</button>
-					<button class="btn btn-large btn-primary" type="button"><i class=" icon-remove icon-white"></i> Annulla</button><br/><br/>
-					
-		    		<button class="btn btn-large btn-primary btn-block" type="button" onclick="showCommentList()"><i id="icoBottone" class="icon-chevron-down icon-white"></i> Commenti</button><br/>
-					<div id="commentList" class="alert alert-info">
-					 	...
-					</div>
-				</div>
-	   		
+	    	<button class="btn btn-large btn-primary btn-block" type="button" onclick="showCommentList()"><img id="icoBottone" src="./img/glyphicons/white_ver/224A.PNG"/> COMMENTI</button><br/>
+			<div id="commentList" class="alert alert-info">
+			 	...
 			</div>
 	
 	    </div> <!-- /container -->
