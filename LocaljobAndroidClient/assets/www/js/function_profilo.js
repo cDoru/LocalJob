@@ -163,7 +163,7 @@ function caricaCommenti(xml) {
 	    }
 		kindness = stelle;
 	    
-	    $('#commentList').append('<div class="commento"><span style="font-weight:bold; display:block;">'+titolo+'</span><span style="margin-right:20px; font-size:0.8em;">'+data+'</span><span style="font-size:0.8em;">DI '+nick+'</span><p style="display:block; text-align:justify;">'+testo+'</p><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Qualit&agrave;</b> '+quality+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Affidabilit&agrave;</b> '+reliability+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Gentilezza</b> '+kindness+'</button></div><hr>'); 
+	    $('#commentList').append('<div class="commento"><span style="font-weight:bold; font-style:italic;">'+titolo+'</span><span style="margin-left:20px; margin-right:20px; font-size:0.8em;">'+data+'</span><span style="font-size:0.8em;">DI '+nick+'</span><p style="display:block; text-align:center;">'+testo+'</p><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Qualit&agrave;</b> '+quality+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Affidabilit&agrave;</b> '+reliability+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Gentilezza</b> '+kindness+'</button></div><hr>'); 
 	    
 	});
 }
