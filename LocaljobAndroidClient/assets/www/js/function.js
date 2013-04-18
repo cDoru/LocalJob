@@ -575,9 +575,10 @@ function ricercaInZonaSuccess(xml) {
         
         //out = "Nick: "+nickname+" Nome: "+nome+" Cognome: "+cognome+" distanza: "+distance+" rating: "+rating;
         //alert(out);
-
-
-        $('#tabIntorno').append('<button class="btn btn-block text-center"><div style="width:70%; float:left;">'+
+        
+        //indirizzo pagina professionista - andrà aggiornato in qualche modo
+        var pagina = "javascript:window.location='profilo-professionista.html'"
+        $('#tabIntorno').append('<button class="btn btn-block text-center" onclick="'+pagina+'"><div style="width:70%; float:left;">'+
         		'<p><b>'+nome+' '+cognome+'</b></p>'+
         		'<p style="font-size:0.8em; margin-top:-10px;"><b>CATEGORIE:</b> '+tag+'</p>'+
         		'<p style="margin-top:-10px;"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></p>'+

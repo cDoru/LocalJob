@@ -37,7 +37,7 @@
 
     	<!-- FIXATA!! -->
 		<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
-	    	<div class="navbar-inner" style="text-align:center;">
+	    	<div class="navbar-inner text-center">
 	            
 		          	<div class=" btn-group" style="margin:0.7% 0;">
 		          		<button class="btn btn-large btn-inverse" type="button" onclick="javascript:history.go(-1);">
@@ -64,18 +64,47 @@
 
 	    <div class="container contNotifiche" style="margin-top:3%;">
 			<div class="row-fluid">
-				<div class="span12" style="text-align:center;">
+				<div class="span12 text-center">
 					<form>
 		  				<fieldset>
 		    				<input type="text" id="problemTitle" class="input-xxlarge" placeholder="Tipo di problema"><br/>  		
 		    		
-		    				<select id="problemType" class="input-xxlarge">
+		    				<!-- <select id="problemType" class="input-xxlarge">
 	 					 		<option>Intervento da richiedere</option>
-	  					 		<option>Idraulico</option>
-	  					 		<option>Muratore</option>
-	  					 		<option>Lezioni e ripetizioni</option>
-	  					 		<option>Fabbro</option>
-							</select><br/>
+  					 			<option>Caldaista</option>
+				                <option>Idraulico</option>
+				                <option>Pittore</option>
+				                <option>Elettricista</option>
+				                <option>Muratore</option>
+				                <option>Antennista</option>
+				                <option>Sarto</option>
+				                <option>Calzolaio</option>
+				                <option>Maniscalco</option>
+				                <option>Carpentiere</option>
+				                <option>Falegname</option>
+							</select><br/> -->
+							
+							<div class="row-fluid text-center">       
+					            <div class="btn-group">
+					                <a class="btn dropdown-toggle btn-large " data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">
+					                  Ricerca categoria
+					                    <span class="caret"></span> 
+					                </a>
+									<ul id="problemType" class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu">
+					                  <li><a tabindex="-1" href="#">Caldaista</a></li>
+					                  <li><a tabindex="-1" href="#">Idraulico</a></li>
+					                  <li><a tabindex="-1" href="#">Pittore</a></li>
+					                  <li><a tabindex="-1" href="#">Elettricista</a></li>
+					                  <li><a tabindex="-1" href="#">Muratore</a></li>
+					                  <li><a tabindex="-1" href="#">Antennista</a></li>
+					                  <li><a tabindex="-1" href="#">Sarto</a></li>
+					                  <li><a tabindex="-1" href="#">Calzolaio</a></li>
+					                  <li><a tabindex="-1" href="#">Maniscalco</a></li>
+					                  <li><a tabindex="-1" href="#">Carpentiere</a></li>
+					                  <li><a tabindex="-1" href="#">Falegname</a></li>
+					                </ul>
+					             </div>
+            				</div><br/>
 							
 							<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea><br/>
 							
