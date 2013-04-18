@@ -537,7 +537,7 @@ function ricercaInZona() {
 	
 	//Attivo la pagina tabIntorno e disattivo tabAttivi (la class alert alert-info è per lo sfondo)
 	$('#tabAttivi').attr('class','tab-pane');
-	$('#tabIntorno').attr('class','tab-pane active alert alert-info');
+	$('#tabIntorno').attr('class','tab-pane active'); 
 	$('#tabIntorno').html('');
 	
 	$.ajax({
@@ -573,14 +573,14 @@ function ricercaInZonaSuccess(xml) {
         //alert(out);
 
 
-        $('#tabIntorno').append('<div style="width:45%; float:left; margin-right:1%; margin-top:0; height:100%; font-size:0.9em; text-align:center">'+
+        $('#tabIntorno').append('<button class="btn btn-block" style="text-align:center;"><div style="width:60%; float:left;">'+
         		'<p><b>'+nome+' '+cognome+'</b></p>'+
         		'<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i>'+
         		'<p>A 15 km da te</p></div>'+
-        		'<div style="width:45%; float:right; height:100%; margin-left:1%;">'+
-        		'<button class="btn btn-block disabled" style="margin-bottom:0;"><i class="icon-headphones"></i> '+costService+' €</button>'+
-        		'<button class="btn btn-block disabled"><i class="icon-shopping-cart"></i> '+costHour+' €/h</button>'+
-        		'</div><div style="clear:both;"><hr></div>');
+        		'<div style="width:35%; float:right; line-height:260%;">'+
+        		'<div style="border:2px solid black; width:80%; margin-left:10%;"><i class="icon-headphones"></i> '+costService+' €<br/>'+
+        		'<i class="icon-shopping-cart"></i> '+costHour+' €/h</div>'+
+        		'</div></button>');  
         
 	});
 } 
