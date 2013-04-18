@@ -10,13 +10,13 @@ var stellaPiena = "<i class='icon-star'></i>";
 function showCommentList(){		//chiamata ajax + mostra/nasconde i commenti
 	if(cliccato){
 		$('#commentList').hide();
-		$('#icoBottone').attr('class', 'icon-chevron-down icon-white');
+		$('#icoBottone').attr('src', './img/glyphicons/white_ver/224A.PNG');
 		
 		cliccato = false;
 	}else{
 		commentami();
 		$('#commentList').show();
-		$('#icoBottone').attr('class', 'icon-chevron-up icon-white');
+		$('#icoBottone').attr('src', './img/glyphicons/white_ver/224B.PNG');
 		cliccato = true;
 	}
 }
@@ -38,7 +38,18 @@ function importaSuccesso(xml) {
 	nome = $(xmlString).find("name").text();
 	cognome = $(xmlString).find("cognome").text();
 	descrizione = $(xmlString).find("description").text();
-	badge = $(xmlString).find("badge").text();						//inutilizzato
+	//
+	var tag ="";
+	$(xmlString).find("professionType").each(function( index ) {
+		  tag = tag+$(this).text()+"\n";
+	});
+	//badge = $(xmlString).find("badge").text();
+	//da sistemare
+	var badge ="";
+	$(xmlString).find("badge").each(function( index ) {
+		  badge = badge+$(this).text()+"\n";
+	});
+	//
 	latitudine = $(xmlString).find("latitude").text();				//serve altrove?
 	longitudine = $(xmlString).find("longitude").text();			//serve altrove?
 	costService = $(xmlString).find("costService").text();
@@ -48,13 +59,19 @@ function importaSuccesso(xml) {
 	kindness = $(xmlString).find("kindnessRating").text();
 	avatar = $(xmlString).find("avatarPath").text();
 	numInterventi = $(xmlString).find("numInterventi").text();
-	//telefono = $(xmlString).find("numTelefono").text();			//queste info le facciamo vedere all'utente?
+	///////////////////queste info non ha senso che le facciamo vedere all'utente
+	//telefono = $(xmlString).find("numTelefono").text();
 	//indirizzo = $(xmlString).find("indirizzo").text();
 	//ragioneSociale = $(xmlString).find("ragioneSociale").text();
 	
 	$('#nome').html(nome + ' ');
 	$('#cognome').html(cognome);
-	$('#descrizione').html(descrizione);
+	$('#nominativo').html(nome);
+	//
+	$('#tag').html(tag);
+	$('#badge').html(badge);
+	
+	$('#descrizione2').html(descrizione);
 	$('#costoChiamata').html(costService + ' euro');
 	$('#costoOrario').html(costoOrario + ' euro');
 	$('#numInterventi').html(numInterventi);
@@ -118,7 +135,7 @@ function caricaCommenti(xml) {
 	    //alert(reliability);
 	    //alert(kindness);
 	    	
-		switch(Math.round(quality)) {
+		/*switch(Math.round(quality)) {
 		    case 0: stelle =  stellaVuota + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (0/5)'; break;
 		    case 1: stelle =  stellaPiena + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (1/5)'; break;
 		    case 2: stelle =  stellaPiena + stellaPiena + stellaVuota + stellaVuota + stellaVuota + ' (2/5)'; break;
@@ -146,9 +163,41 @@ function caricaCommenti(xml) {
 		    case 4: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaVuota + ' (4/5)'; break;
 		    case 5: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaPiena + ' (5/5)'; break;
 	    }
-		kindness = stelle;
+		kindness = stelle;*/
 	    
-	    $('#commentList').append('<div class="commento"><span style="font-weight:bold; display:block;">'+titolo+'</span><span style="margin-right:20px; font-size:0.8em;">'+data+'</span><span style="font-size:0.8em;">DI '+nick+'</span><p style="display:block; text-align:justify;">'+testo+'</p><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Qualit&agrave;</b> '+quality+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Affidabilit&agrave;</b> '+reliability+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Gentilezza</b> '+kindness+'</button></div><hr>'); 
+	    switch(Math.round(quality)) {
+	    case 0: stelle =  '0/5'; break;
+	    case 1: stelle =  '1/5'; break;
+	    case 2: stelle =  '2/5'; break;
+	    case 3: stelle =  '3/5'; break;
+	    case 4: stelle =  '4/5'; break;
+	    case 5: stelle =  '5/5'; break;
+    }
+	quality = '<div style="width:33%; float:left;">Qualit&agrave;<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
+	
+	switch(Math.round(reliability)) {
+		case 0: stelle =  '0/5'; break;
+	    case 1: stelle =  '1/5'; break;
+	    case 2: stelle =  '2/5'; break;
+	    case 3: stelle =  '3/5'; break;
+	    case 4: stelle =  '4/5'; break;
+	    case 5: stelle =  '5/5'; break;
+    }
+	reliability = '<div style="width:33%; float:left;">Affidabilit&agrave;<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
+	
+	switch(Math.round(kindness)) {
+		case 0: stelle =  '0/5'; break;
+	    case 1: stelle =  '1/5'; break;
+	    case 2: stelle =  '2/5'; break;
+	    case 3: stelle =  '3/5'; break;
+	    case 4: stelle =  '4/5'; break;
+	    case 5: stelle =  '5/5'; break;
+    }
+	kindness = '<div style="width:33%; float:left;">Gentilezza<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
+		
+	    
+	$('#commentList').append('<div class="commento" style="font-size:0.8em;"><span style="font-weight:bold; font-style:italic;">'+titolo+'</span><span style="margin-left:20px; margin-right:20px;">di <b>'+nick+'</b></span><span>'+data+'</span><span class="post"><p class="post2">'+testo+'</p></span>'+quality+reliability+kindness+'</div><br/><br/><hr>'); 
+	//$('#commentList').append('<div class="commento" style="font-size:0.8em; border-bottom:1px solid black; padding-bottom:5px;"><span style="font-weight:bold; font-style:italic;">'+titolo+'</span><span style="margin-left:20px; margin-right:20px;">di <b>'+nick+'</b></span><span>'+data+'</span><div class="post"><p class="post2">'+testo+'</p></div><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Qualit&agrave;</b> '+quality+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Affidabilit&agrave;</b> '+reliability+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Gentilezza</b> '+kindness+'</button></div>'); 
 	    
 	});
 }
