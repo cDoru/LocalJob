@@ -1,4 +1,11 @@
 ﻿var tipoUtente;
+var position_lat;
+var position_long;
+
+var geocoder;
+var map;
+var infowindow = new google.maps.InfoWindow();
+var marker;
 
 /*
  * funzioni che si avviano al caricamento della pagina
@@ -128,77 +135,54 @@ function goTabAltro(indirizzo){
 		
 		
 		//Fa partire la geolocalizzazione
-		
-		id_watch = navigator.geolocation.watchPosition(inCasoDiSuccesso);
-		
-		function inCasoDiSuccesso(position){
-		       position_lat = position.coords.latitude;
-		       position_long = position.coords.longitude;
-		       //alert (position_lat+" - "+position_long);
-		       //prova = "bellaaaaa!";
-		       //alert("è entrato");
-		       
-		       document.getElementById("posizione_corrente").insertAdjacentHTML('beforeend',
-		    		   "<li> Lat: " + position_lat + ", Lon: " + position_long + "</li>"
-				       );
-		       /*
-		       var latlon=position.coords.latitude+","+position.coords.longitude;
-
-		       var img_url="http://maps.googleapis.com/maps/api/staticmap?center="
-		       +latlon+"&zoom=14&size=400x300&sensor=false";
-		       document.getElementById("mapholder").innerHTML="<img src='"+img_url+"'>";
-		       */
-		}
-		
-		function sospendiLaRicezione(){
-	        navigator.geolocation.clearWatch(id_watch);
-	    }
-		
-		//Mostra il punto sulla mappa
-		
-		$('#map_altro').html('<h2>La tua posizione attuale</h2><span id="posizione_corrente"></span>');
-		
-		//alert("prova: "+position_lat+" - "+position_long);
-		//alert("la variabile prova : "+prova);
-		//NON PRENDE UN CAZZO!!!!!
-		//uso queste per ora
-		lat_prova = 44.497102;
-		long_prova = 11.356237;
-		//44.497102,11.356237
-		
-		
-		//una volta che mi darà la posizione corrente, dalle google API trovo indirizzo ecc
-		/*$.ajax({
-			async: false,
-			type: 'GET',
-			url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+lat_prova+','+long_prova+'&sensor=true_or_false',			
-			crossDomain:true,		
-			success: geocodeSuccess,
-			error: errorHandler
-			});	
-		*/
-		
-		
-		//dati di prova
-		indirizzo ="via mura anteo zamboni";
-		nciv="2";
-		cap="40127";
-		citta="bologna";
-		provincia="BO";
-		//
-		//Inserisco i valori nel form
-		$('#Indirizzo_altro').attr('value',indirizzo);
-		$('#nCiv_altro').attr('value',nciv);
-		$('#CAP_altro').attr('value',cap);
-		$('#Citta_altro').attr('value',citta);
-		$('#Provincia_altro').attr('value',provincia);
+		initiate_geolocation();
+	
 }
+
+function initiate_geolocation() { 
+	// get current position mi trova solo la posizione 1 volta
+    navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors);
+    
+    // watch position mi trova la posizione ogni tot secondi
+    // navigator.geolocation.watchPosition(inCasoDiSuccesso);
+}  
+
+function handle_geolocation_query(position){  
+	
+	position_lat = position.coords.latitude;
+	position_long = position.coords.longitude;
+	
+	sessionStorage.lat = position_lat;
+	sessionStorage.long = position_long;
+	
+	initialize_map("altro", position_lat, position_long);
+	
+	//una volta che mi darà la posizione corrente, dalle google API trovo indirizzo ecc
+	codeLatLng(position_lat, position_long);
+
+}  
+
+function handle_errors(error)  
+{  
+    switch(error.code)  
+    {  
+        case error.PERMISSION_DENIED: alert("user did not share geolocation data");  
+        break;  
+        case error.POSITION_UNAVAILABLE: alert("could not detect current position");  
+        break;  
+        case error.TIMEOUT: alert("retrieving position timed out");  
+        break;  
+        default: alert("unknown error");  
+        break;  
+    }  
+}  
+
 
 function goTabCasa(indirizzo){
 	//Funzione che manda al tab casa (quindi senza geolocalizzazione)
 	alert("ha indirizzo");
 	
-	alert("Questa è una prova: "+sessionStorage.problemTitle+" "+sessionStorage.problemType+" "+sessionStorage.problemDesription);
+	//alert("Questa è una prova: "+sessionStorage.problemTitle+" "+sessionStorage.problemType+" "+sessionStorage.problemDesription);
 	
 	
 	//Tira giù i dati della casa dal DB
@@ -230,11 +214,7 @@ function goTabCasa(indirizzo){
 	//Attivo la pagina tabCasa e disattivo tabAltro
 	$('#tabAltro').attr('class','tab-pane');
 	$('#tabCasa').attr('class','tab-pane active');
-	
 
-	//Mostra la casa sulla mappa
-	$('#map_casa').html('<h2>La posizione della casa</h2><span id="posizione_casa"></span>');
-	
 	//faccio chiamata al database e mi darà tutti i dati della casa
 	//dati di prova, questi servono solo per la visualizzazione
 	indirizzo ="Via Camillo Ranzani";
@@ -246,6 +226,11 @@ function goTabCasa(indirizzo){
 	sessionStorage.lat="44.500821";
 	sessionStorage.long="11.35878";
 	//
+	
+	//Mostra la casa sulla mappa
+	initialize_map("casa", sessionStorage.lat, sessionStorage.long);
+	
+	
 	$('#Indirizzo_casa').attr('value',indirizzo);
 	$('#nCiv_casa').attr('value',nciv);
 	$('#CAP_casa').attr('value',cap);
@@ -253,10 +238,128 @@ function goTabCasa(indirizzo){
 	$('#Provincia_casa').attr('value',provincia);
 }
 
+/* 
+ * Mostra la mappina con il poi
+ */
+function initialize_map(tipo, lat, long) {
+	
+	var latlng = new google.maps.LatLng(lat,long);
 
-function geocodeSuccess(data){
-	alert(data);
+	// imposta le opzioni di visualizzazione
+	var options = { zoom: 15,
+			center: latlng,
+	        mapTypeId: google.maps.MapTypeId.ROADMAP,
+	        disableDefaultUI : true
+	};
+	              
+	// crea l'oggetto mappa
+	if(tipo == "casa"){
+		var map = new google.maps.Map(document.getElementById('map_casa'), options);
+	}
+	else if(tipo == "altro"){
+		var map = new google.maps.Map(document.getElementById('map_altro'), options);
+	}
+	
+	  
+	// inserisci il maker
+	var marker = new google.maps.Marker({ position: latlng,
+		map: map, 
+        title: 'Questo è un testo di suggerimento' });
 }
+
+/* 
+ * Reverse Geocoding
+ */
+
+function codeLatLng(position_lat, position_long) {
+	
+	geocoder = new google.maps.Geocoder();
+
+	  var lat = position_lat;
+	  var lng = position_long;
+	  var latlng = new google.maps.LatLng(lat, lng);
+	  geocoder.geocode({'latLng': latlng}, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
+	    	
+	    	for (var i=0;i<results[0].address_components.length ;i++)
+	    	{ 	
+	    		var val_street = results[0].address_components[i].types[0];
+	    		
+	    		switch (val_street){
+	    			case "street_number":
+	    				var nciv = results[0].address_components[i].long_name;
+	    				break;
+	    			case "route":
+	    				var indirizzo = results[0].address_components[i].long_name;
+	    				break;
+	    			case "locality":
+	    				var citta = results[0].address_components[i].long_name;
+	    				break;
+	    			case "administrative_area_level_2":
+	    				var provincia = results[0].address_components[i].short_name;
+	    				break;
+	    			case "postal_code":
+	    				var cap = results[0].address_components[i].long_name;
+	    				break;
+	    		}
+	    	}
+
+	    	//Inserisco i valori nel form
+	    	$('#Indirizzo_altro').attr('value',indirizzo);
+	    	$('#nCiv_altro').attr('value',nciv);
+	    	$('#CAP_altro').attr('value',cap);
+	    	$('#Citta_altro').attr('value',citta);
+	    	$('#Provincia_altro').attr('value',provincia);
+	    	
+	    } else {
+	      alert('Geocoder failed due to: ' + status);
+	    }
+	  });
+	}
+
+/*
+ * Salva l'indirizzo, eventualmente modificato dall'utente, come una variabile storage e passa
+ * alla scelta della modalità
+ */
+function scegli_modalita(luogo){
+	
+	if(luogo == "casa"){
+		sessionStorage.complete_address = $('#Indirizzo_casa').val()+", "+$('#nCiv_casa').val()+", "+$('#CAP_casa').val()+", "+$('#Citta_casa').val()+", "+$('#Provincia_casa').val();	
+		window.location='intervento-modalita.html'
+	}
+	else if(luogo == "altro"){
+		sessionStorage.complete_address = $('#Indirizzo_altro').val()+", "+$('#nCiv_altro').val()+", "+$('#CAP_altro').val()+", "+$('#Citta_altro').val()+", "+$('#Provincia_altro').val();
+		window.location='intervento-modalita.html'
+	}
+}
+
+/*
+ * Funzione per inviare la richiesta dell'urgenza
+ */
+function inviaUrgenza(){
+	
+	alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
+			"Request Type: "+sessionStorage.problemType+" \n " +
+			"Description: "+sessionStorage.problemDesription+" \n"+
+			"Lat e Long: "+sessionStorage.lat+" , "+sessionStorage.long+" \n"+
+			"Indirizzo completo: "+sessionStorage.complete_address);
+	
+	/*
+	$.ajax({
+          type: 'POST',
+          url: 'http://95.141.45.174/request/emergency',
+          ajaxStart: function(){
+        	  window.location='wait.html';
+          },
+          contentType: 'application/x-www-form-urlencoded',
+          crossDomain: true,
+          data: {'problemType': sessionStorage.problemTitle, 'requestType': sessionStorage.problemType, 'description': sessionStorage.problemDesription, 'latitude': sessionStorage.lat, 'longitude': sessionStorage.long},
+          success: ajaxEMERGENCY,
+          error: errorHandler
+       })
+       */
+}
+
 
 /*
  * Funzioni chiamate al server
@@ -400,7 +503,12 @@ function cambiaBottone(testo){
 
 function ajaxLOGIN(data){
 	//alert(data);
-	window.location='interventi-attivi.html';
+	if(data == ""){
+		window.location='interventi-attivi.html';
+	}
+	else{
+		alert("User o Password errati");
+	}
 }
 
 function ajaxSIGNIN(data){
@@ -485,28 +593,3 @@ function ricercaAttivi() {
 	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
 }
 
-/*
- * Funzione per inviare la richiesta dell'urgenza
- */
-function inviaUrgenza(){
-	
-	alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
-			"Request Type: "+sessionStorage.problemType+" \n " +
-			"Description: "+sessionStorage.problemDesription+" \n"+
-			"Lat e Long: "+sessionStorage.lat+" , "+sessionStorage.long);
-	
-	/*
-	$.ajax({
-          type: 'POST',
-          url: 'http://95.141.45.174/request/emergency',
-          ajaxStart: function(){
-        	  window.location='wait.html';
-          },
-          contentType: 'application/x-www-form-urlencoded',
-          crossDomain: true,
-          data: {'problemType': sessionStorage.problemTitle, 'requestType': sessionStorage.problemType, 'description': sessionStorage.problemDesription, 'latitude': sessionStorage.lat, 'longitude': sessionStorage.long},
-          success: ajaxEMERGENCY,
-          error: errorHandler
-       })
-       */
-}
