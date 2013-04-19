@@ -434,7 +434,7 @@ function login()	//gestisce il login dell'utente
 	password =  $('#password').val(); 
 	// il googlecod per ora è prova, ma in realtà verrà preso dalla 
 	// registazione ad ogni avvio dell'app
-	//googlecod = "prova";
+	googlecod = "prova";
 
 	$.ajax({
           type: 'POST',
