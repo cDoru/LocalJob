@@ -65,6 +65,11 @@ function onNotificationGCM(e) {
         	
 			alert('Hai scritto: ' + e.payload.message);
 			
+			//DA QUA GESTISCO I TIPI DI NOTIFICHE
+			if(e.payload.notificationType == "request") {
+				
+			}
+			
         break;
         
         case 'error':
@@ -433,7 +438,7 @@ function login()	//gestisce il login dell'utente
 
 	$.ajax({
           type: 'POST',
-          url: 'http://95.141.45.174/login',
+          url: 'http://95.141.45.174/login/',
           //contentType:"application/json",
           //dataType:'jsonp',
           //prova della schermata di attesa
@@ -446,6 +451,26 @@ function login()	//gestisce il login dell'utente
           success: ajaxLOGIN,
           error: errorHandler
        })
+}
+
+/*
+ * Login con Facebook
+ */
+function facebook_login(){
+	
+	$.ajax({
+        type: 'POST',
+        url: 'http://95.141.45.174/login',
+        /*ajaxStart: function(){
+      	  window.location='wait.html';
+        },*/
+        contentType: 'application/x-www-form-urlencoded',
+        crossDomain: true,
+        data: {'userId': user, 'password': password, 'googlecod': googlecod},
+        success: ajaxLOGIN,
+        error: errorHandler
+     })
+	
 }
 
 //Registrazione utente
