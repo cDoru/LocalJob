@@ -521,7 +521,7 @@ function ricercaInZona() {
 	
 	//Attivo la pagina tabIntorno e disattivo tabAttivi (la class alert alert-info è per lo sfondo)
 	$('#tabAttivi').attr('class','tab-pane');
-	$('#tabIntorno').attr('class','tab-pane active alert alert-info');
+	$('#tabIntorno').attr('class','tab-pane active'); 
 	$('#tabIntorno').html('');
 	
 	$.ajax({
@@ -552,19 +552,25 @@ function ricercaInZonaSuccess(xml) {
 		var distance = $worker.find('distance').text();
         var lati = $worker.find('latitudine').text();
         var longi = $worker.find('longitude').text();
+        var tag ="";
+        $worker.find('professionType').each(function( index ) {
+    		  tag = tag+$(this).text()+"\n";
+    	});
         
         //out = "Nick: "+nickname+" Nome: "+nome+" Cognome: "+cognome+" distanza: "+distance+" rating: "+rating;
         //alert(out);
-
-
-        $('#tabIntorno').append('<div style="width:45%; float:left; margin-right:1%; margin-top:0; height:100%; font-size:0.9em; text-align:center">'+
+        
+        //indirizzo pagina professionista - andrà aggiornato in qualche modo
+        var pagina = "javascript:window.location='profilo-professionista.html'"
+        $('#tabIntorno').append('<button class="btn btn-block text-center" onclick="'+pagina+'"><div style="width:70%; float:left;">'+
         		'<p><b>'+nome+' '+cognome+'</b></p>'+
-        		'<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i>'+
-        		'<p>A 15 km da te</p></div>'+
-        		'<div style="width:45%; float:right; height:100%; margin-left:1%;">'+
-        		'<button class="btn btn-block disabled" style="margin-bottom:0;"><i class="icon-headphones"></i> '+costService+' €</button>'+
-        		'<button class="btn btn-block disabled"><i class="icon-shopping-cart"></i> '+costHour+' €/h</button>'+
-        		'</div><div style="clear:both;"><hr></div>');
+        		'<p style="font-size:0.8em; margin-top:-10px;"><b>CATEGORIE:</b> '+tag+'</p>'+
+        		'<p style="margin-top:-10px;"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></p>'+
+        		'<p style="font-size:0.8em; margin-top:-10px;">A 15 km da te</p></div>'+
+        		'<div style="width:30%; float:right; line-height:200%;">'+
+        		'<div style="border:2px solid black; width:80%;"><i class="icon-headphones"></i> '+costService+' €<br/>'+
+        		'<i class="icon-shopping-cart"></i> '+costHour+' €/h</div>'+
+        		'</div></button>');  
         
 	});
 } 

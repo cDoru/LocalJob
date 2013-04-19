@@ -37,7 +37,7 @@
 
     	<!-- FIXATA!! -->
 		<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
-	    	<div class="navbar-inner" style="text-align:center;">
+	    	<div class="navbar-inner text-center">
 	            
 		          	<div class=" btn-group" style="margin:0.7% 0;">
 		          		<button class="btn btn-large btn-inverse" type="button" onclick="javascript:history.go(-1);">
@@ -64,33 +64,66 @@
 
 	    <div class="container contNotifiche" style="margin-top:3%;">
 			<div class="row-fluid">
-				<div class="span12" style="text-align:center;">
+				<div class="span12 text-center">
 					<form>
 		  				<fieldset>
-		    				<input type="text" id="problemTitle" class="input-xxlarge" placeholder="Tipo di problema"><br/>  		
+		    				<input type="text" id="problemTitle" class="input-xxlarge" placeholder="Tipo di problema"><br/> <br> 		
 		    		
-		    				<select id="problemType" class="input-xxlarge">
+		    				<!-- <select id="problemType" class="input-xxlarge">
 	 					 		<option>Intervento da richiedere</option>
-	  					 		<option>Idraulico</option>
-	  					 		<option>Muratore</option>
-	  					 		<option>Lezioni e ripetizioni</option>
-	  					 		<option>Fabbro</option>
-							</select><br/>
+  					 			<option>Caldaista</option>
+				                <option>Idraulico</option>
+				                <option>Pittore</option>
+				                <option>Elettricista</option>
+				                <option>Muratore</option>
+				                <option>Antennista</option>
+				                <option>Sarto</option>
+				                <option>Calzolaio</option>
+				                <option>Maniscalco</option>
+				                <option>Carpentiere</option>
+				                <option>Falegname</option>
+							</select><br/> -->
+							
+							<div class="row-fluid text-center">    
+								<div class="span12">   
+					           	 <div class="btn-group">
+					                <a class="btn dropdown-toggle btn-large " data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">
+					                  Ricerca categoria
+					                    <span class="caret"></span> 
+					                </a>
+									<ul id="problemType" class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu">
+					                  <li><a tabindex="-1" href="#">Caldaista</a></li>
+					                  <li><a tabindex="-1" href="#">Idraulico</a></li>
+					                  <li><a tabindex="-1" href="#">Pittore</a></li>
+					                  <li><a tabindex="-1" href="#">Elettricista</a></li>
+					                  <li><a tabindex="-1" href="#">Muratore</a></li>
+					                  <li><a tabindex="-1" href="#">Antennista</a></li>
+					                  <li><a tabindex="-1" href="#">Sarto</a></li>
+					                  <li><a tabindex="-1" href="#">Calzolaio</a></li>
+					                  <li><a tabindex="-1" href="#">Maniscalco</a></li>
+					                  <li><a tabindex="-1" href="#">Carpentiere</a></li>
+					                  <li><a tabindex="-1" href="#">Falegname</a></li>
+					                </ul>
+					             </div>
+					         </div>
+            				</div><br/>
 							
 							<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea><br/>
-							
+							<div class="row-fluid">
+							<div style="width:70%; float:left;"> 
 							<div class="fileupload fileupload-new" data-provides="fileupload">
-	  							<div class="fileupload-new thumbnail" style="width: 50px; height: 50px;"><img src="http://www.placehold.it/50x50/EFEFEF/AAAAAA" /></div>
-	  							<div class="fileupload-preview fileupload-exists thumbnail" style="width: 50px; height: 50px;"></div>
+	  							<div class="fileupload-new thumbnail" style="width: 80px; height: 80px;"><img src="http://www.placehold.it/80x80/EFEFEF/AAAAAA" /></div>
+	  							<div class="fileupload-preview fileupload-exists thumbnail" style="width: 80px; height: 80px;"></div>
 	 							<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
 	  							<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
 							</div>
-							
+							</div>
 							
 							
 							<!-- <button class="btn btn-large btn-primary btn-block" type="button"><i class="icon-picture icon-white"></i> Inserisci foto</button><br/> -->
-							<button class="btn btn-large btn-block" type="button" onclick="javascript:saveProblem();">AVANTI <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
-							
+							<div style="width:35%; float:right; margin-top:-80px; margin-left: 2%;"> 
+							<button class="btn btn-large btn-block" type="button" onclick="javascript:saveProblem();">AVANTI  <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
+							</div>
 							
 							<!--  
 							<button class="btn btn-large" type="button"><i class="icon-fullscreen"></i> </button>
@@ -103,6 +136,8 @@
 		    			
 					</form>
 				</div>
+
+			</div>
    		
 		</div>
 
