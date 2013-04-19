@@ -562,12 +562,13 @@ function ricercaInZonaSuccess(xml) {
         
         //indirizzo pagina professionista - andrà aggiornato in qualche modo
         var pagina = "javascript:window.location='profilo-professionista.html'"
+        	
         $('#tabIntorno').append('<button class="btn btn-block text-center" onclick="'+pagina+'"><div style="width:70%; float:left;">'+
         		'<p><b>'+nome+' '+cognome+'</b></p>'+
-        		'<p style="font-size:0.8em; margin-top:-10px;"><b>CATEGORIE:</b> '+tag+'</p>'+
+        		'<p style="font-size:0.8em; margin-top:-10px;"><span style="text-transform:uppercase">'+tag+'</span></p>'+
         		'<p style="margin-top:-10px;"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></p>'+
-        		'<p style="font-size:0.8em; margin-top:-10px;">A 15 km da te</p></div>'+
-        		'<div style="width:30%; float:right; line-height:200%;">'+
+        		'<p style="font-size:0.8em; margin-top:-10px; margin-bottom:-5px;">A 15 km da te</p></div>'+
+        		'<div style="width:30%; float:right; line-height:260%;">'+
         		'<div style="border:2px solid black; width:80%;"><i class="icon-headphones"></i> '+costService+' €<br/>'+
         		'<i class="icon-shopping-cart"></i> '+costHour+' €/h</div>'+
         		'</div></button>');  
