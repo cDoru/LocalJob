@@ -35,111 +35,74 @@
 
   <body>
 
-    	<!-- FIXATA!! -->
-		<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
-	    	<div class="navbar-inner text-center">
-	            
-		          	<div class=" btn-group" style="margin:0.7% 0;">
-		          		<button class="btn btn-large btn-inverse" type="button" onclick="javascript:history.go(-1);">
-		          			<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover -->
-	      					<img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">
-	      				</button>
-	      				<button class="btn btn-large btn-primary" type="button" onclick="javascript:history.go(-1);" style="line-height:22px;">
-	      					LJ
-	      				</button>         		
-		                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
-		                	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
-		                </button>
-			            <button  class="btn btn-large btn-inverse" type="button">
-			            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
-			            </button>
-			            <button class="btn btn-large btn-inverse" type="button">
-			            	<img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
-			            </button>
-	              </div>
-	              
-		    </div>
-		</div>
+   	<!-- FIXATA!! -->
+	<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
+    	<div class="navbar-inner text-center">
+            
+	          	<div class=" btn-group" style="margin:0.7% 0;">
+	          		<button class="btn btn-large btn-inverse" type="button" onclick="javascript:history.go(-1);">
+	          			<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover -->
+      					<img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">
+      				</button>
+      				<button class="btn btn-large btn-primary" type="button" onclick="javascript:history.go(-1);" style="line-height:22px;">
+      					LJ
+      				</button>         		
+	                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
+	                	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
+	                </button>
+		            <button  class="btn btn-large btn-inverse" type="button">
+		            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
+		            </button>
+		            <button class="btn btn-large btn-inverse" type="button">
+		            	<img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
+		            </button>
+              </div>
+              
+	    </div>
+	</div>
 
 
-	    <div class="container contNotifiche" style="margin-top:3%;">
-			<div class="row-fluid">
-				<div class="span12 text-center">
-					<form>
-		  				<fieldset>
-		    				<input type="text" id="problemTitle" class="input-xxlarge" placeholder="Tipo di problema"><br/> <br> 		
-		    		
-		    				<!-- <select id="problemType" class="input-xxlarge">
-	 					 		<option>Intervento da richiedere</option>
-  					 			<option>Caldaista</option>
-				                <option>Idraulico</option>
-				                <option>Pittore</option>
-				                <option>Elettricista</option>
-				                <option>Muratore</option>
-				                <option>Antennista</option>
-				                <option>Sarto</option>
-				                <option>Calzolaio</option>
-				                <option>Maniscalco</option>
-				                <option>Carpentiere</option>
-				                <option>Falegname</option>
-							</select><br/> -->
-							
-							<div class="row-fluid text-center">    
-								<div class="span12">   
-					           	 <div class="btn-group">
-					                <a class="btn dropdown-toggle btn-large " data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">
-					                  Ricerca categoria
-					                    <span class="caret"></span> 
-					                </a>
-									<ul id="problemType" class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu">
-					                  <li><a tabindex="-1" href="#">Caldaista</a></li>
-					                  <li><a tabindex="-1" href="#">Idraulico</a></li>
-					                  <li><a tabindex="-1" href="#">Pittore</a></li>
-					                  <li><a tabindex="-1" href="#">Elettricista</a></li>
-					                  <li><a tabindex="-1" href="#">Muratore</a></li>
-					                  <li><a tabindex="-1" href="#">Antennista</a></li>
-					                  <li><a tabindex="-1" href="#">Sarto</a></li>
-					                  <li><a tabindex="-1" href="#">Calzolaio</a></li>
-					                  <li><a tabindex="-1" href="#">Maniscalco</a></li>
-					                  <li><a tabindex="-1" href="#">Carpentiere</a></li>
-					                  <li><a tabindex="-1" href="#">Falegname</a></li>
-					                </ul>
-					             </div>
-					         </div>
-            				</div><br/>
-							
-							<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea><br/>
-							<div class="row-fluid">
-							<div style="width:70%; float:left;"> 
-							<div class="fileupload fileupload-new" data-provides="fileupload">
-	  							<div class="fileupload-new thumbnail" style="width: 80px; height: 80px;"><img src="http://www.placehold.it/80x80/EFEFEF/AAAAAA" /></div>
-	  							<div class="fileupload-preview fileupload-exists thumbnail" style="width: 80px; height: 80px;"></div>
-	 							<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
-	  							<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-							</div>
-							</div>
-							
-							
-							<!-- <button class="btn btn-large btn-primary btn-block" type="button"><i class="icon-picture icon-white"></i> Inserisci foto</button><br/> -->
-							<div style="width:35%; float:right; margin-top:-80px; margin-left: 2%;"> 
-							<button class="btn btn-large btn-block" type="button" onclick="javascript:saveProblem();">AVANTI  <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
-							</div>
-							
-							<!--  
-							<button class="btn btn-large" type="button"><i class="icon-fullscreen"></i> </button>
-							<button class="btn btn-large" type="button"><i class="icon-home"></i> </button>
-							<button class="btn btn-large" type="button">AVANTI <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
-							-->
-							
-						</fieldset>
-		    		
-		    			
-					</form>
-				</div>
-
+	<div class="container contNotifiche" style="margin-top:3%;">
+	    
+    	<div class="row-fluid text-center">    
+			<div class="span12">
+			
+				<form>
+	  				<fieldset>  
+		           	 	<div class="btn-group">
+		                	<a class="btn dropdown-toggle btn-large " data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">
+		                  		Ricerca categoria problema
+		                    	<span class="caret"></span> 
+		                	</a>
+							<ul id="problemType" class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu">
+				                  <li><a tabindex="-1" href="#">Caldaista</a></li>
+				                  <li><a tabindex="-1" href="#">Idraulico</a></li>
+				                  <li><a tabindex="-1" href="#">Pittore</a></li>
+				                  <li><a tabindex="-1" href="#">Elettricista</a></li>
+				                  <li><a tabindex="-1" href="#">Muratore</a></li>
+				                  <li><a tabindex="-1" href="#">Antennista</a></li>
+				                  <li><a tabindex="-1" href="#">Sarto</a></li>
+				                  <li><a tabindex="-1" href="#">Calzolaio</a></li>
+				                  <li><a tabindex="-1" href="#">Maniscalco</a></li>
+				                  <li><a tabindex="-1" href="#">Carpentiere</a></li>
+				                  <li><a tabindex="-1" href="#">Falegname</a></li>
+		                	</ul>
+		             	</div><br/><br/>
+         	
+		         		<div class="fileupload fileupload-new" data-provides="fileupload">
+							<div class="fileupload-new thumbnail" style="width: 80px; height: 80px;"><img src="http://www.placehold.it/80x80/EFEFEF/AAAAAA" /></div>
+							<div class="fileupload-preview fileupload-exists thumbnail" style="width: 80px; height: 80px;"></div><br/>
+							<span class="btn btn-file btn-large"><span class="fileupload-new">Carica un'immagine</span><span class="fileupload-exists">Modifica</span><input type="file" /></span>
+							<a href="#" class="btn btn-large fileupload-exists" data-dismiss="fileupload">Elimina</a>
+						</div><br/>
+         
+	    				<input type="text" id="problemTitle" class="input-xxlarge" placeholder="Titolo"><br/>
+						<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea>
+						<button class="btn btn-large btn-block btn-primary" type="button" onclick="javascript:saveProblem();"><img src="./img/glyphicons/white_ver/153.PNG"/> CONFERMA</button>	
+					</fieldset>
+	    		</form>
 			</div>
-   		
-		</div>
+       	 </div><br/>
 
     </div> <!-- /container -->
    
