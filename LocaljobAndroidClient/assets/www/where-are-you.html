@@ -79,43 +79,49 @@
 				<div class="tabbable">
   					<ul class="nav nav-tabs">
   						<li id="tab_casa" style="width:50%; text-align:center;">Casa</li>
-    					<li id="tab_altro" style="width:50%; text-align:center;">Altro</li>	
+    					<li id="tab_altro" style="width:49%; text-align:center; border:1px solid #ffffff;">Altro</li>	
   					</ul>
   					
     				<div class="tab-content">
     				
 	    				<!--  Sezione Casa  -->
 	    				<div class="tab-pane" id="tabCasa">
-	    					<div id="attivi" class="alert alert-info">
+	    					<div id="attivi">
 								<!-- Parte dove ci andrà la mappa di google -->
 								<div id="map_casa" style="border: 1px solid #999; width:100%; height:140px; margin-bottom:2%;"></div>
 								<!-- Fine parte dove ci andrà la mappa di google -->
 			      					
 			      				<!-- Form per indirizzo -->
-								<div class="controls">
-			  						<input id="Indirizzo_casa" class="input-block-level" type="text" value="Indirizzo"><br />
+								<div class="controls"> 
+									<form class="form-inline">
+										<div style="width:70%; float:left;">
+			  						<input id="Indirizzo_casa" class="input-block-level" type="text" value="Indirizzo"></div>
 			  					</div>
-			  					<div class="controls">
-			  						<input id="nCiv_casa" class="input-block-level" type="text" value="N. Civ."><br />
-			  					</div>
-			  					<div class="controls">
-			  						<input id="CAP_casa" class="input-block-level" type="text" value="CAP"><br />
-			  					</div>
-			  					<div class="controls">
-			  						<input id="Citta_casa" class="input-block-level" type="text" value="Citta"><br />
-			  					</div>
-			  					<div class="controls"
+			  					<!--<div class="controls">-->
+			  						<div style="width:25%; float:right;">
+			  						<input id="nCiv_casa" class="input-block-level" type="text" value="N. Civ."></div><br />
+			  					</form>
+			  					<!--</div>-->
+			  					<!--<div class="controls">-->
+			  						<input id="Citta_casa" class="input-block-level" type="text" value="Citta">
+			  					<!--</div>-->
+			  					<!--<div class="controls">-->
+			  						<form class="form-inline">
+										<div style="width:70%; float:left;">
+			  						<input id="CAP_casa" class="input-block-level" type="text" value="CAP"><br /></div>
+			  					<!--</div>-->
 			  					
-			  					>
-			  						<input id="Provincia_casa" class="input-block-level" type="text" value="Prov."><br /><br/>
+			  					<div class="controls">
+			  					<div style="width:25%; float:right;">
+			  						<input id="Provincia_casa" class="input-block-level" type="text" value="Prov."></div><br /><br/>
 			  					</div>
-									<button class="btn btn-large btn-block" type="button" onclick="javascript:scegli_modalita('casa');">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
+									<button class="btn btn-large btn-block btn-primary" type="button" onclick="javascript:scegli_modalita('casa');">CONFERMA <img src="./img/glyphicons/white_ver/153.PNG"/></button>
 	    					</div>
 	    				</div>
     					
     					
     					<div class="tab-pane" id="tabAltro">
-      						<div id="attivi" class="alert alert-info">
+      						<div id="attivi">
 	      						<!--  Sezione Altro  -->
 	      						
 	      						<!-- Parte dove ci andrà la mappa di google -->
@@ -133,23 +139,35 @@
 								
 								<!-- Form per indirizzo -->
 									<div class="controls">
+										<form class="form-inline">
+										<div style="width:70%; float:left;">
 	  									<input id="Indirizzo_altro" type="text" class="input-block-level" value="Indirizzo"><br />
 	  								</div>
-	  								<div class="controls">
+	  								</div>
+	  								<!--<div class="controls">-->
+	  								<div style="width:25%; float:right;">
 	  									<input id="nCiv_altro" type="text" class="input-block-level" value="N. Civ."><br />
 	  								</div>
-									<div class="controls">
+
+	  								</form>
+									<input id="Citta_altro" type="text" class="input-block-level" value="Citta"><br />
+	  								
+	  								<form class="form-inline">
+										<div style="width:70%; float:left;">
 	  									<input id="CAP_altro" type="text" class="input-block-level" value="CAP"><br />
 	  								</div>
+
 	  								<div class="controls">
-	  									<input id="Citta_altro" type="text" class="input-block-level" value="Citta"><br />
+	  									<div style="width:25%; float:right;">
+	  								
+	  									<input id="Provincia_altro" type="text" class="input-block-level" value="Prov."></div><br /><br/>
 	  								</div>
-	  								<div class="controls">
-	  									<input id="Provincia_altro" type="text" class="input-block-level" value="Prov."><br /><br/>
+	  							
+
 									</div>
 									
-									<a href="#myModal" role="button" class="btn btn-large btn-block btn-success" data-toggle="modal">Salva Luogo</a>
-									<button class="btn btn-large btn-block btn-inverse" type="button" onclick="javascript:scegli_modalita('altro');">Avanti <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png"/></button>
+									<a href="#myModal" role="button" class="btn btn-large btn-block btn-primary" data-toggle="modal">SALVA LUOGO </a>
+									<button class="btn btn-large btn-block btn-primary" type="button" onclick="javascript:scegli_modalita('altro');">CONFERMA <img src="./img/glyphicons/white_ver/153.PNG"/></button>
 	      							
 	      							
 	    					</div>
