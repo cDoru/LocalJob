@@ -3,39 +3,20 @@ var position_lat;
 var position_long;
 
 var geocoder;
-var map;
-var infowindow = new google.maps.InfoWindow();
 var marker;
 
+//var googlecod;
+//var pushNotification;
+
 /*
- * funzioni che si avviano al caricamento della pagina
- */
-$(document).ready(function(){
-	
-	jQuery.support.cors = true;
+//script per il form della data di nascita
 
-	//script per il form della data di nascita
-	var firstYear = 1920;
-	var lastYear = 1999;
-	for(var i =firstYear; i<=lastYear; i++) {
-	       $('#anni').append('<option>'+i+'</option>');
-	}
-	
-	//roba per il tooltip
-	$('.notifiche').popover({
-		'html': 'true',
-        'selector': '',
-        'placement': 'bottom',
-        'title': 'Notifiche',
-        'content': '<div class="well well-small">Guarda il tutorial di Local Job</div>'+
-        '<div class="well well-small">Aggiorna il tuo profilo per iniziare</div>',
-        'container': '.contNotifiche'
-      });
-
-
-	// Controller per il TILT LANDSCAPE-PORTRAIT
-	window.addEventListener("orientationchange", orientationChange, true);
-});
+var firstYear = 1920;
+var lastYear = 1999;
+for(var i =firstYear; i<=lastYear; i++) {
+       $('#anni').append('<option>'+i+'</option>');
+}
+*/
 
 
 /*
@@ -261,8 +242,8 @@ function initialize_map(tipo, lat, long) {
 	}
 	
 	  
-	// inserisci il maker
-	var marker = new google.maps.Marker({ position: latlng,
+	// inserisci il marker
+	marker = new google.maps.Marker({ position: latlng,
 		map: map, 
         title: 'Questo è un testo di suggerimento' });
 }
@@ -371,7 +352,10 @@ function login()	//gestisce il login dell'utente
 	//alert("prova!");
 	user =  $('#user').val(); 
 	password =  $('#password').val(); 
-	//alert("user: "+ user + " e password: " + password);
+	// il googlecod per ora è prova, ma in realtà verrà preso dalla 
+	// registazione ad ogni avvio dell'app
+	googlecod = "prova";
+
 	$.ajax({
           type: 'POST',
           url: 'http://95.141.45.174/login',
@@ -383,7 +367,7 @@ function login()	//gestisce il login dell'utente
           },
           contentType: 'application/x-www-form-urlencoded',
           crossDomain: true,
-          data: {'userId': user, 'password': password},
+          data: {'userId': user, 'password': password, 'googlecod': googlecod},
           success: ajaxLOGIN,
           error: errorHandler
        })
