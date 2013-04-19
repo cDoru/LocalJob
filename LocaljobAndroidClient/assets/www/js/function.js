@@ -184,7 +184,7 @@ function goTabAltro(indirizzo){
 		else{
 			
 			$('#tab_casa').attr('class','');
-			$('#tab_casa').html('<a onclick="goTabCasa(true);" data-toggle="tab">Casa</a>');
+			$('#tab_casa').html('<a onclick="goTabCasa(true);" data-toggle="tab" style="border:1px solid #ffffff;">Casa</a>');
 		}
 		//Il tab altro è attivato e viene mostrato il div #tabAltro
 		$('#tab_altro').attr('class','active');
@@ -257,11 +257,11 @@ function goTabCasa(indirizzo){
 	if(numero_case < 2){
 		//Il tab casa è attivato e viene mostrato il div #tabCasa
     	$('#tab_casa').attr('class','active');
-    	$('#tab_casa').html('<a href="#tabCasa" data-toggle="tab">Casa</a>');	
+    	$('#tab_casa').html('<a href="#tabCasa" data-toggle="tab" style="border:1px solid #ffffff;">Casa</a>');	
 	}
 	else{
 		$('#tab_casa').attr('class','dropdown');
-    	$('#tab_casa').html('<a href="#tabCasa" class="dropdown-toggle" data-toggle="dropdown">Casa <b class="caret"></b></a>'+
+    	$('#tab_casa').html('<a href="#tabCasa" class="dropdown-toggle" data-toggle="dropdown" style="border:1px solid #ffffff;">Casa <b class="caret"></b></a>'+
     		'<ul class="dropdown-menu">'+
     		'<li>Casa Mare</li>'+
     		'<li>Ufficio</li>'+
@@ -270,7 +270,7 @@ function goTabCasa(indirizzo){
 		
 	//Il tab altro è cliccabile e viene mostrato il div #tabAltro
 	$('#tab_altro').attr('class','');
-	$('#tab_altro').html('<a onclick="goTabAltro(true)" data-toggle="tab">Altro</a>');
+	$('#tab_altro').html('<a onclick="goTabAltro(true)" data-toggle="tab" style="border:1px solid #ffffff;">Altro</a>');
 	
 	//Attivo la pagina tabCasa e disattivo tabAltro
 	$('#tabAltro').attr('class','tab-pane');
