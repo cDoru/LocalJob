@@ -44,7 +44,51 @@ function initialize() {
 
   homeControlDiv.index = 1;
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(homeControlDiv);
+  search();
 
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+/* ---------------- */
+
+
+function search() {   
+  $.ajax({
+      async: false,
+      type: 'GET',
+      url: 'http://95.141.45.174/search?latitudine=44.499184&longitudine=11.353726',      
+      crossDomain:true,   
+      success: logoutSuccess,
+      error: errorLogout
+      });   
+}
+
+function errorLogout(xhr, textStatus, thrownError)    
+{
+  alert('&#10006; '+xhr.status+" "+thrownError);
+}
+
+function logoutSuccess(xml) {
+  //alert(xml);
+  var xmlString = $(xml);
+  
+  $(xmlString).find("worker").each(function () {    
+    var $worker = $(this);
+        var lati = $worker.find('latitudine').text();
+        var longi = $worker.find('longitude').text();
+        createMarker(lati,longi);
+  });
+}
+
+function createMarker(lt,ln) {
+  
+  var poi = new google.maps.LatLng(lt,ln);
+  
+  var marker = new google.maps.Marker({
+            position: poi,
+            map: map
+   });    
+}
