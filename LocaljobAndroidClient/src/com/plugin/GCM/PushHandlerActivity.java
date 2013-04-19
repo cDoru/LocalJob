@@ -39,12 +39,15 @@ public class PushHandlerActivity extends Activity
     		Bundle	originalExtras = extras.getBundle("pushBundle");
     		if (originalExtras != null)
         	{
-              	if (EXITED)
+              	/*if (EXITED)
+    			*/
+    			if (1 == 1)
                 {
             	    PackageManager pm = getPackageManager();
-            		Intent launchIntent = pm.getLaunchIntentForPackage(getApplicationContext().getPackageName());    		
-         		
-                	// remember how we got here
+            		//Intent launchIntent = pm.getLaunchIntentForPackage(getApplicationContext().getPackageName());    		
+            	    Intent launchIntent = new Intent (this, it.localjob.ClientAndroid.LocaljobAndroidClient.class);
+                	
+            	    // remember how we got here
             		originalExtras.putBoolean("coldstart", true);
                 		
                 	// serialize and cache the payload before starting the main activity.

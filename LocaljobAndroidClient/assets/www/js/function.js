@@ -5,6 +5,8 @@ var position_long;
 var geocoder;
 var marker;
 
+var googlecod;
+
 //var googlecod;
 //var pushNotification;
 
@@ -17,6 +19,79 @@ for(var i =firstYear; i<=lastYear; i++) {
        $('#anni').append('<option>'+i+'</option>');
 }
 */
+
+
+/*
+ * Ricezione notifiche
+ */
+
+//handle GCM notifications for Android
+function onNotificationGCM(e) {
+   //alert(e.event);
+    
+    switch( e.event )
+    {
+       case 'registered':
+		if ( e.regid.length > 0 )
+		{
+			// Your GCM push server needs to know the regID before it can push to this device
+			// here is where you might want to send it the regID for later use.
+			console.log("regID = " + e.regID);
+			googlecod = e.regid;
+		}
+		
+        break;   
+        
+        case 'message':
+        	// if this flag is set, this notification happened while we were in the foreground.
+        	// you might want to play a sound to get the user's attention, throw up a dialog, etc.
+        	
+        	/*
+        	if (e.foreground)
+        	{				
+				alert("fore: "+e.payload.prova);
+			}
+			else
+			{	// otherwise we were launched because the user touched a notification in the notification tray.
+				if (e.coldstart) {
+					alert("cold: "+e.payload.prova);
+				}
+				
+				else {
+					alert("back: "+e.payload.prova);
+				}
+			}
+			*/
+        	
+			alert('Hai scritto: ' + e.payload.message);
+			
+        break;
+        
+        case 'error':
+			alert(e.msg);
+        break;
+        
+        default:
+			alert('EVENT -> Unknown, an event was received and we do not know what it is');
+        break;
+    }
+}
+
+function tokenHandler (result) {
+    alert('token: '+ result);
+    // Your iOS push server needs to know the token before it can push to this device
+    // here is where you might want to send it the token for later use.
+}
+
+function successHandler (result) {
+    //alert('success:'+ result);
+}
+
+function errorHandler (error) {
+    alert('error:'+ error);
+}
+
+
 
 
 /*
@@ -354,7 +429,7 @@ function login()	//gestisce il login dell'utente
 	password =  $('#password').val(); 
 	// il googlecod per ora è prova, ma in realtà verrà preso dalla 
 	// registazione ad ogni avvio dell'app
-	googlecod = "prova";
+	//googlecod = "prova";
 
 	$.ajax({
           type: 'POST',
