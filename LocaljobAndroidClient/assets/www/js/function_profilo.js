@@ -21,12 +21,14 @@ function showCommentList(){		//chiamata ajax + mostra/nasconde i commenti
 	}
 }
 
-function importaDatiProf() {	//richiama i dati del professionista
+function importaDatiProf() {	//richiama i dati del professionista	
 	$.ajax({
 		async: false,
 		type: 'GET',
 		url: 'http://95.141.45.174/professional/alugli/',			
-		crossDomain:true,		
+		crossDomain:true,
+		cache: false,
+		complete: function(){$('#loading').hide()},
 		success: importaSuccesso,
 		error: errorLogout
 		});	
@@ -107,11 +109,12 @@ function rating(voto, categoria){			//per visualizzare le valutazioni
 }
 
 function commentami() {		//richiama i commenti sul professionista
+	
 	$.ajax({
 		async: false,
 		type: 'GET',
 		url: 'http://95.141.45.174/professional/alugli/comments',			
-		crossDomain:true,		
+		crossDomain:true,
 		success: caricaCommenti,
 		error: errorLogout
 		});		
