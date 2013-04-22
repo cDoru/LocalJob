@@ -1,3 +1,4 @@
+var nick;
 var cliccato = false;	//per sapere se il bottone commenti in "profilo-professionista" è già stato cliccato o no
 
 //rating: stelle piccole
@@ -6,6 +7,13 @@ var stellaPiena = "<i class='icon-star'></i>";
 //rating: stelle grandi
 //var stellaVuota = "<img src='./img/glyphicons/black_ver/glyphicons_048_dislikes.png' />";
 //var stellaPiena = "<img src='./img/glyphicons/black_ver/glyphicons_049_star.png' />";
+
+function profiloPro(nick){
+	//alert(nick);
+	sessionStorage.nick = nick;
+	window.location='profilo-professionista.html';
+	
+}
 
 function showCommentList(){		//chiamata ajax + mostra/nasconde i commenti
 	if(cliccato){
@@ -21,11 +29,12 @@ function showCommentList(){		//chiamata ajax + mostra/nasconde i commenti
 	}
 }
 
-function importaDatiProf() {	//richiama i dati del professionista
+function importaDatiProf(nick) {	//richiama i dati del professionista
+	//alert("prova2: "+nick);
 	$.ajax({
 		async: false,
 		type: 'GET',
-		url: 'http://95.141.45.174/professional/alugli/',			
+		url: 'http://95.141.45.174/professional/'+nick+'/',			
 		crossDomain:true,		
 		success: importaSuccesso,
 		error: errorLogout
