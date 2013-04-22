@@ -120,7 +120,23 @@ function createMarker(lt,ln, ragione_sociale, avatar, costService, costPerHour, 
 			rating = marker.rating;
 			nickname = marker.nickname;
 			professione = marker.professionType;
-			infowindow.setContent(ragioneSociale+" "+avatar+" "+costoServizio+" "+costoPerOra+" "+rating+" "+nickname+" "+professione);
+
+      // Avatar + ragioneSociale + professione = prima riga della tabella
+      firstRow = "<tr><td><img src=' http://95.141.45.174/" + avatar + " ' style='max-width:100px;' /></td>"
+        "<td colspan='2'>" + ragioneSociale + "<br />" + professione + "</td></tr>";
+
+      // Indicatori di prezzo = seconda riga della tabella (tabella annidata)
+      secondRow = "<tr><td colspan='3'><table><tr><td>" 
+      + costoServizio + "€/call</td><td>" 
+      + costoPerOra + "€/h</td></tr></table></td></tr>";
+
+      // Rating + link al profilo (tabella annidata)
+      thirdRow = "<tr><td colspan='3'><table><tr><td>" 
+      + rating + "</td><td>" 
+      + "<a href='http://95.141.45.174/professional/" + nickname + "/'>Visualizza il profilo</a></td></tr></table></td></tr>";  
+
+			infowindow.setContent(
+        "<table>" + firstRow + secondRow + thirdRow + "</table>");
 			infowindow.open(map, this);
 	});
    
