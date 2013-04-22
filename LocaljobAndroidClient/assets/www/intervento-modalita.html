@@ -32,65 +32,45 @@
 
   <body>
     
-   <div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
-      <div class="navbar-inner" style="text-align:center;">
-            
+	   <div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
+	      <div class="navbar-inner text-center">
               <div class=" btn-group" style="margin:0.7% 0;">
-                <button class="btn btn-large btn-inverse" type="button" onclick="javascript:history.go(-1);">
-                  <!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover -->
-                <img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">
-              </button>
-              <button class="btn btn-large btn-primary" type="button" onclick="javascript:history.go(-1);" style="line-height:22px;">
-                LJ
-              </button>             
-                  <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
-                    <span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
-                  </button>
-                <button  class="btn btn-large btn-inverse" type="button">
-                  <img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
-                </button>
-                <button class="btn btn-large btn-inverse" type="button">
-                  <img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
-                </button>
-              </div>
-              
-      </div>
-  </div>
-
-
-			 <span style= "margin-top:3%;">
-       <h4 align="center">Scegli il tuo tipo di richiesta</h4>
-     </span>
+                	<button class="btn btn-large btn-inverse" type="button" onclick="javascript:history.go(-1);">
+                  		<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover -->
+                		<img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">
+              		</button>
+              		<button class="btn btn-large btn-primary" type="button" onclick="javascript:history.go(-1);" style="line-height:22px;">
+               		LJ
+              		</button>             
+                  	<button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
+                    	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
+                  	</button>
+                	<button  class="btn btn-large btn-inverse" type="button">
+                  		<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
+                	</button>
+                	<button class="btn btn-large btn-inverse" type="button">
+                  		<img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
+                	</button>
+              </div>     
+	      	</div>
+	  	</div>
 			 
-			 <div class="container">
-			 			
-				<button style="width:49%; float:left; margin-right:1%; max-height:100%;" class="btn btn-large" type="button" href="#myModal_asta">
-				 <img src="./img/search-icon.png" alt="">
-				 <div>
-				 	<h4>Ricerca standard</h4>
-				 	<p>Scegli il professionista più adatto alle tue necessità</p>
-			 	</div>
-			 </button> 
+		<div class="container text-center" style="margin-top:3%;">
+			<h4>Come vuoi gestire l'intervento?</h4>	
+			<button class="btn btn-large btn-block" type="button" href="#myModal_asta">
+				<img src="./img/search-icon.png" alt="" style="margin-top:-10px; width:30%; max-width:128px;"><br/>
+				<h5>Ricerca standard</h5>
+				<p style="font-size:0.8em; padding:3px; margin-top:-10px;">Scegli il professionista più adatto<br/>alle tue necessità</p>
+			</button><br/>
 
-		 
-			<button style="width:49%; float:right; margin-left:1%; max-height:100%;" class="btn btn-large" type="button" onclick="javascript:inviaUrgenza();">
-				<img src="./img/1_urgenza.png" alt="">
-				<div>
-					<h4>Urgenza</h4>
-					<p>I professionisti più veloci in zona</p>
-				</div>
+			<button class="btn btn-large btn-block" type="button" onclick="javascript:inviaUrgenza();">
+				<img src="./img/1_urgenza.png" alt="" style="margin-top:-10px; width:30%; max-width:128px;"><br/>
+				<h5>Urgenza</h5>
+				<p style="font-size:0.8em;  padding:3px; margin-top:-10px;">Scegli di far intervenire il professionista<br/>più veloce nella tua zona</p>
 			</button> 
-		  </div>
+		 </div>
 		
-	<!--	<div style="clear:both;"></div><br/>
-		<button class="btn btn-large btn-block" type="button"><h4><i class="icon-search"></i> Ricerca standard </h4><p>Guarda tutti i professionisti e scegli quello più adatto alle tue necessità</p></button><br/>
-		
-		<!-- <div class="alert alert-info">
-				 <button type="button" class="close" data-dismiss="alert">&times;</button>
-				 Visualizza tutti i professionisti e scegli quello che meglio risponde alle tue necessità
-		</div>  -->
 
-  </div>
 		
 		<!-- Ti faccio anche la finestrella popup modale per la durata dell'asta. Dovrà essere richiamata nel javascript -->
 		<div id="myModal_asta" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
