@@ -44,7 +44,7 @@ function initialize() {
   var homeControl = new HomeControl(homeControlDiv, map);
 
   homeControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(homeControlDiv);
+  map.controls[google.maps.ControlPosition.LEFT_TOP].push(homeControlDiv);
   search();
 
 }
@@ -121,23 +121,50 @@ function createMarker(lt,ln, ragione_sociale, avatar, costService, costPerHour, 
 			nickname = marker.nickname;
 			professione = marker.professionType;
 
+      // Set dei dati per andare sul profilo utente
+      sessionStorage.nick = nickname;
+
+      if (avatar == 'photo') {
+        avatar = 'img/missingAvatar.png';
+      } else {
+        avatar = "http://95.141.45.174/" + avatar;
+      }
+
+
+
       // Avatar + ragioneSociale + professione = prima riga della tabella
-      firstRow = "<tr><td><img src=' http://95.141.45.174/" + avatar + " ' style='max-width:100px;' /></td>"
-        "<td colspan='2'>" + ragioneSociale + "<br />" + professione + "</td></tr>";
+      firstRow = "<tr><td style='height:100px;width:100px;'><img src='" + avatar + "' style='max-width:100px;padding:1px;"+
+      "border:1px solid #000;background-color:#fff;' /></td>"
+      + "<td colspan='2'><strong>" 
+      + ragioneSociale + "</strong><br />" + professione + "<br />";
 
       // Indicatori di prezzo = seconda riga della tabella (tabella annidata)
-      secondRow = "<tr><td colspan='3'><table><tr><td>" 
-      + costoServizio + "€/call</td><td>" 
-      + costoPerOra + "€/h</td></tr></table></td></tr>";
+      secondRow = "<table style='width:100%;'><tr><td style='width:50%;text-align:center;'>" 
+      + costoServizio + "<img src='img/euro.png'><img style='margin-top:20px;' src='img/call.png'></td>"+
+      "<td style='width:50%;'>" + costoPerOra + "<img src='img/euro.png'><img style='margin-top:20px;' src='img/clock.png'>" 
+      +"</td></tr></table></td></tr>";
+
+      // Normalizzazione rating
+      starOn = "<img src='img/starOn.png'>";
+      starOff = "<img src='img/starOff.png'>";
+      switch(Math.round(rating)) {
+        case 0: stelle =  starOff + starOff + starOff + starOff + starOff; break;
+        case 1: stelle =  starOn + starOff + starOff + starOff + starOff; break;
+        case 2: stelle =  starOn + starOn + starOff + starOff + starOff; break;
+        case 3: stelle =  starOn + starOn + starOn + starOff + starOff; break;
+        case 4: stelle =  starOn + starOn + starOn + starOn + starOff; break;
+        case 5: stelle =  starOn + starOn + starOn + starOn + starOn; break;
+      }
 
       // Rating + link al profilo (tabella annidata)
-      thirdRow = "<tr><td colspan='3'><table><tr><td>" 
-      + rating + "</td><td>" 
-      + "<a href='http://95.141.45.174/professional/" + nickname + "/'>Visualizza il profilo</a></td></tr></table></td></tr>";  
+      thirdRow = "<tr><td colspan='3' style='text-align:center;'>" + stelle 
+      + "<br /><a href='profilo-professionista.html'>Vai al profilo utente</a></td></tr>";  
 
 			infowindow.setContent(
-        "<table>" + firstRow + secondRow + thirdRow + "</table>");
+        "<table style='vertical-align:text-top;font-family:Helvetica,Verdana,sans-serif;'>" + firstRow + secondRow + thirdRow + "</table>");
 			infowindow.open(map, this);
+
+  
 	});
    
 }
