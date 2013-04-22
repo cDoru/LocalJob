@@ -12,17 +12,16 @@ function profiloPro(nick){
 	//alert(nick);
 	sessionStorage.nick = nick;
 	window.location='profilo-professionista.html';
-	
 }
 
-function showCommentList(){		//chiamata ajax + mostra/nasconde i commenti
+function showCommentList(nick){		//chiamata ajax + mostra/nasconde i commenti		
 	if(cliccato){
 		$('#commentList').hide();
 		$('#icoBottone').attr('src', './img/glyphicons/white_ver/224A.PNG');
 		
 		cliccato = false;
 	}else{
-		commentami();
+		commentami(nick);
 		$('#commentList').show();
 		$('#icoBottone').attr('src', './img/glyphicons/white_ver/224B.PNG');
 		cliccato = true;
@@ -35,7 +34,8 @@ function importaDatiProf(nick) {	//richiama i dati del professionista
 		async: false,
 		type: 'GET',
 		url: 'http://95.141.45.174/professional/'+nick+'/',			
-		crossDomain:true,		
+		crossDomain:true,
+		complete: function(){$('#loading').hide()},
 		success: importaSuccesso,
 		error: errorLogout
 		});	
@@ -115,12 +115,13 @@ function rating(voto, categoria){			//per visualizzare le valutazioni
     }
 }
 
-function commentami() {		//richiama i commenti sul professionista
+function commentami(nick) {		//richiama i commenti sul professionista
+	alert(nick);
 	$.ajax({
 		async: false,
 		type: 'GET',
-		url: 'http://95.141.45.174/professional/alugli/comments',			
-		crossDomain:true,		
+		url: 'http://95.141.45.174/professional/'+nick+'/comments',			
+		crossDomain:true,
 		success: caricaCommenti,
 		error: errorLogout
 		});		
@@ -139,40 +140,6 @@ function caricaCommenti(xml) {
 	    quality = $worker.find('qualityRating').text();
 	    reliability = $worker.find('reliabilityRating').text();
 	    kindness = $worker.find('kindnessRating').text();
-	    
-	    //alert(quality);
-	    //alert(reliability);
-	    //alert(kindness);
-	    	
-		/*switch(Math.round(quality)) {
-		    case 0: stelle =  stellaVuota + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (0/5)'; break;
-		    case 1: stelle =  stellaPiena + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (1/5)'; break;
-		    case 2: stelle =  stellaPiena + stellaPiena + stellaVuota + stellaVuota + stellaVuota + ' (2/5)'; break;
-		    case 3: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaVuota + stellaVuota + ' (3/5)'; break;
-		    case 4: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaVuota + ' (4/5)'; break;
-		    case 5: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaPiena + ' (5/5)'; break;
-	    }
-		quality = stelle;
-		
-		switch(Math.round(reliability)) {
-		    case 0: stelle =  stellaVuota + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (0/5)'; break;
-		    case 1: stelle =  stellaPiena + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (1/5)'; break;
-		    case 2: stelle =  stellaPiena + stellaPiena + stellaVuota + stellaVuota + stellaVuota + ' (2/5)'; break;
-		    case 3: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaVuota + stellaVuota + ' (3/5)'; break;
-		    case 4: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaVuota + ' (4/5)'; break;
-		    case 5: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaPiena + ' (5/5)'; break;
-	    }
-		reliability = stelle;
-		
-		switch(Math.round(kindness)) {
-		    case 0: stelle =  stellaVuota + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (0/5)'; break;
-		    case 1: stelle =  stellaPiena + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (1/5)'; break;
-		    case 2: stelle =  stellaPiena + stellaPiena + stellaVuota + stellaVuota + stellaVuota + ' (2/5)'; break;
-		    case 3: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaVuota + stellaVuota + ' (3/5)'; break;
-		    case 4: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaVuota + ' (4/5)'; break;
-		    case 5: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaPiena + ' (5/5)'; break;
-	    }
-		kindness = stelle;*/
 	    
 	    switch(Math.round(quality)) {
 	    case 0: stelle =  '0/5'; break;
