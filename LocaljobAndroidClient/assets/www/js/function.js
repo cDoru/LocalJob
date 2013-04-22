@@ -459,17 +459,19 @@ function login()	//gestisce il login dell'utente
 function facebook_login(){
 	
 	$.ajax({
-        type: 'POST',
-        url: 'http://95.141.45.174/login',
-        /*ajaxStart: function(){
-      	  window.location='wait.html';
-        },*/
+        type: 'GET',
+        url: 'http://95.141.45.174/login/facebook/',
         contentType: 'application/x-www-form-urlencoded',
         crossDomain: true,
-        data: {'userId': user, 'password': password, 'googlecod': googlecod},
-        success: ajaxLOGIN,
+        success: ajaxLOGINFB,
         error: errorHandler
      })
+	
+}
+
+function facebook_login_prova(){
+	
+	
 	
 }
 
@@ -595,6 +597,16 @@ function ajaxLOGIN(data){
 	}
 }
 
+function ajaxLOGINFB(data){
+	//alert(data);
+	if(data == ""){
+		window.location='interventi-attivi.html';
+	}
+	else{
+		alert("User o Password errati");
+	}
+}
+
 function ajaxSIGNIN(data){
 	if(tipoUtente=="cliente"){
 		//alert("cliente registrato");
@@ -661,7 +673,8 @@ function ricercaInZonaSuccess(xml) {
         //alert(out);
         
         //indirizzo pagina professionista - andrà aggiornato in qualche modo
-        var pagina = "javascript:window.location='profilo-professionista.html'"
+        //var pagina = "javascript:window.location='profilo-professionista.html'"
+        var pagina = "javascript:profiloPro('"+nickname+"');";
         	
         $('#tabIntorno').append('<button class="btn btn-block text-center" onclick="'+pagina+'"><div style="width:70%; float:left;">'+
         		'<p><b>'+nome+' '+cognome+'</b></p>'+
