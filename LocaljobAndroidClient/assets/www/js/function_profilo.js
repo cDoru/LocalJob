@@ -29,16 +29,6 @@ function showCommentList(){		//chiamata ajax + mostra/nasconde i commenti
 	}
 }
 
-<<<<<<< HEAD
-function importaDatiProf() {	//richiama i dati del professionista	
-	$.ajax({
-		async: false,
-		type: 'GET',
-		url: 'http://95.141.45.174/professional/alugli/',			
-		crossDomain:true,
-		cache: false,
-		complete: function(){$('#loading').hide()},
-=======
 function importaDatiProf(nick) {	//richiama i dati del professionista
 	//alert("prova2: "+nick);
 	$.ajax({
@@ -46,7 +36,6 @@ function importaDatiProf(nick) {	//richiama i dati del professionista
 		type: 'GET',
 		url: 'http://95.141.45.174/professional/'+nick+'/',			
 		crossDomain:true,		
->>>>>>> 957b5481a045bef36f11e1a3f4a635db3333cf02
 		success: importaSuccesso,
 		error: errorLogout
 		});	
