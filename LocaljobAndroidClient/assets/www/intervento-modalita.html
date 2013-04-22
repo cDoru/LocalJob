@@ -57,7 +57,7 @@
 			 
 		<div class="container text-center" style="margin-top:3%;">
 			<h4>Come vuoi gestire l'intervento?</h4>	
-			<button class="btn btn-large btn-block" type="button" href="#myModal_asta">
+			<button class="btn btn-large btn-block" type="button" onclick="javascript:ricercaStandard();">
 				<img src="./img/search-icon.png" alt="" style="margin-top:-10px; width:30%; max-width:128px;"><br/>
 				<h5>Ricerca standard</h5>
 				<p style="font-size:0.8em; padding:3px; margin-top:-10px;">Scegli il professionista più adatto<br/>alle tue necessità</p>
@@ -69,23 +69,6 @@
 				<p style="font-size:0.8em;  padding:3px; margin-top:-10px;">Scegli di far intervenire il professionista<br/>più veloce nella tua zona</p>
 			</button> 
 		 </div>
-		
-
-		
-		<!-- Ti faccio anche la finestrella popup modale per la durata dell'asta. Dovrà essere richiamata nel javascript -->
-		<div id="myModal_asta" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
- 			<div class="modal-header">
-    			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    			<h3>Durata dell'asta</h3>
-  			</div>
-  			<div class="modal-body">
-    			<p>SLIDER da settare in javascript. Lascio il link della guida http://www.eyecon.ro/bootstrap-slider/</p>
-  			</div>
-  			<div class="modal-footer">
-    			<a href="#" class="btn">Chiudi</a>
-    			<a href="#" class="btn btn-primary">OK</a>
-  			</div>
-		</div>
 		
 	
     <!-- Le javascript

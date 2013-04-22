@@ -10,14 +10,18 @@
     <!-- Le styles -->
     <link href="./css/bootstrap.css" rel="stylesheet">
     <style>
-      body {
-        padding-top: 125px; /* 60px to make the container go all the way to the bottom of the topbar */
-     	background-color:#007E94;
-      }
-      a {
-      	color:black;
-      }
-      
+     	html,body {
+    		height:100%;
+    		margin:0;
+    		background-color:#007E94;
+		}
+		body>#loading {
+    		height: auto;
+    		min-height: 100%;
+		}
+      	a {
+      		color:black;
+     	}
     </style>
  	<link href="./css/bootstrap-responsive.css" rel="stylesheet"> 
 
@@ -37,14 +41,14 @@
 
   <body>
   	
-  	<!-- schermata caricamento
-  		<div class="text-center" id="loading" style="z-index:999; width:100%; height:100%; top:0; left:0; position:absolute; background-color:#141414; padding-top:50%;">
-      		<img src="./img/index-logo-inner.png" style="width:20%;padding:10%;">
-      		<div class="progress progress-striped active" style="width:60%;margin-left:auto; margin-right:auto;">
-        		<div class="bar" style="width: 100%;"></div>
+  	<!-- schermata caricamento -->
+  		<div class="text-center" id="loading" style="display:none; z-index:999; width:100%; top:0; left:0; position:absolute; background-color:#141414;">
+      		<img src="./img/index-logo-inner.png" style="width:20%;padding:10%; padding-top:40%;">
+      		<div class="progress progress-striped active" style="width:80%;margin-left:auto; margin-right:auto;">
+        		<div class="bar" style="width:100%;"></div>
       		</div>
 		</div>
-  	-->
+  	<!--  -->
   	
   	
 
@@ -61,7 +65,7 @@
       					LJ
       				</button>         		
 	                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
-	                	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
+	                	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">!</span>
 	                </button>
 		            <button  class="btn btn-large btn-inverse" type="button">
 		            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">

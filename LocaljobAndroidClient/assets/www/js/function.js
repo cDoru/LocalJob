@@ -134,15 +134,19 @@ function cambia_login(){
  * */
 function saveProblem(){
 	problemTitle =  $('#problemTitle').val(); 
-	problemType =  $('#problemType').val(); 
+	//problemType =  $('#problemType').val(); 
 	problemDesription =  $('#problemDesription').val(); 
 
 	//Salvo i valori nel sessionStorage
 	sessionStorage.problemTitle = problemTitle;
-	sessionStorage.problemType = problemType;
+	//sessionStorage.problemType = problemType;
 	sessionStorage.problemDesription = problemDesription;
 	
 	window.location='where-are-you.html';	
+}
+
+function salvaProblemType(num){
+	sessionStorage.problemType = num;
 }
 
 
@@ -420,6 +424,75 @@ function inviaUrgenza(){
        })
        */
 }
+
+
+/*
+ * Funzione ricerca standard
+ */
+function ricercaStandard(){
+	
+	//da verificare bene questa cosa...il server non è pronto?
+	window.location='risultatoRicercaStandard.html';
+	
+	alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
+			"Request Type: "+sessionStorage.problemType+" \n " +
+			"Description: "+sessionStorage.problemDesription+" \n"+
+			"Lat e Long: "+sessionStorage.lat+" , "+sessionStorage.long+" \n"+
+			"Indirizzo completo: "+sessionStorage.complete_address);
+	
+	
+	$.ajax({
+			async: false,
+			type: 'GET',
+			url: 'http://95.141.45.174/search?latitudine='+sessionStorage.lat+'&longitudine='+sessionStorage.lat+'&job='+sessionStorage.problemType+'&limit=5',			
+			crossDomain:true,		
+			success: ricercaStandardSuccess,
+			error: errorHandler
+			});	
+}
+
+function ricercaStandardSuccess(xml) {
+	
+	var xmlString = $(xml);	
+	$(xmlString).find("worker").each(function () {		
+		var $worker = $(this);
+		var nickname = $worker.find('nickname').text();
+		var nome = $worker.find('nome').text();
+		var cognome = $worker.find('cognome').text();
+		var avatar = $worker.find('avatarPath').text();
+		var ragione = $worker.find('ragioneSociale').text();
+		var numInterventi = $worker.find('interventiFatti').text();
+		var costService = $worker.find('costService').text();
+		var costHour = $worker.find('costPerHour').text();
+		var address = $worker.find('address').text();
+		var rating = $worker.find('rating').text();
+		var distance = $worker.find('distance').text();
+        var lati = $worker.find('latitudine').text();
+        var longi = $worker.find('longitude').text();
+        var tag ="";
+        $worker.find('professionType').each(function( index ) {
+    		  tag = tag+$(this).text()+"\n";
+    	});
+        
+        //out = "Nick: "+nickname+" Nome: "+nome+" Cognome: "+cognome+" distanza: "+distance+" rating: "+rating;
+        //alert(out);
+        
+        //indirizzo pagina professionista - andrà aggiornato in qualche modo
+        //var pagina = "javascript:window.location='profilo-professionista.html'"
+        var pagina = "javascript:profiloPro('"+nickname+"');";
+        	
+        $('#tabRicercaStandard').append('<button class="btn btn-block text-center" onclick="'+pagina+'"><div style="width:70%; float:left;">'+
+        		'<p><b>'+nome+' '+cognome+'</b></p>'+
+        		'<p style="font-size:0.8em; margin-top:-10px;"><span style="text-transform:uppercase">'+tag+'</span></p>'+
+        		'<p style="margin-top:-10px;"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></p>'+
+        		'<p style="font-size:0.8em; margin-top:-10px; margin-bottom:-5px;">A 15 km da te</p></div>'+
+        		'<div style="width:30%; float:right; line-height:260%;">'+
+        		'<div style="border:2px solid black; width:80%;"><i class="icon-headphones"></i> '+costService+' €<br/>'+
+        		'<i class="icon-shopping-cart"></i> '+costHour+' €/h</div>'+
+        		'</div></button>');  
+        
+	});
+} 
 
 
 /*
