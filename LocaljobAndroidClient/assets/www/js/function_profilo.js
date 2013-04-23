@@ -86,7 +86,8 @@ function importaSuccesso(xml) {
 	$('#numInterventi').html(numInterventi);
 	
 	if(avatar == 'photo' || avatar == '' || avatar.length == 0){
-		$('#avatar').attr('src', './img/example_photo.png');
+		//$('#avatar').attr('src', './img/example_photo.png');
+		$('#avatar').attr('src', './img/missingAvatar.png');
 	}
 	else{
 		$('#avatar').attr('src', 'http://95.141.45.174'+avatar);
@@ -128,53 +129,60 @@ function commentami(nick) {		//richiama i commenti sul professionista
 }
 
 function caricaCommenti(xml) {
-	var xmlString = $(xml);	
+	var xmlString = $(xml);
+	var checkVuoto = xmlString.text();
+	
 	$('#commentList').html('');		//azzera la lista commenti prima di caricarli 
 	
-	$(xmlString).find("comment").each(function () {
-		var $worker = $(this);
-	    nick = $worker.find('nickname').text();
-	    testo = $worker.find('text').text();
-	    data = $worker.find('date').text();
-	    titolo = $worker.find('commentTitle').text();
-	    quality = $worker.find('qualityRating').text();
-	    reliability = $worker.find('reliabilityRating').text();
-	    kindness = $worker.find('kindnessRating').text();
-	    
-	    switch(Math.round(quality)) {
-	    case 0: stelle =  '0/5'; break;
-	    case 1: stelle =  '1/5'; break;
-	    case 2: stelle =  '2/5'; break;
-	    case 3: stelle =  '3/5'; break;
-	    case 4: stelle =  '4/5'; break;
-	    case 5: stelle =  '5/5'; break;
-    }
-	quality = '<div style="width:33%; float:left;">Qualit&agrave;<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
-	
-	switch(Math.round(reliability)) {
-		case 0: stelle =  '0/5'; break;
-	    case 1: stelle =  '1/5'; break;
-	    case 2: stelle =  '2/5'; break;
-	    case 3: stelle =  '3/5'; break;
-	    case 4: stelle =  '4/5'; break;
-	    case 5: stelle =  '5/5'; break;
-    }
-	reliability = '<div style="width:33%; float:left;">Affidabilit&agrave;<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
-	
-	switch(Math.round(kindness)) {
-		case 0: stelle =  '0/5'; break;
-	    case 1: stelle =  '1/5'; break;
-	    case 2: stelle =  '2/5'; break;
-	    case 3: stelle =  '3/5'; break;
-	    case 4: stelle =  '4/5'; break;
-	    case 5: stelle =  '5/5'; break;
-    }
-	kindness = '<div style="width:33%; float:left;">Gentilezza<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
-		 
-	$('#commentList').append('<div class="commento" style="font-size:0.8em;"><span style="font-weight:bold; font-style:italic;">'+titolo+'</span><span style="margin-left:20px; margin-right:20px;">di <b>'+nick+'</b></span><span>'+data+'</span><span class="post"><p class="post2">'+testo+'</p></span>'+quality+reliability+kindness+'</div><br/><br/><hr>'); 
-	//$('#commentList').append('<div class="commento" style="font-size:0.8em; border-bottom:1px solid black; padding-bottom:5px;"><span style="font-weight:bold; font-style:italic;">'+titolo+'</span><span style="margin-left:20px; margin-right:20px;">di <b>'+nick+'</b></span><span>'+data+'</span><div class="post"><p class="post2">'+testo+'</p></div><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Qualit&agrave;</b> '+quality+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Affidabilit&agrave;</b> '+reliability+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Gentilezza</b> '+kindness+'</button></div>'); 
-	    
-	});
+	if(checkVuoto == ""){
+		$('#commentList').html('NON CI SONO COMMENTI');
+	}
+	else{
+		$(xmlString).find("comment").each(function () {
+			var $worker = $(this);
+		    nick = $worker.find('nickname').text();
+		    testo = $worker.find('text').text();
+		    data = $worker.find('date').text();
+		    titolo = $worker.find('commentTitle').text();
+		    quality = $worker.find('qualityRating').text();
+		    reliability = $worker.find('reliabilityRating').text();
+		    kindness = $worker.find('kindnessRating').text();
+		    
+		    switch(Math.round(quality)) {
+		    case 0: stelle =  '0/5'; break;
+		    case 1: stelle =  '1/5'; break;
+		    case 2: stelle =  '2/5'; break;
+		    case 3: stelle =  '3/5'; break;
+		    case 4: stelle =  '4/5'; break;
+		    case 5: stelle =  '5/5'; break;
+	    }
+		quality = '<div style="width:33%; float:left;">Qualit&agrave;<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
+		
+		switch(Math.round(reliability)) {
+			case 0: stelle =  '0/5'; break;
+		    case 1: stelle =  '1/5'; break;
+		    case 2: stelle =  '2/5'; break;
+		    case 3: stelle =  '3/5'; break;
+		    case 4: stelle =  '4/5'; break;
+		    case 5: stelle =  '5/5'; break;
+	    }
+		reliability = '<div style="width:33%; float:left;">Affidabilit&agrave;<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
+		
+		switch(Math.round(kindness)) {
+			case 0: stelle =  '0/5'; break;
+		    case 1: stelle =  '1/5'; break;
+		    case 2: stelle =  '2/5'; break;
+		    case 3: stelle =  '3/5'; break;
+		    case 4: stelle =  '4/5'; break;
+		    case 5: stelle =  '5/5'; break;
+	    }
+		kindness = '<div style="width:33%; float:left;">Gentilezza<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
+			 
+		$('#commentList').append('<div class="commento" style="font-size:0.8em;"><span style="font-weight:bold; font-style:italic;">'+titolo+'</span><span style="margin-left:20px; margin-right:20px;">di <b>'+nick+'</b></span><span>'+data+'</span><span class="post"><p class="post2">'+testo+'</p></span>'+quality+reliability+kindness+'</div><br/><br/><hr>'); 
+		//$('#commentList').append('<div class="commento" style="font-size:0.8em; border-bottom:1px solid black; padding-bottom:5px;"><span style="font-weight:bold; font-style:italic;">'+titolo+'</span><span style="margin-left:20px; margin-right:20px;">di <b>'+nick+'</b></span><span>'+data+'</span><div class="post"><p class="post2">'+testo+'</p></div><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Qualit&agrave;</b> '+quality+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Affidabilit&agrave;</b> '+reliability+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Gentilezza</b> '+kindness+'</button></div>'); 
+		    
+		});
+	}		//chiude if checkVuoto
 }
 
 function errorLogout(){
