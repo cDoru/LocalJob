@@ -841,24 +841,21 @@ function ricercaAttiviSuccess(xml){
 
 	}
 
-	$('#tabAttivi').append('<button class="btn btn-block text-center" style="padding:2%;">
-                            <div class="row-fluid">	
-                      			<div class="span12">
-                        			<div class="progress progress-info progress-striped active" style="margin-bottom:0;">
-                          				<div class="bar" style="'+state+'"></div>
-                        			</div>
-                      			</div>
-                   			</div>
-                   			<div class="row-fluid">
-               					<div style="width:30%; float:left;">
-               						<img src="'+picture+'" style="width:70%; margin-left:15%;" class="img-polaroid">
-               					</div>
-	               				<div style="width:65%; float:right; margin-top:-10px;">
-	               					<h6 style="text-transform:uppercase; margin-bottom:0;">'+title+'</h6>
-	               					<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+description+'</p>
-	               				</div>
-	               			</div>
-	             		</button>'); //mettiamo anche la data? il nome del professionista? che tipo di richiesta è?
+	$('#tabAttivi').append('<button class="btn btn-block text-center" style="padding:2%;">'+
+                            '<div class="row-fluid">'+	
+                      			'<div class="span12">'+
+                        			'<div class="progress progress-info progress-striped active" style="margin-bottom:0;">'+
+                          				'<div class="bar" style="'+state+'"></div>'+
+                        			'</div></div></div>'+
+                   			'<div class="row-fluid">'+
+               					'<div style="width:30%; float:left;">'+
+               						'<img src="'+picture+'" style="width:70%; margin-left:15%;" class="img-polaroid">'+
+               					'</div>'+
+	               				'<div style="width:65%; float:right; margin-top:-10px;">'+
+	               					'<h6 style="text-transform:uppercase; margin-bottom:0;">'+title+'</h6>'+
+	               					'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+description+'</p>'+
+	               				'</div></div></button>');
+							//mettiamo anche la data? il nome del professionista? che tipo di richiesta è?
 
 }
 
