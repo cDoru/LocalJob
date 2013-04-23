@@ -785,14 +785,84 @@ function ricercaInZonaSuccess(xml) {
 	});
 } 
 
-function ricercaAttivi() {
+function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	
 	//$('#loading').fadeIn('fast');		//schermata di caricamento
 	
 	//Attivo la pagina tabAttivi e disattivo tabIntorno
 	$('#tabAttivi').attr('class','tab-pane active');
 	$('#tabIntorno').attr('class','tab-pane');
+
+	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
+
+	$.ajax({
+		async: false,
+		type: 'GET',
+		url: 'http://95.141.45.174/openjob',			
+		crossDomain:true,
+		complete: function(){$('#loading').hide()},
+		success: ricercaAttiviSuccess ,
+		error: errorHandler ,
+		});	
+
 }
+
+
+function ricercaAttiviSuccess(xml){
+
+	var xmlString = $(xml);	
+	id = $(xmlString).find("id").text();
+	date = $(xmlString).find("date").text();
+	description = $(xmlString).find("description").text();
+	state = $(xmlString).find("state").text();
+	picture = $(xmlString).find("picture").text(); //path della foto
+	title = $(xmlString).find("title").text(); 
+
+
+
+	switch(state){
+
+		case 0: $("#progress").append('width','0' +'%'); break;
+		case 1: $("#progress").append('width','20' +'%'); break;
+		case 2: $("#progress").append('width','40' +'%'); break;
+		case 3: $("#progress").append('width','40' +'%'); break;
+		case 4: $("#progress").append('width','40' +'%'); break;
+		case 5: $("#progress").append('width','60' +'%'); break;
+		case 6: $("#progress").append('width','60' +'%'); break;
+		case 7: $("#progress").append('width','60' +'%'); break;
+		case 8: $("#progress").append('width','60' +'%'); break;
+		case 9: $("#progress").append('width','60' +'%'); break;
+		case 10: $("#progress").append('width','60' +'%'); break;
+		case 11: $("#progress").append('width','80' +'%'); break;
+		case 12: $("#progress").append('width','80' +'%'); break;
+		case 13: $("#progress").append('width','80' +'%'); break;
+		case 14: $("#progress").append('width','90' +'%'); break;
+		case 15: $("#progress").append('width','90' +'%'); break;
+
+	}
+
+	$('#tabAttivi').append('<button class="btn btn-block text-center" style="padding:2%;">
+                            <div class="row-fluid">	
+                      			<div class="span12">
+                        			<div class="progress progress-info progress-striped active" style="margin-bottom:0;">
+                          				<div class="bar" style="'+state+'"></div>
+                        			</div>
+                      			</div>
+                   			</div>
+                   			<div class="row-fluid">
+               					<div style="width:30%; float:left;">
+               						<img src="'+picture+'" style="width:70%; margin-left:15%;" class="img-polaroid">
+               					</div>
+	               				<div style="width:65%; float:right; margin-top:-10px;">
+	               					<h6 style="text-transform:uppercase; margin-bottom:0;">'+title+'</h6>
+	               					<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+description+'</p>
+	               				</div>
+	               			</div>
+	             		</button>'); //mettiamo anche la data? il nome del professionista? che tipo di richiesta è?
+
+}
+
+
 
 /* Funzione per il menu a tendina per mostrare sul bottone l'elemento selezionato */
 
