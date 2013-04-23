@@ -445,7 +445,8 @@ function ricercaStandard(){
 			async: false,
 			type: 'GET',
 			url: 'http://95.141.45.174/search?latitudine='+sessionStorage.lat+'&longitudine='+sessionStorage.lat+'&job='+sessionStorage.problemType+'&limit=5',			
-			crossDomain:true,		
+			crossDomain:true,
+			complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 			success: ricercaStandardSuccess,
 			error: errorHandler
 			});	
@@ -703,6 +704,7 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
 
 // Parte di richi
 function ricercaInZona() {
+	$('#loading').fadeIn('fast');		//nasconde la schermata di caricamento
 	
 	//Attivo la pagina tabIntorno e disattivo tabAttivi (la class alert alert-info è per lo sfondo)
 	$('#tabAttivi').attr('class','tab-pane');
@@ -713,7 +715,8 @@ function ricercaInZona() {
 			async: false,
 			type: 'GET',
 			url: 'http://95.141.45.174/search?latitudine=44.499184&longitudine=11.353726',			
-			crossDomain:true,		
+			crossDomain:true,
+			complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 			success: ricercaInZonaSuccess,
 			error: errorHandler
 			});	
@@ -764,10 +767,11 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() {
 	
+	//$('#loading').fadeIn('fast');		//schermata di caricamento
+	
 	//Attivo la pagina tabAttivi e disattivo tabIntorno
 	$('#tabAttivi').attr('class','tab-pane active');
 	$('#tabIntorno').attr('class','tab-pane');
-	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
 }
 
 /* Funzione per il menu a tendina per mostrare sul bottone l'elemento selezionato */

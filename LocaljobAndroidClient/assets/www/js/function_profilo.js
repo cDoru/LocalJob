@@ -21,6 +21,7 @@ function showCommentList(nick){		//chiamata ajax + mostra/nasconde i commenti
 		
 		cliccato = false;
 	}else{
+		$('#loading').fadeIn('fast');		//schermata di caricamento
 		commentami(nick);
 		$('#commentList').show();
 		$('#icoBottone').attr('src', './img/glyphicons/white_ver/224B.PNG');
@@ -29,13 +30,12 @@ function showCommentList(nick){		//chiamata ajax + mostra/nasconde i commenti
 }
 
 function importaDatiProf(nick) {	//richiama i dati del professionista
-	//alert("prova2: "+nick);
 	$.ajax({
 		async: false,
 		type: 'GET',
 		url: 'http://95.141.45.174/professional/'+nick+'/',			
 		crossDomain:true,
-		complete: function(){$('#loading').hide()},
+		complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 		success: importaSuccesso,
 		error: errorLogout
 		});	
@@ -59,8 +59,8 @@ function importaSuccesso(xml) {
 		  badge = badge+$(this).text()+"\n";
 	});
 	//
-	latitudine = $(xmlString).find("latitude").text();				//serve altrove?
-	longitudine = $(xmlString).find("longitude").text();			//serve altrove?
+	latitudine = $(xmlString).find("latitude").text();				//serve?
+	longitudine = $(xmlString).find("longitude").text();			//serve?
 	costService = $(xmlString).find("costService").text();
 	costoOrario = $(xmlString).find("costPerHour").text();
 	quality = $(xmlString).find("qualityRating").text();
@@ -116,12 +116,12 @@ function rating(voto, categoria){			//per visualizzare le valutazioni
 }
 
 function commentami(nick) {		//richiama i commenti sul professionista
-	alert(nick);
 	$.ajax({
 		async: false,
 		type: 'GET',
 		url: 'http://95.141.45.174/professional/'+nick+'/comments',			
 		crossDomain:true,
+		complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 		success: caricaCommenti,
 		error: errorLogout
 		});		
@@ -130,8 +130,8 @@ function commentami(nick) {		//richiama i commenti sul professionista
 function caricaCommenti(xml) {
 	var xmlString = $(xml);	
 	$('#commentList').html('');		//azzera la lista commenti prima di caricarli 
-
-	$(xmlString).find("comment").each(function () {		
+	
+	$(xmlString).find("comment").each(function () {
 		var $worker = $(this);
 	    nick = $worker.find('nickname').text();
 	    testo = $worker.find('text').text();
@@ -170,8 +170,7 @@ function caricaCommenti(xml) {
 	    case 5: stelle =  '5/5'; break;
     }
 	kindness = '<div style="width:33%; float:left;">Gentilezza<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
-		
-	    
+		 
 	$('#commentList').append('<div class="commento" style="font-size:0.8em;"><span style="font-weight:bold; font-style:italic;">'+titolo+'</span><span style="margin-left:20px; margin-right:20px;">di <b>'+nick+'</b></span><span>'+data+'</span><span class="post"><p class="post2">'+testo+'</p></span>'+quality+reliability+kindness+'</div><br/><br/><hr>'); 
 	//$('#commentList').append('<div class="commento" style="font-size:0.8em; border-bottom:1px solid black; padding-bottom:5px;"><span style="font-weight:bold; font-style:italic;">'+titolo+'</span><span style="margin-left:20px; margin-right:20px;">di <b>'+nick+'</b></span><span>'+data+'</span><div class="post"><p class="post2">'+testo+'</p></div><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Qualit&agrave;</b> '+quality+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Affidabilit&agrave;</b> '+reliability+'</button><button class="btn btn-block disabled" style="margin-bottom:0;"><b>Gentilezza</b> '+kindness+'</button></div>'); 
 	    
@@ -179,5 +178,5 @@ function caricaCommenti(xml) {
 }
 
 function errorLogout(){
-	alert("qualcosa è andato storto");
+	alert("Server error");
 }
