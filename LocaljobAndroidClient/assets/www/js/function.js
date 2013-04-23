@@ -445,7 +445,8 @@ function ricercaStandard(){
 			async: false,
 			type: 'GET',
 			url: 'http://95.141.45.174/search?latitudine='+sessionStorage.lat+'&longitudine='+sessionStorage.lat+'&job='+sessionStorage.problemType+'',			
-			crossDomain:true,		
+			crossDomain:true,
+			complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 			success: ricercaStandardSuccess,
 			error: errorHandler
 			});	
@@ -501,13 +502,15 @@ function ricercaStandardSuccess(xml) {
  * */
 
 function login()	//gestisce il login dell'utente
-{
+{	
+	$('#loading').fadeIn('fast');			//schermata di caricamento
+	
 	//alert("prova!");
 	user =  $('#user').val(); 
 	password =  $('#password').val(); 
 	// il googlecod per ora è prova, ma in realtà verrà preso dalla 
 	// registazione ad ogni avvio dell'app
-	googlecod = "prova";
+	//googlecod = "prova";
 
 	$.ajax({
           type: 'POST',
@@ -521,6 +524,7 @@ function login()	//gestisce il login dell'utente
           contentType: 'application/x-www-form-urlencoded',
           crossDomain: true,
           data: {'userId': user, 'password': password, 'googlecod': googlecod},
+          complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
           success: ajaxLOGIN,
           error: errorHandler
        })
@@ -530,12 +534,14 @@ function login()	//gestisce il login dell'utente
  * Login con Facebook
  */
 function facebook_login(){
+	$('#loading').fadeIn('fast');			//schermata di caricamento
 	
 	$.ajax({
         type: 'GET',
         url: 'http://95.141.45.174/login/facebook/',
         contentType: 'application/x-www-form-urlencoded',
         crossDomain: true,
+        complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
         success: ajaxLOGINFB,
         error: errorHandler
      })
@@ -551,6 +557,7 @@ function facebook_login_prova(){
 //Registrazione utente
 function user_signin()
 {
+	$('#loading').fadeIn('fast');			//schermata di caricamento
 	nome = $('#signU_name').val(); 
 	cognome = $('#signU_surname').val(); 
 	//
@@ -570,6 +577,7 @@ function user_signin()
 	          contentType: 'application/x-www-form-urlencoded',
 	          crossDomain: true,
 	          data: {'userId': user, 'password': password, 'email': mail, 'tipoUtente': tipoUtente},
+	          complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 	          success: ajaxSIGNIN,
 	          error: errorHandler
 	})
@@ -603,6 +611,8 @@ function update_user_profile()
 //Registrazione Professionista
 function pro_signin()
 {
+	$('#loading').fadeIn('fast');			//schermata di caricamento
+	
 	user =  $('#signP_user').val(); 
 	password =  $('#signP_password2').val();
 	mail =  $('#signP_mail').val();
@@ -616,6 +626,7 @@ function pro_signin()
         contentType: 'application/x-www-form-urlencoded',
         crossDomain: true,
         data: {'userId': user, 'password': password, 'email': mail, 'tipoUtente': tipoUtente},
+        complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
         success: ajaxSIGNIN,
         error: errorHandler
 	})
@@ -703,6 +714,7 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
 
 // Parte di richi
 function ricercaInZona() {
+	$('#loading').fadeIn('fast');		//nasconde la schermata di caricamento
 	
 	//Attivo la pagina tabIntorno e disattivo tabAttivi (la class alert alert-info è per lo sfondo)
 	$('#tabAttivi').attr('class','tab-pane');
@@ -713,7 +725,8 @@ function ricercaInZona() {
 			async: false,
 			type: 'GET',
 			url: 'http://95.141.45.174/search?latitudine=44.499184&longitudine=11.353726',			
-			crossDomain:true,		
+			crossDomain:true,
+			complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 			success: ricercaInZonaSuccess,
 			error: errorHandler
 			});	
@@ -764,10 +777,11 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() {
 	
+	//$('#loading').fadeIn('fast');		//schermata di caricamento
+	
 	//Attivo la pagina tabAttivi e disattivo tabIntorno
 	$('#tabAttivi').attr('class','tab-pane active');
 	$('#tabIntorno').attr('class','tab-pane');
-	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
 }
 
 /* Funzione per il menu a tendina per mostrare sul bottone l'elemento selezionato */
