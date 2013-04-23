@@ -444,7 +444,7 @@ function ricercaStandard(){
 	$.ajax({
 			async: false,
 			type: 'GET',
-			url: 'http://95.141.45.174/search?latitudine='+sessionStorage.lat+'&longitudine='+sessionStorage.lat+'&job='+sessionStorage.problemType+'&limit=5',			
+			url: 'http://95.141.45.174/search?latitudine='+sessionStorage.lat+'&longitudine='+sessionStorage.lat+'&job='+sessionStorage.problemType+'',			
 			crossDomain:true,		
 			success: ricercaStandardSuccess,
 			error: errorHandler
