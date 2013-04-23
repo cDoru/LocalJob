@@ -120,7 +120,17 @@ function errorHandler (error) {
  * */
 
 function cambia_login(){
-	$('#contenitore').html("<form class='form-signin' action='javascript:login();'>" +
+	$('#logone').html('<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%; padding-bottom:25%;">'+
+	    	'<div class="navbar-inner text-left">'+     
+		    '<div class=" btn-group" style="margin:0.7%">'+
+		    '<button class="btn btn-large btn-inverse" type="button" onclick="javascript:window.location.reload()">'+
+		    '<img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">'+
+	      	'</button>'+
+	      	'<button class="btn btn-large btn-primary" type="button" style="line-height:22px;">'+
+	      	'<img src=./img/logo-white-inline-all.png style="height:22px" /></button>'+        		
+	        '</div></div></div>');	
+	
+	$('#contenitore').html("<h4>Accedi a LocalJob</h4><form class='form-signin' action='javascript:login();'>" +
 			"<input id='user' type='text' class='input-block-level' placeholder='Username'>" +
 			"<input id='password' type='password' class='input-block-level' placeholder='Password'>" +
 			"<div align='center'><button class='btn btn-large btn-block btn-inverse' type='submit'>Accedi</button></div>" +
