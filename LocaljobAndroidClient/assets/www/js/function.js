@@ -444,7 +444,7 @@ function ricercaStandard(){
 	$.ajax({
 			async: false,
 			type: 'GET',
-			url: 'http://95.141.45.174/search?latitudine='+sessionStorage.lat+'&longitudine='+sessionStorage.lat+'&job='+sessionStorage.problemType+'&limit=5',			
+			url: 'http://95.141.45.174/search?latitudine='+sessionStorage.lat+'&longitudine='+sessionStorage.lat+'&job='+sessionStorage.problemType+'',			
 			crossDomain:true,
 			complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 			success: ricercaStandardSuccess,
@@ -510,7 +510,7 @@ function login()	//gestisce il login dell'utente
 	password =  $('#password').val(); 
 	// il googlecod per ora è prova, ma in realtà verrà preso dalla 
 	// registazione ad ogni avvio dell'app
-	googlecod = "prova";
+	//googlecod = "prova";
 
 	$.ajax({
           type: 'POST',
