@@ -5,7 +5,7 @@ var position_long;
 var geocoder;
 var marker;
 
-var googlecod;
+//var googlecod;
 
 //var googlecod;
 //var pushNotification;
@@ -37,7 +37,7 @@ function onNotificationGCM(e) {
 			// Your GCM push server needs to know the regID before it can push to this device
 			// here is where you might want to send it the regID for later use.
 			console.log("regID = " + e.regID);
-			googlecod = e.regid;
+			sessionStorage.googlecod = e.regid;
 		}
 		
         break;   
@@ -432,14 +432,13 @@ function inviaUrgenza(){
 function ricercaStandard(){
 	
 	//da verificare bene questa cosa...il server non è pronto?
-	window.location='risultatoRicercaStandard.html';
+	//window.location='risultatoRicercaStandard.html';
 	
 	alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
 			"Request Type: "+sessionStorage.problemType+" \n " +
 			"Description: "+sessionStorage.problemDesription+" \n"+
 			"Lat e Long: "+sessionStorage.lat+" , "+sessionStorage.long+" \n"+
 			"Indirizzo completo: "+sessionStorage.complete_address);
-	
 	
 	$.ajax({
 			async: false,
@@ -475,8 +474,8 @@ function ricercaStandardSuccess(xml) {
     		  tag = tag+$(this).text()+"\n";
     	});
         
-        //out = "Nick: "+nickname+" Nome: "+nome+" Cognome: "+cognome+" distanza: "+distance+" rating: "+rating;
-        //alert(out);
+        out = "Nick: "+nickname+" Nome: "+nome+" Cognome: "+cognome+" distanza: "+distance+" rating: "+rating;
+        alert("prova :"+out);
         
         //indirizzo pagina professionista - andrà aggiornato in qualche modo
         //var pagina = "javascript:window.location='profilo-professionista.html'"
@@ -505,12 +504,12 @@ function login()	//gestisce il login dell'utente
 {	
 	$('#loading').fadeIn('fast');			//schermata di caricamento
 	
-	//alert("prova!");
+	//alert(sessionStorage.googlecod);
 	user =  $('#user').val(); 
 	password =  $('#password').val(); 
 	// il googlecod per ora è prova, ma in realtà verrà preso dalla 
 	// registazione ad ogni avvio dell'app
-	//googlecod = "prova";
+	//sessionStorage.googlecod = "prova";
 
 	$.ajax({
           type: 'POST',
@@ -523,7 +522,7 @@ function login()	//gestisce il login dell'utente
           },
           contentType: 'application/x-www-form-urlencoded',
           crossDomain: true,
-          data: {'userId': user, 'password': password, 'googlecod': googlecod},
+          data: {'userId': user, 'password': password, 'googlecod': sessionStorage.googlecod},
           complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
           success: ajaxLOGIN,
           error: errorHandler

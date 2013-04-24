@@ -1,5 +1,6 @@
 
 var PushNotification = function() {
+	
 };
 
 
