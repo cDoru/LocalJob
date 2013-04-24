@@ -9,6 +9,7 @@ var marker;
 
 //var googlecod;
 //var pushNotification;
+//sessionStorage.googlecod = "5";
 
 /*
 //script per il form della data di nascita
