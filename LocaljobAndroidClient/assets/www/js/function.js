@@ -103,6 +103,8 @@ function errorHandler (error) {
  * Orientation Changer
  */
  function orientationChange(e) {
+
+ 	alert('orientationChange event');
    /*var orientation="portrait";
    if(window.orientation == -90 || window.orientation == 90) orientation = "landscape";
 
@@ -111,7 +113,7 @@ function errorHandler (error) {
    }
    else {
    	  alert("Sono in landscape!");
-   	}*/
+   	}
 
    	if(event.orientation){
       if(event.orientation == 'portrait'){
@@ -121,7 +123,7 @@ function errorHandler (error) {
       else if(event.orientation == 'landscape') {
                     alert('sono in landscape vero?');
                  //   document.location.href = 'map-landscape.html';
-      }
+      }*/
 
 }
 
