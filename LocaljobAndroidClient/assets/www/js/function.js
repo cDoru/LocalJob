@@ -115,10 +115,12 @@ function errorHandler (error) {
 
    	if(event.orientation){
       if(event.orientation == 'portrait'){
-                  alert('sono in portrait vero?');
+                 // alert('sono in portrait vero?');
+                 history.back();
       }
       else if(event.orientation == 'landscape') {
-                    alert('sono in landscape vero?');
+                    //alert('sono in landscape vero?');
+                    document.location.href = 'map-landscape.html';
       }
 
 }
