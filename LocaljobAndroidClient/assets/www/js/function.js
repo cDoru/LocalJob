@@ -455,8 +455,7 @@ function inviaUrgenza(){
  */
 function ricercaStandard(){
 	
-	//da verificare bene questa cosa...il server non è pronto?
-	//window.location='risultatoRicercaStandard.html';
+	$('#loading').fadeIn('fast');			//schermata di caricamento
 	
 	alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
 			"Request Type: "+sessionStorage.problemType+" \n " +
@@ -467,7 +466,7 @@ function ricercaStandard(){
 	$.ajax({
 			async: false,
 			type: 'GET',
-			url: 'http://95.141.45.174/search?latitudine='+sessionStorage.lat+'&longitudine='+sessionStorage.lat+'&job='+sessionStorage.problemType+'',			
+			url: 'http://95.141.45.174/search?latitudine='+sessionStorage.lat+'&longitudine='+sessionStorage.long+'&job='+sessionStorage.problemType+'',			
 			crossDomain:true,
 			complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 			success: ricercaStandardSuccess,
@@ -476,6 +475,8 @@ function ricercaStandard(){
 }
 
 function ricercaStandardSuccess(xml) {
+	
+	$('#elencoStandard').html('');
 	
 	var xmlString = $(xml);	
 	$(xmlString).find("worker").each(function () {		
@@ -498,25 +499,35 @@ function ricercaStandardSuccess(xml) {
     		  tag = tag+$(this).text()+"\n";
     	});
         
+        switch(Math.round(rating)) {
+        case 0: rating =  stellaVuota + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (0/5)'; break;
+        case 1: rating =  stellaPiena + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (1/5)'; break;
+        case 2: rating =  stellaPiena + stellaPiena + stellaVuota + stellaVuota + stellaVuota + ' (2/5)'; break;
+        case 3: rating =  stellaPiena + stellaPiena + stellaPiena + stellaVuota + stellaVuota + ' (3/5)'; break;
+        case 4: rating =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaVuota + ' (4/5)'; break;
+        case 5: rating =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaPiena + ' (5/5)'; break;
+        }
+        
         out = "Nick: "+nickname+" Nome: "+nome+" Cognome: "+cognome+" distanza: "+distance+" rating: "+rating;
         alert("prova :"+out);
         
         //indirizzo pagina professionista - andrà aggiornato in qualche modo
         //var pagina = "javascript:window.location='profilo-professionista.html'"
         var pagina = "javascript:profiloPro('"+nickname+"');";
-        	
-        $('#tabRicercaStandard').append('<button class="btn btn-block text-center" onclick="'+pagina+'"><div style="width:70%; float:left;">'+
+        
+        $('#elencoStandard').append('<button class="btn btn-block text-center" onclick="'+pagina+'"><div style="width:70%; float:left;">'+
         		'<p><b>'+nome+' '+cognome+'</b></p>'+
         		'<p style="font-size:0.8em; margin-top:-10px;"><span style="text-transform:uppercase">'+tag+'</span></p>'+
-        		'<p style="margin-top:-10px;"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></p>'+
-        		'<p style="font-size:0.8em; margin-top:-10px; margin-bottom:-5px;">A 15 km da te</p></div>'+
+        		'<p style="margin-top:-10px;">'+rating+'</p>'+
+        		'<p style="font-size:0.8em; margin-top:-10px; margin-bottom:-5px;">'+distance+'</p></div>'+
         		'<div style="width:30%; float:right; line-height:260%;">'+
         		'<div style="border:2px solid black; width:80%;"><i class="icon-headphones"></i> '+costService+' €<br/>'+
         		'<i class="icon-shopping-cart"></i> '+costHour+' €/h</div>'+
-        		'</div></button>');  
+        		'</div></button>');
         
 	});
-} 
+}
+
 
 
 /*
@@ -778,18 +789,22 @@ function ricercaInZonaSuccess(xml) {
     		  tag = tag+$(this).text()+"\n";
     	});
         
-        //out = "Nick: "+nickname+" Nome: "+nome+" Cognome: "+cognome+" distanza: "+distance+" rating: "+rating;
-        //alert(out);
+        switch(Math.round(rating)) {
+        case 0: rating =  stellaVuota + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (0/5)'; break;
+        case 1: rating =  stellaPiena + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (1/5)'; break;
+        case 2: rating =  stellaPiena + stellaPiena + stellaVuota + stellaVuota + stellaVuota + ' (2/5)'; break;
+        case 3: rating =  stellaPiena + stellaPiena + stellaPiena + stellaVuota + stellaVuota + ' (3/5)'; break;
+        case 4: rating =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaVuota + ' (4/5)'; break;
+        case 5: rating =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaPiena + ' (5/5)'; break;
+        }
         
-        //indirizzo pagina professionista - andrà aggiornato in qualche modo
-        //var pagina = "javascript:window.location='profilo-professionista.html'"
         var pagina = "javascript:profiloPro('"+nickname+"');";
         	
         $('#tabIntorno').append('<button class="btn btn-block text-center" onclick="'+pagina+'"><div style="width:70%; float:left;">'+
         		'<p><b>'+nome+' '+cognome+'</b></p>'+
         		'<p style="font-size:0.8em; margin-top:-10px;"><span style="text-transform:uppercase">'+tag+'</span></p>'+
-        		'<p style="margin-top:-10px;"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></p>'+
-        		'<p style="font-size:0.8em; margin-top:-10px; margin-bottom:-5px;">A 15 km da te</p></div>'+
+        		'<p style="margin-top:-10px;">'+rating+'</i></p>'+
+        		'<p style="font-size:0.8em; margin-top:-10px; margin-bottom:-5px;">'+distance+'</p></div>'+
         		'<div style="width:30%; float:right; line-height:260%;">'+
         		'<div style="border:2px solid black; width:80%;"><i class="icon-headphones"></i> '+costService+' €<br/>'+
         		'<i class="icon-shopping-cart"></i> '+costHour+' €/h</div>'+
