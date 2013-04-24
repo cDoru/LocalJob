@@ -44,7 +44,7 @@ function initialize() {
   var homeControl = new HomeControl(homeControlDiv, map);
 
   homeControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.LEFT_TOP].push(homeControlDiv);
+  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(homeControlDiv);
   search();
 
 }

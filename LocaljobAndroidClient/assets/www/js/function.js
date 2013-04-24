@@ -98,20 +98,26 @@ function errorHandler (error) {
 }
 
 
-
-
 /*
  * Orientation Changer
  */
  function orientationChange(e) {
-   var orientation="portrait";
-   if(window.orientation == -90 || window.orientation == 90) orientation = "landscape";
 
-   if (orientation="portrait"){
-      alert("Sono in portrait!");
+   var orientation="portrait";
+
+   if(window.orientation == -90 || window.orientation == 90) {
+   	orientation = "landscape";
+   } else {
+   	orientation = "portrait";
    }
-   else
-   	  alert("Sono in landscape!");
+
+   if (orientation="portrait") {
+      alert("Sono in portrait?");
+   }
+   else {
+   	  alert("Sono in landscape?");
+   	}
+
 }
 
 
