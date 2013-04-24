@@ -97,33 +97,25 @@ function errorHandler (error) {
 }
 
 
-
-
 /*
  * Orientation Changer
  */
  function orientationChange(e) {
 
- 	alert('orientationChange event');
-   /*var orientation="portrait";
-   if(window.orientation == -90 || window.orientation == 90) orientation = "landscape";
+   var orientation="portrait";
 
-   if (orientation="portrait"){
-      alert("Sono in portrait!");
+   if(window.orientation == -90 || window.orientation == 90) {
+   	orientation = "landscape";
+   } else {
+   	orientation = "portrait";
+   }
+
+   if (orientation="portrait") {
+      alert("Sono in portrait?");
    }
    else {
-   	  alert("Sono in landscape!");
+   	  alert("Sono in landscape?");
    	}
-
-   	if(event.orientation){
-      if(event.orientation == 'portrait'){
-                  alert('sono in portrait vero?');
-               //  history.back();
-      }
-      else if(event.orientation == 'landscape') {
-                    alert('sono in landscape vero?');
-                 //   document.location.href = 'map-landscape.html';
-      }*/
 
 }
 
