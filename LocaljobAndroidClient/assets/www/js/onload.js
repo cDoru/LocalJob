@@ -22,8 +22,20 @@ $(document).ready(function(){
 
 	// Listen for orientation changes
 	window.addEventListener("orientationchange", function() {
+  		
   		// Announce the new orientation number
-  		alert('Orientation ' + window.orientation);
+  		//alert('Orientation ' + window.orientation);
+
+  		if(window.orientation == 0) {
+  			alert('Orientation 0, sono dritto (portrait)');
+  		}
+  		if(window.orientation == 90) {
+  			alert('Orientation 0, sono storto verso sinistra (landscape)');
+  		}
+  		if(window.orientation == -90) {
+			alert('Orientation 0, sono storto verso destra (landscape)');
+  		}
+
 	}, false);
 	
 });

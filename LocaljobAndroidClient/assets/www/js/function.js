@@ -98,30 +98,6 @@ function errorHandler (error) {
 }
 
 
-/*
- * Orientation Changer
- */
- function orientationChange(e) {
-
-   var orientation="portrait";
-
-   if(window.orientation == -90 || window.orientation == 90) {
-   	//orientation = "landscape";
-   	alert("Sono in landscape?");
-   } else {
-   	//orientation = "portrait";
-   	alert("Sono in portrait?");
-   }
-
-   /*if (orientation="portrait") {
-      alert("Sono in portrait?");
-   }
-   else {
-   	  alert("Sono in landscape?");
-   	}*/
-
-}
-
 
 /*
  * Funzioni per cambi dinamici pagine
