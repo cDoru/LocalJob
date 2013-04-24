@@ -106,17 +106,19 @@ function errorHandler (error) {
    var orientation="portrait";
 
    if(window.orientation == -90 || window.orientation == 90) {
-   	orientation = "landscape";
+   	//orientation = "landscape";
+   	alert("Sono in landscape?");
    } else {
-   	orientation = "portrait";
+   	//orientation = "portrait";
+   	alert("Sono in portrait?");
    }
 
-   if (orientation="portrait") {
+   /*if (orientation="portrait") {
       alert("Sono in portrait?");
    }
    else {
    	  alert("Sono in landscape?");
-   	}
+   	}*/
 
 }
 
