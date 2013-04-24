@@ -103,14 +103,24 @@ function errorHandler (error) {
  * Orientation Changer
  */
  function orientationChange(e) {
-   var orientation="portrait";
+   /*var orientation="portrait";
    if(window.orientation == -90 || window.orientation == 90) orientation = "landscape";
 
    if (orientation="portrait"){
       alert("Sono in portrait!");
    }
-   else
+   else {
    	  alert("Sono in landscape!");
+   	}*/
+
+   	if(event.orientation){
+      if(event.orientation == 'portrait'){
+                  alert('sono in portrait vero?');
+      }
+      else if(event.orientation == 'landscape') {
+                    alert('sono in landscape vero?');
+      }
+
 }
 
 

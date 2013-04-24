@@ -18,7 +18,8 @@ $(document).ready(function(){
 
 
 	// Controller per il TILT LANDSCAPE-PORTRAIT
-	window.addEventListener("orientationchange", orientationChange, true);
+	//window.addEventListener("orientationchange", orientationChange, true);
+	$(window).bind('orientationchange', orientationChange);
 	
 });
 
