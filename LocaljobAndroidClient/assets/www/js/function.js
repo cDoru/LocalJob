@@ -103,14 +103,24 @@ function errorHandler (error) {
  * Orientation Changer
  */
  function orientationChange(e) {
-   var orientation="portrait";
+   /*var orientation="portrait";
    if(window.orientation == -90 || window.orientation == 90) orientation = "landscape";
 
    if (orientation="portrait"){
       alert("Sono in portrait!");
    }
-   else
+   else {
    	  alert("Sono in landscape!");
+   	}*/
+
+   	if(event.orientation){
+      if(event.orientation == 'portrait'){
+                  alert('sono in portrait vero?');
+      }
+      else if(event.orientation == 'landscape') {
+                    alert('sono in landscape vero?');
+      }
+
 }
 
 
@@ -788,9 +798,6 @@ function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	
 	//$('#loading').fadeIn('fast');		//schermata di caricamento
 	
-	//Attivo la pagina tabAttivi e disattivo tabIntorno
-	$('#tabAttivi').attr('class','tab-pane active');
-	$('#tabIntorno').attr('class','tab-pane');
 
 	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
 
@@ -809,42 +816,55 @@ function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 
 function ricercaAttiviSuccess(xml){
 
+	$('#tabAttivi').html("");
+
 	var xmlString = $(xml);	
-	id = $(xmlString).find("id").text();
-	date = $(xmlString).find("date").text();
-	description = $(xmlString).find("description").text();
-	state = $(xmlString).find("state").text();
-	picture = $(xmlString).find("picture").text(); //path della foto
-	title = $(xmlString).find("title").text(); 
+
+	// cerco se ci sono interventi attivi
+	if($(xmlString).find("request")){
+		
+		
+		//Attivo la pagina tabAttivi e disattivo tabIntorno
+		$('#tabAttivi').attr('class','tab-pane active');
+		$('#tabIntorno').attr('class','tab-pane');
+
+		//cerco all'interno dell'xml tutti gli interventi attivi e gli appendo
+		$(xmlString).find("request").each(function (){
+			var $request = $(this);
+			var id = $request.find("id").text();
+			var date = $request.find("date").text();
+			var description = $request.find("description").text();
+			var state = $request.find("state").text();
+			var picture = $request.find("picture").text(); //path della foto
+			var title = $request.find("title").text(); 
 
 
+			switch(state){
 
-	switch(state){
+				case "0": state_bar = "width:10%;"; break;
+				case "1": state_bar = "width:20%;"; break;
+				case "2": state_bar = "width:40%;"; break;
+				case "3": state_bar = "width:40%;"; break;
+				case "4": state_bar = "width:40%;"; break;
+				case "5": state_bar = "width:60%;"; break;
+				case "6": state_bar = "width:60%;"; break;
+				case "7": state_bar = "width:60%;"; break;
+				case "8": state_bar = "width:60%;"; break;
+				case "9": state_bar = "width:60%;"; break;
+				case "10": state_bar = "width:60%;"; break;
+				case "11": state_bar = "width:80%;"; break;
+				case "12": state_bar = "width:80%;"; break;
+				case "13": state_bar = "width:80%;"; break;
+				case "14": state_bar = "width:90%;"; break;
+				case "15": state_bar = "width:90%;"; break;
 
-		case 0: $("#progress").append('width','0' +'%'); break;
-		case 1: $("#progress").append('width','20' +'%'); break;
-		case 2: $("#progress").append('width','40' +'%'); break;
-		case 3: $("#progress").append('width','40' +'%'); break;
-		case 4: $("#progress").append('width','40' +'%'); break;
-		case 5: $("#progress").append('width','60' +'%'); break;
-		case 6: $("#progress").append('width','60' +'%'); break;
-		case 7: $("#progress").append('width','60' +'%'); break;
-		case 8: $("#progress").append('width','60' +'%'); break;
-		case 9: $("#progress").append('width','60' +'%'); break;
-		case 10: $("#progress").append('width','60' +'%'); break;
-		case 11: $("#progress").append('width','80' +'%'); break;
-		case 12: $("#progress").append('width','80' +'%'); break;
-		case 13: $("#progress").append('width','80' +'%'); break;
-		case 14: $("#progress").append('width','90' +'%'); break;
-		case 15: $("#progress").append('width','90' +'%'); break;
+			}
 
-	}
-
-	$('#tabAttivi').append('<button class="btn btn-block text-center" style="padding:2%;">'+
+			$('#tabAttivi').append('<button class="btn btn-block text-center" style="padding:2%;">'+
                             '<div class="row-fluid">'+	
                       			'<div class="span12">'+
                         			'<div class="progress progress-info progress-striped active" style="margin-bottom:0;">'+
-                          				'<div class="bar" style="'+state+'"></div>'+
+                          				'<div class="bar" style="'+state_bar+'"></div>'+
                         			'</div></div></div>'+
                    			'<div class="row-fluid">'+
                					'<div style="width:30%; float:left;">'+
@@ -856,7 +876,24 @@ function ricercaAttiviSuccess(xml){
 	               				'</div></div></button>');
 							//mettiamo anche la data? il nome del professionista? che tipo di richiesta è?
 
+		});
+				
+
+	}
+
+	//se non ci sono interventi attivi vai su ricerca in zona
+	else{
+
+		ricercaInZona();
+	}
+
 }
+
+
+
+
+
+	
 
 
 

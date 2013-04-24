@@ -37,9 +37,13 @@
     <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="./ico/favicon.png">
     
+
+
+
   </head>
 
-  <body>
+  <body onload="ricercaAttivi()">
+
   	
   	<!-- schermata caricamento -->
   		<div class="text-center" id="loading" style="display:none; z-index:999; width:100%; top:0; left:0; position:absolute; background-color:#141414;">
@@ -115,71 +119,12 @@
             </div><br/>
 
 		  	<div class="tab-content">
-		    	<div class="tab-pane active" id="#tabAttivi">
-		      
-		    	<!-- contenuto #tabAttivi inizia qui -->
-
-      			<!-- Interno degli interventi attivi
-      			Qui bisognerebbe fare la chiamata al server che ti controlla se ci sono	interventi attivi -->
-      				
-              		<div id="attivi">
-          
-               			<!-- Inizio primo intervento -->
-               	    	<button class="btn btn-block text-center" style="padding:2%;">
-                            <div class="row-fluid">	<!-- barra progressi -->
-                      			<div class="span12">
-                        			<div class="progress progress-info progress-striped active" style="margin-bottom:0;">
-                          				<div class="bar" id="progress" style="width:20%;"></div>
-                        			</div>
-                      			</div>
-                   			</div>	<!-- fine barra progressi -->
-                   			
-                   			<div class="row-fluid">
-               					<div style="width:30%; float:left;">
-               						<img src="./img/img_sample.jpg" style="width:70%; margin-left:15%;" class="img-polaroid">
-               					</div>
-	               				<div style="width:65%; float:right; margin-top:-10px;">
-	               					<h6 style="text-transform:uppercase; margin-bottom:0;">Titolo primo intervento</h6>
-	               					<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">Devo ridipingere casa. Ho 5 stanze, la carta da parati da togliere ed è ammobiliata.</p>
-	               				</div>
-	               			</div>
-	             		</button>
-	            		<!-- Fine primo intervento -->                		
-                
-		                <!-- Inizio secondo intervento -->
-		               	<button class="btn btn-block text-center" style="padding:2%;">
-                            <div class="row-fluid">	<!-- barra progressi -->
-                      			<div class="span12">
-                        			<div class="progress progress-info progress-striped active" style="margin-bottom:0;">
-                          				<div class="bar" style="width:20%;"></div>
-                        			</div>
-                      			</div>
-                   			</div>	<!-- fine barra progressi -->
-                   			
-                   			<div class="row-fluid">
-               					<div style="width:30%; float:left;">
-               						<img src="./img/img_sample.jpg" style="width:70%; margin-left:15%;" class="img-polaroid">
-               					</div>
-	               				<div style="width:65%; float:right; margin-top:-10px;">
-	               					<h6 style="text-transform:uppercase; margin-bottom:0;">Titolo secondo intervento</h6>
-	               					<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">
-	               						Mi è scoppiato il gabinetto, ho acqua fino alle caviglie.
-	               					</p>
-	               				</div>
-	               			</div>
-	             		</button>	
-			            <!-- Fine secondo intervento -->
-                
-            		</div>      				
-			
-			<!-- contenuto tabAttivi finisce qui -->
-			
+            <!-- contenuto tabAttivi -->
+		    	 <div class="tab-pane active" id="tabAttivi"></div>
+		        <!-- contenuto tabIntorno -->
+		        <div class="tab-pane" id="tabIntorno"></div>
 		    </div>
-		    <!-- contenuto tabIntorno inizia qui -->
-		    <div class="tab-pane" id="tabIntorno"></div>
-		</div>
 			
-			<!-- contenuto tab 2 finisce qui --> 
 
      </div>
 	</div>
@@ -189,6 +134,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="./js/jquery.js"></script>
+    <script src="./js/jquery.mobile.min.js"></script>
     <script src="./js/bootstrap.js"></script>
     <script src="./js/cordova-2.5.0.js"></script>
 	<script src="./js/function.js" type="text/javascript" charset="utf-8"></script>
