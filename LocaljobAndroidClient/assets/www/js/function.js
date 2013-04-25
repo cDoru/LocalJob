@@ -6,10 +6,12 @@ var geocoder;
 var marker;
 
 var xml_case;
+var filtroIntervento;
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
 //sessionStorage.googlecod = "5";
+
 
 /*
 //script per il form della data di nascita
@@ -478,7 +480,16 @@ function scegli_modalita(luogo){
 /*
  * Funzione per inviare la richiesta dell'urgenza
  */
-function inviaUrgenza(){
+function inviaUrgenza(luogo){
+
+	if(luogo == "casa"){
+		sessionStorage.complete_address = $('#Indirizzo_casa').val()+", "+$('#nCiv_casa').val()+", "+$('#CAP_casa').val()+", "+$('#Citta_casa').val()+", "+$('#Provincia_casa').val();	
+		//window.location='intervento-modalita.html'
+	}
+	else if(luogo == "altro"){
+		sessionStorage.complete_address = $('#Indirizzo_altro').val()+", "+$('#nCiv_altro').val()+", "+$('#CAP_altro').val()+", "+$('#Citta_altro').val()+", "+$('#Provincia_altro').val();
+		//window.location='intervento-modalita.html'
+	}
 	
 	alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
 			"Request Type: "+sessionStorage.problemType+" \n " +
@@ -803,13 +814,15 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
 
 
 // Parte di richi
-function ricercaInZona() {
+function ricercaInZona(filtroPrecedente) {
 	$('#loading').fadeIn('fast');		//nasconde la schermata di caricamento
 	
 	//Attivo la pagina tabIntorno e disattivo tabAttivi (la class alert alert-info è per lo sfondo)
 	$('#tabAttivi').attr('class','tab-pane');
 	$('#tabIntorno').attr('class','tab-pane active'); 
 	$('#tabIntorno').html('');
+
+	filtroIntervento = filtroPrecedente;
 	
 	$.ajax({
 			async: false,
@@ -820,6 +833,42 @@ function ricercaInZona() {
 			success: ricercaInZonaSuccess,
 			error: errorHandler
 			});	
+
+	$('#tabIntorno').prepend(
+		'<div class="btn-toolbar" style="margin: 0;">'+
+				'<div class="btn-group" style="width:60%;display:inline:float:left;text-align:left;">'+
+		                '<a class="btn dropdown-toggle btn-block btn-inverse btn-large" data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">'+
+		                  'Ricerca categoria&nbsp;'+
+		                    '<span class="caret"></span>'+
+		               '</a>'+
+		                '<ul class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu" id="dropCategorieConsumatore">'+
+		                  '<li><a tabindex="-1" href="#">Tutti</a></li>'+
+		                  '<li class="divider"></li>'+
+		                  '<li><a tabindex="-1" href="#">Caldaista</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Idraulico</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Pittore</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Elettricista</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Muratore</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Antennista</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Sarto</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Calzolaio</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Maniscalco</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Carpentiere</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Falegname</a></li>'+
+		                '</ul>'+
+	            '</div>'+
+	            '<div style="display:inline;float:right;width:40%;text-align:right;">'+
+	            '<a class="btn btn-large btn-info" style="margin:0 5px 0 5px;"><i class="icon-thumbs-up icon-white"></i></a>'+
+	            '<a class="btn btn-large btn-info"><i class="icon-gift icon-white"></i></a></div>'+
+	    '</div>'+
+	    '<div style="height:20px;"></div>');
+	            
+		$('.dropdown-menu li a').click(function() {
+    		filtroIntervento = $(this).text();
+    		ricercaInZona(filtroIntervento);
+		});
+
+	            
 }
 
 function ricercaInZonaSuccess(xml) {
@@ -856,16 +905,19 @@ function ricercaInZonaSuccess(xml) {
         
         var pagina = "javascript:profiloPro('"+nickname+"');";
         	
-        $('#tabIntorno').append('<button class="btn btn-block text-center" onclick="'+pagina+'"><div style="width:70%; float:left;">'+
-        		'<p><b>'+nome+' '+cognome+'</b></p>'+
-        		'<p style="font-size:0.8em; margin-top:-10px;"><span style="text-transform:uppercase">'+tag+'</span></p>'+
-        		'<p style="margin-top:-10px;">'+rating+'</i></p>'+
-        		'<p style="font-size:0.8em; margin-top:-10px; margin-bottom:-5px;">'+distance+'</p></div>'+
-        		'<div style="width:30%; float:right; line-height:260%;">'+
-        		'<div style="border:2px solid black; width:80%;"><i class="icon-headphones"></i> '+costService+' €<br/>'+
-        		'<i class="icon-shopping-cart"></i> '+costHour+' €/h</div>'+
-        		'</div></button>');  
-        
+        if((typeof filtroIntervento === "undefined") || tag.indexOf(filtroIntervento) != -1 || filtroIntervento == 'Tutti') {
+	        $('#tabIntorno').append('<button class="btn btn-block text-center" onclick="'+pagina+'"><div style="width:70%; float:left;">'+
+	        		'<p><b>'+nome+' '+cognome+'</b></p>'+
+	        		'<p style="font-size:0.8em; margin-top:-10px;"><span style="text-transform:uppercase">'+tag+'</span></p>'+
+	        		'<p style="margin-top:-10px;">'+rating+'</i></p>'+
+	        		'<p style="font-size:0.8em; margin-top:-10px; margin-bottom:-5px;">'+distance+'</p></div>'+
+	        		'<div style="width:30%; float:right; line-height:260%;">'+
+	        		'<div style="border:2px solid black; width:80%;"><i class="icon-headphones"></i> '+costService+' €<br/>'+
+	        		'<i class="icon-shopping-cart"></i> '+costHour+' €/h</div>'+
+	        		'</div></button>');  
+	    } 
+
+	        
 	});
 } 
 
@@ -876,14 +928,15 @@ function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 
 	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
 
+
 	$.ajax({
 		async: false,
 		type: 'GET',
 		url: 'http://95.141.45.174/openjob',			
 		crossDomain:true,
 		complete: function(){$('#loading').hide()},
-		success: ricercaAttiviSuccess ,
-		error: errorHandler ,
+		success: ricercaAttiviSuccess,
+		error: errorHandler,
 		});	
 
 }
@@ -896,6 +949,211 @@ function ricercaAttiviSuccess(xml){
 	var xmlString = $(xml);	
 
 	// cerco se ci sono interventi attivi
+	if($(xmlString).find("request")){
+		
+		
+		//Attivo la pagina tabAttivi e disattivo tabIntorno
+		$('#tabAttivi').attr('class','tab-pane active');
+		$('#tabIntorno').attr('class','tab-pane');
+
+		//cerco all'interno dell'xml tutti gli interventi attivi e gli appendo
+		$(xmlString).find("request").each(function (){
+			var $request = $(this);
+			var id = $request.find("id").text();
+			var date = $request.find("date").text();
+			var description = $request.find("description").text();
+			var state = $request.find("state").text();
+			var picture = $request.find("picture").text(); //path della foto
+			var title = $request.find("title").text(); 
+
+
+			// IMMAGINE NOTFOUND?
+			 if (picture == 'Photo' || picture == 'photo' || picture == '') {
+        		picture = 'img/missingAvatar.png';
+      		} else {
+        		picture = picture;
+     		}
+
+     		// Ricavo lo stato in stringa
+     		state_string = '';
+
+     		switch(state){
+				case "0":   state_string = "default"; 
+							state_string_it = "default";
+						    state_bar = "width:0%;";
+						    state_active = "";
+						    progress_state = "progress-info";
+							break;
+				case "1":   state_string = "research_request_init"; 
+							state_string_it = "Richiesta inviata al professionista";
+							state_bar = "width:10%;";
+							state_active = "active";
+							progress_state = "progress-info";
+							break;
+				case "2":   state_string = "research_professionist_rejected"; 
+							state_string_it = "Il professionista ha rifiutato l'intervento";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-danger";
+							break;
+				case "3":   state_string = "research_professionist_accepted"; 
+							state_string_it = "Il professionista ha accettato l'intervento";
+							state_bar = "width:40%;";
+							state_active = "active";
+							progress_state = "progress-info";
+							break;
+				case "4":   state_string = "research_work_annulled"; 
+							state_string_it = "La richiesta &egrave; stata annullata";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-danger";
+							break;
+				case "5":   state_string = "research_payment_sent"; 
+							state_string_it = "Il pagamento &egrave; stato inviato";
+							state_bar = "width:70%;";
+							state_active = "active";
+							progress_state = "progress-info";
+							break;
+				case "6":   state_string = "research_feedback_saved";
+							state_string_it = "Il feedback &egrave; stato inviato";
+							state_bar = "width:90%;";
+							state_active = "active";
+							progress_state = "progress-info"; 
+							break;
+				case "7":   state_string = "research_hidden"; 
+							state_string_it = "Hidden";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-danger";
+							break;
+				case "8":   state_string = "research_consumer_annulled"; 
+							state_string_it = "Intervento annullato dal consumatore";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-danger";
+							break;
+				case "9":   state_string = "research_staff_closed"; 
+							state_string_it = "Intervento annullato dallo staff di LocalJob";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-danger";
+							break;
+				case "10":  state_string = "research_payment_rejected";
+							state_string_it = "Il pagamento &egrave; stato rifiutato";
+							state_bar = "width:40%;"; 
+							state_active = "active";
+							progress_state = "progress-warning";
+							break;
+				case "11":  state_string = "research_refounded"; 
+							state_string_it = "Pagamento rimborsato";
+							state_bar = "width:40%;";
+							state_active = "active";
+							progress_state = "progress-warning";
+							break;
+				case "12":  state_string = "research_sys_locked"; 
+							state_string_it = "Sys Locked";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-danger";
+							break;
+				case "13":  state_string = "emergency_request_init"; 
+							state_string_it = "Richiesta di intervento con urgenza trasmesso ai professionisti";
+							state_bar = "width:10%;";
+							state_active = "active";
+							progress_state = "progress-info";
+							break;
+				case "14":  state_string = "research_work_finished"; 
+							state_string_it = "Il lavoro &egrave; stato terminato con successo";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-success";
+							break;
+				case "15":  state_string = "research_feedback_needed"; 
+							state_string_it = "Il feedback non &egrave; ancora stato rilasciato";
+							state_bar = "width:70%;";
+							state_active = "active";
+							progress_state = "progress-warning";
+							break;
+			}
+
+	/*		switch(state){
+
+				case "0": state_bar = "width:10%;"; break;
+				case "1": state_bar = "width:20%;"; break;
+				case "2": state_bar = "width:40%;"; break;
+				case "3": state_bar = "width:40%;"; break;
+				case "4": state_bar = "width:40%;"; break;
+				case "5": state_bar = "width:60%;"; break;
+				case "6": state_bar = "width:60%;"; break;
+				case "7": state_bar = "width:60%;"; break;
+				case "8": state_bar = "width:60%;"; break;
+				case "9": state_bar = "width:60%;"; break;
+				case "10": state_bar = "width:60%;"; break;
+				case "11": state_bar = "width:80%;"; break;
+				case "12": state_bar = "width:80%;"; break;
+				case "13": state_bar = "width:80%;"; break;
+				case "14": state_bar = "width:90%;"; break;
+				case "15": state_bar = "width:90%;"; break;
+
+			}*/
+
+			$('#tabAttivi').append('<button class="btn btn-block text-center" style="padding:2%;">'+
+                            '<div class="row-fluid">'+	
+                      			'<div class="span12">'+
+                        			'<div class="progress ' + progress_state + ' progress-striped ' + state_active + '" style="margin-bottom:0;">'+
+                          				'<div class="bar" style="'+state_bar+'"></div>'+
+                        			'</div></div></div>'+
+                   			'<div class="row-fluid">'+
+               					'<div style="width:30%; float:left;">'+
+               						'<img src="'+picture+'" style="width:70%; margin-left:15%;" class="img-polaroid">'+
+               					'</div>'+
+	               				'<div style="width:100%; margin-top:-10px;">'+
+	               					'<h6 style="text-transform:uppercase; text-align:left; margin-bottom:0;">'+title+'</h6>'+
+	               					'<p style="text-align:left; margin-right:8%; font-size:0.8em; height:15px; overflow:hidden;">'+description+'</p>'+
+	               					'<p style="text-align:left; margin-right:8%; font-size:0.8em; height:15px; overflow:hidden;">'+ '<b>Iniziato il: </b>' + date+'</p>'+
+	               					'<p style="text-align:left; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+ '<b>Stato intervento: </b>' +state_string_it+'</p>'+
+
+	               				'</div></div></button>');
+		
+		});
+				
+
+	}
+
+	//se non ci sono interventi attivi vai su ricerca in zona
+	else{
+
+		ricercaInZona();
+	}
+
+}
+
+function ricercaAttiviProfessionista() { //funzione per tirare giu gli interventi attivi per il prof
+	
+	//$('#loading').fadeIn('fast');		//schermata di caricamento
+	
+
+	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
+
+	$.ajax({
+		async: false,
+		type: 'GET',
+		url: 'http://95.141.45.174/listjobs',			
+		crossDomain:true,
+		complete: function(){$('#loading').hide()},
+		success: ricercaAttiviProfessionistaSuccess ,
+		error: errorHandler ,
+		});	
+
+}
+
+
+function ricercaAttiviProfessionistaSuccess(xml){
+
+	$('#tabAttivi').html("");
+
+	var xmlString = $(xml);	
+
 	if($(xmlString).find("request")){
 		
 		
@@ -959,17 +1217,11 @@ function ricercaAttiviSuccess(xml){
 	//se non ci sono interventi attivi vai su ricerca in zona
 	else{
 
-		ricercaInZona();
+	$('#tabAttivi').append('<div class="alert alert-info"> Non ci sono interventi attivi. </div>');
+
 	}
 
 }
-
-
-
-
-
-	
-
 
 
 /* Funzione per il menu a tendina per mostrare sul bottone l'elemento selezionato */
