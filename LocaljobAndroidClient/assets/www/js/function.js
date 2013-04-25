@@ -396,7 +396,16 @@ function scegli_modalita(luogo){
 /*
  * Funzione per inviare la richiesta dell'urgenza
  */
-function inviaUrgenza(){
+function inviaUrgenza(luogo){
+
+	if(luogo == "casa"){
+		sessionStorage.complete_address = $('#Indirizzo_casa').val()+", "+$('#nCiv_casa').val()+", "+$('#CAP_casa').val()+", "+$('#Citta_casa').val()+", "+$('#Provincia_casa').val();	
+		//window.location='intervento-modalita.html'
+	}
+	else if(luogo == "altro"){
+		sessionStorage.complete_address = $('#Indirizzo_altro').val()+", "+$('#nCiv_altro').val()+", "+$('#CAP_altro').val()+", "+$('#Citta_altro').val()+", "+$('#Provincia_altro').val();
+		//window.location='intervento-modalita.html'
+	}
 	
 	alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
 			"Request Type: "+sessionStorage.problemType+" \n " +
@@ -896,7 +905,7 @@ function ricercaAttiviSuccess(xml){
 	               					'<h6 style="text-transform:uppercase; margin-bottom:0;">'+title+'</h6>'+
 	               					'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+description+'</p>'+
 	               				'</div></div></button>');
-							//mettiamo anche la data? il nome del professionista? che tipo di richiesta è?
+							//mettiamo anche la data? il nome del professionista? categoria?
 
 
 
