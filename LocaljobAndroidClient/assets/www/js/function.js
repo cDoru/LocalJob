@@ -752,28 +752,34 @@ function ricercaInZona(filtroPrecedente) {
 			error: errorHandler
 			});	
 
-	$('#tabIntorno').prepend('<div class="btn-group" style="width:100%;">'+
-	                '<a class="btn dropdown-toggle btn-block btn-large" data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">'+
-	                  'Ricerca categoria'+
-	                    '<span class="caret"></span>'+
-	               '</a>'+
-	                '<ul class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu" id="dropCategorieConsumatore">'+
-	                  '<li><a tabindex="-1" href="#">Tutti</a></li>'+
-	                  '<li class="divider"></li>'+
-	                  '<li><a tabindex="-1" href="#">Caldaista</a></li>'+
-	                  '<li><a tabindex="-1" href="#">Idraulico</a></li>'+
-	                  '<li><a tabindex="-1" href="#">Pittore</a></li>'+
-	                  '<li><a tabindex="-1" href="#">Elettricista</a></li>'+
-	                  '<li><a tabindex="-1" href="#">Muratore</a></li>'+
-	                  '<li><a tabindex="-1" href="#">Antennista</a></li>'+
-	                  '<li><a tabindex="-1" href="#">Sarto</a></li>'+
-	                  '<li><a tabindex="-1" href="#">Calzolaio</a></li>'+
-	                  '<li><a tabindex="-1" href="#">Maniscalco</a></li>'+
-	                  '<li><a tabindex="-1" href="#">Carpentiere</a></li>'+
-	                  '<li><a tabindex="-1" href="#">Falegname</a></li>'+
-	                '</ul>'+
+	$('#tabIntorno').prepend(
+		'<div class="btn-toolbar" style="margin: 0;">'+
+				'<div class="btn-group" style="width:60%;display:inline:float:left;text-align:left;">'+
+		                '<a class="btn dropdown-toggle btn-block btn-inverse btn-large" data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">'+
+		                  'Ricerca categoria&nbsp;'+
+		                    '<span class="caret"></span>'+
+		               '</a>'+
+		                '<ul class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu" id="dropCategorieConsumatore">'+
+		                  '<li><a tabindex="-1" href="#">Tutti</a></li>'+
+		                  '<li class="divider"></li>'+
+		                  '<li><a tabindex="-1" href="#">Caldaista</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Idraulico</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Pittore</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Elettricista</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Muratore</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Antennista</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Sarto</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Calzolaio</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Maniscalco</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Carpentiere</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Falegname</a></li>'+
+		                '</ul>'+
 	            '</div>'+
-	            '<div style="height:20px;"></div>');
+	            '<div style="display:inline;float:right;width:40%;text-align:right;">'+
+	            '<a class="btn btn-large btn-info" style="margin:0 5px 0 5px;"><i class="icon-thumbs-up icon-white"></i></a>'+
+	            '<a class="btn btn-large btn-info"><i class="icon-gift icon-white"></i></a></div>'+
+	    '</div>'+
+	    '<div style="height:20px;"></div>');
 	            
 		$('.dropdown-menu li a').click(function() {
     		filtroIntervento = $(this).text();
