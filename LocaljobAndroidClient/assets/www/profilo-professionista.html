@@ -85,7 +85,7 @@
 		          			<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover -->
 	      					<img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">
 	      				</button>
-	      				<button class="btn btn-large btn-primary" type="button" onclick="javascript:history.go(-1);" style="line-height:22px;">
+	      				<button class="btn btn-large btn-primary" type="button" onclick="javascript:history.go(-1);" style="line-height:22px;" disabled>
 	      					LJ
 	      				</button>         		
 		                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
@@ -94,7 +94,7 @@
 			            <button  class="btn btn-large btn-inverse" type="button" onclick="javascript:window.location='map-landscape.html';">
 			            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
 			            </button>
-			            <button class="btn btn-large btn-inverse" type="button">
+			            <button class="btn btn-large btn-inverse" type="button" onclick="javascript:window.location='professionista-gestione.html';">
 			            	<img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
 			            </button>
 	              </div>
@@ -143,7 +143,13 @@
 		    		</button>
 	    		</div>
 		    </div>	<!-- /sfondo -->
-	    
+	    	
+	    	
+	    	<!--<button class="btn btn-large btn-primary btn-block" type="button" id="numTelefono"><img id="icoCall" src="./img/call.png"/> CONTATTA </button><br/>-->
+	    	<div id="numTelefono"></div>
+
+
+
 	    	<button class="btn btn-large btn-primary btn-block" type="button" onclick="showCommentList(sessionStorage.nick)"><img id="icoBottone" src="./img/glyphicons/white_ver/224A.PNG"/> COMMENTI</button><br/>
 			<div id="commentList" class="alert alert-info">
 			 	...
