@@ -5,6 +5,8 @@ var position_long;
 var geocoder;
 var marker;
 
+var filtroIntervento;
+
 //var googlecod;
 
 //var googlecod;
@@ -730,13 +732,15 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
 
 
 // Parte di richi
-function ricercaInZona() {
+function ricercaInZona(filtroPrecedente) {
 	$('#loading').fadeIn('fast');		//nasconde la schermata di caricamento
 	
 	//Attivo la pagina tabIntorno e disattivo tabAttivi (la class alert alert-info è per lo sfondo)
 	$('#tabAttivi').attr('class','tab-pane');
 	$('#tabIntorno').attr('class','tab-pane active'); 
 	$('#tabIntorno').html('');
+
+	filtroIntervento = filtroPrecedente;
 	
 	$.ajax({
 			async: false,
@@ -754,6 +758,8 @@ function ricercaInZona() {
 	                    '<span class="caret"></span>'+
 	               '</a>'+
 	                '<ul class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu" id="dropCategorieConsumatore">'+
+	                  '<li><a tabindex="-1" href="#">Tutti</a></li>'+
+	                  '<li class="divider"></li>'+
 	                  '<li><a tabindex="-1" href="#">Caldaista</a></li>'+
 	                  '<li><a tabindex="-1" href="#">Idraulico</a></li>'+
 	                  '<li><a tabindex="-1" href="#">Pittore</a></li>'+
@@ -768,6 +774,13 @@ function ricercaInZona() {
 	                '</ul>'+
 	            '</div>'+
 	            '<div style="height:20px;"></div>');
+	            
+		$('.dropdown-menu li a').click(function() {
+    		filtroIntervento = $(this).text();
+    		ricercaInZona(filtroIntervento);
+		});
+
+	            
 }
 
 function ricercaInZonaSuccess(xml) {
@@ -804,16 +817,19 @@ function ricercaInZonaSuccess(xml) {
         
         var pagina = "javascript:profiloPro('"+nickname+"');";
         	
-        $('#tabIntorno').append('<button class="btn btn-block text-center" onclick="'+pagina+'"><div style="width:70%; float:left;">'+
-        		'<p><b>'+nome+' '+cognome+'</b></p>'+
-        		'<p style="font-size:0.8em; margin-top:-10px;"><span style="text-transform:uppercase">'+tag+'</span></p>'+
-        		'<p style="margin-top:-10px;">'+rating+'</i></p>'+
-        		'<p style="font-size:0.8em; margin-top:-10px; margin-bottom:-5px;">'+distance+'</p></div>'+
-        		'<div style="width:30%; float:right; line-height:260%;">'+
-        		'<div style="border:2px solid black; width:80%;"><i class="icon-headphones"></i> '+costService+' €<br/>'+
-        		'<i class="icon-shopping-cart"></i> '+costHour+' €/h</div>'+
-        		'</div></button>');  
-        
+        if((typeof filtroIntervento === "undefined") || tag.indexOf(filtroIntervento) != -1 || filtroIntervento == 'Tutti') {
+	        $('#tabIntorno').append('<button class="btn btn-block text-center" onclick="'+pagina+'"><div style="width:70%; float:left;">'+
+	        		'<p><b>'+nome+' '+cognome+'</b></p>'+
+	        		'<p style="font-size:0.8em; margin-top:-10px;"><span style="text-transform:uppercase">'+tag+'</span></p>'+
+	        		'<p style="margin-top:-10px;">'+rating+'</i></p>'+
+	        		'<p style="font-size:0.8em; margin-top:-10px; margin-bottom:-5px;">'+distance+'</p></div>'+
+	        		'<div style="width:30%; float:right; line-height:260%;">'+
+	        		'<div style="border:2px solid black; width:80%;"><i class="icon-headphones"></i> '+costService+' €<br/>'+
+	        		'<i class="icon-shopping-cart"></i> '+costHour+' €/h</div>'+
+	        		'</div></button>');  
+	    } 
+
+	        
 	});
 } 
 
@@ -831,8 +847,8 @@ function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 		url: 'http://95.141.45.174/openjob',			
 		crossDomain:true,
 		complete: function(){$('#loading').hide()},
-		success: ricercaAttiviSuccess ,
-		error: errorHandler ,
+		success: ricercaAttiviSuccess,
+		error: errorHandler,
 		});	
 
 }
@@ -1005,15 +1021,12 @@ function ricercaAttiviSuccess(xml){
                					'</div>'+
 	               				'<div style="width:100%; margin-top:-10px;">'+
 	               					'<h6 style="text-transform:uppercase; text-align:left; margin-bottom:0;">'+title+'</h6>'+
-	               					'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:15px; overflow:hidden;">'+description+'</p>'+
-	               					'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:15px; overflow:hidden;">'+ '<b>Iniziato il: </b>' + date+'</p>'+
-	               				//	'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+ 'Stato dell'intervento: ' +state_string_it+'</p>'+
+	               					'<p style="text-align:left; margin-right:8%; font-size:0.8em; height:15px; overflow:hidden;">'+description+'</p>'+
+	               					'<p style="text-align:left; margin-right:8%; font-size:0.8em; height:15px; overflow:hidden;">'+ '<b>Iniziato il: </b>' + date+'</p>'+
+	               					'<p style="text-align:left; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+ '<b>Stato intervento: </b>' +state_string_it+'</p>'+
 
 	               				'</div></div></button>');
-							//mettiamo anche la data? il nome del professionista? categoria?
-
-
-
+		
 		});
 				
 
