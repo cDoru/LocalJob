@@ -5,10 +5,10 @@ var position_long;
 var geocoder;
 var marker;
 
+var xml_case;
 //var googlecod;
 
-//var googlecod;
-//var pushNotification;
+//SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
 //sessionStorage.googlecod = "5";
 
 /*
@@ -151,20 +151,44 @@ function salvaProblemType(num){
  * */
 function controlloIndirizzo(){
 	//ora per prova facciamo finta che abbia un indirizzo
-	indirizzo = true;
+	//indirizzo = true;
 	
-	//se non ha indirizzo vai sul tab altro, lo geolocalizzi, ti trova lat e long
-	//e ti inserisce l'indirizzo nel form (da fare)
+	$.ajax({
+        type: 'GET',
+        url: 'http://95.141.45.174/getaddress/',
+        contentType: 'application/x-www-form-urlencoded',
+        crossDomain: true,
+        success: function(xml){
+        	
+        	xml_case = $(xml);	
+        	// cerco se ci sono indirizzi salvati
+        	if($(xml_case).find("home")){
+        		
+        		//se ha l'indirizzo vai sul tab casa, prende dal database tutte le info
+        		//e le mostra nel form
+        		goTabCasa(true);
+        	}
+        	else{
+        		
+        		//se non ha indirizzo vai sul tab altro, lo geolocalizzi, ti trova lat e long
+        		//e ti inserisce l'indirizzo nel form
+        		goTabAltro(false);	
+        	}
+        	
+        },
+        error: errorHandler
+     })
+	
+	/*
 	if (indirizzo == false){
 		goTabAltro(indirizzo);	
 	}
-	//se ha l'indirizzo vai sul tab casa, prende dal database tutte le info
-	//e le mostra nel form 
+	
 	else{
 		goTabCasa(indirizzo);
 		
 	}
-	
+	*/
 }
 
 function goTabAltro(indirizzo){
@@ -237,66 +261,104 @@ function handle_errors(error)
     }  
 }  
 
-
+/*
+ * Funzione che manda al tab casa (quindi senza geolocalizzazione)
+ */
 function goTabCasa(indirizzo){
-	//Funzione che manda al tab casa (quindi senza geolocalizzazione)
-	alert("ha indirizzo");
 	
-	//alert("Questa è una prova: "+sessionStorage.problemTitle+" "+sessionStorage.problemType+" "+sessionStorage.problemDesription);
-	
-	
-	//Tira giù i dati della casa dal DB
-	//Poi fai un controllo...se ha più indirizzi salvati...se ne ha 1 
-	//visualizzi il tab normale senò quello con più opzioni
-	
-	numero_case = 1; //il numero di case viene richiesto dal server
-
-	//Fa un controllo, se c'è solo una casa mostra il tab normale, altrimenti mostra
-	//l'elenco
-	if(numero_case < 2){
-		//Il tab casa è attivato e viene mostrato il div #tabCasa
-    	$('#tab_casa').attr('class','active');
-    	$('#tab_casa').html('<a href="#tabCasa" data-toggle="tab" style="border:1px solid #ffffff;">Casa</a>');	
-	}
-	else{
-		$('#tab_casa').attr('class','dropdown');
-    	$('#tab_casa').html('<a href="#tabCasa" class="dropdown-toggle" data-toggle="dropdown" style="border:1px solid #ffffff;">Casa <b class="caret"></b></a>'+
-    		'<ul class="dropdown-menu">'+
-    		'<li>Casa Mare</li>'+
-    		'<li>Ufficio</li>'+
-    		'</ul>');	
-	}
-		
 	//Il tab altro è cliccabile e viene mostrato il div #tabAltro
 	$('#tab_altro').attr('class','');
-	$('#tab_altro').html('<a onclick="goTabAltro(true)" data-toggle="tab" style="border:1px solid #ffffff;">Altro</a>');
-	
+	$('#tab_altro').html('<a onclick="goTabAltro(true)" data-toggle="tab" style="border:1px solid #ffffff;">Altro</a>');	
 	//Attivo la pagina tabCasa e disattivo tabAltro
 	$('#tabAltro').attr('class','tab-pane');
 	$('#tabCasa').attr('class','tab-pane active');
-
-	//faccio chiamata al database e mi darà tutti i dati della casa
-	//dati di prova, questi servono solo per la visualizzazione
-	indirizzo ="Via Camillo Ranzani";
-	nciv="11";
-	cap="40127";
-	citta="Bologna";
-	provincia="BO";
-	//questi servono per la chiamata al server
-	sessionStorage.lat="44.500821";
-	sessionStorage.long="11.35878";
-	//
 	
+	//Controllo quanti indirizzi ha salvato l'utente
+	numero_case = $(xml_case).find("home").size();	
+	
+	//Fa un controllo, se c'è solo una casa mostra il tab normale, 
+	//altrimenti mostra l'elenco cliccabile
+	
+	if(numero_case < 2){
+		
+		var $casa = $(xml_case).find("home");
+		var nome = $casa.find("nome").text();
+
+		// Il tab casa è attivato e viene mostrato il div #tabCasa
+    	$('#tab_casa').attr('class','active');
+    	$('#tab_casa').html('<a href="#tabCasa" data-toggle="tab" style="border:1px solid #ffffff;"> '+nome+' </a>');
+    	
+    	//Ora si mostra a video la casa - si può fare con mostraCasa?
+    	
+    	mostraCasa(0);
+    	
+    	//Oppure si prendono i dati dall' xml e si mostra a video tutto
+    	//la stessa cosa viene fatta con mostraCasa()
+    	/*
+		var indirizzo = $casa.find("indirizzo").text();
+		var civ = $casa.find("civ").text();
+		var cap = $casa.find("cap").text();
+		var citta = $casa.find("citta").text(); 
+		var provincia = $casa.find("provincia").text(); 
+		sessionStorage.lat = $casa.find("latitude").text(); 
+		sessionStorage.long = $casa.find("longitude").text(); 
+    	
+    	initialize_map("casa", sessionStorage.lat, sessionStorage.long);
+    	
+    	$('#Indirizzo_casa').attr('value',indirizzo);
+    	$('#nCiv_casa').attr('value',civ);
+    	$('#CAP_casa').attr('value',cap);
+    	$('#Citta_casa').attr('value',citta);
+    	$('#Provincia_casa').attr('value',provincia);
+    	*/
+	}
+	else{
+		var $casa = $(xml_case).find("home");
+		
+		//prendo la prima casa della lista e la metto come principale
+		var nome = $casa.find("nome").eq(0).text();
+		
+		$('#tab_casa').attr('class','dropdown , active');
+    	$('#tab_casa').html('<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="tendina" onclick="menuTendina()" style="border:1px solid #ffffff;"> '+nome+' <span class="caret"></span></a>'+
+    		'<ul id="casaType" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu"></ul>');
+    	
+    	//per ogni elemento in più che trovo appendo le altre case
+    	for(var i=0; i<numero_case ; i++){
+    		nome_temp = $casa.find("nome").eq(i).text();
+    		$('#casaType').append('<li><a tabindex="-1" href="javascript:mostraCasa('+i+');"> '+nome_temp+' </a></li>');
+    	}
+    	
+    	mostraCasa(0);
+	}
+}
+
+/*
+ * Funzione che mostra a video tutte le info sulla casa selezionata
+ */
+function mostraCasa(i){
+	//non so se $casa possono risparmiare di farlo (lo prende dalla function prima)
+	var $casa = $(xml_case).find("home");
+	var nome_mostrato = $casa.find("nome").eq(i).text();
+	var indirizzo_mostrato = $casa.find("indirizzo").eq(i).text();
+	var civ_mostrato = $casa.find("civ").eq(i).text();
+	var cap_mostrato = $casa.find("cap").eq(i).text();
+	var citta_mostrato = $casa.find("citta").eq(i).text(); 
+	var provincia_mostrato = $casa.find("provincia").eq(i).text(); 
+	sessionStorage.lat = $casa.find("latitudine").eq(i).text();
+	sessionStorage.long = $casa.find("longitudine").eq(i).text();
+
 	//Mostra la casa sulla mappa
 	initialize_map("casa", sessionStorage.lat, sessionStorage.long);
 	
 	
-	$('#Indirizzo_casa').attr('value',indirizzo);
-	$('#nCiv_casa').attr('value',nciv);
-	$('#CAP_casa').attr('value',cap);
-	$('#Citta_casa').attr('value',citta);
-	$('#Provincia_casa').attr('value',provincia);
+	$('#Indirizzo_casa').attr('value',indirizzo_mostrato);
+	$('#nCiv_casa').attr('value',civ_mostrato);
+	$('#CAP_casa').attr('value',cap_mostrato);
+	$('#Citta_casa').attr('value',citta_mostrato);
+	$('#Provincia_casa').attr('value',provincia_mostrato);
+	
 }
+
 
 /* 
  * Mostra la mappina con il poi
@@ -376,6 +438,26 @@ function codeLatLng(position_lat, position_long) {
 	    }
 	  });
 	}
+
+/*
+ * Salva l'indirizzo attuale dell'utente nel database come luogo preferito
+ */
+function salvaIndirizzo(){
+	
+	nomeLuogo = $('#nome_luogo').val();
+	nomeVia = $('#Indirizzo_altro').val();
+	civico = $('#nCiv_altro').val();
+	cap = $('#CAP_altro').val();
+	comune = $('#Citta_altro').val();
+	provincia = $('#Provincia_altro').val();
+	
+	//ricordarsi lat e long
+	
+	alert("salviamo l'indirizzo "+nomeLuogo+": "+nomeVia+", "+civico+" - "+comune+" ("+provincia+") - "+cap+" coordinate gps: "+sessionStorage.lat+" , "+sessionStorage.long);
+	
+	//chiamata AJAX per salvare l'indirizzo nel database
+	
+}
 
 /*
  * Salva l'indirizzo, eventualmente modificato dall'utente, come una variabile storage e passa
