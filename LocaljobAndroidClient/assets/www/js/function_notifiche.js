@@ -23,6 +23,8 @@ function mostraPanelNotifiche(){		//apre modal notifica
 	$('#panelNotifiche').modal('show');
 }
 
+
+/**		FUNZIONI PAGINA preventivoRichiesto.html  **/
 function mostraPanelFoto(){		//apre ingrandimento della foto
 	$('#panelFoto').modal('show');
 }
@@ -59,5 +61,32 @@ function preventivoRichiesto(){				//aggiorna la pagina "preventivoRichiesto" co
 
 function mostraPanelPreventivo(){			//mostra il modal in cui inserire in preventivo
 	$('#panelPreventivo').modal('show');
+}
+
+function getPreventivo(){		//raccoglie i dati dal form e (per ora) non ci fa assolutamente nulla
+	cifra =  $('#cifraMin').val() +' '+ $('#cifraMax').val();
+	tempo =  $('#tempoOre').val() +' '+ $('#tempoMin').val();
+	alert(cifra +" "+ tempo);
+}
+
+
+/**		FUNZIONI PAGINA preventivoMostrato.html  **/
+function preventivoMostrato(){				//aggiorna la pagina "preventivoRichiesto" con i dati del cliente
+	//$('#loading').fadeIn('fast');			//schermata di caricamento
 	
+	//sistemare la chiamata
+	/*alert("una answer!");
+	requestID = notifica.requestId;
+	professionalNickname = notifica.nickname;
+	professionalID = notifica.idprofessionista;
+	prezzo = notifica.priceRange;
+	tempo = notifica.expectedTime;
+	alert(requestID+" "+professionalNickname+" "+professionalID+" "+prezzo+" "+tempo);*/
+	var professionalNickname = "Gigi";
+	var cifra = "30-50";
+	var orario = "1h e 20min";
+	
+	$('#nickPro').html(professionalNickname);
+	$('#cifra').html(cifra);
+	$('#orario').html(orario);
 }

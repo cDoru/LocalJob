@@ -54,7 +54,7 @@
     <link rel="shortcut icon" href="./ico/favicon.png">
   </head>
 
-  <body onLoad="javascript:preventivoRichiesto();">
+  <body onLoad="javascript:preventivoMostrato();">
 
 		<!-- SCHERMATA CARICAMENTO -->
   		<div class="text-center" id="loading" style="display:none; z-index:999; width:100%; top:0; left:0; position:absolute; background-color:#141414;">
@@ -68,72 +68,6 @@
   		<!-- MODAL PER NOTIFICHE -->
 		<div class="modal hide fade" id="panelNotifiche" style="color:black">
 			...
-		</div>
-		<!--  -->
-		
-		<!-- MODAL PER PREVENTIVO - serve solo su "preventivoRichiesto.html" -->
-		<div class="modal hide fade" id="panelPreventivo" style="color:black">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			    <h4>Inserisci le tue condizioni</h4>
-			</div>
-			<div class="modal-body text-center">
-			
-				<!-- VERSIONE CON LABEL
-				<b>Prezzo stimato:</b>
-				<form class="form-inline">
-					<div style="width:48%; float:left;">
-						da <input id="cifraMin" type="text" class="input-block-level" value="€" maxlength="4"><br />
-					</div>
-					<div style="width:48%; float:right;">
-						a <input id="cifraMax" type="text" class="input-block-level" value="€" maxlength="4">
-					</div>
-				</form><br/><br/>
-				<b>Tempo di arrivo stimato:</b>
-				<form class="form-inline">
-					<div style="width:48%; float:left;">
-						ore <input id="tempoOre" type="text" class="input-block-level" value="" maxlength="2"><br />
-					</div>
-					<div style="width:48%; float:right;">
-						minuti <input id="tempoMin" type="text" class="input-block-level" value="" maxlength="2">
-					</div>
-				</form> -->
-				
-				<b>Prezzo stimato:</b>
-				<form class="form-inline">
-					<div style="width:49%; float:left;">
-						<input id="cifraMin" type="text" class="input-block-level" placeholder="cifra minima in €" maxlength="4"><br />
-					</div>
-					<div style="width:49%; float:right;">
-						<input id="cifraMax" type="text" class="input-block-level" placeholder="cifra massima in €" maxlength="4">
-					</div>
-				</form><br/>
-				<b>Tempo di arrivo stimato:</b>
-				<form class="form-inline">
-					<div style="width:49%; float:left;">
-						<input id="tempoOre" type="text" class="input-block-level" placeholder="ore" maxlength="2"><br />
-					</div>
-					<div style="width:49%; float:right;">
-						<input id="tempoMin" type="text" class="input-block-level" placeholder="minuti" maxlength="2">
-					</div>
-				</form>
-				
-			</div>
-			<div class="modal-footer">
-				<a class="btn" data-dismiss="modal">Annulla</a>
-			    <a href="javascript:getPreventivo()" class="btn btn-primary">Conferma</a>
-			</div>
-		</div>
-		<!--  -->
-		
-		<!-- MODAL PER INGRANDIRE LA FOTO -->
-		<div class="modal hide fade" id="panelFoto" style="color:black">
-			<div class="modal-body text-center">
-				<img id="fotoGrande" src=""/>
-			</div>
-			<div class="modal-footer">
-			<a class="btn btn-primary" data-dismiss="modal">Chiudi</a>
-			</div>
 		</div>
 		<!--  -->
 		
@@ -168,14 +102,13 @@
 		
 		<div class="container text-center" style="margin-top:3%;">
 			<div class="row-fluid">
-					<h4 id="titoloPagina">Ecco i dettagli del lavoro:</h4><br/>
-					<!-- l'immagine deve potersi ingrandire, se no come fa il povero cristiano? -->
-					<a href="javascript:mostraPanelFoto()"><img id="foto" src="#" style="width:100px;"/></a><br/>
-					Tappa sulla foto per ingrandirla
-		    		<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;"></h5><p id="descrizione2"></p></div>
-		    		<div><b>RICHIESTO:</b> <span id="lavoro"></span></div>
-		    		<div style="margin-bottom:20px;"><b>PRESSO:</b> <span id="luogo"></span></div>
-		    		<div id="bottoni"></div>
+					<h4><span id="nickPro">...</span> si è offerto per il tuo lavoro</h4><br/>
+		    		<div><b>FASCIA DI PREZZO STIMATA:</b><br/> <span id="cifra"></span></div><br/>
+		    		<div><b>TEMPO DI ARRIVO STIMATO:</b><br/> <span id="orario"></span></div>
+		    		<div style="margin-top:30px;">
+		    			<a class="btn btn-large btn-block btn-inverse" href="#">ACCETTA IL PREVENTIVO</a>
+		    			<a class="btn btn-large btn-block btn-inverse" href="#">RIFIUTA</a>
+		    		</div>
 	    	</div>
 		</div>
 		
