@@ -971,9 +971,12 @@ function ricercaAttiviSuccess(xml){
                					'<div style="width:30%; float:left;">'+
                						'<img src="'+picture+'" style="width:70%; margin-left:15%;" class="img-polaroid">'+
                					'</div>'+
-	               				'<div style="width:65%; float:right; margin-top:-10px;">'+
-	               					'<h6 style="text-transform:uppercase; margin-bottom:0;">'+title+'</h6>'+
-	               					'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+description+'</p>'+
+	               				'<div style="width:100%; margin-top:-10px;">'+
+	               					'<h6 style="text-transform:uppercase; text-align:left; margin-bottom:0;">'+title+'</h6>'+
+	               					'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:15px; overflow:hidden;">'+description+'</p>'+
+	               					'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:15px; overflow:hidden;">'+ '<b>Iniziato il: </b>' + date+'</p>'+
+	               				//	'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+ 'Stato dell'intervento: ' +state_string_it+'</p>'+
+
 	               				'</div></div></button>');
 							//mettiamo anche la data? il nome del professionista? categoria?
 
