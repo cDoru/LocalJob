@@ -668,10 +668,13 @@ function cambiaBottone(testo){
 function ajaxLOGIN(data){
 	//alert(data);
 	if(data == ""){
+		
 		window.location='interventi-attivi.html';
+		
 	}
 	else{
 		alert("User o Password errati");
+		//alert(data);
 	}
 }
 

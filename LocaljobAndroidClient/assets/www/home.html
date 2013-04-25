@@ -101,8 +101,28 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
       <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
       <link rel="shortcut icon" href="./ico/favicon.png">
+      
+      
+  	<script>
+  	function funzioneDTD(){
+  		
+  		$.ajax({
+			async: false,
+			type: 'GET',
+			url: 'http://95.141.45.174/mce/',			
+			crossDomain:true,
+			success: vabeneDTD,
+			error: errorHandler
+			});	
+  		
+  	}
+  	
+  	function vabeneDTD(data){
+  		alert(data);
+  	}
+  	</script>
     </head>
-
+	
     <body>
     
     	<!-- schermata caricamento -->
@@ -124,10 +144,11 @@
 
            <div id="contenitore" class="row-fluid text-center">
                <div class="span4 offset4">
-                <p><a class="btn btn-large btn-block btn-primary" href="#myModal_fb"><i class="icon-user icon-white"></i> Accedi con FB</a></p>
+                <p><a class="btn btn-large btn-block btn-primary" href="javascript:funzioneDTD();"><i class="icon-user icon-white"></i> Accedi con FB</a></p>
                 <!-- <a href="http://95.141.45.174/login/facebook/" role="button" class="btn btn-large btn-block btn-primary" data-toggle="modal">Accedi con FB 2</a> -->
                 
-                <a href="javascript:my_window=window.open('http://95.141.45.174/logwhitface?googlecod=5', 'my_window', 'location=no');" role="button" class="btn btn-large btn-block btn-primary" data-toggle="modal">Accedi con FB 2</a>
+                <a href="javascript:my_window=window.open('http://95.141.45.174/logwhitface?googlecod=5', 'my_window', 'location=yes');" role="button" class="btn btn-large btn-block btn-primary" data-toggle="modal">Accedi con FB 2</a>
+               
                 <!-- javascript:window.open('http://95.141.45.174/logwhitface?googlecod='+sessionStorage.googlecod+'', '_blank', 'location=no');
                 javascript:alert('http://95.141.45.174/logwhitface?googlecod='+sessionStorage.googlecod);   -->
                 
