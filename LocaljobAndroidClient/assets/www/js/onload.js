@@ -27,13 +27,18 @@ $(document).ready(function(){
   		//alert('Orientation ' + window.orientation);
 
   		if(window.orientation == 0) {
-  			alert('Orientation 0, sono dritto (portrait)');
+  			// Non sono nella mappa, quindi non faccio niente
+        if(!(location.href).indexOf("map-landscape") == -1) {
+          history.back();
+        }
   		}
   		if(window.orientation == 90) {
-  			alert('Orientation 0, sono storto verso sinistra (landscape)');
+  			//alert('Orientation 0, sono storto verso sinistra (landscape)');
+        location.href = 'map-landscape.html';
   		}
   		if(window.orientation == -90) {
-			alert('Orientation 0, sono storto verso destra (landscape)');
+			  //alert('Orientation 0, sono storto verso destra (landscape)');
+        location.href = 'map-landscape.html';
   		}
 
 	}, false);

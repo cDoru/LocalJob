@@ -832,6 +832,13 @@ function ricercaAttiviSuccess(xml){
 			var title = $request.find("title").text(); 
 
 
+			// IMMAGINE NOTFOUND?
+			 if (picture == 'Photo' || picture == 'photo' || picture == '') {
+        		picture = 'img/missingAvatar.png';
+      		} else {
+        		picture = picture;
+     		}
+
 			switch(state){
 
 				case "0": state_bar = "width:10%;"; break;
