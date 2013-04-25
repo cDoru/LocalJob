@@ -69,10 +69,11 @@ function importaSuccesso(xml) {
 	avatar = $(xmlString).find("avatarPath").text();
 	numInterventi = $(xmlString).find("numInterventi").text();
 	///////////////////queste info non ha senso che le facciamo vedere all'utente
-	//telefono = $(xmlString).find("numTelefono").text();
+	telefono = $(xmlString).find("numTelefono").text();
 	//indirizzo = $(xmlString).find("indirizzo").text();
 	//ragioneSociale = $(xmlString).find("ragioneSociale").text();
 	
+
 	$('#nome').html(nome + ' ');
 	$('#cognome').html(cognome);
 	$('#nominativo').html(nome);
@@ -84,6 +85,7 @@ function importaSuccesso(xml) {
 	$('#costoChiamata').html(costService + ' euro');
 	$('#costoOrario').html(costoOrario + ' euro');
 	$('#numInterventi').html(numInterventi);
+
 	
 	if(avatar == 'photo' || avatar == '' || avatar.length == 0){
 		//$('#avatar').attr('src', './img/example_photo.png');
@@ -96,6 +98,10 @@ function importaSuccesso(xml) {
 	rating(quality, 1);		//il secondo parametro serve per capire dove mostrare l'info
 	rating(reliability, 2);
 	rating(kindness, 3);
+
+
+	$('#numTelefono').append('<button class="btn btn-large btn-success btn-block" type="button" id="numTelefono" href="tel:'+telefono+'">'+
+									'<img id="icoCall" src="./img/call.png"/> CONTATTA </button><br/>');
 }
 
 function rating(voto, categoria){			//per visualizzare le valutazioni

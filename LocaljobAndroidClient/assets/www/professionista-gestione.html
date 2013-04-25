@@ -65,7 +65,7 @@
 	          			<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover -->
       					<img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">
       				</button>
-      				<button class="btn btn-large btn-primary" type="button" onclick="javascript:history.go(-1);" style="line-height:22px;" disabled>
+      				<button class="btn btn-large btn-primary" type="button" onclick="javascript:history.go(-1);" style="line-height:22px;">
       					LJ
       				</button>         		
 	                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
@@ -84,28 +84,14 @@
 
 		
     <div class="container contNotifiche">
-		<div class="row-fluid text-center">
-        	<div class="span12">
-    			<button class="btn btn-block btn-large" style="height:60px" type="button" onclick="javascript:window.location='intervento-nuovo.html';"><img src="./img/glyphicons/black_ver/glyphicons_190_circle_plus.png" style= "margin-right:3%"/> NUOVO INTERVENTO <img src="./img/glyphicons/black_ver/glyphicons_223_chevron-right.png" style= "margin-left:3%"/></button><br/>
-    		</div>
-    	</div>
-    	
-    	<div class="tabbable"> <!-- Only required for left/right tabs -->
-			<ul class="nav nav-tabs text-center">
-		    	<li class="active" style="width:50%;"><a href="#tabAttivi" onclick="ricercaAttivi()" data-toggle="tab" style="border:1px solid #ffffff;">Interventi attivi</a></li>
-		    	<li style="width:50%;"><a href="#tabIntorno" onclick="ricercaInZona()" data-toggle="tab" style="border:1px solid #ffffff;">Intorno a te</a></li>
-		  	</ul>
-		  	
-		  	<div class="row-fluid text-center">       
-	            
-            </div><br/>
+	
+    
 
 		  	<div class="tab-content">
             <!-- contenuto tabAttivi -->
 		    	 <div class="tab-pane active" id="tabAttivi"></div>
 		        <!-- contenuto tabIntorno -->
-		        <div class="tab-pane" id="tabIntorno"></div>
-		    </div>
+		        
 			
 
      </div>

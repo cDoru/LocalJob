@@ -738,6 +738,27 @@ function ricercaInZona() {
 			success: ricercaInZonaSuccess,
 			error: errorHandler
 			});	
+
+	$('#tabIntorno').prepend('<div class="btn-group">'+
+	                '<a class="btn dropdown-toggle btn-block btn-large" data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">'+
+	                  'Ricerca categoria'+
+	                    '<span class="caret"></span>'+
+	               '</a>'+
+	                '<ul class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu" id="dropCategorieConsumatore">'+
+	                  '<li><a tabindex="-1" href="#">Caldaista</a></li>'+
+	                  '<li><a tabindex="-1" href="#">Idraulico</a></li>'+
+	                  '<li><a tabindex="-1" href="#">Pittore</a></li>'+
+	                  '<li><a tabindex="-1" href="#">Elettricista</a></li>'+
+	                  '<li><a tabindex="-1" href="#">Muratore</a></li>'+
+	                  '<li><a tabindex="-1" href="#">Antennista</a></li>'+
+	                  '<li><a tabindex="-1" href="#">Sarto</a></li>'+
+	                  '<li><a tabindex="-1" href="#">Calzolaio</a></li>'+
+	                  '<li><a tabindex="-1" href="#">Maniscalco</a></li>'+
+	                  '<li><a tabindex="-1" href="#">Carpentiere</a></li>'+
+	                  '<li><a tabindex="-1" href="#">Falegname</a></li>'+
+	                '</ul>'+
+	            '</div>'+
+	            '<div style="height:20px;"></div>');
 }
 
 function ricercaInZonaSuccess(xml) {
@@ -793,6 +814,7 @@ function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	
 
 	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
+
 
 	$.ajax({
 		async: false,
@@ -876,6 +898,8 @@ function ricercaAttiviSuccess(xml){
 	               				'</div></div></button>');
 							//mettiamo anche la data? il nome del professionista? che tipo di richiesta è?
 
+
+
 		});
 				
 
@@ -889,12 +913,100 @@ function ricercaAttiviSuccess(xml){
 
 }
 
-
-
-
-
+function ricercaAttiviProfessionista() { //funzione per tirare giu gli interventi attivi per il prof
+	
+	//$('#loading').fadeIn('fast');		//schermata di caricamento
 	
 
+	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
+
+	$.ajax({
+		async: false,
+		type: 'GET',
+		url: 'http://95.141.45.174/listjobs',			
+		crossDomain:true,
+		complete: function(){$('#loading').hide()},
+		success: ricercaAttiviProfessionistaSuccess ,
+		error: errorHandler ,
+		});	
+
+}
+
+
+function ricercaAttiviProfessionistaSuccess(xml){
+
+	$('#tabAttivi').html("");
+
+	var xmlString = $(xml);	
+
+	if($(xmlString).find("request")){
+		
+		
+		//Attivo la pagina tabAttivi e disattivo tabIntorno
+		$('#tabAttivi').attr('class','tab-pane active');
+		$('#tabIntorno').attr('class','tab-pane');
+
+		//cerco all'interno dell'xml tutti gli interventi attivi e gli appendo
+		$(xmlString).find("request").each(function (){
+			var $request = $(this);
+			var id = $request.find("id").text();
+			var date = $request.find("date").text();
+			var description = $request.find("description").text();
+			var state = $request.find("state").text();
+			var picture = $request.find("picture").text(); //path della foto
+			var title = $request.find("title").text(); 
+
+
+			switch(state){
+
+				case "0": state_bar = "width:10%;"; break;
+				case "1": state_bar = "width:20%;"; break;
+				case "2": state_bar = "width:40%;"; break;
+				case "3": state_bar = "width:40%;"; break;
+				case "4": state_bar = "width:40%;"; break;
+				case "5": state_bar = "width:60%;"; break;
+				case "6": state_bar = "width:60%;"; break;
+				case "7": state_bar = "width:60%;"; break;
+				case "8": state_bar = "width:60%;"; break;
+				case "9": state_bar = "width:60%;"; break;
+				case "10": state_bar = "width:60%;"; break;
+				case "11": state_bar = "width:80%;"; break;
+				case "12": state_bar = "width:80%;"; break;
+				case "13": state_bar = "width:80%;"; break;
+				case "14": state_bar = "width:90%;"; break;
+				case "15": state_bar = "width:90%;"; break;
+
+			}
+
+			$('#tabAttivi').append('<button class="btn btn-block text-center" style="padding:2%;">'+
+                            '<div class="row-fluid">'+	
+                      			'<div class="span12">'+
+                        			'<div class="progress progress-info progress-striped active" style="margin-bottom:0;">'+
+                          				'<div class="bar" style="'+state_bar+'"></div>'+
+                        			'</div></div></div>'+
+                   			'<div class="row-fluid">'+
+               					'<div style="width:30%; float:left;">'+
+               						'<img src="'+picture+'" style="width:70%; margin-left:15%;" class="img-polaroid">'+
+               					'</div>'+
+	               				'<div style="width:65%; float:right; margin-top:-10px;">'+
+	               					'<h6 style="text-transform:uppercase; margin-bottom:0;">'+title+'</h6>'+
+	               					'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+description+'</p>'+
+	               				'</div></div></button>');
+							//mettiamo anche la data? il nome del professionista? che tipo di richiesta è?
+
+		});
+				
+
+	}
+
+	//se non ci sono interventi attivi vai su ricerca in zona
+	else{
+
+	$('#tabAttivi').append('<div class="alert alert-info"> Non ci sono interventi attivi. </div>');
+
+	}
+
+}
 
 
 /* Funzione per il menu a tendina per mostrare sul bottone l'elemento selezionato */
