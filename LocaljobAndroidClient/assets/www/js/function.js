@@ -739,7 +739,7 @@ function ricercaInZona() {
 			error: errorHandler
 			});	
 
-	$('#tabIntorno').prepend('<div class="btn-group">'+
+	$('#tabIntorno').prepend('<div class="btn-group" style="width:100%;">'+
 	                '<a class="btn dropdown-toggle btn-block btn-large" data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">'+
 	                  'Ricerca categoria'+
 	                    '<span class="caret"></span>'+
