@@ -25,7 +25,8 @@ function HomeControl(controlDiv, map) {
   // Handling eventi
   google.maps.event.addDomListener(controlUI, 'click', function() {
     // Ritorno alla pagina precedente prima dell'evento ORIZZONTALE
-    history.back();
+    //history.back();
+    location.href = 'interventi-attivi.html';
   });
 }
 
@@ -50,6 +51,17 @@ function initialize() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+// Listen for orientation changes
+window.addEventListener("orientationchange", function() {
+      
+    // Announce the new orientation number
+    //alert('Orientation ' + window.orientation);
+    if(window.orientation == 0) {
+        location.href = 'interventi-attivi.html';
+    }
+
+  }, false);
 
 
 

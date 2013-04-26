@@ -104,22 +104,24 @@
       
       
   	<script>
+  	function AccediFB(){
+  		my_window=window.open('http://95.141.45.174/logwhitface?googlecod=5', 'my_window', 'location=yes');
+  		$("#bottone_entra_fb").removeAttr("disabled");
+  	}
+  	
   	function funzioneDTD(){
   		
-  		$.ajax({
+  		window.location='interventi-attivi.html';
+  		/*$.ajax({
 			async: false,
 			type: 'GET',
 			url: 'http://95.141.45.174/mce/',			
 			crossDomain:true,
 			success: vabeneDTD,
 			error: errorHandler
-			});	
-  		
+			});	*/	
   	}
   	
-  	function vabeneDTD(data){
-  		alert(data);
-  	}
   	</script>
     </head>
 	
@@ -144,11 +146,13 @@
 
            <div id="contenitore" class="row-fluid text-center">
                <div class="span4 offset4">
-                <p><a class="btn btn-large btn-block btn-primary" href="javascript:funzioneDTD();"><i class="icon-user icon-white"></i> Accedi con FB</a></p>
-                <!-- <a href="http://95.141.45.174/login/facebook/" role="button" class="btn btn-large btn-block btn-primary" data-toggle="modal">Accedi con FB 2</a> -->
-                
-                <a href="javascript:my_window=window.open('http://95.141.45.174/logwhitface?googlecod=5', 'my_window', 'location=yes');" role="button" class="btn btn-large btn-block btn-primary" data-toggle="modal">Accedi con FB 2</a>
                
+               	<!-- Tasto per registrarsi/loggarsi con FB -->
+               	<p><a href="javascript:AccediFB();" class="btn btn-large btn-block btn-primary"><i class="icon-user icon-white"></i> Accedi con FB</a></p>
+                <!-- Tasto per entrare con FB -->
+                <p><button onclick="javascript:funzioneDTD();" class="btn btn-large btn-block btn-primary" id="bottone_entra_fb" disabled><i class="icon-user icon-white"></i> Entra con FB</button></p>
+                      
+                <!-- <a href="http://95.141.45.174/login/facebook/" role="button" class="btn btn-large btn-block btn-primary" data-toggle="modal">Accedi con FB 2</a> -->
                 <!-- javascript:window.open('http://95.141.45.174/logwhitface?googlecod='+sessionStorage.googlecod+'', '_blank', 'location=no');
                 javascript:alert('http://95.141.45.174/logwhitface?googlecod='+sessionStorage.googlecod);   -->
                 
@@ -158,21 +162,6 @@
                 <p><a class="btn btn-large btn-block btn-inverse" href="javascript:cambia_login();">Login</a></p>
               </div>
            </div>
-		
-		
-		<!-- Modal -->
-			<div id="myModal_fb" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			  <div class="modal-header">
-			    <h3 id="myModalLabel">Accedi con Facebook</h3>
-			  </div>
-			  <div class="modal-body">
-			    <iframe src="http://95.141.45.174/logwhitface/"></iframe>
-			  </div>
-			  <div class="modal-footer">	
-			    	<button class="btn" data-dismiss="modal" aria-hidden="true">Annulla</button>
-			    	<button class="btn btn-primary" onclick="">Salva</button>
-			  </div>
-			</div>
 			
 			
         </div> <!-- /container -->

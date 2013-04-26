@@ -11,9 +11,27 @@
     <link href="./css/bootstrap.css" rel="stylesheet">
     <link href="./css/jasny-bootstrap.css" rel="stylesheet">
     <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      	background-color:#007E94;
+      	body {
+        	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        	background-color:#007E94;
+        	color:white;
+      	}	
+      	h4{
+      		text-align:center;
+      	}
+      	/* Per Validator */
+		label.valid {
+		  	width: 24px;
+		  	height: 24px;
+		  	background: url(./img/valid.png) center center no-repeat;
+		  	display: inline-block;
+		  	text-indent: -9999px;
+		}
+		label.error {
+			font-weight: bold;
+			color: red;
+			padding: 2px 8px;
+			margin-top: 2px;
       }
     </style>
     <link href="./css/bootstrap-responsive.css" rel="stylesheet">
@@ -63,8 +81,77 @@
 
 
 	<div class="container contNotifiche" style="margin-top:3%;">
-	    
-    	<div class="row-fluid text-center">    
+	    <h4>Descrivi il tuo problema</h4></ br>
+    	
+		    	
+		    	<form action="javascript:user_signin();" id="contact-form" class="form-signin">
+			    	<div class="control-group"> <!-- Serve per il validator -->
+				    	<div class="row-fluid" style="margin-bottom:15px;">
+
+				    		<div style="width:25%; float:left; margin-right:0; height:100%; text-align:center">
+
+
+				    		
+				    			<div class="fileupload fileupload-new" data-provides="fileupload">
+	  								<div class="fileupload-new thumbnail" style="width: 100px; height: 100px;"><img src="./img/example_photo.png" /></div>
+	  								<div class="fileupload-preview fileupload-exists thumbnail" style="width: 100px; height: 100px;"></div><br/>
+	 								
+	  							</div>
+	  							
+				    		</div>
+				    		<!-- La classe controls serve per il validator -->
+
+				    		<div class="controls" style="width:50%; float:right; height:100%; margin-left:2%; margin-top:15px;">
+				    			<div class="fileupload fileupload-new" data-provides="fileupload">
+				    			<div class="btn btn-file btn-inverse btn-large" style="margin-top:2px;"><div class="fileupload-new" id="photo">CARICA</div><div class="fileupload-exists">MODIFICA</div><input type="file" name="signU_img" id="signU_img"/></div>
+	  								<a href="#" class="btn fileupload-exists btn-inverse" data-dismiss="fileupload" style="margin-top:2px;">RIMUOVI</a></div>
+
+				    			<div class="btn-group">
+		                		<a class="btn dropdown-toggle btn-inverse btn-large " data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">
+		                  		Categoria
+		                    	<span class="caret"></span> 
+		                		</a>
+									<ul id="problemType" class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu">
+				                  		<li><a tabindex="-1" href="javascript:salvaProblemType(1);">Caldaista</a></li>
+						                  <li><a tabindex="-1" href="javascript:salvaProblemType(2);">Idraulico</a></li>
+						                  <li><a tabindex="-1" href="javascript:salvaProblemType(3);">Pittore</a></li>
+						                  <li><a tabindex="-1" href="javascript:salvaProblemType(4);">Elettricista</a></li>
+						                  <li><a tabindex="-1" href="javascript:salvaProblemType(5);">Muratore</a></li>
+						                  <li><a tabindex="-1" href="javascript:salvaProblemType(6);">Antennista</a></li>
+						                  <li><a tabindex="-1" href="javascript:salvaProblemType(7);">Sarto</a></li>
+						                  <li><a tabindex="-1" href="javascript:salvaProblemType(8);">Calzolaio</a></li>
+						                  <li><a tabindex="-1" href="javascript:salvaProblemType(9);">Meccanico</a></li>
+						                  <li><a tabindex="-1" href="javascript:salvaProblemType(10);">Carpentiere</a></li>
+						                  <li><a tabindex="-1" href="javascript:salvaProblemType(11);">Falegname</a></li>
+		                			</ul>
+		             			</div>
+		             			
+							
+
+			 				</div>
+				    	</div>
+						<!-- Parte con il form normale -->
+			 			<div class="controls">
+			 				<p><div class="controls"><input type="text" id="problemTitle" class="input-xxlarge" style="margin-top:2%;" placeholder="Titolo"></div></p>
+
+			        		<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea>
+
+			     		</div>
+			   		</div>
+			    	<button type="submit" class="btn btn-large btn-block btn-inverse" onclick="javascript:saveProblem();"><img src="./img/glyphicons/white_ver/153.PNG"/> CONFERMA</button>
+		    	</form>
+			
+
+
+
+
+
+
+
+
+
+
+    	<!--<div class="row-fluid text-center">    
 			<div class="span12">
 			
 				<form>
@@ -92,7 +179,7 @@
 		         		<div class="fileupload fileupload-new" data-provides="fileupload">
 							<div class="fileupload-new thumbnail" style="width: 80px; height: 80px;"><img src="http://www.placehold.it/80x80/EFEFEF/AAAAAA" /></div>
 							<div class="fileupload-preview fileupload-exists thumbnail" style="width: 80px; height: 80px;"></div><br/>
-							<span class="btn btn-file btn-large"><span class="fileupload-new">Carica un'immagine</span><span class="fileupload-exists">Modifica</span><input type="file" /></span>
+							<span class="btn btn-file btn-large"><span class="fileupload-new">Carica immagine</span><span class="fileupload-exists">Modifica</span><input type="file" /></span>
 							<a href="#" class="btn btn-large fileupload-exists" data-dismiss="fileupload">Elimina</a>
 						</div><br/>
          
@@ -102,7 +189,7 @@
 					</fieldset>
 	    		</form>
 			</div>
-       	 </div><br/>
+       	 </div><br/>  -->
 
     </div> <!-- /container -->
    

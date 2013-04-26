@@ -10,7 +10,7 @@ var filtroIntervento;
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
-//sessionStorage.googlecod = "5";
+sessionStorage.googlecod = "5";
 
 
 /*
@@ -372,7 +372,7 @@ function mostraCasa(i){
 	$('#tabAltro').attr('class','tab-pane');
 	$('#tabCasa').attr('class','tab-pane active');
 	
-	$('#tab_casa').attr('class','active');
+	//	$('#tab_casa').attr('class','active');
 	$('#tab_altro').attr('class','');
 	$('#tab_altro').html('<a onclick="goTabAltro(true)" data-toggle="tab" style="border:1px solid #ffffff;">Altro</a>');	
 
@@ -528,28 +528,37 @@ function inviaUrgenza(luogo){
 		//window.location='intervento-modalita.html'
 	}
 	
-	alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
+	/*alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
 			"Request Type: "+sessionStorage.problemType+" \n " +
 			"Description: "+sessionStorage.problemDesription+" \n"+
 			"Lat e Long: "+sessionStorage.lat+" , "+sessionStorage.long+" \n"+
-			"Indirizzo completo: "+sessionStorage.complete_address);
+			"Indirizzo completo: "+sessionStorage.complete_address);*/
 	
-	/*
+	
 	$.ajax({
           type: 'POST',
-          url: 'http://95.141.45.174/request/emergency',
-          ajaxStart: function(){
-        	  window.location='wait.html';
-          },
+          url: 'http://95.141.45.174/request/request/',
           contentType: 'application/x-www-form-urlencoded',
           crossDomain: true,
-          data: {'problemType': sessionStorage.problemTitle, 'requestType': sessionStorage.problemType, 'description': sessionStorage.problemDesription, 'latitude': sessionStorage.lat, 'longitude': sessionStorage.long},
+          data: {'titolo': sessionStorage.problemTitle, 
+        	  'description': sessionStorage.problemDesription, 
+        	  'foto': 'foto', 
+        	  'latitude': sessionStorage.lat, 
+        	  'longitude': sessionStorage.long, 
+        	  'isEmergenza': 'True', 
+        	  'tiporichiestauno': sessionStorage.problemType, 
+        	  'tiporichiestadue': '0',
+        	  'tiporichiestadue': '0'
+          },
           success: ajaxEMERGENCY,
           error: errorHandler
-       })
-       */
+       });
 }
 
+function ajaxEMERGENCY(data){
+	alert("richiesta inviata correttamente");
+	window.location='intervento-invio.html';
+}
 
 /*
  * Funzione ricerca standard
@@ -873,9 +882,9 @@ function ricercaInZona(filtroPrecedente) {
 
 	$('#tabIntorno').prepend(
 		'<div class="btn-toolbar" style="margin: 0;">'+
-				'<div class="btn-group" style="width:60%;display:inline:float:left;text-align:left;">'+
+				'<div class="btn-group" style="width:50%;display:inline:float:left;text-align:left;">'+
 		                '<a class="btn dropdown-toggle btn-block btn-inverse btn-large" data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">'+
-		                  'Ricerca categoria&nbsp;'+
+		                  'Categoria&nbsp;'+
 		                    '<span class="caret"></span>'+
 		               '</a>'+
 		                '<ul class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu" id="dropCategorieConsumatore">'+
@@ -894,8 +903,8 @@ function ricercaInZona(filtroPrecedente) {
 		                  '<li><a tabindex="-1" href="#">Falegname</a></li>'+
 		                '</ul>'+
 	            '</div>'+
-	            '<div style="display:inline;float:right;width:40%;text-align:right;">'+
-	            '<a class="btn btn-large btn-info" style="margin:0 5px 0 5px;"><i class="icon-thumbs-up icon-white"></i></a>'+
+	            '<div style="display:inline;float:right;width:45%;text-align:right;">'+
+	            '<a class="btn btn-large btn-info" style="margin:0 2px 0 2px;"><i class="icon-thumbs-up icon-white"></i></a>'+
 	            '<a class="btn btn-large btn-info"><i class="icon-gift icon-white"></i></a></div>'+
 	    '</div>'+
 	    '<div style="height:20px;"></div>');
@@ -1369,7 +1378,6 @@ function ricercaAttiviProfessionistaSuccess(xml){
 	               					'<h6 style="text-transform:uppercase; margin-bottom:0;">'+title+'</h6>'+
 	               					'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+description+'</p>'+
 	               				'</div></div></button>');
-							//mettiamo anche la data? il nome del professionista? che tipo di richiesta è?
 
 		});
 				
@@ -1392,4 +1400,26 @@ function menuTendina(){
     $("#tendina:first-child").html($(this).text()+ ' <span class="caret"></span>');
     $("#tendina:first-child").val($(this).text());
   });
+
+
 }
+
+function exitFromApp(buttonIndex) {
+   if (buttonIndex==1){
+   	
+    navigator.app.exitApp();
+
+	}
+}
+
+function confermaUscita()
+       {
+
+       		navigator.notification.confirm(
+       		'Vuoi davvero chiudere la app?',  
+        	exitFromApp,            
+        	'Uscita',            
+        	'OK,Annulla');
+
+       }
+
