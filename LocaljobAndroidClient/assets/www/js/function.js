@@ -875,7 +875,7 @@ function ricercaInZona(filtroPrecedente) {
 		'<div class="btn-toolbar" style="margin: 0;">'+
 				'<div class="btn-group" style="width:50%;display:inline:float:left;text-align:left;">'+
 		                '<a class="btn dropdown-toggle btn-block btn-inverse btn-large" data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">'+
-		                  'Ricerca categoria&nbsp;'+
+		                  'Categoria&nbsp;'+
 		                    '<span class="caret"></span>'+
 		               '</a>'+
 		                '<ul class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu" id="dropCategorieConsumatore">'+
