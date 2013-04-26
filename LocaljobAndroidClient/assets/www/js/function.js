@@ -1272,9 +1272,12 @@ function menuTendina(){
 
 }
 
-function exitFromApp() {
-   
+function exitFromApp(buttonIndex) {
+   if (buttonIndex==1){
+   	
     navigator.app.exitApp();
+
+	}
 }
 
 function confermaUscita()
