@@ -10,7 +10,7 @@ var filtroIntervento;
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
-sessionStorage.googlecod = "5";
+//sessionStorage.googlecod = "5";
 
 
 /*
@@ -107,7 +107,7 @@ function errorHandler (error) {
  * */
 
 function cambia_login(){
-	$('#logone').html('<img src="./img/logo_prova.png" style="margin:5%"/>');	
+	//$('#logone').html('<img src="./img/logo_prova.png" style="margin:5%"/>');	
 	
 	$('#contenitore').html('<h4>Accedi a LocalJob</h4>'+
 			'<form class="form-signin" action="javascript:login();">' +
@@ -115,7 +115,7 @@ function cambia_login(){
 				'<input id="password" type="password" class="input-block-level" placeholder="Password">' +
 				'<div class="btn-toolbar" style="margin: 0;">'+
 					'<span align="center">'+
-						'<button class="btn btn-large btn-inverse" onclick="window.location="home.html";" style="width:28%;margin:0 2% 0 0">' +
+						'<button class="btn btn-large btn-inverse" type="button" onclick="location.reload();" style="width:28%;margin:0 2% 0 0">' +
 							'<img src="./img/glyphicons/white_ver/225.PNG" style="height:15px;margin-top:-5px">'+
 						'</button>' +
 						'<button class="btn btn-large btn-inverse" type="submit" style="width:70%;">Accedi</button>'+
