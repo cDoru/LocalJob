@@ -36,7 +36,13 @@
   </head>
 
   <body>
-
+	
+		<!-- MODAL PER NOTIFICHE -->
+		<div class="modal hide fade" id="panelNotifiche" style="color:black">
+			...
+		</div>
+		<!--  -->
+	
  		<!-- BAR -->
 		<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
 	    	<div class="navbar-inner text-center">
@@ -49,9 +55,9 @@
 	      				<a class="btn btn-large" type="button" onclick="" style="line-height:22px;" disabled>
 	      					LJ
 	      				</a>         		
-		                <a class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
-		                	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
-		                </a>
+		                <a class="btn btn-large btn-inverse" href="javascript:mostraPanelNotifiche()">
+		               		<span id="sos" class="badge" style="margin-top:4%; margin-bottom:5%">.</span>
+		            	</a>
 			            <a  class="btn btn-large btn-inverse" type="button">
 			            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
 			            </a>
@@ -82,6 +88,6 @@
 	<script src="./js/function.js" type="text/javascript" charset="utf-8"></script>
 	<script src="./js/onload.js" type="text/javascript" charset="utf-8"></script>
     <script src="./js/PushNotification.js" type="text/javascript" charset="utf-8" ></script>
-
+	<script src="./js/function_notifiche.js"></script>
   </body>
 </html>
