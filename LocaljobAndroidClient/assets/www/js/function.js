@@ -10,7 +10,7 @@ var filtroIntervento;
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
-sessionStorage.googlecod = "5";
+//sessionStorage.googlecod = "5";
 
 
 /*
@@ -112,9 +112,11 @@ function cambia_login(){
 	$('#contenitore').html('<h4>Accedi a LocalJob</h4><form class="form-signin" action="javascript:login();">' +
 			'<input id="user" type="text" class="input-block-level" placeholder="Username">' +
 			'<input id="password" type="password" class="input-block-level" placeholder="Password">' +
-			'<span align="center"><button class="btn btn-large btn-inverse" onclick="javascript:history.go(-1);" style="margin-right:5px;">' +
-			'<img src="./img/glyphicons/white_ver/225.PNG"></button>' +
-			'<button class="btn btn-large btn-inverse" type="submit" style="width=70%;">Accedi</button></span>' +
+			'<div class="btn-toolbar" style="margin: 0;">'+
+				'<span align="center"><button class="btn btn-large btn-inverse" onclick="javascript:location.reload();" style="width:28%;margin:0 2% 0 0">' +
+				'<img src="./img/glyphicons/white_ver/225.PNG" style="height:15px;margin-top:-5px"></button>' +
+				'<button class="btn btn-large btn-inverse" type="submit" style="width:70%;">Accedi</button></span>' +
+			'</div>'+
 			'<div align="center" id="password_link"><a href="#">Hai dimenticato la password?</a></div></form>');
 }
 
@@ -487,20 +489,34 @@ function salvaIndirizzo()
 	
 	//ricordarsi lat e long
 	
-	alert("salviamo l'indirizzo "+nomeLuogo+": "+nomeVia+", "+civico+" - "+comune+" ("+provincia+") - "+cap+" coordinate gps: "+sessionStorage.lat+" , "+sessionStorage.long);
+	//alert("salviamo l'indirizzo "+nomeLuogo+": "+nomeVia+", "+civico+" - "+comune+" ("+provincia+") - "+cap+" coordinate gps: "+sessionStorage.lat+" , "+sessionStorage.long);
 	
 	//chiamata AJAX per salvare l'indirizzo nel database
 	 $.ajax({
 	          type: 'POST',
-	          url: 'http://95.141.45.174/addaddress',
+	          url: 'http://95.141.45.174/addaddress/',
 	          contentType: 'application/x-www-form-urlencoded',
 	          crossDomain: true,
-	          data: {'nomeVia': nomeVia, 'civico': civico, 'cap': cap, 'comune': comune, 'provincia': provincia,},
+	          data: {'nomeVia': nomeVia, 
+	        	  'numerocivico': civico, 
+	        	  'cap': cap, 
+	        	  'comune': comune, 
+	        	  'provincia': provincia,
+	        	  'latitudine': sessionStorage.lat,
+	        	  'longitudine': sessionStorage.long,
+	        	  'etichetta': nomeLuogo,
+	        	  'isresidenza': true,
+	        	  'isattivita': false,
+	        	  'isdomicilio': false
+	        	  },
 	          complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
-	          success: ajaxSIGNIN,
+	          success: ajaxIndirizzoSalvato(nomeLuogo),
 	          error: errorHandler
 	})
-	
+}
+
+function ajaxIndirizzoSalvato(nomeLuogo){
+	alert("Indirizzo salvato come: "+nomeLuogo);
 }
 
 /*
