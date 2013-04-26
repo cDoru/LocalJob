@@ -1244,7 +1244,6 @@ function ricercaAttiviProfessionistaSuccess(xml){
 	               					'<h6 style="text-transform:uppercase; margin-bottom:0;">'+title+'</h6>'+
 	               					'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+description+'</p>'+
 	               				'</div></div></button>');
-							//mettiamo anche la data? il nome del professionista? che tipo di richiesta è?
 
 		});
 				
@@ -1272,3 +1271,19 @@ function menuTendina(){
   });
 
 }
+
+function exitFromApp() {
+   
+    navigator.app.exitApp();
+}
+
+function confermaUscita()
+       {
+
+       		navigator.notification.confirm(
+       		'Vuoi davvero chiudere la app?',  
+        	exitFromApp,            
+        	'Uscita',            
+        	'OK,Annulla');
+
+       }
