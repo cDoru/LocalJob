@@ -10,7 +10,7 @@ var filtroIntervento;
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
-//sessionStorage.googlecod = "5";
+sessionStorage.googlecod = "5";
 
 
 /*
@@ -372,7 +372,7 @@ function mostraCasa(i){
 	$('#tabAltro').attr('class','tab-pane');
 	$('#tabCasa').attr('class','tab-pane active');
 	
-	$('#tab_casa').attr('class','active');
+	//	$('#tab_casa').attr('class','active');
 	$('#tab_altro').attr('class','');
 	$('#tab_altro').html('<a onclick="goTabAltro(true)" data-toggle="tab" style="border:1px solid #ffffff;">Altro</a>');	
 
