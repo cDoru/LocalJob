@@ -100,8 +100,8 @@ function importaSuccesso(xml) {
 	rating(kindness, 3);
 
 
-	$('#numTelefono').append('<a class="btn btn-large btn-success btn-block" type="button" id="numTelefono" href="tel:+393466620136">'+
-									'<img id="icoCall" src="./img/call.png"/> CONTATTA </a><br/>');
+	$('#numTelefono').append('<a class="btn btn-large btn-success btn-block" type="button" id="numTelefono" href="tel:'+telefono+'">'+
+									'<img id="icoCall" src="./img/glyphicons/white_ver/170.PNG"/>&nbsp;&nbsp;CONTATTA </a><br/>');
 }
 
 function rating(voto, categoria){			//per visualizzare le valutazioni
