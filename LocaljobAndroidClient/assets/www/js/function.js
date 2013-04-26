@@ -207,9 +207,35 @@ function goTabAltro(indirizzo){
     		$('#tab_casa').html('<a>Casa</a>');
 		}
 		else{
+			//Controllo quanti indirizzi ha salvato l'utente
+			numero_case = $(xml_case).find("home").size();	
+			//Fa un controllo, se c'è solo una casa mostra il tab normale, 
+			//altrimenti mostra l'elenco cliccabile
 			
+			if(numero_case < 2){
+				var $casa = $(xml_case).find("home");
+				var nome = $casa.find("nome").text();
+				// Il tab casa è attivato e viene mostrato il div #tabCasa
+		    	$('#tab_casa').attr('class','');
+		    	$('#tab_casa').html('<a href="#tabCasa" data-toggle="tab" style="border:1px solid #ffffff;"> '+nome+' </a>');
+			}
+			else{
+				var $casa = $(xml_case).find("home");
+				//prendo la prima casa della lista e la metto come principale
+				var nome = $casa.find("nome").eq(0).text();			
+				$('#tab_casa').attr('class','dropdown');
+		    	$('#tab_casa').html('<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="tendina" onclick="menuTendina()" style="border:1px solid #ffffff;"> '+nome+' <span class="caret"></span></a>'+
+		    		'<ul id="casaType" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu"></ul>');	
+		    	//per ogni elemento in più che trovo appendo le altre case
+		    	for(var i=0; i<numero_case ; i++){
+		    		nome_temp = $casa.find("nome").eq(i).text();
+		    		$('#casaType').append('<li><a tabindex="-1" href="javascript:mostraCasa('+i+');"> '+nome_temp+' </a></li>');
+		    	}
+			}
+			/*
 			$('#tab_casa').attr('class','');
 			$('#tab_casa').html('<a onclick="goTabCasa(true);" data-toggle="tab" style="border:1px solid #ffffff;">Casa</a>');
+			*/
 		}
 		//Il tab altro è attivato e viene mostrato il div #tabAltro
 		$('#tab_altro').attr('class','active');
@@ -338,7 +364,18 @@ function goTabCasa(indirizzo){
  * Funzione che mostra a video tutte le info sulla casa selezionata
  */
 function mostraCasa(i){
-	//non so se $casa possono risparmiare di farlo (lo prende dalla function prima)
+	
+	/* Per sicurezza (se ci arrivo da tab altro) devo :
+	*  - attivare la pagina tabCasa e disattivare il div tabAltro
+	*  - il tasto tab_altro deve essere deselezionato e cliccabile  
+	*  */	
+	$('#tabAltro').attr('class','tab-pane');
+	$('#tabCasa').attr('class','tab-pane active');
+	
+	$('#tab_casa').attr('class','active');
+	$('#tab_altro').attr('class','');
+	$('#tab_altro').html('<a onclick="goTabAltro(true)" data-toggle="tab" style="border:1px solid #ffffff;">Altro</a>');	
+
 	var $casa = $(xml_case).find("home");
 	var nome_mostrato = $casa.find("nome").eq(i).text();
 	var indirizzo_mostrato = $casa.find("indirizzo").eq(i).text();
