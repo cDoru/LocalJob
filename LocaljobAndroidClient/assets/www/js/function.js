@@ -894,8 +894,8 @@ function ricercaInZona(filtroPrecedente) {
 		                  '<li><a tabindex="-1" href="#">Falegname</a></li>'+
 		                '</ul>'+
 	            '</div>'+
-	            '<div style="display:inline;float:right;width:40%;text-align:right;">'+
-	            '<a class="btn btn-large btn-info" style="margin:0 5px 0 5px;"><i class="icon-thumbs-up icon-white"></i></a>'+
+	            '<div style="display:inline;float:right;width:45%;text-align:right;">'+
+	            '<a class="btn btn-large btn-info" style="margin:0 2px 0 2px;"><i class="icon-thumbs-up icon-white"></i></a>'+
 	            '<a class="btn btn-large btn-info"><i class="icon-gift icon-white"></i></a></div>'+
 	    '</div>'+
 	    '<div style="height:20px;"></div>');
