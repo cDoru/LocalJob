@@ -100,7 +100,7 @@ function importaSuccesso(xml) {
 	rating(kindness, 3);
 
 
-	$('#numTelefono').append('<button class="btn btn-large btn-success btn-block" type="button" id="numTelefono" href="tel:'+telefono+'" onclick="document.location.href = "tel:'+telefono+'";">'+
+	$('#numTelefono').append('<button class="btn btn-large btn-success btn-block" type="button" id="numTelefono" href="tel:+393466620136" onclick="document.location.href = "tel:'+telefono+'";">'+
 									'<img id="icoCall" src="./img/call.png"/> CONTATTA </button><br/>');
 }
 

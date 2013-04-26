@@ -1157,27 +1157,38 @@ function interventoCli(id){
 }
 
 function mostraStoricoCli(id){
-	$('#loading').fadeIn('fast');		//mostra schermata di caricamento
-	
-	$.ajax({
+	//ASPETTIAMO LA FUNZIONE DI TEODORO
+	/*$('#loading').fadeIn('fast');		//mostra schermata di caricamento
+	  
+	 $.ajax({
 		async: false,
 		type: 'GET',
-		url: 'http://95.141.45.174/openjob/'+id+'/',		//RICCCCCCCCCCCCCC	
+		url: 'http://95.141.45.174/openjob/'+id+'/',
 		crossDomain:true,
 		complete: function(){$('#loading').fadeOut('fast')},		//nasconde schermata di caricamento
 		success: mostraStoricoCliSuccess,
 		error: errorHandler,
-		});	
+		});*/
+	mostraStoricoCliSuccess();
 }
 
-function mostraStoricoCliSuccess(xml){
-	var xmlString = $(xml);	
+function mostraStoricoCliSuccess(){
+//function mostraStoricoCliSuccess(xml){
+	
+	var id = "12";
+	var date = "26/04/2013";
+	var description = "blablabla chachacha blablabla chachacha blablabla chachacha blablabla chachacha blablabla chachacha";
+	var state = "5";
+	var picture = "Photo";
+	var title = "help me please";
+	
+	/*var xmlString = $(xml);	
 	var id = $request.find("id").text();
 	var date = $request.find("date").text();
 	var description = $request.find("description").text();
 	var state = $request.find("state").text();
 	var picture = $request.find("picture").text(); //path della foto
-	var title = $request.find("title").text(); 
+	var title = $request.find("title").text(); */
 
 	// IMMAGINE NOTFOUND?
 	 if (picture == 'Photo' || picture == 'photo' || picture == '') {
@@ -1291,18 +1302,20 @@ function mostraStoricoCliSuccess(xml){
 
 	var pagina = "javascript:interventoCli('"+id+"');";
 		
-	$('#incolla').append('<div class="row-fluid">'+	
+	$('#incolla').html('<div class="row-fluid">'+	
               			'<div class="span12">'+
+              				'<h4 id="titoloPagina">Stato di avanzamento:</h4>'+
                 			'<div class="progress ' + progress_state + ' progress-striped ' + state_active + '" style="margin-bottom:0;">'+
                   				'<div class="bar" style="'+state_bar+'"></div>'+
                 			'</div></div></div>'+
                 			'<div class="row-fluid">'+
-        					'<h4 id="titoloPagina">Ecco i dettagli del lavoro:</h4><br/>'+
+        					'<br/><h4 id="titoloPagina">Dettagli:</h4>'+
         					'<a href="javascript:mostraPanelFoto()"><img id="foto" src="'+picture+'" style="width:100px;"/></a><br/>'+
         					'Tappa sulla foto per ingrandirla'+
         		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+title+'</h5><p id="descrizione2">'+description+'</p></div>'+
         		    		'<button class="btn btn-large btn-block btn-inverse" onclick="javascript:history.go(-1);"">TORNA INDIETRO</button>'+
         		    		'</div>');
+	$('#fotoGrande').attr('src', picture);		//dentro a panelFoto
 }
 
 /**/
