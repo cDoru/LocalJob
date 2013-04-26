@@ -528,11 +528,11 @@ function inviaUrgenza(luogo){
 		//window.location='intervento-modalita.html'
 	}
 	
-	alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
+	/*alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
 			"Request Type: "+sessionStorage.problemType+" \n " +
 			"Description: "+sessionStorage.problemDesription+" \n"+
 			"Lat e Long: "+sessionStorage.lat+" , "+sessionStorage.long+" \n"+
-			"Indirizzo completo: "+sessionStorage.complete_address);
+			"Indirizzo completo: "+sessionStorage.complete_address);*/
 	
 	
 	$.ajax({
@@ -540,15 +540,25 @@ function inviaUrgenza(luogo){
           url: 'http://95.141.45.174/request/request/',
           contentType: 'application/x-www-form-urlencoded',
           crossDomain: true,
-          data: {'problemType': sessionStorage.problemTitle, 'requestType': sessionStorage.problemType, 'description': sessionStorage.problemDesription, 'latitude': sessionStorage.lat, 'longitude': sessionStorage.long},
+          data: {'titolo': sessionStorage.problemTitle, 
+        	  'description': sessionStorage.problemDesription, 
+        	  'foto': 'foto', 
+        	  'latitude': sessionStorage.lat, 
+        	  'longitude': sessionStorage.long, 
+        	  'isEmergenza': 'True', 
+        	  'tiporichiestauno': sessionStorage.problemType, 
+        	  'tiporichiestadue': '0',
+        	  'tiporichiestadue': '0'
+          },
           success: ajaxEMERGENCY,
           error: errorHandler
-       })
-       
-       //Body:  titolo = <titoloRichiesta> & description = <description> & foto = <foto> & time = <time> & latitude = <latitude> & longitude = <longitude> & isEmergenza = <True/False> & tiporichiestauno = <tiporichiestauno> & tiporichiestadue = <tiporichiestadue> & tiporichiestatre = <tiporichiestatre> &  address = <address>
-
+       });
 }
 
+function ajaxEMERGENCY(data){
+	alert("richiesta inviata correttamente");
+	window.location='intervento-invio.html';
+}
 
 /*
  * Funzione ricerca standard
