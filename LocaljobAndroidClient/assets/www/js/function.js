@@ -201,7 +201,6 @@ function goTabAltro(indirizzo){
 	//possibilità di cliccare nel tab casa ... altrimenti si
 		
 		if (indirizzo == false){	
-    		alert("non ha indirizzo casa");
     		//Il tab casa deve essere disabilitato e non ci si può cliccare nulla
     		$('#tab_casa').attr('class','disabled');
     		$('#tab_casa').html('<a>Casa</a>');
@@ -481,7 +480,9 @@ function codeLatLng(position_lat, position_long) {
 /*
  * Salva l'indirizzo attuale dell'utente nel database come luogo preferito
  */
-function salvaIndirizzo(){
+function salvaIndirizzo()
+{
+	$('#loading').fadeIn('fast');			//schermata di caricamento
 	
 	nomeLuogo = $('#nome_luogo').val();
 	nomeVia = $('#Indirizzo_altro').val();
@@ -495,6 +496,16 @@ function salvaIndirizzo(){
 	alert("salviamo l'indirizzo "+nomeLuogo+": "+nomeVia+", "+civico+" - "+comune+" ("+provincia+") - "+cap+" coordinate gps: "+sessionStorage.lat+" , "+sessionStorage.long);
 	
 	//chiamata AJAX per salvare l'indirizzo nel database
+	 $.ajax({
+	          type: 'POST',
+	          url: 'http://95.141.45.174/addaddress',
+	          contentType: 'application/x-www-form-urlencoded',
+	          crossDomain: true,
+	          data: {'nomeVia': nomeVia, 'civico': civico, 'cap': cap, 'comune': comune, 'provincia': provincia,},
+	          complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
+	          success: ajaxSIGNIN,
+	          error: errorHandler
+	})
 	
 }
 
@@ -528,27 +539,21 @@ function inviaUrgenza(luogo){
 		//window.location='intervento-modalita.html'
 	}
 	
-	/*alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
-			"Request Type: "+sessionStorage.problemType+" \n " +
-			"Description: "+sessionStorage.problemDesription+" \n"+
-			"Lat e Long: "+sessionStorage.lat+" , "+sessionStorage.long+" \n"+
-			"Indirizzo completo: "+sessionStorage.complete_address);*/
-	
-	
 	$.ajax({
           type: 'POST',
-          url: 'http://95.141.45.174/request/request/',
+          url: 'http://95.141.45.174/request/',
           contentType: 'application/x-www-form-urlencoded',
           crossDomain: true,
           data: {'titolo': sessionStorage.problemTitle, 
-        	  'description': sessionStorage.problemDesription, 
-        	  'foto': 'foto', 
-        	  'latitude': sessionStorage.lat, 
-        	  'longitude': sessionStorage.long, 
-        	  'isEmergenza': 'True', 
+        	  'descrizione': sessionStorage.problemDesription, 
+        	  'pathfoto': 'IlPath', 
+        	  'latitudine': sessionStorage.lat, 
+        	  'longitudine': sessionStorage.long, 
+        	  'isemergenza': true, 
         	  'tiporichiestauno': sessionStorage.problemType, 
-        	  'tiporichiestadue': '0',
-        	  'tiporichiestadue': '0'
+        	  'tiporichiestadue': 0,
+        	  'tiporichiestatre': 0,
+        	  'stato': 0
           },
           success: ajaxEMERGENCY,
           error: errorHandler
@@ -556,7 +561,6 @@ function inviaUrgenza(luogo){
 }
 
 function ajaxEMERGENCY(data){
-	alert("richiesta inviata correttamente");
 	window.location='intervento-invio.html';
 }
 
@@ -1405,21 +1409,17 @@ function menuTendina(){
 }
 
 function exitFromApp(buttonIndex) {
-   if (buttonIndex==1){
-   	
-    navigator.app.exitApp();
-
+   if (buttonIndex==1){ 	
+	   navigator.app.exitApp();
 	}
 }
 
 function confermaUscita()
        {
-
        		navigator.notification.confirm(
        		'Vuoi davvero chiudere la app?',  
         	exitFromApp,            
         	'Uscita',            
         	'OK,Annulla');
-
        }
 
