@@ -960,18 +960,14 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	
-	//$('#loading').fadeIn('fast');		//schermata di caricamento
+	$('#loading').fadeIn('fast');		//schermata di caricamento
 	
-
-	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
-
-
 	$.ajax({
 		async: false,
 		type: 'GET',
 		url: 'http://95.141.45.174/openjob',			
 		crossDomain:true,
-		complete: function(){$('#loading').hide()},
+		complete: function(){$('#loading').fadeOut('fast')},
 		success: ricercaAttiviSuccess,
 		error: errorHandler,
 		});	
@@ -1113,28 +1109,9 @@ function ricercaAttiviSuccess(xml){
 							break;
 			}
 
-	/*		switch(state){
-
-				case "0": state_bar = "width:10%;"; break;
-				case "1": state_bar = "width:20%;"; break;
-				case "2": state_bar = "width:40%;"; break;
-				case "3": state_bar = "width:40%;"; break;
-				case "4": state_bar = "width:40%;"; break;
-				case "5": state_bar = "width:60%;"; break;
-				case "6": state_bar = "width:60%;"; break;
-				case "7": state_bar = "width:60%;"; break;
-				case "8": state_bar = "width:60%;"; break;
-				case "9": state_bar = "width:60%;"; break;
-				case "10": state_bar = "width:60%;"; break;
-				case "11": state_bar = "width:80%;"; break;
-				case "12": state_bar = "width:80%;"; break;
-				case "13": state_bar = "width:80%;"; break;
-				case "14": state_bar = "width:90%;"; break;
-				case "15": state_bar = "width:90%;"; break;
-
-			}*/
-
-			$('#tabAttivi').append('<button class="btn btn-block text-center" style="padding:2%;">'+
+     		var pagina = "javascript:interventoCli('"+id+"');";
+     		
+			$('#tabAttivi').append('<a class="btn btn-block text-center" href="'+pagina+'" style="padding:2%;">'+
                             '<div class="row-fluid">'+	
                       			'<div class="span12">'+
                         			'<div class="progress ' + progress_state + ' progress-striped ' + state_active + '" style="margin-bottom:0;">'+
@@ -1150,38 +1127,186 @@ function ricercaAttiviSuccess(xml){
 	               					'<p style="text-align:left; margin-right:8%; font-size:0.8em; height:15px; overflow:hidden;">'+ '<b>Iniziato il: </b>' + date+'</p>'+
 	               					'<p style="text-align:left; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+ '<b>Stato intervento: </b>' +state_string_it+'</p>'+
 
-	               				'</div></div></button>');
+	               				'</div></div></a>');
 		
 		});
-				
-
 	}
 
 	//se non ci sono interventi attivi vai su ricerca in zona
 	else{
-
 		ricercaInZona();
 	}
-
 }
+
+function interventoCli(id){
+	sessionStorage.id = id;
+	window.location='storicoCliente.html';
+}
+
+function mostraStoricoCli(id){
+	$('#loading').fadeIn('fast');		//mostra schermata di caricamento
+	
+	$.ajax({
+		async: false,
+		type: 'GET',
+		url: 'http://95.141.45.174/openjob/'+id+'/',		//RICCCCCCCCCCCCCC	
+		crossDomain:true,
+		complete: function(){$('#loading').fadeOut('fast')},		//nasconde schermata di caricamento
+		success: mostraStoricoCliSuccess,
+		error: errorHandler,
+		});	
+}
+
+function mostraStoricoCliSuccess(xml){
+	var xmlString = $(xml);	
+	var id = $request.find("id").text();
+	var date = $request.find("date").text();
+	var description = $request.find("description").text();
+	var state = $request.find("state").text();
+	var picture = $request.find("picture").text(); //path della foto
+	var title = $request.find("title").text(); 
+
+	// IMMAGINE NOTFOUND?
+	 if (picture == 'Photo' || picture == 'photo' || picture == '') {
+		picture = 'img/missingAvatar.png';
+	 }
+	 else {
+		picture = picture;
+	 }
+
+	// Ricavo lo stato in stringa
+		state_string = '';
+
+		switch(state){
+			case "0":   state_string = "default"; 
+						state_string_it = "default";
+					    state_bar = "width:0%;";
+					    state_active = "";
+					    progress_state = "progress-info";
+						break;
+			case "1":   state_string = "research_request_init"; 
+						state_string_it = "Richiesta inviata al professionista";
+						state_bar = "width:10%;";
+						state_active = "active";
+						progress_state = "progress-info";
+						break;
+			case "2":   state_string = "research_professionist_rejected"; 
+						state_string_it = "Il professionista ha rifiutato l'intervento";
+						state_bar = "width:100%;";
+						state_active = "";
+						progress_state = "progress-danger";
+						break;
+			case "3":   state_string = "research_professionist_accepted"; 
+						state_string_it = "Il professionista ha accettato l'intervento";
+						state_bar = "width:40%;";
+						state_active = "active";
+						progress_state = "progress-info";
+						break;
+			case "4":   state_string = "research_work_annulled"; 
+						state_string_it = "La richiesta &egrave; stata annullata";
+						state_bar = "width:100%;";
+						state_active = "";
+						progress_state = "progress-danger";
+						break;
+			case "5":   state_string = "research_payment_sent"; 
+						state_string_it = "Il pagamento &egrave; stato inviato";
+						state_bar = "width:70%;";
+						state_active = "active";
+						progress_state = "progress-info";
+						break;
+			case "6":   state_string = "research_feedback_saved";
+						state_string_it = "Il feedback &egrave; stato inviato";
+						state_bar = "width:90%;";
+						state_active = "active";
+						progress_state = "progress-info"; 
+						break;
+			case "7":   state_string = "research_hidden"; 
+						state_string_it = "Hidden";
+						state_bar = "width:100%;";
+						state_active = "";
+						progress_state = "progress-danger";
+						break;
+			case "8":   state_string = "research_consumer_annulled"; 
+						state_string_it = "Intervento annullato dal consumatore";
+						state_bar = "width:100%;";
+						state_active = "";
+						progress_state = "progress-danger";
+						break;
+			case "9":   state_string = "research_staff_closed"; 
+						state_string_it = "Intervento annullato dallo staff di LocalJob";
+						state_bar = "width:100%;";
+						state_active = "";
+						progress_state = "progress-danger";
+						break;
+			case "10":  state_string = "research_payment_rejected";
+						state_string_it = "Il pagamento &egrave; stato rifiutato";
+						state_bar = "width:40%;"; 
+						state_active = "active";
+						progress_state = "progress-warning";
+						break;
+			case "11":  state_string = "research_refounded"; 
+						state_string_it = "Pagamento rimborsato";
+						state_bar = "width:40%;";
+						state_active = "active";
+						progress_state = "progress-warning";
+						break;
+			case "12":  state_string = "research_sys_locked"; 
+						state_string_it = "Sys Locked";
+						state_bar = "width:100%;";
+						state_active = "";
+						progress_state = "progress-danger";
+						break;
+			case "13":  state_string = "emergency_request_init"; 
+						state_string_it = "Richiesta di intervento con urgenza trasmesso ai professionisti";
+						state_bar = "width:10%;";
+						state_active = "active";
+						progress_state = "progress-info";
+						break;
+			case "14":  state_string = "research_work_finished"; 
+						state_string_it = "Il lavoro &egrave; stato terminato con successo";
+						state_bar = "width:100%;";
+						state_active = "";
+						progress_state = "progress-success";
+						break;
+			case "15":  state_string = "research_feedback_needed"; 
+						state_string_it = "Il feedback non &egrave; ancora stato rilasciato";
+						state_bar = "width:70%;";
+						state_active = "active";
+						progress_state = "progress-warning";
+						break;
+		}
+
+	var pagina = "javascript:interventoCli('"+id+"');";
+		
+	$('#incolla').append('<div class="row-fluid">'+	
+              			'<div class="span12">'+
+                			'<div class="progress ' + progress_state + ' progress-striped ' + state_active + '" style="margin-bottom:0;">'+
+                  				'<div class="bar" style="'+state_bar+'"></div>'+
+                			'</div></div></div>'+
+                			'<div class="row-fluid">'+
+        					'<h4 id="titoloPagina">Ecco i dettagli del lavoro:</h4><br/>'+
+        					'<a href="javascript:mostraPanelFoto()"><img id="foto" src="'+picture+'" style="width:100px;"/></a><br/>'+
+        					'Tappa sulla foto per ingrandirla'+
+        		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+title+'</h5><p id="descrizione2">'+description+'</p></div>'+
+        		    		'<button class="btn btn-large btn-block btn-inverse" onclick="javascript:history.go(-1);"">TORNA INDIETRO</button>'+
+        		    		'</div>');
+}
+
+/**/
 
 function ricercaAttiviProfessionista() { //funzione per tirare giu gli interventi attivi per il prof
 	
-	//$('#loading').fadeIn('fast');		//schermata di caricamento
+	$('#loading').fadeIn('fast');		//schermata di caricamento
 	
-
-	//$('#tabIntorno').append('<div id="attivi" class="alert alert-info"> <!-- sfondo -->');
-
 	$.ajax({
 		async: false,
 		type: 'GET',
 		url: 'http://95.141.45.174/listjobs',			
 		crossDomain:true,
-		complete: function(){$('#loading').hide()},
+		complete: function(){$('#loading').fadeOut('fast')},
 		success: ricercaAttiviProfessionistaSuccess ,
 		error: errorHandler ,
 		});	
-
 }
 
 
@@ -1253,9 +1378,7 @@ function ricercaAttiviProfessionistaSuccess(xml){
 
 	//se non ci sono interventi attivi vai su ricerca in zona
 	else{
-
-	$('#tabAttivi').append('<div class="alert alert-info"> Non ci sono interventi attivi. </div>');
-
+		$('#tabAttivi').append('<div class="alert alert-info"> Non ci sono interventi attivi. </div>');
 	}
 
 }
@@ -1264,11 +1387,9 @@ function ricercaAttiviProfessionistaSuccess(xml){
 /* Funzione per il menu a tendina per mostrare sul bottone l'elemento selezionato */
 
 function menuTendina(){
-  
-  $(".dropdown-menu li a").click(function(){
+	$(".dropdown-menu li a").click(function(){
     
     $("#tendina:first-child").html($(this).text()+ ' <span class="caret"></span>');
-     $("#tendina:first-child").val($(this).text());
+    $("#tendina:first-child").val($(this).text());
   });
-
 }
