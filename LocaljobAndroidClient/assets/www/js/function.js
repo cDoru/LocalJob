@@ -10,7 +10,7 @@ var filtroIntervento;
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
-//sessionStorage.googlecod = "5";
+sessionStorage.googlecod = "5";
 
 
 /*
@@ -109,15 +109,20 @@ function errorHandler (error) {
 function cambia_login(){
 	$('#logone').html('<img src="./img/logo_prova.png" style="margin:5%"/>');	
 	
-	$('#contenitore').html('<h4>Accedi a LocalJob</h4><form class="form-signin" action="javascript:login();">' +
-			'<input id="user" type="text" class="input-block-level" placeholder="Username">' +
-			'<input id="password" type="password" class="input-block-level" placeholder="Password">' +
-			'<div class="btn-toolbar" style="margin: 0;">'+
-				'<span align="center"><button class="btn btn-large btn-inverse" onclick="javascript:location.reload();" style="width:28%;margin:0 2% 0 0">' +
-				'<img src="./img/glyphicons/white_ver/225.PNG" style="height:15px;margin-top:-5px"></button>' +
-				'<button class="btn btn-large btn-inverse" type="submit" style="width:70%;">Accedi</button></span>' +
-			'</div>'+
-			'<div align="center" id="password_link"><a href="#">Hai dimenticato la password?</a></div></form>');
+	$('#contenitore').html('<h4>Accedi a LocalJob</h4>'+
+			'<form class="form-signin" action="javascript:login();">' +
+				'<input id="user" type="text" class="input-block-level" placeholder="Username">' +
+				'<input id="password" type="password" class="input-block-level" placeholder="Password">' +
+				'<div class="btn-toolbar" style="margin: 0;">'+
+					'<span align="center">'+
+						'<button class="btn btn-large btn-inverse" onclick="window.location="home.html";" style="width:28%;margin:0 2% 0 0">' +
+							'<img src="./img/glyphicons/white_ver/225.PNG" style="height:15px;margin-top:-5px">'+
+						'</button>' +
+						'<button class="btn btn-large btn-inverse" type="submit" style="width:70%;">Accedi</button>'+
+					'</span>' +
+				'</div>'+
+				'<div align="center" id="password_link"><a href="#">Hai dimenticato la password?</a></div>'+
+			'</form>');
 }
 
 
@@ -663,9 +668,9 @@ function login()	//gestisce il login dell'utente
 {	
 	$('#loading').fadeIn('fast');			//schermata di caricamento
 	
-	//alert(sessionStorage.googlecod);
 	user =  $('#user').val(); 
 	password =  $('#password').val(); 
+	
 	// il googlecod per ora è prova, ma in realtà verrà preso dalla 
 	// registazione ad ogni avvio dell'app
 	//sessionStorage.googlecod = "prova";
@@ -673,19 +678,13 @@ function login()	//gestisce il login dell'utente
 	$.ajax({
           type: 'POST',
           url: 'http://95.141.45.174/login/',
-          //contentType:"application/json",
-          //dataType:'jsonp',
-          //prova della schermata di attesa
-          ajaxStart: function(){
-        	  window.location='wait.html';
-          },
           contentType: 'application/x-www-form-urlencoded',
           crossDomain: true,
           data: {'userId': user, 'password': password, 'googlecod': sessionStorage.googlecod},
           complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
           success: ajaxLOGIN,
           error: errorHandler
-       })
+       });
 }
 
 /*
