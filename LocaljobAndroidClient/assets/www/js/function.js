@@ -202,6 +202,7 @@ function goTabAltro(indirizzo){
 	//possibilità di cliccare nel tab casa ... altrimenti si
 		
 		if (indirizzo == false){	
+    		alert("non ha indirizzo casa");
     		//Il tab casa deve essere disabilitato e non ci si può cliccare nulla
     		$('#tab_casa').attr('class','disabled');
     		$('#tab_casa').html('<a>Casa</a>');
@@ -481,9 +482,7 @@ function codeLatLng(position_lat, position_long) {
 /*
  * Salva l'indirizzo attuale dell'utente nel database come luogo preferito
  */
-function salvaIndirizzo()
-{
-	$('#loading').fadeIn('fast');			//schermata di caricamento
+function salvaIndirizzo(){
 	
 	nomeLuogo = $('#nome_luogo').val();
 	nomeVia = $('#Indirizzo_altro').val();
@@ -497,6 +496,7 @@ function salvaIndirizzo()
 	//alert("salviamo l'indirizzo "+nomeLuogo+": "+nomeVia+", "+civico+" - "+comune+" ("+provincia+") - "+cap+" coordinate gps: "+sessionStorage.lat+" , "+sessionStorage.long);
 	
 	//chiamata AJAX per salvare l'indirizzo nel database
+
 	 $.ajax({
 	          type: 'POST',
 	          url: 'http://95.141.45.174/addaddress/',
@@ -522,6 +522,7 @@ function salvaIndirizzo()
 
 function ajaxIndirizzoSalvato(nomeLuogo){
 	alert("Indirizzo salvato come: "+nomeLuogo);
+
 }
 
 /*
@@ -554,21 +555,27 @@ function inviaUrgenza(luogo){
 		//window.location='intervento-modalita.html'
 	}
 	
+	/*alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
+			"Request Type: "+sessionStorage.problemType+" \n " +
+			"Description: "+sessionStorage.problemDesription+" \n"+
+			"Lat e Long: "+sessionStorage.lat+" , "+sessionStorage.long+" \n"+
+			"Indirizzo completo: "+sessionStorage.complete_address);*/
+	
+	
 	$.ajax({
           type: 'POST',
-          url: 'http://95.141.45.174/request/',
+          url: 'http://95.141.45.174/request/request/',
           contentType: 'application/x-www-form-urlencoded',
           crossDomain: true,
           data: {'titolo': sessionStorage.problemTitle, 
-        	  'descrizione': sessionStorage.problemDesription, 
-        	  'pathfoto': 'IlPath', 
-        	  'latitudine': sessionStorage.lat, 
-        	  'longitudine': sessionStorage.long, 
-        	  'isemergenza': true, 
+        	  'description': sessionStorage.problemDesription, 
+        	  'foto': 'foto', 
+        	  'latitude': sessionStorage.lat, 
+        	  'longitude': sessionStorage.long, 
+        	  'isEmergenza': 'True', 
         	  'tiporichiestauno': sessionStorage.problemType, 
-        	  'tiporichiestadue': 0,
-        	  'tiporichiestatre': 0,
-        	  'stato': 0
+        	  'tiporichiestadue': '0',
+        	  'tiporichiestadue': '0'
           },
           success: ajaxEMERGENCY,
           error: errorHandler
@@ -576,6 +583,7 @@ function inviaUrgenza(luogo){
 }
 
 function ajaxEMERGENCY(data){
+	alert("richiesta inviata correttamente");
 	window.location='intervento-invio.html';
 }
 
@@ -1166,38 +1174,27 @@ function interventoCli(id){
 }
 
 function mostraStoricoCli(id){
-	//ASPETTIAMO LA FUNZIONE DI TEODORO
-	/*$('#loading').fadeIn('fast');		//mostra schermata di caricamento
-	  
-	 $.ajax({
+	$('#loading').fadeIn('fast');		//mostra schermata di caricamento
+	
+	$.ajax({
 		async: false,
 		type: 'GET',
-		url: 'http://95.141.45.174/openjob/'+id+'/',
+		url: 'http://95.141.45.174/openjob/'+id+'/',		//RICCCCCCCCCCCCCC	
 		crossDomain:true,
 		complete: function(){$('#loading').fadeOut('fast')},		//nasconde schermata di caricamento
 		success: mostraStoricoCliSuccess,
 		error: errorHandler,
-		});*/
-	mostraStoricoCliSuccess();
+		});	
 }
 
-function mostraStoricoCliSuccess(){
-//function mostraStoricoCliSuccess(xml){
-	
-	var id = "12";
-	var date = "26/04/2013";
-	var description = "blablabla chachacha blablabla chachacha blablabla chachacha blablabla chachacha blablabla chachacha";
-	var state = "5";
-	var picture = "Photo";
-	var title = "help me please";
-	
-	/*var xmlString = $(xml);	
+function mostraStoricoCliSuccess(xml){
+	var xmlString = $(xml);	
 	var id = $request.find("id").text();
 	var date = $request.find("date").text();
 	var description = $request.find("description").text();
 	var state = $request.find("state").text();
 	var picture = $request.find("picture").text(); //path della foto
-	var title = $request.find("title").text(); */
+	var title = $request.find("title").text(); 
 
 	// IMMAGINE NOTFOUND?
 	 if (picture == 'Photo' || picture == 'photo' || picture == '') {
@@ -1311,20 +1308,18 @@ function mostraStoricoCliSuccess(){
 
 	var pagina = "javascript:interventoCli('"+id+"');";
 		
-	$('#incolla').html('<div class="row-fluid">'+	
+	$('#incolla').append('<div class="row-fluid">'+	
               			'<div class="span12">'+
-              				'<h4 id="titoloPagina">Stato di avanzamento:</h4>'+
                 			'<div class="progress ' + progress_state + ' progress-striped ' + state_active + '" style="margin-bottom:0;">'+
                   				'<div class="bar" style="'+state_bar+'"></div>'+
                 			'</div></div></div>'+
                 			'<div class="row-fluid">'+
-        					'<br/><h4 id="titoloPagina">Dettagli:</h4>'+
+        					'<h4 id="titoloPagina">Ecco i dettagli del lavoro:</h4><br/>'+
         					'<a href="javascript:mostraPanelFoto()"><img id="foto" src="'+picture+'" style="width:100px;"/></a><br/>'+
         					'Tappa sulla foto per ingrandirla'+
         		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+title+'</h5><p id="descrizione2">'+description+'</p></div>'+
         		    		'<button class="btn btn-large btn-block btn-inverse" onclick="javascript:history.go(-1);"">TORNA INDIETRO</button>'+
         		    		'</div>');
-	$('#fotoGrande').attr('src', picture);		//dentro a panelFoto
 }
 
 /**/
@@ -1431,17 +1426,21 @@ function menuTendina(){
 }
 
 function exitFromApp(buttonIndex) {
-   if (buttonIndex==1){ 	
-	   navigator.app.exitApp();
+   if (buttonIndex==1){
+   	
+    navigator.app.exitApp();
+
 	}
 }
 
 function confermaUscita()
        {
+
        		navigator.notification.confirm(
        		'Vuoi davvero chiudere la app?',  
         	exitFromApp,            
         	'Uscita',            
         	'OK,Annulla');
+
        }
 

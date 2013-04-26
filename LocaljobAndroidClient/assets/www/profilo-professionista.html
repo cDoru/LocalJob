@@ -67,6 +67,7 @@
   </head>
 
   <body onload="importaDatiProf(sessionStorage.nick)">  
+  
   		<!-- schermata caricamento -->
   		<div class="text-center" id="loading" style="z-index:999; width:100%; top:0; left:0; position:absolute; background-color:#141414;">
       		<img src="./img/index-logo-inner.png" style="width:20%;padding:10%; padding-top:40%;">
@@ -76,6 +77,12 @@
 		</div>
   		<!--  -->
   
+  		<!-- MODAL PER NOTIFICHE -->
+		<div class="modal hide fade" id="panelNotifiche" style="color:black">
+			...
+		</div>
+		<!--  -->
+  		
   		<!-- FIXATA!! -->
 		<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
 	    	<div class="navbar-inner text-center">
@@ -85,12 +92,12 @@
 		          			<!-- l'altezza ideale per le ico dei bottoni è 22px perchè è la stessa del popover -->
 	      					<img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">
 	      				</button>
-	      				<button class="btn btn-large" type="button" onclick="javascript:history.go(-1);" style="line-height:22px;" disabled>
-	      					LJ
-	      				</button>         		
-		                <button class="btn btn-large btn-inverse notifiche" type="button" data-toggle="popover" title="Notifiche:">
-		                	<span style="margin-top:4%; margin-bottom:5%" class="badge badge-important">4</span>
-		                </button>
+	      				<button class="btn btn-large btn-info" type="button" style="height:47px;">
+      					<img src="./img/minilogo.png" />
+      				</button>          		
+		                <a class="btn btn-large btn-inverse" href="javascript:mostraPanelNotifiche()">
+		               		<span id="sos" class="badge" style="margin-top:4%; margin-bottom:5%">.</span>
+		            	</a>
 			            <button  class="btn btn-large btn-inverse" type="button" onclick="javascript:window.location='map-landscape.html';">
 			            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
 			            </button>
@@ -168,6 +175,7 @@
 	<script src="./js/function.js" type="text/javascript" charset="utf-8"></script>
 	<script src="./js/onload.js" type="text/javascript" charset="utf-8"></script>
     <script src="./js/PushNotification.js" type="text/javascript" charset="utf-8" ></script>
+    <script src="./js/function_notifiche.js"></script>
 
   </body>
 </html>
