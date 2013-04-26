@@ -534,20 +534,19 @@ function inviaUrgenza(luogo){
 			"Lat e Long: "+sessionStorage.lat+" , "+sessionStorage.long+" \n"+
 			"Indirizzo completo: "+sessionStorage.complete_address);
 	
-	/*
+	
 	$.ajax({
           type: 'POST',
-          url: 'http://95.141.45.174/request/emergency',
-          ajaxStart: function(){
-        	  window.location='wait.html';
-          },
+          url: 'http://95.141.45.174/request/request/',
           contentType: 'application/x-www-form-urlencoded',
           crossDomain: true,
           data: {'problemType': sessionStorage.problemTitle, 'requestType': sessionStorage.problemType, 'description': sessionStorage.problemDesription, 'latitude': sessionStorage.lat, 'longitude': sessionStorage.long},
           success: ajaxEMERGENCY,
           error: errorHandler
        })
-       */
+       
+       //Body:  titolo = <titoloRichiesta> & description = <description> & foto = <foto> & time = <time> & latitude = <latitude> & longitude = <longitude> & isEmergenza = <True/False> & tiporichiestauno = <tiporichiestauno> & tiporichiestadue = <tiporichiestadue> & tiporichiestatre = <tiporichiestatre> &  address = <address>
+
 }
 
 
