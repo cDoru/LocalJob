@@ -29,7 +29,8 @@ $(document).ready(function(){
   		if(window.orientation == 0) {
   			// Non sono nella mappa, quindi non faccio niente
         if(!(location.href).indexOf("map-landscape") == -1) {
-          history.back();
+          //history.back();
+          location.href = 'interventi-attivi.html';
         }
   		}
   		if(window.orientation == 90) {

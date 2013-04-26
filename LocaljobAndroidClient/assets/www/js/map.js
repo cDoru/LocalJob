@@ -25,7 +25,8 @@ function HomeControl(controlDiv, map) {
   // Handling eventi
   google.maps.event.addDomListener(controlUI, 'click', function() {
     // Ritorno alla pagina precedente prima dell'evento ORIZZONTALE
-    history.back();
+    //history.back();
+    location.href = 'interventi-attivi.html';
   });
 }
 
