@@ -87,18 +87,25 @@
 		    	<form action="javascript:user_signin();" id="contact-form" class="form-signin">
 			    	<div class="control-group"> <!-- Serve per il validator -->
 				    	<div class="row-fluid" style="margin-bottom:15px;">
+
 				    		<div style="width:25%; float:left; margin-right:0; height:100%; text-align:center">
+
+
 				    		
 				    			<div class="fileupload fileupload-new" data-provides="fileupload">
 	  								<div class="fileupload-new thumbnail" style="width: 100px; height: 100px;"><img src="./img/example_photo.png" /></div>
 	  								<div class="fileupload-preview fileupload-exists thumbnail" style="width: 100px; height: 100px;"></div><br/>
-	 								<span class="btn btn-file btn-inverse" style="margin-top:2px;"><span class="fileupload-new" id="photo">CARICA</span><span class="fileupload-exists">MODIFICA</span><input type="file" name="signU_img" id="signU_img"/></span>
-	  								<a href="#" class="btn fileupload-exists btn-inverse" data-dismiss="fileupload" style="margin-top:2px;">RIMUOVI</a>
+	 								
 	  							</div>
 	  							
 				    		</div>
 				    		<!-- La classe controls serve per il validator -->
-				    		<div class="controls" style="width:50%; float:right; height:100%; margin-left:0; margin-top:15px;">
+
+				    		<div class="controls" style="width:50%; float:right; height:100%; margin-left:2%; margin-top:15px;">
+				    			<div class="fileupload fileupload-new" data-provides="fileupload">
+				    			<div class="btn btn-file btn-inverse btn-large" style="margin-top:2px;"><div class="fileupload-new" id="photo">CARICA</div><div class="fileupload-exists">MODIFICA</div><input type="file" name="signU_img" id="signU_img"/></div>
+	  								<a href="#" class="btn fileupload-exists btn-inverse" data-dismiss="fileupload" style="margin-top:2px;">RIMUOVI</a></div>
+
 				    			<div class="btn-group">
 		                		<a class="btn dropdown-toggle btn-inverse btn-large " data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">
 		                  		Categoria
@@ -118,13 +125,15 @@
 						                  <li><a tabindex="-1" href="javascript:salvaProblemType(11);">Falegname</a></li>
 		                			</ul>
 		             			</div>
-		             			<p><div class="controls"><input type="text" id="problemTitle" class="input-xxlarge" style="margin-top:2%;" placeholder="Titolo"></div></p>
+		             			
 							
 
 			 				</div>
 				    	</div>
 						<!-- Parte con il form normale -->
 			 			<div class="controls">
+			 				<p><div class="controls"><input type="text" id="problemTitle" class="input-xxlarge" style="margin-top:2%;" placeholder="Titolo"></div></p>
+
 			        		<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea>
 
 			     		</div>
