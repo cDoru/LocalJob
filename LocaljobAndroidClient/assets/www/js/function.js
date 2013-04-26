@@ -112,9 +112,11 @@ function cambia_login(){
 	$('#contenitore').html('<h4>Accedi a LocalJob</h4><form class="form-signin" action="javascript:login();">' +
 			'<input id="user" type="text" class="input-block-level" placeholder="Username">' +
 			'<input id="password" type="password" class="input-block-level" placeholder="Password">' +
-			'<span align="center"><button class="btn btn-large btn-inverse" onclick="javascript:history.go(-1);" style="margin-right:5px;">' +
-			'<img src="./img/glyphicons/white_ver/225.PNG"></button>' +
-			'<button class="btn btn-large btn-inverse" type="submit" style="width=70%;">Accedi</button></span>' +
+			'<div class="btn-toolbar" style="margin: 0;">'+
+				'<span align="center"><button class="btn btn-large btn-inverse" onclick="javascript:history.go(-1);" style="width:28%;margin:0 2% 0 0">' +
+				'<img src="./img/glyphicons/white_ver/225.PNG" style="height:15px;margin-top:-5px"></button>' +
+				'<button class="btn btn-large btn-inverse" type="submit" style="width:70%;">Accedi</button></span>' +
+			'</div>'+
 			'<div align="center" id="password_link"><a href="#">Hai dimenticato la password?</a></div></form>');
 }
 
