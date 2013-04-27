@@ -10,7 +10,7 @@ var filtroIntervento;
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
-//sessionStorage.googlecod = "5";
+sessionStorage.googlecod = "5";
 
 
 /*
@@ -490,19 +490,14 @@ function salvaIndirizzo(){
 	cap = $('#CAP_altro').val();
 	comune = $('#Citta_altro').val();
 	provincia = $('#Provincia_altro').val();
-	
-	//ricordarsi lat e long
-	
-	//alert("salviamo l'indirizzo "+nomeLuogo+": "+nomeVia+", "+civico+" - "+comune+" ("+provincia+") - "+cap+" coordinate gps: "+sessionStorage.lat+" , "+sessionStorage.long);
-	
-	//chiamata AJAX per salvare l'indirizzo nel database
 
+	//chiamata AJAX per salvare l'indirizzo nel database
 	 $.ajax({
 	          type: 'POST',
 	          url: 'http://95.141.45.174/addaddress/',
 	          contentType: 'application/x-www-form-urlencoded',
 	          crossDomain: true,
-	          data: {'nomeVia': nomeVia, 
+	          data: {'nomevia': nomeVia, 
 	        	  'numerocivico': civico, 
 	        	  'cap': cap, 
 	        	  'comune': comune, 
@@ -514,15 +509,15 @@ function salvaIndirizzo(){
 	        	  'isattivita': false,
 	        	  'isdomicilio': false
 	        	  },
-	          complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
+	          //complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 	          success: ajaxIndirizzoSalvato(nomeLuogo),
 	          error: errorHandler
-	})
+	});
+		 
 }
 
 function ajaxIndirizzoSalvato(nomeLuogo){
 	alert("Indirizzo salvato come: "+nomeLuogo);
-
 }
 
 /*
@@ -548,34 +543,26 @@ function inviaUrgenza(luogo){
 
 	if(luogo == "casa"){
 		sessionStorage.complete_address = $('#Indirizzo_casa').val()+", "+$('#nCiv_casa').val()+", "+$('#CAP_casa').val()+", "+$('#Citta_casa').val()+", "+$('#Provincia_casa').val();	
-		//window.location='intervento-modalita.html'
 	}
 	else if(luogo == "altro"){
 		sessionStorage.complete_address = $('#Indirizzo_altro').val()+", "+$('#nCiv_altro').val()+", "+$('#CAP_altro').val()+", "+$('#Citta_altro').val()+", "+$('#Provincia_altro').val();
-		//window.location='intervento-modalita.html'
 	}
-	
-	/*alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
-			"Request Type: "+sessionStorage.problemType+" \n " +
-			"Description: "+sessionStorage.problemDesription+" \n"+
-			"Lat e Long: "+sessionStorage.lat+" , "+sessionStorage.long+" \n"+
-			"Indirizzo completo: "+sessionStorage.complete_address);*/
-	
 	
 	$.ajax({
           type: 'POST',
-          url: 'http://95.141.45.174/request/request/',
+          url: 'http://95.141.45.174/request/',
           contentType: 'application/x-www-form-urlencoded',
           crossDomain: true,
           data: {'titolo': sessionStorage.problemTitle, 
-        	  'description': sessionStorage.problemDesription, 
-        	  'foto': 'foto', 
-        	  'latitude': sessionStorage.lat, 
-        	  'longitude': sessionStorage.long, 
-        	  'isEmergenza': 'True', 
+        	  'descrizione': sessionStorage.problemDesription, 
+        	  'pathfoto': 'foto', 
+        	  'latitudine': sessionStorage.lat, 
+        	  'longitudine': sessionStorage.long, 
+        	  'isemergenza':  true, 
         	  'tiporichiestauno': sessionStorage.problemType, 
-        	  'tiporichiestadue': '0',
-        	  'tiporichiestadue': '0'
+        	  'tiporichiestadue': 0,
+        	  'tiporichiestatre': 0,
+        	  'stato': 0
           },
           success: ajaxEMERGENCY,
           error: errorHandler
@@ -583,7 +570,6 @@ function inviaUrgenza(luogo){
 }
 
 function ajaxEMERGENCY(data){
-	alert("richiesta inviata correttamente");
 	window.location='intervento-invio.html';
 }
 
