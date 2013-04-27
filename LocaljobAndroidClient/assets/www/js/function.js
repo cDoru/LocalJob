@@ -1,4 +1,6 @@
-﻿var tipoUtente;
+﻿var DEBUG = true;
+
+var tipoUtente;
 var position_lat;
 var position_long;
 
@@ -7,6 +9,14 @@ var marker;
 
 var xml_case;
 var filtroIntervento;
+<<<<<<< HEAD
+
+var user;
+var logged = false;
+
+=======
+var orderType;
+>>>>>>> Order by type for active job
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
@@ -664,7 +674,7 @@ function login()	//gestisce il login dell'utente
 	
 	user =  $('#user').val(); 
 	password =  $('#password').val(); 
-	
+	alert(user);
 	// il googlecod per ora è prova, ma in realtà verrà preso dalla 
 	// registazione ad ogni avvio dell'app
 	//sessionStorage.googlecod = "prova";
@@ -827,6 +837,8 @@ function ajaxLOGIN(data){
 	if(data == ""){
 		
 		window.location='interventi-attivi.html';
+		logged = true;
+		localStorage.nickname = user;
 		
 	}
 	else{
@@ -867,7 +879,7 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
 
 
 // Parte di richi
-function ricercaInZona(filtroPrecedente) {
+function ricercaInZona(filtroPrecedente, ordinamento) {
 	$('#loading').fadeIn('fast');		//nasconde la schermata di caricamento
 	
 	//Attivo la pagina tabIntorno e disattivo tabAttivi (la class alert alert-info è per lo sfondo)
@@ -876,6 +888,7 @@ function ricercaInZona(filtroPrecedente) {
 	$('#tabIntorno').html('');
 
 	filtroIntervento = filtroPrecedente;
+	orderType = ordinamento;
 	
 	$.ajax({
 			async: false,
@@ -887,11 +900,19 @@ function ricercaInZona(filtroPrecedente) {
 			error: errorHandler
 			});	
 
+	// Sovrascrittura valore di menuTendina() con la categoria 
+	var categoria;
+	if(typeof filtroIntervento === "undefined") {
+		categoria = "Categoria";
+	} else {
+		categoria = filtroIntervento;
+	}
+
 	$('#tabIntorno').prepend(
 		'<div class="btn-toolbar" style="margin: 0;">'+
 				'<div class="btn-group" style="width:50%;display:inline:float:left;text-align:left;">'+
 		                '<a class="btn dropdown-toggle btn-block btn-inverse btn-large" data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">'+
-		                  'Categoria&nbsp;'+
+		                  categoria + '&nbsp;'+
 		                    '<span class="caret"></span>'+
 		               '</a>'+
 		                '<ul class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu" id="dropCategorieConsumatore">'+
@@ -911,23 +932,59 @@ function ricercaInZona(filtroPrecedente) {
 		                '</ul>'+
 	            '</div>'+
 	            '<div style="display:inline;float:right;width:45%;text-align:right;">'+
-	            '<a class="btn btn-large btn-info" style="margin:0 2px 0 2px;"><i class="icon-thumbs-up icon-white"></i></a>'+
-	            '<a class="btn btn-large btn-info"><i class="icon-gift icon-white"></i></a></div>'+
+	            '<a href="#" onclick="ricercaInZona(\''+filtroIntervento+'\',\'rating\')" class="btn btn-large btn-info" style="margin:0 2px 0 2px;"><i class="icon-star icon-white"></i></a>'+
+	            '<a href="#" onclick="ricercaInZona(\''+filtroIntervento+'\',\'cost\')" class="btn btn-large btn-info"><i class="icon-shopping-cart icon-white"></i></a></div>'+
 	    '</div>'+
 	    '<div style="height:20px;"></div>');
 	            
 		$('.dropdown-menu li a').click(function() {
     		filtroIntervento = $(this).text();
-    		ricercaInZona(filtroIntervento);
+    		ricercaInZona(filtroIntervento, "");
 		});
 
 	            
 }
 
 function ricercaInZonaSuccess(xml) {
+
+	// Worker to array
+	var xmlString = $(xml);
+	var workerArrays = new Array();
+	workerArrays = $(xmlString).find("worker");
+
+	// Sorting per distanza
+	var workerSortedByGeo = $(xml).find('worker').get().sort(function(a, b) {
+     var valA = $(a).find('distance').text();
+     var valB = $(b).find('distance').text();
+     return valA < valB ? -1 : valA == valB ? 0 : 1;
+    });
+	// Sorting per prezzo per ora
+	var workerSortedByCost = $(xml).find('worker').get().sort(function(a, b) {
+     var valA = $(a).find('costPerHour').text();
+     var valB = $(b).find('costPerHour').text();
+     return valA < valB ? -1 : valA == valB ? 0 : 1;
+    });
+	// Sorting per rating
+	var workerSortedByRating = $(xml).find('worker').get().sort(function(a, b) {
+     var valA = $(a).find('rating').text();
+     var valB = $(b).find('rating').text();
+     return valA > valB ? -1 : valA == valB ? 0 : 1;
+    });
+
+	// Assegnazione per tipo di ordinamento
+	if(orderType == 'cost') {
+		// Ordinamento per costPerHours
+		workerSorted = workerSortedByCost;
+	} else if(orderType == 'rating') {
+		// Ordinamento per rating
+		workerSorted = workerSortedByRating;
+	} else {
+		// Ordinamento per distanza (default)
+		workerSorted = workerSortedByGeo;
+	}
 	
-	var xmlString = $(xml);	
-	$(xmlString).find("worker").each(function () {		
+	//var xmlString = $(xml);	
+	$(workerSorted).each(function () {		
 		var $worker = $(this);
 		var nickname = $worker.find('nickname').text();
 		var nome = $worker.find('nome').text();
@@ -1159,13 +1216,14 @@ function interventoCli(id){
 	window.location='storicoCliente.html';
 }
 
+//chiamata all'interno di "storicoCliente" che mostra i dati di un intervento attivo cliccato su "interventi-attivi"
 function mostraStoricoCli(id){
 	$('#loading').fadeIn('fast');		//mostra schermata di caricamento
 	
 	$.ajax({
 		async: false,
 		type: 'GET',
-		url: 'http://95.141.45.174/openjob/'+id+'/',		//RICCCCCCCCCCCCCC	
+		url: 'http://95.141.45.174/getinfojob/'+id+'/',
 		crossDomain:true,
 		complete: function(){$('#loading').fadeOut('fast')},		//nasconde schermata di caricamento
 		success: mostraStoricoCliSuccess,
@@ -1174,20 +1232,21 @@ function mostraStoricoCli(id){
 }
 
 function mostraStoricoCliSuccess(xml){
-	var xmlString = $(xml);	
+	var $request = $(xml);	
 	var id = $request.find("id").text();
-	var date = $request.find("date").text();
-	var description = $request.find("description").text();
-	var state = $request.find("state").text();
-	var picture = $request.find("picture").text(); //path della foto
-	var title = $request.find("title").text(); 
+	var date = $request.find("data").text();
+	var descrizione = $request.find("descrizione").text();
+	var state = $request.find("stato").text();
+	var foto = $request.find("foto").text(); //path della foto
+	var titolo = $request.find("titolo").text();
+	//var codiceCliente = $request.find("codiceCliente").text();
 
 	// IMMAGINE NOTFOUND?
-	 if (picture == 'Photo' || picture == 'photo' || picture == '') {
-		picture = 'img/missingAvatar.png';
+	 if (foto == 'Photo' || foto == 'photo' || foto == '') {
+		foto = 'img/missingAvatar.png';
 	 }
 	 else {
-		picture = picture;
+		foto = foto;
 	 }
 
 	// Ricavo lo stato in stringa
@@ -1294,24 +1353,26 @@ function mostraStoricoCliSuccess(xml){
 
 	var pagina = "javascript:interventoCli('"+id+"');";
 		
-	$('#incolla').append('<div class="row-fluid">'+	
+	$('#incolla').html('<div class="row-fluid">'+	
               			'<div class="span12">'+
                 			'<div class="progress ' + progress_state + ' progress-striped ' + state_active + '" style="margin-bottom:0;">'+
                   				'<div class="bar" style="'+state_bar+'"></div>'+
                 			'</div></div></div>'+
                 			'<div class="row-fluid">'+
-        					'<h4 id="titoloPagina">Ecco i dettagli del lavoro:</h4><br/>'+
-        					'<a href="javascript:mostraPanelFoto()"><img id="foto" src="'+picture+'" style="width:100px;"/></a><br/>'+
+        					'<h4 id="titoloPagina">Ecco i dettagli del lavoro:</h4>'+
+        					'<p><b>ID INTERVENTO:</b> '+id+'<br/><b>DATA:</b> '+date+'</p>'+
+        					'<a href="javascript:mostraPanelFoto()"><img id="foto" src="'+foto+'" style="width:100px;"/></a><br/>'+
         					'Tappa sulla foto per ingrandirla'+
-        		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+title+'</h5><p id="descrizione2">'+description+'</p></div>'+
+        		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+titolo+'</h5><p id="descrizione2">'+descrizione+'</p></div>'+
         		    		'<button class="btn btn-large btn-block btn-inverse" onclick="javascript:history.go(-1);"">TORNA INDIETRO</button>'+
         		    		'</div>');
+	$('#fotoGrande').attr('src', foto);
 }
 
 /**/
 
-function ricercaAttiviProfessionista() { //funzione per tirare giu gli interventi attivi per il prof
-	
+//chiamata che mostra gli interventi attivi del professionista in "interventi-attivi"
+function ricercaAttiviProfessionista() { 
 	$('#loading').fadeIn('fast');		//schermata di caricamento
 	
 	$.ajax({
@@ -1327,14 +1388,11 @@ function ricercaAttiviProfessionista() { //funzione per tirare giu gli intervent
 
 
 function ricercaAttiviProfessionistaSuccess(xml){
-
 	$('#tabAttivi').html("");
 
 	var xmlString = $(xml);	
 
-	if($(xmlString).find("request")){
-		
-		
+	if($(xmlString).find("request")){		
 		//Attivo la pagina tabAttivi e disattivo tabIntorno
 		$('#tabAttivi').attr('class','tab-pane active');
 		$('#tabIntorno').attr('class','tab-pane');
@@ -1382,6 +1440,7 @@ function ricercaAttiviProfessionistaSuccess(xml){
                						'<img src="'+picture+'" style="width:70%; margin-left:15%;" class="img-polaroid">'+
                					'</div>'+
 	               				'<div style="width:65%; float:right; margin-top:-10px;">'+
+	               					+date+
 	               					'<h6 style="text-transform:uppercase; margin-bottom:0;">'+title+'</h6>'+
 	               					'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+description+'</p>'+
 	               				'</div></div></button>');
