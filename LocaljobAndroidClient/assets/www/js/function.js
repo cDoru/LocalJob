@@ -3,20 +3,18 @@
 var tipoUtente;
 var position_lat;
 var position_long;
+var controller_geolocation;
 
 var geocoder;
 var marker;
 
 var xml_case;
 var filtroIntervento;
-<<<<<<< HEAD
 
 var user;
 var logged = false;
 
-=======
 var orderType;
->>>>>>> Order by type for active job
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
@@ -278,10 +276,17 @@ function handle_geolocation_query(position){
 	sessionStorage.lat = position_lat;
 	sessionStorage.long = position_long;
 	
-	initialize_map("altro", position_lat, position_long);
-	
-	//una volta che mi darà la posizione corrente, dalle google API trovo indirizzo ecc
-	codeLatLng(position_lat, position_long);
+	//Se la geolocalizzazione me la richiede la ricerca in zona faccio una cosa
+	if(controller_geolocation == "ricercaInZona"){
+		//alert("prova filtro 2: "+sessionStorage.filtroPrecedente);
+		ricercaInZona(sessionStorage.filtroPrecedente, "");
+	}
+	//Se la geolocalizzazione me la richiede l'invio urgenza ne faccio un altra
+	else{
+		initialize_map("altro", position_lat, position_long);
+		//una volta che mi darà la posizione corrente, dalle google API trovo indirizzo ecc
+		codeLatLng(position_lat, position_long);
+	}
 
 }  
 
@@ -874,11 +879,20 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
    alert(thrownError);
 }
 
+/* 
+ * Funzione che cerca le coordinate GPS per la ricerca in zona
+ */
+function ricercaCoordinateInZona(filtroPrecedente, ordinamento){
+	//Setto una variabile controller (per la funzione initiate_geolocation() e mi geolocalizzo)
+	//alert("il filtro è: "+filtroPrecedente);
+	sessionStorage.filtroPrecedente = filtroPrecedente;
+	controller_geolocation = "ricercaInZona";
+	initiate_geolocation();
+}
 
-
-
-
-// Parte di richi
+/*
+ * Una volta ottenute le coordinate faccio la ricerca in zona
+ */
 function ricercaInZona(filtroPrecedente, ordinamento) {
 	$('#loading').fadeIn('fast');		//nasconde la schermata di caricamento
 	
@@ -890,10 +904,13 @@ function ricercaInZona(filtroPrecedente, ordinamento) {
 	filtroIntervento = filtroPrecedente;
 	orderType = ordinamento;
 	
+	//alert("proviamo le coordinate: "+sessionStorage.lat+" , "+sessionStorage.long);
+	
 	$.ajax({
 			async: false,
 			type: 'GET',
-			url: 'http://95.141.45.174/search?latitudine=44.499184&longitudine=11.353726',			
+			//url: 'http://95.141.45.174/search?latitudine=44.499184&longitudine=11.353726',		
+			url: 'http://95.141.45.174/search?latitudine='+sessionStorage.lat+'&longitudine='+sessionStorage.long,		
 			crossDomain:true,
 			complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 			success: ricercaInZonaSuccess,
@@ -941,7 +958,6 @@ function ricercaInZona(filtroPrecedente, ordinamento) {
     		filtroIntervento = $(this).text();
     		ricercaInZona(filtroIntervento, "");
 		});
-
 	            
 }
 
@@ -1207,7 +1223,7 @@ function ricercaAttiviSuccess(xml){
 
 	//se non ci sono interventi attivi vai su ricerca in zona
 	else{
-		ricercaInZona();
+		ricercaInZona("Tutti","");
 	}
 }
 
