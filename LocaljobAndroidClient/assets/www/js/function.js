@@ -1159,13 +1159,14 @@ function interventoCli(id){
 	window.location='storicoCliente.html';
 }
 
+//chiamata all'interno di "storicoCliente" che mostra i dati di un intervento attivo cliccato su "interventi-attivi"
 function mostraStoricoCli(id){
 	$('#loading').fadeIn('fast');		//mostra schermata di caricamento
 	
 	$.ajax({
 		async: false,
 		type: 'GET',
-		url: 'http://95.141.45.174/openjob/'+id+'/',		//RICCCCCCCCCCCCCC	
+		url: 'http://95.141.45.174/getinfojob/'+id+'/',
 		crossDomain:true,
 		complete: function(){$('#loading').fadeOut('fast')},		//nasconde schermata di caricamento
 		success: mostraStoricoCliSuccess,
@@ -1174,20 +1175,21 @@ function mostraStoricoCli(id){
 }
 
 function mostraStoricoCliSuccess(xml){
-	var xmlString = $(xml);	
+	var $request = $(xml);	
 	var id = $request.find("id").text();
-	var date = $request.find("date").text();
-	var description = $request.find("description").text();
-	var state = $request.find("state").text();
-	var picture = $request.find("picture").text(); //path della foto
-	var title = $request.find("title").text(); 
+	var date = $request.find("data").text();
+	var descrizione = $request.find("descrizione").text();
+	var state = $request.find("stato").text();
+	var foto = $request.find("foto").text(); //path della foto
+	var titolo = $request.find("titolo").text();
+	//var codiceCliente = $request.find("codiceCliente").text();
 
 	// IMMAGINE NOTFOUND?
-	 if (picture == 'Photo' || picture == 'photo' || picture == '') {
-		picture = 'img/missingAvatar.png';
+	 if (foto == 'Photo' || foto == 'photo' || foto == '') {
+		foto = 'img/missingAvatar.png';
 	 }
 	 else {
-		picture = picture;
+		foto = foto;
 	 }
 
 	// Ricavo lo stato in stringa
@@ -1294,24 +1296,26 @@ function mostraStoricoCliSuccess(xml){
 
 	var pagina = "javascript:interventoCli('"+id+"');";
 		
-	$('#incolla').append('<div class="row-fluid">'+	
+	$('#incolla').html('<div class="row-fluid">'+	
               			'<div class="span12">'+
                 			'<div class="progress ' + progress_state + ' progress-striped ' + state_active + '" style="margin-bottom:0;">'+
                   				'<div class="bar" style="'+state_bar+'"></div>'+
                 			'</div></div></div>'+
                 			'<div class="row-fluid">'+
-        					'<h4 id="titoloPagina">Ecco i dettagli del lavoro:</h4><br/>'+
-        					'<a href="javascript:mostraPanelFoto()"><img id="foto" src="'+picture+'" style="width:100px;"/></a><br/>'+
+        					'<h4 id="titoloPagina">Ecco i dettagli del lavoro:</h4>'+
+        					'<p><b>ID INTERVENTO:</b> '+id+'<br/><b>DATA:</b> '+date+'</p>'+
+        					'<a href="javascript:mostraPanelFoto()"><img id="foto" src="'+foto+'" style="width:100px;"/></a><br/>'+
         					'Tappa sulla foto per ingrandirla'+
-        		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+title+'</h5><p id="descrizione2">'+description+'</p></div>'+
+        		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+titolo+'</h5><p id="descrizione2">'+descrizione+'</p></div>'+
         		    		'<button class="btn btn-large btn-block btn-inverse" onclick="javascript:history.go(-1);"">TORNA INDIETRO</button>'+
         		    		'</div>');
+	$('#fotoGrande').attr('src', foto);
 }
 
 /**/
 
-function ricercaAttiviProfessionista() { //funzione per tirare giu gli interventi attivi per il prof
-	
+//chiamata che mostra gli interventi attivi del professionista in "interventi-attivi"
+function ricercaAttiviProfessionista() { 
 	$('#loading').fadeIn('fast');		//schermata di caricamento
 	
 	$.ajax({
@@ -1327,14 +1331,11 @@ function ricercaAttiviProfessionista() { //funzione per tirare giu gli intervent
 
 
 function ricercaAttiviProfessionistaSuccess(xml){
-
 	$('#tabAttivi').html("");
 
 	var xmlString = $(xml);	
 
-	if($(xmlString).find("request")){
-		
-		
+	if($(xmlString).find("request")){		
 		//Attivo la pagina tabAttivi e disattivo tabIntorno
 		$('#tabAttivi').attr('class','tab-pane active');
 		$('#tabIntorno').attr('class','tab-pane');
@@ -1382,6 +1383,7 @@ function ricercaAttiviProfessionistaSuccess(xml){
                						'<img src="'+picture+'" style="width:70%; margin-left:15%;" class="img-polaroid">'+
                					'</div>'+
 	               				'<div style="width:65%; float:right; margin-top:-10px;">'+
+	               					+date+
 	               					'<h6 style="text-transform:uppercase; margin-bottom:0;">'+title+'</h6>'+
 	               					'<p style="text-align:justify; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+description+'</p>'+
 	               				'</div></div></button>');
