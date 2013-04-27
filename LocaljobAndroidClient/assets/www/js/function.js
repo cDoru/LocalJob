@@ -7,6 +7,10 @@ var marker;
 
 var xml_case;
 var filtroIntervento;
+
+var user;
+var logged = false;
+
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
@@ -664,7 +668,7 @@ function login()	//gestisce il login dell'utente
 	
 	user =  $('#user').val(); 
 	password =  $('#password').val(); 
-	
+	alert(user);
 	// il googlecod per ora è prova, ma in realtà verrà preso dalla 
 	// registazione ad ogni avvio dell'app
 	//sessionStorage.googlecod = "prova";
@@ -827,6 +831,8 @@ function ajaxLOGIN(data){
 	if(data == ""){
 		
 		window.location='interventi-attivi.html';
+		logged = true;
+		localStorage.nickname = user;
 		
 	}
 	else{
