@@ -1,4 +1,6 @@
-﻿var tipoUtente;
+﻿var DEBUG = true;
+
+var tipoUtente;
 var position_lat;
 var position_long;
 
@@ -7,10 +9,14 @@ var marker;
 
 var xml_case;
 var filtroIntervento;
+<<<<<<< HEAD
 
 var user;
 var logged = false;
 
+=======
+var orderType;
+>>>>>>> Order by type for active job
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
@@ -873,7 +879,7 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
 
 
 // Parte di richi
-function ricercaInZona(filtroPrecedente) {
+function ricercaInZona(filtroPrecedente, ordinamento) {
 	$('#loading').fadeIn('fast');		//nasconde la schermata di caricamento
 	
 	//Attivo la pagina tabIntorno e disattivo tabAttivi (la class alert alert-info è per lo sfondo)
@@ -882,6 +888,7 @@ function ricercaInZona(filtroPrecedente) {
 	$('#tabIntorno').html('');
 
 	filtroIntervento = filtroPrecedente;
+	orderType = ordinamento;
 	
 	$.ajax({
 			async: false,
@@ -893,11 +900,19 @@ function ricercaInZona(filtroPrecedente) {
 			error: errorHandler
 			});	
 
+	// Sovrascrittura valore di menuTendina() con la categoria 
+	var categoria;
+	if(typeof filtroIntervento === "undefined") {
+		categoria = "Categoria";
+	} else {
+		categoria = filtroIntervento;
+	}
+
 	$('#tabIntorno').prepend(
 		'<div class="btn-toolbar" style="margin: 0;">'+
 				'<div class="btn-group" style="width:50%;display:inline:float:left;text-align:left;">'+
 		                '<a class="btn dropdown-toggle btn-block btn-inverse btn-large" data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">'+
-		                  'Categoria&nbsp;'+
+		                  categoria + '&nbsp;'+
 		                    '<span class="caret"></span>'+
 		               '</a>'+
 		                '<ul class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu" id="dropCategorieConsumatore">'+
@@ -917,23 +932,59 @@ function ricercaInZona(filtroPrecedente) {
 		                '</ul>'+
 	            '</div>'+
 	            '<div style="display:inline;float:right;width:45%;text-align:right;">'+
-	            '<a class="btn btn-large btn-info" style="margin:0 2px 0 2px;"><i class="icon-thumbs-up icon-white"></i></a>'+
-	            '<a class="btn btn-large btn-info"><i class="icon-gift icon-white"></i></a></div>'+
+	            '<a href="#" onclick="ricercaInZona(\''+filtroIntervento+'\',\'rating\')" class="btn btn-large btn-info" style="margin:0 2px 0 2px;"><i class="icon-star icon-white"></i></a>'+
+	            '<a href="#" onclick="ricercaInZona(\''+filtroIntervento+'\',\'cost\')" class="btn btn-large btn-info"><i class="icon-shopping-cart icon-white"></i></a></div>'+
 	    '</div>'+
 	    '<div style="height:20px;"></div>');
 	            
 		$('.dropdown-menu li a').click(function() {
     		filtroIntervento = $(this).text();
-    		ricercaInZona(filtroIntervento);
+    		ricercaInZona(filtroIntervento, "");
 		});
 
 	            
 }
 
 function ricercaInZonaSuccess(xml) {
+
+	// Worker to array
+	var xmlString = $(xml);
+	var workerArrays = new Array();
+	workerArrays = $(xmlString).find("worker");
+
+	// Sorting per distanza
+	var workerSortedByGeo = $(xml).find('worker').get().sort(function(a, b) {
+     var valA = $(a).find('distance').text();
+     var valB = $(b).find('distance').text();
+     return valA < valB ? -1 : valA == valB ? 0 : 1;
+    });
+	// Sorting per prezzo per ora
+	var workerSortedByCost = $(xml).find('worker').get().sort(function(a, b) {
+     var valA = $(a).find('costPerHour').text();
+     var valB = $(b).find('costPerHour').text();
+     return valA < valB ? -1 : valA == valB ? 0 : 1;
+    });
+	// Sorting per rating
+	var workerSortedByRating = $(xml).find('worker').get().sort(function(a, b) {
+     var valA = $(a).find('rating').text();
+     var valB = $(b).find('rating').text();
+     return valA > valB ? -1 : valA == valB ? 0 : 1;
+    });
+
+	// Assegnazione per tipo di ordinamento
+	if(orderType == 'cost') {
+		// Ordinamento per costPerHours
+		workerSorted = workerSortedByCost;
+	} else if(orderType == 'rating') {
+		// Ordinamento per rating
+		workerSorted = workerSortedByRating;
+	} else {
+		// Ordinamento per distanza (default)
+		workerSorted = workerSortedByGeo;
+	}
 	
-	var xmlString = $(xml);	
-	$(xmlString).find("worker").each(function () {		
+	//var xmlString = $(xml);	
+	$(workerSorted).each(function () {		
 		var $worker = $(this);
 		var nickname = $worker.find('nickname').text();
 		var nome = $worker.find('nome').text();
