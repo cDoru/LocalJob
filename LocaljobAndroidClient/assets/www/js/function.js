@@ -18,7 +18,7 @@ var orderType;
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
-sessionStorage.googlecod = "5";
+//sessionStorage.googlecod = "5";
 
 
 /*
@@ -254,7 +254,8 @@ function goTabAltro(indirizzo){
 		$('#tabAltro').attr('class','tab-pane active');
 		$('#tabCasa').attr('class','tab-pane');
 		
-		
+		controller_geolocation = "InvioUrgenza";
+		alert(sessionStorage.problemTitle+" - "+sessionStorage.problemDesription+" - "+sessionStorage.problemType); 
 		//Fa partire la geolocalizzazione
 		initiate_geolocation();
 	
@@ -282,6 +283,7 @@ function handle_geolocation_query(position){
 		ricercaInZona(sessionStorage.filtroPrecedente, "");
 	}
 	//Se la geolocalizzazione me la richiede l'invio urgenza ne faccio un altra
+	//else if (controller_geolocation == "InvioUrgenza"){
 	else{
 		initialize_map("altro", position_lat, position_long);
 		//una volta che mi darà la posizione corrente, dalle google API trovo indirizzo ecc
@@ -562,6 +564,9 @@ function inviaUrgenza(luogo){
 	else if(luogo == "altro"){
 		sessionStorage.complete_address = $('#Indirizzo_altro').val()+", "+$('#nCiv_altro').val()+", "+$('#CAP_altro').val()+", "+$('#Citta_altro').val()+", "+$('#Provincia_altro').val();
 	}
+	
+	//alert(sessionStorage.problemTitle+" - "+sessionStorage.problemDesription+" - "+sessionStorage.problemType); 
+	//alert(sessionStorage.lat+" - "+sessionStorage.long);
 	
 	$.ajax({
           type: 'POST',

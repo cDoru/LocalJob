@@ -3,8 +3,9 @@
 /* TOP_RIGHT RIGHT_TOP LEFT_BOTTOM BOTTOM_LEFT */
 
 var map;
-var bologna = new google.maps.LatLng(44.499184,11.353726);
-var infowindow = new google.maps.InfoWindow({ content: " "});  
+var bologna;
+var infowindow = new google.maps.InfoWindow({ content: " "}); 
+
 
 function HomeControl(controlDiv, map) {
 
@@ -30,7 +31,10 @@ function HomeControl(controlDiv, map) {
   });
 }
 
-function initialize() {
+function initialize(position_lat, position_long) {
+	
+	var bologna = new google.maps.LatLng(position_lat,position_long);
+	
   var mapDiv = document.getElementById('map-canvas');
   var mapOptions = {
     zoom: 15,
@@ -38,7 +42,25 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     disableDefaultUI : true
   }
+  
   map = new google.maps.Map(mapDiv, mapOptions);
+  
+  //aggiungo il marker con la mia posizione
+  //var image = './img/bluecirclemarker.png';
+  var image = './img/greencirclemarker.png';
+  /*var image = {
+		    url: './img/greencirclemarker.png',
+		    size: new google.maps.Size(30, 30),
+		    origin: new google.maps.Point(0,0),
+		    anchor: new google.maps.Point(0, 30)
+  };*/
+  var marker = new google.maps.Marker({
+      position: bologna, 
+      map: map, 
+      icon: image,
+      title:"Tu sei qui!"
+    	 
+  });
 
   // REVERT
   var homeControlDiv = document.createElement('div');
@@ -46,11 +68,15 @@ function initialize() {
 
   homeControlDiv.index = 1;
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(homeControlDiv);
-  search();
+  search(position_lat, position_long);
 
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+
+navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors);
+
+
+//google.maps.event.addDomListener(window, 'load', initialize);
 
 // Listen for orientation changes
 window.addEventListener("orientationchange", function() {
@@ -64,15 +90,41 @@ window.addEventListener("orientationchange", function() {
   }, false);
 
 
+function handle_geolocation_query(position){  
+	
+	position_lat = position.coords.latitude;
+	position_long = position.coords.longitude;
+	
+	initialize(position_lat, position_long);
+	
+
+}  
+
+function handle_errors(error)  
+{  
+    switch(error.code)  
+    {  
+        case error.PERMISSION_DENIED: alert("user did not share geolocation data");  
+        break;  
+        case error.POSITION_UNAVAILABLE: alert("could not detect current position");  
+        break;  
+        case error.TIMEOUT: alert("retrieving position timed out");  
+        break;  
+        default: alert("unknown error");  
+        break;  
+    }  
+}  
+
+
 
 /* ---------------- */
 
 
-function search() {   
+function search(position_lat, position_long) {   
   $.ajax({
       async: false,
       type: 'GET',
-      url: 'http://95.141.45.174/search?latitudine=44.499184&longitudine=11.353726',      
+      url: 'http://95.141.45.174/search?latitudine='+position_lat+'&longitudine='+position_long,      
       crossDomain:true,   
       success: searchSuccess,
       error: errorLogout
