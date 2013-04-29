@@ -140,15 +140,16 @@ function cambia_login(){
  * */
 function saveProblem(){
 	problemTitle =  $('#problemTitle').val(); 
-	//problemType =  $('#problemType').val(); 
-	problemDesription =  $('#problemDesription').val(); 
+	problemDesription =  $('#problemDesription').val();
+	img_intervento = $('#img_intervento').val();
+	
+	alert(img_intervento);
 
 	//Salvo i valori nel sessionStorage
-	sessionStorage.problemTitle = problemTitle;
-	//sessionStorage.problemType = problemType;
-	sessionStorage.problemDesription = problemDesription;
+	//sessionStorage.problemTitle = problemTitle;
+	//sessionStorage.problemDesription = problemDesription;
 	
-	window.location='where-are-you.html';	
+	//window.location='where-are-you.html';	
 }
 
 function salvaProblemType(num){
