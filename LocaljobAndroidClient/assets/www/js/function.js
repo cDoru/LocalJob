@@ -500,6 +500,7 @@ function codeLatLng(position_lat, position_long) {
  * Salva l'indirizzo attuale dell'utente nel database come luogo preferito
  */
 function salvaIndirizzo(){
+	$('#loading').fadeIn('fast');		//schermata di caricamento
 	
 	nomeLuogo = $('#nome_luogo').val();
 	nomeVia = $('#Indirizzo_altro').val();
@@ -526,7 +527,7 @@ function salvaIndirizzo(){
 	        	  'isattivita': false,
 	        	  'isdomicilio': false
 	        	  },
-	          //complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
+	          complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 	          success: ajaxIndirizzoSalvato(nomeLuogo),
 	          error: errorHandler
 	});
@@ -557,7 +558,8 @@ function scegli_modalita(luogo){
  * Funzione per inviare la richiesta dell'urgenza
  */
 function inviaUrgenza(luogo){
-
+	$('#loading').fadeIn('fast');		//schermata di caricamento
+	
 	if(luogo == "casa"){
 		sessionStorage.complete_address = $('#Indirizzo_casa').val()+", "+$('#nCiv_casa').val()+", "+$('#CAP_casa').val()+", "+$('#Citta_casa').val()+", "+$('#Provincia_casa').val();	
 	}
@@ -584,6 +586,7 @@ function inviaUrgenza(luogo){
         	  'tiporichiestatre': 0,
         	  'stato': 0
           },
+          complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
           success: ajaxEMERGENCY,
           error: errorHandler
        });
@@ -597,7 +600,6 @@ function ajaxEMERGENCY(data){
  * Funzione ricerca standard
  */
 function ricercaStandard(){
-	
 	$('#loading').fadeIn('fast');			//schermata di caricamento
 	
 	alert("Problem Type: "+sessionStorage.problemTitle+" \n " +
@@ -678,8 +680,7 @@ function ricercaStandardSuccess(xml) {
  * 
  * */
 
-function login()	//gestisce il login dell'utente
-{	
+function login(){			//gestisce il login dell'utente
 	$('#loading').fadeIn('fast');			//schermata di caricamento
 	
 	user =  $('#user').val(); 
@@ -726,8 +727,7 @@ function facebook_login_prova(){
 }
 
 //Registrazione utente
-function user_signin()
-{
+function user_signin(){
 	$('#loading').fadeIn('fast');			//schermata di caricamento
 	nome = $('#signU_name').val(); 
 	cognome = $('#signU_surname').val(); 
@@ -1053,8 +1053,7 @@ function ricercaInZonaSuccess(xml) {
 } 
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
-	
-	$('#loading').fadeIn('fast');		//schermata di caricamento
+	//la schermata di caricamento è abilitata dal caricamento pagina
 	
 	$.ajax({
 		async: false,
