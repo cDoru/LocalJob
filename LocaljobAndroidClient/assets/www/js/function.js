@@ -76,10 +76,7 @@ function onNotificationGCM(e) {
         	
 			alert('Hai scritto: ' + e.payload.message);
 			
-			//DA QUA GESTISCO I TIPI DI NOTIFICHE
-			if(e.payload.notificationType == "request") {
-				
-			}
+			elaboraNotifica(e.payload);
 			
         break;
         
@@ -255,7 +252,6 @@ function goTabAltro(indirizzo){
 		$('#tabCasa').attr('class','tab-pane');
 		
 		controller_geolocation = "InvioUrgenza";
-		alert(sessionStorage.problemTitle+" - "+sessionStorage.problemDesription+" - "+sessionStorage.problemType); 
 		//Fa partire la geolocalizzazione
 		initiate_geolocation();
 	
@@ -509,7 +505,7 @@ function salvaIndirizzo(){
 	comune = $('#Citta_altro').val();
 	provincia = $('#Provincia_altro').val();
 	
-	alert("proviamo: "+nomeVia+" - "+civico+" - "+cap+" - "+comune+" - "+provincia+" - "+sessionStorage.lat+" - "+sessionStorage.long+" - "+nomeLuogo);
+	//alert("proviamo: "+nomeVia+" - "+civico+" - "+cap+" - "+comune+" - "+provincia+" - "+sessionStorage.lat+" - "+sessionStorage.long+" - "+nomeLuogo);
 
 	//chiamata AJAX per salvare l'indirizzo nel database
 	 $.ajax({
@@ -598,9 +594,11 @@ function ajaxEMERGENCY(data){
 	window.location='intervento-invio.html';
 }
 
+
 /*
  * Funzione ricerca standard
  */
+/*
 function ricercaStandard(){
 	$('#loading').fadeIn('fast');			//schermata di caricamento
 	
@@ -674,7 +672,7 @@ function ricercaStandardSuccess(xml) {
         
 	});
 }
-
+*/
 
 
 /*
@@ -687,7 +685,7 @@ function login(){			//gestisce il login dell'utente
 	
 	user =  $('#user').val(); 
 	password =  $('#password').val(); 
-	alert(user);
+	//alert(user);
 	// il googlecod per ora è prova, ma in realtà verrà preso dalla 
 	// registazione ad ogni avvio dell'app
 	//sessionStorage.googlecod = "prova";
@@ -886,7 +884,7 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
    alert(xhr.status);
    alert(thrownError);
    //alert(textStatus);
-   alert(xhr.responseText);
+   //alert(xhr.responseText);
 }
 
 /* 
@@ -1059,7 +1057,7 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	//la schermata di caricamento è abilitata dal caricamento pagina
-	alert("ehy");
+	//alert("ehy");
 	$.ajax({
 		async: false,
 		type: 'GET',
