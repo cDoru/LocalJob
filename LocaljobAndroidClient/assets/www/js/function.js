@@ -509,6 +509,8 @@ function salvaIndirizzo(){
 	cap = $('#CAP_altro').val();
 	comune = $('#Citta_altro').val();
 	provincia = $('#Provincia_altro').val();
+	
+	alert("proviamo: "+nomeVia+" - "+civico+" - "+cap+" - "+comune+" - "+provincia+" - "+sessionStorage.lat+" - "+sessionStorage.long+" - "+nomeLuogo);
 
 	//chiamata AJAX per salvare l'indirizzo nel database
 	 $.ajax({
@@ -884,6 +886,8 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
 {
    alert(xhr.status);
    alert(thrownError);
+   //alert(textStatus);
+   alert(xhr.responseText);
 }
 
 /* 
@@ -1056,7 +1060,7 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	//la schermata di caricamento è abilitata dal caricamento pagina
-	
+	alert("ehy");
 	$.ajax({
 		async: false,
 		type: 'GET',
