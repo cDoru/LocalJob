@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Inserisci un nuovo intervento</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -86,118 +86,47 @@
 	</div>
 
 
-	<div class="container contNotifiche" style="margin-top:2px;">
+	<div class="container contNotifiche text-center" style="margin-top:2px;">
+	
 	    <h4>Descrivi il tuo problema</h4></ br>
-    	
-		    	
-		    	<form id="contact-form" class="form-signin">
-			    	<div class="control-group"> <!-- Serve per il validator -->
-				    	<div class="row-fluid" style="margin-bottom:15px;">
-
-				    		<div style="width:25%; float:left; margin-right:0; height:100%; text-align:center">
-
-
-				    		
-				    			<div class="fileupload fileupload-new" data-provides="fileupload">
-	  								<div class="fileupload-new thumbnail" style="width: 100px; height: 100px;"><img src="./img/example_photo.png" /></div>
-	  								<div class="fileupload-preview fileupload-exists thumbnail" style="width: 100px; height: 100px;"></div><br/>
-	 								
-	  							</div>
-	  							
-				    		</div>
-				    		<!-- La classe controls serve per il validator -->
-
-				    		<div class="controls" style="width:50%; float:right; height:100%; margin-left:2%; margin-top:15px;">
-				    			<div class="fileupload fileupload-new" data-provides="fileupload">
-				    			<div class="btn btn-file btn-inverse btn-large" style="margin-top:2px;"><div class="fileupload-new" id="photo">CARICA</div><div class="fileupload-exists">MODIFICA</div><input type="file" name="signU_img" id="signU_img"/></div>
-	  								<a href="#" class="btn fileupload-exists btn-inverse" data-dismiss="fileupload" style="margin-top:2px;">RIMUOVI</a></div>
-
-				    			<div class="btn-group">
-		                		<a class="btn dropdown-toggle btn-inverse btn-large " data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">
-		                  		Categoria
-		                    	<span class="caret"></span> 
-		                		</a>
-									<ul id="problemType" class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu">
-				                  		<li><a tabindex="-1" href="javascript:salvaProblemType(1);">Caldaista</a></li>
-						                  <li><a tabindex="-1" href="javascript:salvaProblemType(2);">Idraulico</a></li>
-						                  <li><a tabindex="-1" href="javascript:salvaProblemType(3);">Pittore</a></li>
-						                  <li><a tabindex="-1" href="javascript:salvaProblemType(4);">Elettricista</a></li>
-						                  <li><a tabindex="-1" href="javascript:salvaProblemType(5);">Muratore</a></li>
-						                  <li><a tabindex="-1" href="javascript:salvaProblemType(6);">Antennista</a></li>
-						                  <li><a tabindex="-1" href="javascript:salvaProblemType(7);">Sarto</a></li>
-						                  <li><a tabindex="-1" href="javascript:salvaProblemType(8);">Calzolaio</a></li>
-						                  <li><a tabindex="-1" href="javascript:salvaProblemType(9);">Meccanico</a></li>
-						                  <li><a tabindex="-1" href="javascript:salvaProblemType(10);">Carpentiere</a></li>
-						                  <li><a tabindex="-1" href="javascript:salvaProblemType(11);">Falegname</a></li>
-		                			</ul>
-		             			</div>
-		             			
-							
-
-			 				</div>
-				    	</div>
-						<!-- Parte con il form normale -->
-			 			<div class="controls">
-			 				<p><div class="controls"><input type="text" id="problemTitle" class="input-xxlarge" style="margin-top:2%;" placeholder="Titolo"></div></p>
-
-			        		<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea>
-
-			     		</div>
-			   		</div>
-			    	<button type="button" class="btn btn-large btn-block btn-success" onclick="javascript:saveProblem();"><img src="./img/glyphicons/white_ver/153.PNG"/> CONFERMA</button>
-		    	</form>
-			
-
-
-
-
-
-
-
-
-
-
-    	<!--<div class="row-fluid text-center">    
-			<div class="span12">
-			
-				<form>
-	  				<fieldset>  
-		           	 	<div class="btn-group">
-		                	<a class="btn dropdown-toggle btn-large " data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">
-		                  		Ricerca categoria problema
-		                    	<span class="caret"></span> 
-		                	</a>
+	    	<form id="contact-form" class="form-signin">
+		    		
+		 			<div class="controls">
+		 				
+		 				<div class="fileupload fileupload-new" data-provides="fileupload">
+							<div class="fileupload-new thumbnail" style="width: 100px; height: 100px;"><img src="./img/example_photo.png" /></div>
+							<div class="fileupload-preview fileupload-exists thumbnail" style="width: 100px; height: 100px;"></div><br/>
+							<span class="btn btn-file btn-inverse btn-large" style="margin-top:2px;"><span class="fileupload-new">CARICA</span><span class="fileupload-exists">MODIFICA</span><input type="file" id="imgIntervento" name="imgIntervento" /></span>
+							<a href="#" class="btn fileupload-exists btn-inverse btn-large" data-dismiss="fileupload" style="margin-top:2px;">RIMUOVI</a>
+						</div>
+		 				
+		 				<div class="btn-group">
+	                		<a class="btn dropdown-toggle btn-inverse btn-large" data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">
+	                  		Categoria
+	                    	<span class="caret"></span> 
+	                		</a>
 							<ul id="problemType" class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu">
-				                  <li><a tabindex="-1" href="javascript:salvaProblemType(1);">Caldaista</a></li>
-				                  <li><a tabindex="-1" href="javascript:salvaProblemType(2);">Idraulico</a></li>
-				                  <li><a tabindex="-1" href="javascript:salvaProblemType(3);">Pittore</a></li>
-				                  <li><a tabindex="-1" href="javascript:salvaProblemType(4);">Elettricista</a></li>
-				                  <li><a tabindex="-1" href="javascript:salvaProblemType(5);">Muratore</a></li>
-				                  <li><a tabindex="-1" href="javascript:salvaProblemType(6);">Antennista</a></li>
-				                  <li><a tabindex="-1" href="javascript:salvaProblemType(7);">Sarto</a></li>
-				                  <li><a tabindex="-1" href="javascript:salvaProblemType(8);">Calzolaio</a></li>
-				                  <li><a tabindex="-1" href="javascript:salvaProblemType(9);">Meccanico</a></li>
-				                  <li><a tabindex="-1" href="javascript:salvaProblemType(10);">Carpentiere</a></li>
-				                  <li><a tabindex="-1" href="javascript:salvaProblemType(11);">Falegname</a></li>
-		                	</ul>
-		             	</div><br/><br/>
-         	
-		         		<div class="fileupload fileupload-new" data-provides="fileupload">
-							<div class="fileupload-new thumbnail" style="width: 80px; height: 80px;"><img src="http://www.placehold.it/80x80/EFEFEF/AAAAAA" /></div>
-							<div class="fileupload-preview fileupload-exists thumbnail" style="width: 80px; height: 80px;"></div><br/>
-							<span class="btn btn-file btn-large"><span class="fileupload-new">Carica immagine</span><span class="fileupload-exists">Modifica</span><input type="file" /></span>
-							<a href="#" class="btn btn-large fileupload-exists" data-dismiss="fileupload">Elimina</a>
-						</div><br/>
-         
-	    				<input type="text" id="problemTitle" class="input-xxlarge" placeholder="Titolo"><br/>
-						<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea>
-						<button class="btn btn-large btn-block btn-primary" type="button" onclick="javascript:saveProblem();"><img src="./img/glyphicons/white_ver/153.PNG"/> CONFERMA</button>	
-					</fieldset>
-	    		</form>
-			</div>
-       	 </div><br/>  -->
+		                  		<li><a tabindex="-1" href="javascript:salvaProblemType(1);">Caldaista</a></li>
+				                <li><a tabindex="-1" href="javascript:salvaProblemType(2);">Idraulico</a></li>
+				                <li><a tabindex="-1" href="javascript:salvaProblemType(3);">Pittore</a></li>
+				                <li><a tabindex="-1" href="javascript:salvaProblemType(4);">Elettricista</a></li>
+				                <li><a tabindex="-1" href="javascript:salvaProblemType(5);">Muratore</a></li>
+				                <li><a tabindex="-1" href="javascript:salvaProblemType(6);">Antennista</a></li>
+				                <li><a tabindex="-1" href="javascript:salvaProblemType(7);">Sarto</a></li>
+				                <li><a tabindex="-1" href="javascript:salvaProblemType(8);">Calzolaio</a></li>
+				                <li><a tabindex="-1" href="javascript:salvaProblemType(9);">Meccanico</a></li>
+				                <li><a tabindex="-1" href="javascript:salvaProblemType(10);">Carpentiere</a></li>
+				                <li><a tabindex="-1" href="javascript:salvaProblemType(11);">Falegname</a></li>
+                			</ul>
+	             		</div><br/>
+		 				
+		 				<input type="text" id="problemTitle" class="input-xxlarge" style="margin-top:2%;" placeholder="Titolo">
+		        		<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea>
+		     		</div>
+		    	<button type="button" class="btn btn-large btn-block btn-success" onclick="javascript:saveProblem();"><img src="./img/glyphicons/white_ver/153.PNG"/> CONFERMA</button>
+	    	</form>
 
-    </div> <!-- /container -->
+   		</div> <!-- /container -->
    
 
     <!-- Le javascript
