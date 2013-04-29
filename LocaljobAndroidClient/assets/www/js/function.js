@@ -729,9 +729,9 @@ function facebook_login_prova(){
 //Registrazione utente
 function user_signin(){
 	$('#loading').fadeIn('fast');			//schermata di caricamento
+	
 	nome = $('#signU_name').val(); 
 	cognome = $('#signU_surname').val(); 
-	//
 	user =  $('#signU_user').val(); 
 	password =  $('#signU_password2').val();
 	mail =  $('#signU_mail').val();
@@ -753,6 +753,7 @@ function user_signin(){
 	          error: errorHandler
 	})
 }
+
 
 //Completa la registrazione
 function update_user_profile()
