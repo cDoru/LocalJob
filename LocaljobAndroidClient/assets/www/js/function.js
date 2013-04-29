@@ -18,7 +18,7 @@ var orderType;
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
-//sessionStorage.googlecod = "5";
+sessionStorage.googlecod = "5";
 
 
 /*
@@ -141,15 +141,17 @@ function cambia_login(){
 function saveProblem(){
 	problemTitle =  $('#problemTitle').val(); 
 	problemDesription =  $('#problemDesription').val();
-	img_intervento = $('#img_intervento').val();
+	problemImg = $('#imgIntervento').val();
 	
-	alert(img_intervento);
+	alert(imgIntervento);
 
 	//Salvo i valori nel sessionStorage
-	//sessionStorage.problemTitle = problemTitle;
-	//sessionStorage.problemDesription = problemDesription;
+	sessionStorage.problemTitle = problemTitle;
+	sessionStorage.problemDesription = problemDesription;
+	sessionStorage.problemImg = problemImg;
+
 	
-	//window.location='where-are-you.html';	
+	window.location='where-are-you.html';	
 }
 
 function salvaProblemType(num){
@@ -597,8 +599,27 @@ function inviaUrgenza(luogo){
 
 function ajaxEMERGENCY(data){
 	window.location='intervento-invio.html';
+	caricaImgInvervento(data);
+	alert(data);
 }
 
+
+
+function caricaImgInvervento(data)
+	{
+		var idIntervento = 170;
+		$.ajax({
+		type: 'POST',
+		url: 'http://95.141.45.174/listinterv/',
+		contentType: 'application/x-www-form-urlencoded',			
+		crossDomain:true,
+		data: {'docfile': imgIntervento, 
+	        	'idintervento': idIntervento
+	        },
+		success: caricaImgInterventoSuccess ,
+		error: errorHandler ,
+		});	
+	}
 /*
  * Funzione ricerca standard
  */
@@ -1514,4 +1535,9 @@ function confermaUscita()
         	'OK,Annulla');
 
        }
+
+
+
+
+
 
