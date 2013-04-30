@@ -63,7 +63,7 @@ function notificaRequest() {
 	$('#panelNotifiche').modal('show');
 	spegniSeNotifica();
 }
-function notificaAnswer(notifica) {
+function notificaAnswer() {
 	$('#modalHeader').html('Nuova offerta di intervento');
 	$('#modalBody').html('<p>Un professionista ti ha inviato il preventivo. Vuoi visualizzare la sua offerta?</p>');
 	$('#modalFooter').html('<a href="javascript:rifiuta()" class="btn" data-dismiss="modal">Annulla</a>'+
@@ -72,7 +72,7 @@ function notificaAnswer(notifica) {
 	$('#panelNotifiche').modal('show');
 	spegniSeNotifica();
 }
-function notificaDecline(notifica) {
+function notificaDecline() {
 	$('#modalHeader').html('Preventivo rifiutato');
 	$('#modalBody').html('<p>Il preventivo numero '+sessionStorage.requestID+' non è stato accettato dal cliente. Grazie comunque!</p>');
 	$('#modalFooter').html('<a href="javascript:rifiuta()" class="btn btn-primary" data-dismiss="modal">Chiudi</a>');
@@ -80,7 +80,7 @@ function notificaDecline(notifica) {
 	$('#panelNotifiche').modal('show');
 	spegniSeNotifica();
 }
-function notificaInfo(notifica) {
+function notificaInfo() {
 	$('#modalHeader').html('Preventivo accettato');
 	$('#modalBody').html('<p>Un cliente ha accettato il tuo preventivo. Attende che lo contatti, vuoi visualizzare i suoi dati?</p>');
 	$('#modalFooter').html('<a href="javascript:rifiuta()" class="btn" data-dismiss="modal">Annulla</a>'+

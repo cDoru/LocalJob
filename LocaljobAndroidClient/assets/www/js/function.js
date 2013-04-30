@@ -49,6 +49,7 @@ function onNotificationGCM(e) {
 			// here is where you might want to send it the regID for later use.
 			//console.log("regID = " + e.regID);
 			sessionStorage.googlecod = e.regid;
+			window.location='home.html';
 		}
 		
         break;   

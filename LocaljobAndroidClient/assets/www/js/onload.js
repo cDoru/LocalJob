@@ -1,7 +1,10 @@
 /*
  * funzioni che si avviano al caricamento della pagina
  */
-$(document).ready(function(){
+
+document.addEventListener('deviceready', partenza, true);
+
+function partenza(){
 	
 	jQuery.support.cors = true;
 
@@ -44,5 +47,5 @@ $(document).ready(function(){
 
 	}, false);
 	
-});
+}
 
