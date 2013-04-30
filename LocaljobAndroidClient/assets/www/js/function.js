@@ -136,19 +136,29 @@ function cambia_login(){
  * 
  * */
 function saveProblem(){
+	//Salvo i valori nel sessionStorage
 	problemTitle =  $('#problemTitle').val(); 
 	problemDesription =  $('#problemDesription').val();
-	problemImg = $('#imgIntervento').val();
-	
-	alert(imgIntervento);
-
-	//Salvo i valori nel sessionStorage
 	sessionStorage.problemTitle = problemTitle;
 	sessionStorage.problemDesription = problemDesription;
-	sessionStorage.problemImg = problemImg;
-
 	
-	window.location='where-are-you.html';	
+	//carico l'immagine nel server
+	var oData = new FormData(document.forms.namedItem("fileinfo"));
+	var oReq = new XMLHttpRequest();
+	oReq.open("POST", "http://95.141.45.174/listinterv/", true); 
+
+	oReq.onload = function(oEvent) {
+		if (oReq.status == 200) {
+			sessionStorage.problemImg = oReq.responseText;
+			alert("Uppato!");	
+			window.location='where-are-you.html';
+		} else {
+			oOutput.innerHTML = "Error " + oReq.status + " occurred uploading your file.<br \/>";
+		}
+	};
+		 
+	oReq.send(oData);
+		
 }
 
 function salvaProblemType(num){
@@ -578,7 +588,7 @@ function inviaUrgenza(luogo){
           crossDomain: true,
           data: {'titolo': sessionStorage.problemTitle, 
         	  'descrizione': sessionStorage.problemDesription, 
-        	  'pathfoto': 'foto', 
+        	  'pathfoto': sessionStorage.problemImg, 
         	  'latitudine': sessionStorage.lat, 
         	  'longitudine': sessionStorage.long, 
         	  'isemergenza':  true, 
@@ -866,12 +876,17 @@ function cambiaBottone(testo){
 
 function ajaxLOGIN(data){
 	//alert(data);
-	if(data == ""){
-		
-		window.location='interventi-attivi.html';
+	if(data == "cliente"){	
+		localStorage.userType = data;
 		logged = true;
 		localStorage.nickname = user;
-		
+		window.location='interventi-attivi.html';		
+	}
+	else if(data == "professionista"){
+		localStorage.userType = data;
+		logged = true;
+		localStorage.nickname = user;
+		window.location='interventi-attivi.html';	
 	}
 	else{
 		alert("User o Password errati");
@@ -1078,16 +1093,29 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	//la schermata di caricamento è abilitata dal caricamento pagina
-	//alert("ehy");
-	$.ajax({
-		async: false,
-		type: 'GET',
-		url: 'http://95.141.45.174/openjob',			
-		crossDomain:true,
-		complete: function(){$('#loading').fadeOut('fast')},
-		success: ricercaAttiviSuccess,
-		error: errorHandler,
-		});	
+	if(localStorage.userType == "cliente"){
+		$.ajax({
+			async: false,
+			type: 'GET',
+			url: 'http://95.141.45.174/openjob',			
+			crossDomain:true,
+			complete: function(){$('#loading').fadeOut('fast')},
+			success: ricercaAttiviSuccess,
+			error: errorHandler,
+			});	
+	}
+	else if(localStorage.userType == "professionista"){
+		$.ajax({
+			async: false,
+			type: 'GET',
+			url: 'http://95.141.45.174/listjobs',			
+			crossDomain:true,
+			complete: function(){$('#loading').fadeOut('fast')},
+			success: ricercaAttiviSuccess,
+			error: errorHandler,
+			});	
+	}
+	
 
 }
 
@@ -1119,7 +1147,7 @@ function ricercaAttiviSuccess(xml){
 
 			// IMMAGINE NOTFOUND?
 			 if (picture == 'Photo' || picture == 'photo' || picture == '') {
-        		picture = 'img/missingAvatar.png';
+        		picture = './img/missingAvatar.png';
       		} else {
         		picture = picture;
      		}
@@ -1236,7 +1264,7 @@ function ricercaAttiviSuccess(xml){
                         			'</div></div></div>'+
                    			'<div class="row-fluid">'+
                					'<div style="width:30%; float:left;">'+
-               						'<img src="'+picture+'" style="width:70%; margin-left:15%;" class="img-polaroid">'+
+               						'<img src="http://95.141.45.174/'+picture+'" style="width:70%; margin-left:15%;" class="img-polaroid">'+
                					'</div>'+
 	               				'<div style="width:100%; margin-top:-10px;">'+
 	               					'<h6 style="text-transform:uppercase; text-align:left; margin-bottom:0;">'+title+'</h6>'+
@@ -1287,7 +1315,7 @@ function mostraStoricoCliSuccess(xml){
 
 	// IMMAGINE NOTFOUND?
 	 if (foto == 'Photo' || foto == 'photo' || foto == '') {
-		foto = 'img/missingAvatar.png';
+		foto = './img/missingAvatar.png';
 	 }
 	 else {
 		foto = foto;
@@ -1405,7 +1433,7 @@ function mostraStoricoCliSuccess(xml){
                 			'<div class="row-fluid">'+
         					'<h4 id="titoloPagina">Ecco i dettagli del lavoro:</h4>'+
         					'<p><b>ID INTERVENTO:</b> '+id+'<br/><b>DATA:</b> '+date+'</p>'+
-        					'<a href="javascript:mostraPanelFoto()"><img id="foto" src="'+foto+'" style="width:100px;"/></a><br/>'+
+        					'<a href="javascript:mostraPanelFoto()"><img id="foto" src="http://95.141.45.174/'+foto+'" style="width:100px;"/></a><br/>'+
         					'Tappa sulla foto per ingrandirla'+
         		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+titolo+'</h5><p id="descrizione2">'+descrizione+'</p></div>'+
         		    		'<button class="btn btn-large btn-block btn-inverse" onclick="javascript:history.go(-1);"">TORNA INDIETRO</button>'+
