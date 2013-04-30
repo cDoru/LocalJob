@@ -113,7 +113,7 @@ function cosaMostro(){
     	   		
        case 'notificaAnswer':	
     	   		$('#titoloPagina').html('Nuova offerta di intervento,<br/>ecco i dettagli del preventivo:');
-    	   		$('#corpoPagina').html('<div>'+sessionStorage.nickname+' si è offerto per il lavoro.</div><br/>'+
+    	   		$('#corpoPagina').html('<div>'+sessionStorage.nickname+' si &egrave; offerto per il lavoro.</div><br/>'+
     	   				'<div><b>FASCIA DI PREZZO STIMATA:</b><br/>'+sessionStorage.priceRange+'</div><br/>'+
     	   				'<div><b>TEMPO DI ARRIVO STIMATO:</b><br/>'+sessionStorage.expectedTime+'</div><br/>');
     	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="#">ACCETTA PREVENTIVO</a>'+
