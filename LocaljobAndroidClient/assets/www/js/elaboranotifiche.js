@@ -116,8 +116,8 @@ function cosaMostro(){
     	   		$('#corpoPagina').html('<div>'+sessionStorage.nickname+' si &egrave; offerto per il lavoro.</div><br/>'+
     	   				'<div><b>FASCIA DI PREZZO STIMATA:</b><br/>'+sessionStorage.priceRange+'</div><br/>'+
     	   				'<div><b>TEMPO DI ARRIVO STIMATO:</b><br/>'+sessionStorage.expectedTime+'</div><br/>');
-    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="#">ACCETTA PREVENTIVO</a>'+
-   				'<a class="btn btn-large btn-block btn-inverse" href="#">RIFIUTA</a>');
+    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="javascript:accettaPreventivo()">ACCETTA PREVENTIVO</a>'+
+   				'<a class="btn btn-large btn-block btn-inverse" href="javascript:rifiutaPreventivo();">RIFIUTA</a>');
     	   		break;
     	   		
        case 'notificaInfo':
@@ -145,15 +145,15 @@ function mostraPanelFoto(){		//apre ingrandimento della foto
 }
 
 function mostraPanelPreventivo(){			//mostra il modal in cui inserire in preventivo
-	//$('#panelPreventivo').modal('show');
-	sendPreventivo();
+	$('#panelPreventivo').modal('show');
+	//sendPreventivo();
 }
 
 function sendPreventivo(){		//raccoglie i dati dal form e (per ora) non ci fa assolutamente nulla
-	//cifra =  $('#cifraMin').val() +' - '+ $('#cifraMax').val();
-	//tempo =  $('#tempoOre').val() +'h'+ $('#tempoMin').val();
-	cifra = "100 - 200";
-	tempo = "1h30";
+	cifra =  $('#cifraMin').val() +' - '+ $('#cifraMax').val();
+	tempo =  $('#tempoOre').val() +'h'+ $('#tempoMin').val();
+	//cifra = "100 - 200";
+	//tempo = "1h30";
 	//alert(cifra +" "+ tempo);
 	
 	/*
@@ -161,7 +161,7 @@ function sendPreventivo(){		//raccoglie i dati dal form e (per ora) non ci fa as
 	 */
 	$.ajax({
         type: 'POST',
-        url: 'http://95.141.45.174/answer',
+        url: 'http://95.141.45.174/answers',
         contentType: 'application/x-www-form-urlencoded',
         crossDomain: true,
         data: {'requestId': sessionStorage.requestID, 
@@ -170,13 +170,14 @@ function sendPreventivo(){		//raccoglie i dati dal form e (per ora) non ci fa as
       	  'nickname': localStorage.nickname    	  
       	  },
         complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
-        success: inviaPreventivo(),
+        success: inviaPreventivo,
         error: errorHandler
 	});
 }
 
-function inviaPreventivo(){
-	alert("Preventivo inviato correttamente");
+function inviaPreventivo(data){
+	alert(data);
+	//alert("Preventivo inviato correttamente");
 	//metti un location della pagina della mary
 	window.location='preventivo-inviato.html';
 }
@@ -192,13 +193,38 @@ function rifiutaPreventivo(){
       	  'nickname': localStorage.nickname    	  
       	  },
         complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
-        success: preventivoRifiutato(),
+        success: preventivoRifiutato,
         error: errorHandler
 	});
 	
 }
 
 function preventivoRifiutato(){
+	window.location='interventi-attivi.html';
+}
+
+function accettaPreventivo(){
+	
+	$.ajax({
+        type: 'POST',
+        url: 'http://95.141.45.174/accept',
+        contentType: 'application/x-www-form-urlencoded',
+        crossDomain: true,
+        data: {'requestId': sessionStorage.requestID,
+        	'professionistaid': sessionStorage.idprofessionista
+        },
+        //il professionistaID non glielo passo ok?
+        complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
+        success: preventivoAccettato,
+        error: errorHandler
+	});
+	
+}
+
+function preventivoRifiutato(){
+	window.location='interventi-attivi.html';
+}
+function preventivoAccettato(){
 	window.location='interventi-attivi.html';
 }
 

@@ -924,7 +924,7 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
    alert(xhr.status);
    alert(thrownError);
    //alert(textStatus);
-   //alert(xhr.responseText);
+   alert(xhr.responseText);
 }
 
 /* 
@@ -1097,6 +1097,7 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	//la schermata di caricamento è abilitata dal caricamento pagina
+	alert(localStorage.userType);
 	if(localStorage.userType == "cliente"){
 		$.ajax({
 			async: false,
@@ -1105,7 +1106,7 @@ function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 			crossDomain:true,
 			complete: function(){$('#loading').fadeOut('fast')},
 			success: ricercaAttiviSuccess,
-			error: errorHandler,
+			error: errorHandler
 			});	
 	}
 	else if(localStorage.userType == "professionista"){
@@ -1116,10 +1117,9 @@ function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 			crossDomain:true,
 			complete: function(){$('#loading').fadeOut('fast')},
 			success: ricercaAttiviSuccess,
-			error: errorHandler,
+			error: errorHandler
 			});	
-	}
-	
+	} 	
 
 }
 

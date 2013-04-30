@@ -105,7 +105,7 @@
     	
     	<div class="tabbable"> <!-- Only required for left/right tabs -->
 			<ul class="nav nav-tabs text-center">
-		    	<li class="active" style="width:50%;"><a href="#tabAttivi" onclick="ricercaAttivi()" data-toggle="tab" style="border:1px solid #ffffff;">Interventi attivi</a></li>
+		    	<li class="active" style="width:50%;"><a href="#tabAttivi" onclick="ricercaAttivi();" data-toggle="tab" style="border:1px solid #ffffff;">Interventi attivi</a></li>
 		    	<li style="width:50%;"><a href="#tabIntorno" onclick="ricercaCoordinateInZona('Tutti','');" data-toggle="tab" style="border:1px solid #ffffff;">Intorno a te</a></li>
 		  	</ul>
 		  	
@@ -113,9 +113,11 @@
 <!-- ORRIBILE -->
 		  	<div class="tab-content" style="min-height:500px;">
             <!-- contenuto tabAttivi -->
-		    	 <div class="tab-pane active" id="tabAttivi"></div>
+		    	 <div class="tab-pane active" id="tabAttivi">
+		    	 </div>
 		        <!-- contenuto tabIntorno -->
-		        <div class="tab-pane" id="tabIntorno"></div>
+		        <div class="tab-pane" id="tabIntorno">
+		        </div>
 		    </div>
 			
 
