@@ -60,6 +60,7 @@ function tokenHandler (result) {
 
 function successHandler (result) {
     //alert('success:'+ result);
+	window.location='home.html';
 }
 
 function errorHandler (error) {

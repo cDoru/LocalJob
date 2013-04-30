@@ -1438,7 +1438,7 @@ function mostraStoricoCliSuccess(xml){
         		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+titolo+'</h5><p id="descrizione2">'+descrizione+'</p></div>'+
         		    		'<button class="btn btn-large btn-block btn-inverse" onclick="javascript:history.go(-1);"">TORNA INDIETRO</button>'+
         		    		'</div>');
-	$('#fotoGrande').attr('src', foto);
+	$('#fotoGrande').attr('src', 'http://95.141.45.174/'+foto);
 }
 
 /**/
