@@ -18,7 +18,7 @@ var orderType;
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
-sessionStorage.googlecod = "5";
+//sessionStorage.googlecod = "5";
 
 
 /*
@@ -47,7 +47,7 @@ function onNotificationGCM(e) {
 		{
 			// Your GCM push server needs to know the regID before it can push to this device
 			// here is where you might want to send it the regID for later use.
-			console.log("regID = " + e.regID);
+			//console.log("regID = " + e.regID);
 			sessionStorage.googlecod = e.regid;
 		}
 		
