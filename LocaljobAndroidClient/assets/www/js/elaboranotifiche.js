@@ -98,7 +98,7 @@ function cosaMostro(){
     {
        case 'notificaRequest':  
     	   		$('#titoloPagina').html('Nuova richiesta di intervento,<br/>ecco i dettagli del lavoro:');
-    	   		$('#corpoPagina').append('<a href="javascript:mostraPanelFoto()">'+
+    	   		$('#corpoPagina').html('<a href="javascript:mostraPanelFoto()">'+
     	   				'<img id="foto" src="http://95.141.45.174/'+sessionStorage.picture+'" style="width:100px;"/></a><br/>'+
     					'Tappa sulla foto per ingrandirla'+
     		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+sessionStorage.problemTitle+'</h5>'+
@@ -106,7 +106,7 @@ function cosaMostro(){
     		    		'<div><b>RICHIESTO:</b> '+sessionStorage.job+'</div>'+
     		    		'<div style="margin-bottom:20px;"><b>PRESSO:</b> '+sessionStorage.position+'</div>');
     	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-inverse" href="javascript:mostraPanelPreventivo()">FORNISCI PREVENTIVO</a>'+
-    	   				'<a class="btn btn-large btn-block btn-inverse" href="#">RIFIUTA</a>');
+    	   				'<a class="btn btn-large btn-block btn-inverse" href="javascript:rifiutaPreventivo()">RIFIUTA</a>');
     	   		
     	   		$('#fotoGrande').attr('src', sessionStorage.picture);		//dentro a panelFoto
     	   		break;
@@ -147,12 +147,56 @@ function mostraPanelPreventivo(){			//mostra il modal in cui inserire in prevent
 	$('#panelPreventivo').modal('show');
 }
 
-function getPreventivo(){		//raccoglie i dati dal form e (per ora) non ci fa assolutamente nulla
-	cifra =  $('#cifraMin').val() +' '+ $('#cifraMax').val();
-	tempo =  $('#tempoOre').val() +' '+ $('#tempoMin').val();
-	alert(cifra +" "+ tempo);
+function sendPreventivo(){		//raccoglie i dati dal form e (per ora) non ci fa assolutamente nulla
+	cifra =  $('#cifraMin').val() +' - '+ $('#cifraMax').val();
+	tempo =  $('#tempoOre').val() +'h'+ $('#tempoMin').val();
+	//alert(cifra +" "+ tempo);
+	
+	/*
+	 * Invia al server il preventivo
+	 */
+	$.ajax({
+        type: 'POST',
+        url: 'http://95.141.45.174/answer',
+        contentType: 'application/x-www-form-urlencoded',
+        crossDomain: true,
+        data: {'requestId': sessionStorage.requestID, 
+      	  'priceRange': cifra, 
+      	  'expectedTime': tempo, 
+      	  'nickname': localStorage.nickname    	  
+      	  },
+        complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
+        success: inviaPreventivo(),
+        error: errorHandler
+	});
 }
 
+function inviaPreventivo(){
+	alert("Preventivo inviato correttamente");
+	//metti un location della pagina della mary
+	window.location='preventivo-inviato.html';
+}
+
+function rifiutaPreventivo(){
+	
+	$.ajax({
+        type: 'POST',
+        url: 'http://95.141.45.174/decline',
+        contentType: 'application/x-www-form-urlencoded',
+        crossDomain: true,
+        data: {'requestId': sessionStorage.requestID, 
+      	  'nickname': localStorage.nickname    	  
+      	  },
+        complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
+        success: preventivoRifiutato(),
+        error: errorHandler
+	});
+	
+}
+
+function preventivoRifiutato(){
+	window.location='interventi-attivi.html';
+}
 
 /*
  *	Gestione del bottone di notifica 
