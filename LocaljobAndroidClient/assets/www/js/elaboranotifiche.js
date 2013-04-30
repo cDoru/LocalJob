@@ -200,4 +200,5 @@ function accendiSeNotifica(){		//accende la notifica
 function spegniSeNotifica(){		//spegne la notifica
 	$('#sos').attr('class', 'badge');
 	$('#sos').html('.');
+	$('#sos_link').attr('href','#');
 }
