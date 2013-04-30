@@ -54,11 +54,20 @@
 		</div>
   	<!--  -->
   	
-  	<!-- MODAL PER NOTIFICHE -->
-		<div class="modal hide fade" id="panelNotifiche" style="color:black">
-			...
+  	<!-- MODAL PER NOTIFICHE AGGIORNATO-->
+		<div id="panelNotifiche" class="modal hide fade" style="color:black">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 id="modalHeader">...</h4>
+			</div>
+			<div id="modalBody" class="modal-body">
+				...
+			</div>
+			<div id="modalFooter" class="modal-footer">
+				...
+			</div>
 		</div>
-	<!--  -->
+		<!--  -->
 
 	<!-- FIXATA!! -->
 	<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
@@ -72,7 +81,7 @@
       			<button class="btn btn-large btn-info" type="button" style="height:47px;">
                 <img src="./img/minilogo.png" />
               </button>          		
-	                <a class="btn btn-large btn-inverse" href="javascript:mostraPanelNotifiche()">
+	                <a id="sos_link" class="btn btn-large btn-inverse" href="#">
 		            	<span id="sos" class="badge" style="margin-top:4%; margin-bottom:5%">.</span>
 		            </a>
 		            <button  class="btn btn-large btn-inverse" type="button" onclick="javascript:window.location='map-landscape.html';">
@@ -112,7 +121,6 @@
 	<script src="./js/function_profilo.js" type="text/javascript" charset="utf-8"></script>
 	<script src="./js/onload.js" type="text/javascript" charset="utf-8"></script>
     <script src="./js/PushNotification.js" type="text/javascript" charset="utf-8" ></script>
-    <script src="./js/function_notifiche.js"></script>
     <script src="./js/elaboranotifiche.js"></script>
   </body>
 </html>
