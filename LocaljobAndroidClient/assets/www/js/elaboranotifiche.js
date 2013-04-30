@@ -144,12 +144,15 @@ function mostraPanelFoto(){		//apre ingrandimento della foto
 }
 
 function mostraPanelPreventivo(){			//mostra il modal in cui inserire in preventivo
-	$('#panelPreventivo').modal('show');
+	//$('#panelPreventivo').modal('show');
+	sendPreventivo();
 }
 
 function sendPreventivo(){		//raccoglie i dati dal form e (per ora) non ci fa assolutamente nulla
-	cifra =  $('#cifraMin').val() +' - '+ $('#cifraMax').val();
-	tempo =  $('#tempoOre').val() +'h'+ $('#tempoMin').val();
+	//cifra =  $('#cifraMin').val() +' - '+ $('#cifraMax').val();
+	//tempo =  $('#tempoOre').val() +'h'+ $('#tempoMin').val();
+	cifra = "100 - 200";
+	tempo = "1h30";
 	//alert(cifra +" "+ tempo);
 	
 	/*
