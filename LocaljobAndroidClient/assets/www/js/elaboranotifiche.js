@@ -105,7 +105,7 @@ function cosaMostro(){
     		    		'<p id="descrizione2">'+sessionStorage.description+'</p></div>'+
     		    		'<div><b>RICHIESTO:</b> '+sessionStorage.job+'</div>'+
     		    		'<div style="margin-bottom:20px;"><b>PRESSO:</b> '+sessionStorage.position+'</div>');
-    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-inverse" href="javascript:mostraPanelPreventivo()">FORNISCI PREVENTIVO</a>'+
+    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="javascript:mostraPanelPreventivo()">FORNISCI PREVENTIVO</a>'+
     	   				'<a class="btn btn-large btn-block btn-inverse" href="javascript:rifiutaPreventivo()">RIFIUTA</a>');
     	   		
     	   		$('#fotoGrande').attr('src', sessionStorage.picture);		//dentro a panelFoto
@@ -113,10 +113,10 @@ function cosaMostro(){
     	   		
        case 'notificaAnswer':	
     	   		$('#titoloPagina').html('Nuova offerta di intervento,<br/>ecco i dettagli del preventivo:');
-    	   		$('#corpoPagina').html('<div>'+sessionStorage.nickname+' si è offerto per il lavoro.</div><br/>'+
+    	   		$('#corpoPagina').html('<div>'+sessionStorage.nickname+' si &egrave; offerto per il lavoro.</div><br/>'+
     	   				'<div><b>FASCIA DI PREZZO STIMATA:</b><br/>'+sessionStorage.priceRange+'</div><br/>'+
     	   				'<div><b>TEMPO DI ARRIVO STIMATO:</b><br/>'+sessionStorage.expectedTime+'</div><br/>');
-    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-inverse" href="#">ACCETTA PREVENTIVO</a>'+
+    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="#">ACCETTA PREVENTIVO</a>'+
    				'<a class="btn btn-large btn-block btn-inverse" href="#">RIFIUTA</a>');
     	   		break;
     	   		
@@ -125,8 +125,9 @@ function cosaMostro(){
     	   		$('#corpoPagina').html('<div><b>NOME:</b> '+sessionStorage.name+' '+sessionStorage.surname+'</div><br/>'+
     	   				'<div><b>NUMERO:</b> '+sessionStorage.number+'</div><br/>'+
     	   				'<div><b>INDIRIZZO: </b>'+sessionStorage.address+'</div><br/>');
-    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-inverse" href="#">CONTATTA</a>'+
-   				'<a class="btn btn-large btn-block btn-inverse" href="#">ANNULLA</a>');
+    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-success btn-block" type="button" href="tel:'+sessionStorage.number+'">'+
+    	   				'<img id="icoCall" src="./img/glyphicons/white_ver/170.PNG"/>&nbsp;&nbsp;CONTATTA </a><br/>'+
+   						'<a class="btn btn-large btn-block btn-inverse" href="#">ANNULLA</a>');
     	   		break;
         
        default:
