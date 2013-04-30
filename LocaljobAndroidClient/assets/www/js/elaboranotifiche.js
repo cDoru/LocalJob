@@ -1,161 +1,182 @@
-var requestID;
-var jobRequired;
-var titolo;
-var descrizione;
-var via;	
-var foto;
-
 function elaboraNotifica(notifica) {
 //notifica sarebbe un e.payload che contiene quindi i vocabolari JSON
-	   switch( notifica.notificationType )
+	
+	accendiSeNotifica(); 	//colora il bottone notifica
+	switch( notifica.notificationType )
     {
        case 'request':  
-    	   		// colora il bottone notifica
-    	   		accendiSeNotifica(); 
-    	   		// attiva il link al bottone passandogli la notifica
-    	   		$('#sos_link').attr('href', 'javascript:notificaRequest(notifica)');
-				//notificaRequest(notifica);
-    	   		alert("prova1");
-       break;   
+    	   		$('#sos_link').attr('href', 'javascript:notificaRequest(notifica)');	//attiva il link del bottone
+    	   		alert("request");
+    	   		break;   
         
-       case 'answer':	
-				notificaAnswer(notifica);
-       break;
+       case 'answer':
+    	   		$('#sos_link').attr('href', 'javascript:notificaAnswer(notifica)');	//attiva il link del bottone
+    	   		alert("answer");
+				break;
        
        case 'decline':
-				notificaDecline(notifica);
-       break;       
+    	   		$('#sos_link').attr('href', 'javascript:notificaDecline(notifica)');	//attiva il link del bottone
+    	   		alert("decline");
+				break;       
        
        case 'info':
-				notificaInfo(notifica);
-       break;
+    	   		$('#sos_link').attr('href', 'javascript:notificaInfo(notifica)');	//attiva il link del bottone
+    	   		alert("request");
+				break;
         
        default:
-			alert("Notifica errata");
-       break;
+    	   		alert("Notifica errata");
+       			break;
     }
-	
 }
 
+
 /*
- * Notifica al professionista di una nuova richiesta di urgenza
+ * Gestione delle diverse tipologie di notifiche
  */
 function notificaRequest(notifica) {
-	
+	/*alert("una request!");
 	requestID = notifica.requestId;
 	jobRequired = notifica.job;
 	titolo = notifica.problemTitle;
 	descrizione = notifica.description;
 	via = notifica.position;	
-	foto = notifica.picture;
+	alert(requestID+" "+jobRequired+" "+titolo+" "+descrizione+" "+via);*/
 	
-	alert("prova2 "+titolo);
+	sessionStorage.type = "notificaRequest";		//variabile di controllo
 	
-	$('#panelNotifiche').html('<div class="modal-header">'+
-			'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-			'<h4>Nuova richiesta di emergenza</h4>'+
-			'</div>'+
-			'<div class="modal-body">'+
-			'<p>Un utente richiede il tuo preventivo da'+jobRequired+'. Vuoi visualizzare la sua richiesta?</p>'+
-			'</div>'+
-			'<div class="modal-footer">'+
-			'<a href="javascript:rifiuta()" class="btn" data-dismiss="modal">Annulla</a>'+
-			'<a href="preventivoRichiesto.html" class="btn btn-primary">Visualizza</a>'+
-			'</div>');
+	sessionStorage.requestID = notifica.requestId;
+	sessionStorage.job = notifica.job;
+	sessionStorage.problemTitle = notifica.problemTitle;
+	sessionStorage.description = notifica.description;
+	sessionStorage.position = notifica.position;	
+	sessionStorage.picture = notifica.picture;
+	
+	$('#modalHeader').html('Nuova richiesta di intervento');
+	$('#modalBody').html('<p>Un utente richiede il tuo preventivo. Vuoi visualizzare la sua richiesta?</p>');
+	$('#modalFooter').html('<a href="javascript:rifiuta()" class="btn" data-dismiss="modal">Annulla</a>'+
+						   '<a href="mostraQualcosa.html" class="btn btn-primary">Visualizza</a>');
 	
 	$('#panelNotifiche').modal('show');
-	
+	spegniSeNotifica();
 }
-
-
 function notificaAnswer(notifica) {
-	alert("una answer!");
+	/*alert("una answer!");
 	requestID = notifica.requestId;
 	professionalNickname = notifica.nickname;
 	professionalID = notifica.idprofessionista;
 	prezzo = notifica.priceRange;
 	tempo = notifica.expectedTime;
-	alert(requestID+" "+professionalNickname+" "+professionalID+" "+prezzo+" "+tempo);
-	}
-function notificaDecline(notifica) {
-	alert("una decline!");
-	requestID = notifica.requestId;
-	alert(requestID);
-	}
-function notificaInfo(notifica) {
-	alert("informazioni a caso");
+	alert(requestID+" "+professionalNickname+" "+professionalID+" "+prezzo+" "+tempo);*/
 	
+	sessionStorage.type = "notificaAnswer";		//variabile di controllo
+	
+	sessionStorage.requestID = notifica.requestId;
+	sessionStorage.nickname = notifica.nickname;
+	sessionStorage.idprofessionista = notifica.idprofessionista;
+	sessionStorage.priceRange = notifica.priceRange;
+	sessionStorage.expectedTime = notifica.expectedTime;	
+	
+	$('#modalHeader').html('Nuova offerta di intervento');
+	$('#modalBody').html('<p>Un professionista ti ha inviato il preventivo. Vuoi visualizzare la sua offerta?</p>');
+	$('#modalFooter').html('<a href="javascript:rifiuta()" class="btn" data-dismiss="modal">Annulla</a>'+
+						   '<a href="mostraQualcosa.html" class="btn btn-primary">Visualizza</a>');
+	
+	$('#panelNotifiche').modal('show');
+	spegniSeNotifica();
+}
+function notificaDecline(notifica) {
+	/*alert("una decline!");
+	requestID = notifica.requestId;
+	alert(requestID);*/
+	
+	requestID = notifica.requestId;
+	
+	$('#modalHeader').html('Preventivo rifiutato');
+	$('#modalBody').html('<p>Il preventivo numero '+requestID+' non è stato accettato dal cliente. Grazie comunque!</p>');
+	$('#modalFooter').html('<a href="javascript:rifiuta()" class="btn btn-primary" data-dismiss="modal">Chiudi</a>');
+	
+	$('#panelNotifiche').modal('show');
+	spegniSeNotifica();
+}
+function notificaInfo(notifica) {
+	/*alert("informazioni a caso");
 	requestID = notifica.requestId; 
 	nome = notifica.name;
 	cognome = notifica.surname;
 	numero = notifica.number;
 	indirizzo = notifica.address;
-	alert(requestID+" "+nome+" "+cognome+" "+numero+" "+indirizzo);
+	alert(requestID+" "+nome+" "+cognome+" "+numero+" "+indirizzo);*/
+	
+	sessionStorage.type = "notificaInfo";		//variabile di controllo
+	
+	sessionStorage.requestID = notifica.requestId;
+	sessionStorage.name = notifica.name;
+	sessionStorage.surname = notifica.surname;
+	sessionStorage.number = notifica.number;
+	sessionStorage.address = notifica.address;	
+	
+	$('#modalHeader').html('Preventivo accettato');
+	$('#modalBody').html('<p>Un cliente ha accettato il tuo preventivo. Attende che lo contatti, vuoi visualizzare i suoi dati?</p>');
+	$('#modalFooter').html('<a href="javascript:rifiuta()" class="btn" data-dismiss="modal">Annulla</a>'+
+						   '<a href="mostraQualcosa.html" class="btn btn-primary">Visualizza</a>');
+	
+	$('#panelNotifiche').modal('show');
+	spegniSeNotifica();
 	}
 
 
-
-function accendiSeNotifica(){		//accende la notifica
-	$('#sos').attr('class', 'badge badge-important');
-	$('#sos').html('!');
+/*
+ * Cosa visualizzare in "mostraQualcosa.html"
+ */
+function cosaMostro(){
+	switch(sessionStorage.type)
+    {
+       case 'notificaRequest':  
+    	   		$('#titoloPagina').html('Nuova richiesta di intervento,<br/>ecco i dettagli del lavoro:');
+    	   		$('#corpoPagina').append('<a href="javascript:mostraPanelFoto()">'+
+    	   				'<img id="foto" src="'+sessionStorage.picture+'" style="width:100px;"/></a><br/>'+
+    					'Tappa sulla foto per ingrandirla'+
+    		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+sessionStorage.problemTitle+'</h5>'+
+    		    		'<p id="descrizione2">'+sessionStorage.description+'</p></div>'+
+    		    		'<div><b>RICHIESTO:</b> '+sessionStorage.job+'</div>'+
+    		    		'<div style="margin-bottom:20px;"><b>PRESSO:</b> '+sessionStorage.position+'</div>');
+    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-inverse" href="javascript:mostraPanelPreventivo()">FORNISCI PREVENTIVO</a>'+
+    	   				'<a class="btn btn-large btn-block btn-inverse" href="#">RIFIUTA</a>');
+    	   		
+    	   		$('#fotoGrande').attr('src', sessionStorage.picture);		//dentro a panelFoto
+    	   		break;
+    	   		
+       case 'notificaAnswer':	
+    	   		$('#titoloPagina').html('Nuova offerta di intervento,<br/>ecco i dettagli del preventivo:');
+    	   		$('#corpoPagina').html('<div>'+sessionStorage.nickname+' si è offerto per il lavoro.</div><br/>'+
+    	   				'<div><b>FASCIA DI PREZZO STIMATA:</b><br/>'+sessionStorage.priceRange+'</div><br/>'+
+    	   				'<div><b>TEMPO DI ARRIVO STIMATO:</b><br/>'+sessionStorage.expectedTime+'</div><br/>');
+    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-inverse" href="#">ACCETTA PREVENTIVO</a>'+
+   				'<a class="btn btn-large btn-block btn-inverse" href="#">RIFIUTA</a>');
+    	   		break;
+    	   		
+       case 'notificaInfo':
+    	   		$('#titoloPagina').html('Preventivo accettato,<br/>ecco i dati per contattare il cliente:');
+    	   		$('#corpoPagina').html('<div><b>NOME:</b> '+sessionStorage.name+' '+sessionStorage.surname+'</div><br/>'+
+    	   				'<div><b>NUMERO:</b> '+sessionStorage.number+'</div><br/>'+
+    	   				'<div><b>INDIRIZZO: </b>'+sessionStorage.address+'</div><br/>');
+    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-inverse" href="#">CONTATTA</a>'+
+   				'<a class="btn btn-large btn-block btn-inverse" href="#">ANNULLA</a>');
+    	   		break;
+        
+       default:
+    	   		alert("Huston, abbiamo un problema");
+       			break;
+    }
 }
-function spegniSeNotifica(){		//spegne la notifica
-	$('#sos').attr('class', 'badge');
-	$('#sos').html('.');
-}
-
-function mostraPanelNotifiche(){		//apre modal notifica
-	$('#panelNotifiche').html('<div class="modal-header">'+
-			'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-			'<h4>Nuova richiesta di preventivo</h4>'+
-			'</div>'+
-			'<div class="modal-body">'+
-			'<p>Un utente richiede il tuo preventivo. Vuoi visualizzare la sua richiesta?</p>'+
-			'</div>'+
-			'<div class="modal-footer">'+
-			'<a href="#" class="btn" data-dismiss="modal">Annulla</a>'+
-			'<a href="preventivoRichiesto.html" class="btn btn-primary">Visualizza</a>'+
-			'</div>');
-	
-	$('#panelNotifiche').modal('show');
-}
 
 
-/**		FUNZIONI PAGINA preventivoRichiesto.html  **/
+/*
+ * Funzioni dei panel di "mostraQualcosa.html"
+ */
 function mostraPanelFoto(){		//apre ingrandimento della foto
 	$('#panelFoto').modal('show');
-}
-
-function preventivoRichiesto(){				//aggiorna la pagina "preventivoRichiesto" con i dati del cliente
-	//$('#loading').fadeIn('fast');			//schermata di caricamento
-	
-	//sistemare la chiamata
-	/*requestID = notifica.requestId;
-	jobRequired = notifica.job;
-	titolo = notifica.problemTitle;
-	descrizione = notifica.description;
-	via = notifica.position;
-	foto = notifica.picture;
-	alert(requestID+" "+jobRequired+" "+titolo+" "+descrizione+" "+via);*/
-	
-	/*
-	var requestID = "01";
-	var jobRequired = "ciappinaro";
-	var titolo = "aiuto aiuto";
-	var descrizione = "bla bla bla cha cha cha";
-	var via = "via senza nome 44";	
-	var foto = "./img/example_photo.png";
-	*/
-	
-	//creiamo praticamente da zero la pagina, così la possiamo riutilizzare anche per lo storico degli interventi
-	$('#titoloIntervento').html(titolo);
-	$('#foto').attr('src', foto);
-	$('#fotoGrande').attr('src', foto);		//dentro a panelFoto
-	$('#descrizione2').html(descrizione);
-	$('#lavoro').html(jobRequired);
-	$('#luogo').html(via);
-	$('#bottoni').html('<a class="btn btn-large btn-block btn-inverse" href="javascript:mostraPanelPreventivo()">FORNISCI PREVENTIVO</a>'+
-					   '<a class="btn btn-large btn-block btn-inverse" href="#">RIFIUTA</a>');
 }
 
 function mostraPanelPreventivo(){			//mostra il modal in cui inserire in preventivo
@@ -169,23 +190,14 @@ function getPreventivo(){		//raccoglie i dati dal form e (per ora) non ci fa ass
 }
 
 
-/**		FUNZIONI PAGINA preventivoMostrato.html  **/
-function preventivoMostrato(){				//aggiorna la pagina "preventivoRichiesto" con i dati del cliente
-	//$('#loading').fadeIn('fast');			//schermata di caricamento
-	
-	//sistemare la chiamata
-	/*alert("una answer!");
-	requestID = notifica.requestId;
-	professionalNickname = notifica.nickname;
-	professionalID = notifica.idprofessionista;
-	prezzo = notifica.priceRange;
-	tempo = notifica.expectedTime;
-	alert(requestID+" "+professionalNickname+" "+professionalID+" "+prezzo+" "+tempo);*/
-	var professionalNickname = "Gigi";
-	var cifra = "30-50";
-	var orario = "1h e 20min";
-	
-	$('#nickPro').html(professionalNickname);
-	$('#cifra').html(cifra);
-	$('#orario').html(orario);
+/*
+ *	Gestione del bottone di notifica 
+ */
+function accendiSeNotifica(){		//accende la notifica
+	$('#sos').attr('class', 'badge badge-important');
+	$('#sos').html('!');
+}
+function spegniSeNotifica(){		//spegne la notifica
+	$('#sos').attr('class', 'badge');
+	$('#sos').html('.');
 }
