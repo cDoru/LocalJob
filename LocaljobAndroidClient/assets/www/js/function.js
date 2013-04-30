@@ -137,6 +137,8 @@ function cambia_login(){
  * 
  * */
 function saveProblem(){
+	
+	$('#loading').fadeIn('fast');
 	//Salvo i valori nel sessionStorage
 	problemTitle =  $('#problemTitle').val(); 
 	problemDesription =  $('#problemDesription').val();
@@ -151,6 +153,7 @@ function saveProblem(){
 	oReq.onload = function(oEvent) {
 		if (oReq.status == 200) {
 			sessionStorage.problemImg = oReq.responseText;
+			$('#loading').fadeOut('fast');
 			alert("Uppato!");	
 			window.location='where-are-you.html';
 		} else {
