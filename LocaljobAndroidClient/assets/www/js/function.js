@@ -75,7 +75,7 @@ function onNotificationGCM(e) {
 			}
 			*/
         	
-			alert('Hai scritto: ' + e.payload.message);
+			alert('Hai una nuova notifica');
 			
 			elaboraNotifica(e.payload);
 			

@@ -58,7 +58,7 @@ function elaboraNotifica(notifica) {
 function notificaRequest() {
 	$('#modalHeader').html('Nuova richiesta di intervento');
 	$('#modalBody').html('<p>Un utente richiede il tuo preventivo. Vuoi visualizzare la sua richiesta?</p>');
-	$('#modalFooter').html('<a href="javascript:rifiuta()" class="btn" data-dismiss="modal">Annulla</a>'+
+	$('#modalFooter').html('<a href="javascript:accendiSeNotifica()" class="btn" data-dismiss="modal">Annulla</a>'+
 						   '<a href="mostraQualcosa.html" class="btn btn-primary">Visualizza</a>');
 	$('#panelNotifiche').modal('show');
 	spegniSeNotifica();
@@ -66,7 +66,7 @@ function notificaRequest() {
 function notificaAnswer() {
 	$('#modalHeader').html('Nuova offerta di intervento');
 	$('#modalBody').html('<p>Un professionista ti ha inviato il preventivo. Vuoi visualizzare la sua offerta?</p>');
-	$('#modalFooter').html('<a href="javascript:rifiuta()" class="btn" data-dismiss="modal">Annulla</a>'+
+	$('#modalFooter').html('<a href="javascript:accendiSeNotifica()" class="btn" data-dismiss="modal">Annulla</a>'+
 						   '<a href="mostraQualcosa.html" class="btn btn-primary">Visualizza</a>');
 	
 	$('#panelNotifiche').modal('show');
@@ -75,7 +75,7 @@ function notificaAnswer() {
 function notificaDecline() {
 	$('#modalHeader').html('Preventivo rifiutato');
 	$('#modalBody').html('<p>Il preventivo numero '+sessionStorage.requestID+' non è stato accettato dal cliente. Grazie comunque!</p>');
-	$('#modalFooter').html('<a href="javascript:rifiuta()" class="btn btn-primary" data-dismiss="modal">Chiudi</a>');
+	$('#modalFooter').html('<a href="javascript:tornaHome()" class="btn btn-primary" data-dismiss="modal">Chiudi</a>');
 	
 	$('#panelNotifiche').modal('show');
 	spegniSeNotifica();
@@ -83,7 +83,7 @@ function notificaDecline() {
 function notificaInfo() {
 	$('#modalHeader').html('Preventivo accettato');
 	$('#modalBody').html('<p>Un cliente ha accettato il tuo preventivo. Attende che lo contatti, vuoi visualizzare i suoi dati?</p>');
-	$('#modalFooter').html('<a href="javascript:rifiuta()" class="btn" data-dismiss="modal">Annulla</a>'+
+	$('#modalFooter').html('<a href="javascript:accendiSeNotifica()" class="btn" data-dismiss="modal">Annulla</a>'+
 						   '<a href="mostraQualcosa.html" class="btn btn-primary">Visualizza</a>');
 	
 	$('#panelNotifiche').modal('show');
@@ -106,9 +106,9 @@ function cosaMostro(){
     		    		'<div><b>RICHIESTO:</b> '+sessionStorage.job+'</div>'+
     		    		'<div style="margin-bottom:20px;"><b>PRESSO:</b> '+sessionStorage.position+'</div>');
     	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="javascript:mostraPanelPreventivo()">FORNISCI PREVENTIVO</a>'+
-    	   				'<a class="btn btn-large btn-block btn-inverse" href="javascript:rifiutaPreventivo()">RIFIUTA</a>');
+    	   				'<a class="btn btn-large btn-block btn-inverse" href="javascript:tornaHome()">RIFIUTA</a>');
     	   		
-    	   		$('#fotoGrande').attr('src', sessionStorage.picture);		//dentro a panelFoto
+    	   		$('#fotoGrande').attr('src', 'http://95.141.45.174/'+sessionStorage.picture);		//dentro a panelFoto
     	   		break;
     	   		
        case 'notificaAnswer':	
@@ -127,7 +127,7 @@ function cosaMostro(){
     	   				'<div><b>INDIRIZZO: </b>'+sessionStorage.address+'</div><br/>');
     	   		$('#bottoniPagina').html('<a class="btn btn-large btn-success btn-block" type="button" href="tel:'+sessionStorage.number+'">'+
     	   				'<img id="icoCall" src="./img/glyphicons/white_ver/170.PNG"/>&nbsp;&nbsp;CONTATTA </a><br/>'+
-   						'<a class="btn btn-large btn-block btn-inverse" href="#">ANNULLA</a>');
+   						'<a class="btn btn-large btn-block btn-inverse" href="interventi-attivi.html">ANNULLA</a>');
     	   		break;
         
        default:
@@ -190,17 +190,13 @@ function rifiutaPreventivo(){
         contentType: 'application/x-www-form-urlencoded',
         crossDomain: true,
         data: {'requestId': sessionStorage.requestID, 
-      	  'nickname': localStorage.nickname    	  
+      	  'nickname': sessionStorage.idprofessionista	  
       	  },
         complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
-        success: preventivoRifiutato,
+        success: tornaHome,
         error: errorHandler
 	});
 	
-}
-
-function preventivoRifiutato(){
-	window.location='interventi-attivi.html';
 }
 
 function accettaPreventivo(){
@@ -221,10 +217,11 @@ function accettaPreventivo(){
 	
 }
 
-function preventivoRifiutato(){
-	window.location='interventi-attivi.html';
-}
 function preventivoAccettato(){
+	window.location='preventivo-accettato.html';
+}
+
+function tornaHome(){
 	window.location='interventi-attivi.html';
 }
 
