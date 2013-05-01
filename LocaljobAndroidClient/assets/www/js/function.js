@@ -77,6 +77,12 @@ function onNotificationGCM(e) {
         	
 			alert('Hai una nuova notifica');
 			
+			/* prova di cavo: salviamo la notifica in una variabile local.storage
+			 * in questo modo nell'onload fai sempre un controllo ... se hai una notifica
+			 * accendi l'icona
+			 */
+			//localStorage.notificaSalvata = e.payload;
+			
 			elaboraNotifica(e.payload);
 			
         break;

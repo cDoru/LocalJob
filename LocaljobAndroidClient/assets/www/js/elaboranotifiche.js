@@ -97,19 +97,58 @@ function cosaMostro(){
 	switch(sessionStorage.type)
     {
        case 'notificaRequest':  
-    	   		$('#titoloPagina').html('Nuova richiesta di intervento,<br/>ecco i dettagli del lavoro:');
-    	   		$('#corpoPagina').html('<a href="javascript:mostraPanelFoto()">'+
-    	   				'<img id="foto" src="http://95.141.45.174/'+sessionStorage.picture+'" style="width:100px;"/></a><br/>'+
-    					'Tappa sulla foto per ingrandirla'+
-    		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+sessionStorage.problemTitle+'</h5>'+
-    		    		'<p id="descrizione2">'+sessionStorage.description+'</p></div>'+
-    		    		'<div><b>RICHIESTO:</b> '+sessionStorage.job+'</div>'+
-    		    		'<div style="margin-bottom:20px;"><b>PRESSO:</b> '+sessionStorage.position+'</div>');
-    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="javascript:mostraPanelPreventivo()">FORNISCI PREVENTIVO</a>'+
-    	   				'<a class="btn btn-large btn-block btn-inverse" href="javascript:tornaHome()">RIFIUTA</a>');
-    	   		
-    	   		$('#fotoGrande').attr('src', 'http://95.141.45.174/'+sessionStorage.picture);		//dentro a panelFoto
-    	   		break;
+    	   
+    	 //controllo che la richiesta non sia già stata accettata da un altro
+    		
+    		$.ajax({
+    			async: false,
+    			type: 'GET',
+    			url: 'http://95.141.45.174/status/'+sessionStorage.requestID,			
+    			crossDomain:true,
+    			complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
+    			success: function(data){
+    				//provo la stampa dello stato
+    				alert(data);
+    				//se lo stato è maggiore di 2 vuol dire che l'intervento è già stato accettato o annullato
+    				if(data > 2){
+    					$('#titoloPagina').html('Richiesta di intervento già accettata o annullata');
+    	    	   		$('#corpoPagina').html('Qualche tuo collega è stato più rapido, e il cliente ha già accettato il suo lavoro. Riprova la prossima volta!');
+    	    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="javascript:tornaHome()">TORNA ALLA HOME</a>');
+    				}
+    				//l'intervento è ancora libero
+    				else{
+    					$('#titoloPagina').html('Nuova richiesta di intervento,<br/>ecco i dettagli del lavoro:');
+    	    	   		$('#corpoPagina').html('<a href="javascript:mostraPanelFoto()">'+
+    	    	   				'<img id="foto" src="http://95.141.45.174/'+sessionStorage.picture+'" style="width:100px;"/></a><br/>'+
+    	    					'Tappa sulla foto per ingrandirla'+
+    	    		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+sessionStorage.problemTitle+'</h5>'+
+    	    		    		'<p id="descrizione2">'+sessionStorage.description+'</p></div>'+
+    	    		    		'<div><b>RICHIESTO:</b> '+sessionStorage.job+'</div>'+
+    	    		    		'<div style="margin-bottom:20px;"><b>PRESSO:</b> '+sessionStorage.position+'</div>');
+    	    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="javascript:mostraPanelPreventivo()">FORNISCI PREVENTIVO</a>'+
+    	    	   				'<a class="btn btn-large btn-block btn-inverse" href="javascript:tornaHome()">RIFIUTA</a>');
+    	    	   		
+    	    	   		$('#fotoGrande').attr('src', 'http://95.141.45.174/'+sessionStorage.picture);		//dentro a panelFoto
+    				}
+    			},
+    			error: errorHandler
+    		});
+    	   
+    	   	/* LA PARTE VECCHIA
+    	   	 * $('#titoloPagina').html('Nuova richiesta di intervento,<br/>ecco i dettagli del lavoro:');
+    	    	   		$('#corpoPagina').html('<a href="javascript:mostraPanelFoto()">'+
+    	    	   				'<img id="foto" src="http://95.141.45.174/'+sessionStorage.picture+'" style="width:100px;"/></a><br/>'+
+    	    					'Tappa sulla foto per ingrandirla'+
+    	    		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+sessionStorage.problemTitle+'</h5>'+
+    	    		    		'<p id="descrizione2">'+sessionStorage.description+'</p></div>'+
+    	    		    		'<div><b>RICHIESTO:</b> '+sessionStorage.job+'</div>'+
+    	    		    		'<div style="margin-bottom:20px;"><b>PRESSO:</b> '+sessionStorage.position+'</div>');
+    	    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="javascript:mostraPanelPreventivo()">FORNISCI PREVENTIVO</a>'+
+    	    	   				'<a class="btn btn-large btn-block btn-inverse" href="javascript:tornaHome()">RIFIUTA</a>');
+    	    	   		
+    	    	   		$('#fotoGrande').attr('src', 'http://95.141.45.174/'+sessionStorage.picture);		//dentro a panelFoto
+    	   	 */	
+    		break;
     	   		
        case 'notificaAnswer':	
     	   		$('#titoloPagina').html('Nuova offerta di intervento,<br/>ecco i dettagli del preventivo:');
@@ -178,8 +217,9 @@ function sendPreventivo(){		//raccoglie i dati dal form e (per ora) non ci fa as
 function inviaPreventivo(data){
 	alert(data);
 	//alert("Preventivo inviato correttamente");
-	//metti un location della pagina della mary
-	window.location='preventivo-inviato.html';
+	
+	//prova cavo: localStorage.notificaSalvata = null;
+ 	window.location='preventivo-inviato.html';
 }
 
 function rifiutaPreventivo(){
