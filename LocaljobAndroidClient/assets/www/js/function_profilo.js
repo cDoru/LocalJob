@@ -194,3 +194,29 @@ function caricaCommenti(xml) {
 function errorLogout(){
 	alert("Server error");
 }
+
+/*
+ * FUNZIONI PER INSERIRE UN NUOVO COMMENTO (PAGINA COMMENTO-NUOVO.HTML)
+ */
+function inviaNuovoCommento(){
+	$('#loading').fadeIn('fast');			//schermata di caricamento
+	
+	commentTitle = $('#commentTitle').val();
+	commentText = $('#commentText').val();
+	qualityRating = $('#qualityRating').val();
+	reliabilityRating = $('#reliabilityRating').val();
+	kindnessRating = $('#kindnessRating').val();
+	
+	alert(commentTitle+" "+commentText+" "+qualityRating+" "+reliabilityRating+" "+kindnessRating);
+	
+	$.ajax({
+        type: 'GET',
+        url: 'http://95.141.45.174/comment',
+        contentType: 'application/x-www-form-urlencoded',
+        data: {'comment': commentText, 'title': commentTitle, 'qualityRating': qualityRating, 'reliabilityRating': reliabilityRating, 'kindnessRating': kindnessRating, 'jobid': sessionStorage.id},
+        crossDomain: true,
+        complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
+        success: function(){window.location='intervento-concluso.html'},
+        error: errorHandler
+     })
+}

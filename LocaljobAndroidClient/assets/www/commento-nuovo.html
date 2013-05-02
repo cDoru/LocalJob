@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Inserisci un nuovo intervento</title>
+    <title>Inserisci una valutazione</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -15,13 +15,11 @@
     		height:100%;
     		margin:0;
     		background-color:#007E94;
+    		color:white;
 	 	}
 	  	body>#loading {
     		height: auto;
     		min-height: 100%;
-	  	}
-	  	h4{
-	  		color:white;
 	  	}
       	/* Per Validator */
 		label.valid {
@@ -107,46 +105,28 @@
 	    </div>
 	</div>
 
-
-	<div class="container contNotifiche text-center" style="margin-top:2px;">
-	
-	    <h4>Descrivi il tuo problema</h4><br/>
-	    	<form id="contact-form" name="fileinfo" class="form-signin">
-		    		
-		 			<div class="controls">
-		 				
-		 				<div class="fileupload fileupload-new" data-provides="fileupload">
-							<div class="fileupload-new thumbnail" style="width: 100px; height: 100px;"><img src="./img/example_photo.png" /></div>
-							<div class="fileupload-preview fileupload-exists thumbnail" style="width: 100px; height: 100px;"></div><br/>
-							<span class="btn btn-file btn-inverse btn-large" style="margin-top:2px;"><span class="fileupload-new">CARICA</span><span class="fileupload-exists">MODIFICA</span><input type="file" name="docfile" /></span>
-							<a href="#" class="btn fileupload-exists btn-inverse btn-large" data-dismiss="fileupload" style="margin-top:2px;">RIMUOVI</a>
-						</div>
-		 				
-		 				<div class="btn-group">
-	                		<a class="btn dropdown-toggle btn-inverse btn-large" data-toggle="dropdown" href="#" id="tendina" onclick="menuTendina()">
-	                  		Categoria
-	                    	<span class="caret"></span> 
-	                		</a>
-							<ul id="problemType" class="dropdown-menu btn-large" role="menu" aria-labelledby="dropdownMenu">
-		                  		<li><a tabindex="-1" href="javascript:salvaProblemType(1);">Caldaista</a></li>
-				                <li><a tabindex="-1" href="javascript:salvaProblemType(2);">Idraulico</a></li>
-				                <li><a tabindex="-1" href="javascript:salvaProblemType(3);">Pittore</a></li>
-				                <li><a tabindex="-1" href="javascript:salvaProblemType(4);">Elettricista</a></li>
-				                <li><a tabindex="-1" href="javascript:salvaProblemType(5);">Muratore</a></li>
-				                <li><a tabindex="-1" href="javascript:salvaProblemType(6);">Antennista</a></li>
-				                <li><a tabindex="-1" href="javascript:salvaProblemType(7);">Sarto</a></li>
-				                <li><a tabindex="-1" href="javascript:salvaProblemType(8);">Calzolaio</a></li>
-				                <li><a tabindex="-1" href="javascript:salvaProblemType(9);">Meccanico</a></li>
-				                <li><a tabindex="-1" href="javascript:salvaProblemType(10);">Carpentiere</a></li>
-				                <li><a tabindex="-1" href="javascript:salvaProblemType(11);">Falegname</a></li>
-                			</ul>
-	             		</div><br/>
-		 				
-		 				<input type="text" id="problemTitle" class="input-xxlarge" style="margin-top:2%;" placeholder="Titolo"><br/>
-		        		<textarea id ="problemDesription" class="input-xxlarge" rows="7" placeholder="Descrizione del problema"></textarea>
-		     		</div>
-		    	<button type="button" class="btn btn-large btn-block btn-success" onclick="javascript:saveProblem();"><img src="./img/glyphicons/white_ver/153.PNG"/> CONFERMA</button>
-	    	</form>
+	<div class="container contNotifiche text-center">
+	    <h4>Valuta la prestazione ricevuta</h4><br/>
+	    <b>PROFESSIONISTA:</b>
+		 	<div class="controls">	
+		 	 	<input id="commentTitle" type="text" class="input-xxlarge" style="margin-top:2%;" placeholder="Titolo"><br/>
+		        <textarea id="commentText" class="input-xxlarge" rows="7" placeholder="Commento"></textarea>
+		    </div>
+		    
+		    <b>Dai un voto da 1 a 5 ad ognuno di questi aspetti:</b>
+		    <div class="controls text-left" style="padding-left:15%; padding-top:5px;">
+			    <form class="form-inline">
+			    	<input id="qualityRating" type="text" class="input-small" maxlength="1"> <b>QUALIT&Agrave;</b>
+			    </form>
+			    <form class="form-inline">
+			     	<input id="reliabilityRating" type="text" class="input-small" maxlength="1"> <b>AFFIDABILIT&Agrave;</b>
+			    </form>
+			    <form class="form-inline">
+			     	<input id="kindnessRating" type="text" class="input-small" maxlength="1"> <b>GENTILEZZA</b>
+			    </form>
+		    </div>
+		     
+		    <button type="button" class="btn btn-large btn-block btn-success" onclick="javascript:inviaNuovoCommento();"><img src="./img/glyphicons/white_ver/153.PNG"/> INSERISCI COMMENTO</button>
 
    		</div> <!-- /container -->
    
@@ -159,6 +139,7 @@
     <script src="./js/jasny-bootstrap.js"></script>
 	<script src="./js/cordova-2.5.0.js"></script>
 	<script src="./js/function.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./js/function_profilo.js" type="text/javascript" charset="utf-8"></script>
 	<script src="./js/onload.js" type="text/javascript" charset="utf-8"></script>
 	<script src="./js/PushNotification.js" type="text/javascript" charset="utf-8" ></script>
 	<script src="./js/elaboranotifiche.js"></script>

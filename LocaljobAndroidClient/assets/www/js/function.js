@@ -1359,10 +1359,15 @@ function mostraStoricoCliSuccess(xml){
         					'<p><b>ID INTERVENTO:</b> '+id+'<br/><b>DATA:</b> '+date+'</p>'+
         					'<a href="javascript:mostraPanelFoto()"><img id="foto" src="http://95.141.45.174/'+foto+'" style="width:100px;"/></a><br/>'+
         					'Tappa sulla foto per ingrandirla'+
-        		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+titolo+'</h5><p id="descrizione2">'+descrizione+'</p></div>'+
-        		    		'<button class="btn btn-large btn-block btn-inverse" onclick="javascript:history.go(-1);"">TORNA INDIETRO</button>'+
-        		    		'</div>');
+        		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+titolo+'</h5><p id="descrizione2">'+descrizione+'</p></div>');
 	$('#fotoGrande').attr('src', 'http://95.141.45.174/'+foto);
+	
+	//il bottone di inserisci commento
+	if(state==15){
+		$('#incolla').append('<button class="btn btn-large btn-block btn-success" href="commento-nuovo.html">LASCIA UN COMMENTO</button><br/>');
+	}
+	//il bottone di default
+	$('#incolla').append('<button class="btn btn-large btn-block btn-inverse" onclick="javascript:history.go(-1);"">TORNA INDIETRO</button></div>');
 }
 
 /**/
