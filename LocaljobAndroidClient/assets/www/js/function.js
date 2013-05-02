@@ -160,7 +160,7 @@ function saveProblem(){
 		if (oReq.status == 200) {
 			sessionStorage.problemImg = oReq.responseText;
 			$('#loading').fadeOut('fast');
-			alert("Uppato!");	
+			//alert("Uppato!");	
 			window.location='where-are-you.html';
 		} else {
 			oOutput.innerHTML = "Error " + oReq.status + " occurred uploading your file.<br \/>";

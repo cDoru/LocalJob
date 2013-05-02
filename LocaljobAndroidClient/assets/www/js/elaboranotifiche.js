@@ -215,10 +215,6 @@ function sendPreventivo(){		//raccoglie i dati dal form e (per ora) non ci fa as
 }
 
 function inviaPreventivo(data){
-	alert(data);
-	//alert("Preventivo inviato correttamente");
-	
-	//prova cavo: localStorage.notificaSalvata = null;
  	window.location='preventivo-inviato.html';
 }
 
