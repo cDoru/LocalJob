@@ -150,25 +150,34 @@ function saveProblem(){
 	problemDesription =  $('#problemDesription').val();
 	sessionStorage.problemTitle = problemTitle;
 	sessionStorage.problemDesription = problemDesription;
-	
-	//carico l'immagine nel server
-	var oData = new FormData(document.forms.namedItem("fileinfo"));
-	var oReq = new XMLHttpRequest();
-	oReq.open("POST", "http://95.141.45.174/listinterv/", true); 
 
-	oReq.onload = function(oEvent) {
-		if (oReq.status == 200) {
-			sessionStorage.problemImg = oReq.responseText;
-			$('#loading').fadeOut('fast');
-			//alert("Uppato!");	
-			window.location='where-are-you.html';
-		} else {
-			oOutput.innerHTML = "Error " + oReq.status + " occurred uploading your file.<br \/>";
-		}
-	};
-		 
-	oReq.send(oData);
-		
+	//controllo se l'utente ha inserito l'immagine
+	var imgVal = $('#img_work').val(); 
+    if(imgVal=='') 
+    { 
+    	//Non ha caricato l'immagine quindi gli do un immagine di default
+    	sessionStorage.problemImg = '/site_media/avatars/132683508668.jpg';
+    	window.location='where-are-you.html';
+    }
+    else{
+    	//carico l'immagine nel server
+    	var oData = new FormData(document.forms.namedItem("fileinfo"));
+    	var oReq = new XMLHttpRequest();
+    	oReq.open("POST", "http://95.141.45.174/listinterv/", true); 
+
+    	oReq.onload = function(oEvent) {
+    		if (oReq.status == 200) {
+    			sessionStorage.problemImg = oReq.responseText;
+    			$('#loading').fadeOut('fast');
+    			//alert("Uppato!");	
+    			window.location='where-are-you.html';
+    		} else {
+    			oOutput.innerHTML = "Error " + oReq.status + " occurred uploading your file.<br \/>";
+    		}
+    	};
+    		 
+    	oReq.send(oData);
+    }	
 }
 
 function salvaProblemType(num){
@@ -193,7 +202,7 @@ function controlloIndirizzo(){
         	
         	xml_case = $(xml);	
         	// cerco se ci sono indirizzi salvati
-        	if($(xml_case).find("home")){
+        	if($(xml_case).find("home").length > 0){
         		
         		//se ha l'indirizzo vai sul tab casa, prende dal database tutte le info
         		//e le mostra nel form
@@ -230,7 +239,6 @@ function goTabAltro(indirizzo){
 	//possibilità di cliccare nel tab casa ... altrimenti si
 		
 		if (indirizzo == false){	
-    		alert("non ha indirizzo casa");
     		//Il tab casa deve essere disabilitato e non ci si può cliccare nulla
     		$('#tab_casa').attr('class','disabled');
     		$('#tab_casa').html('<a>Casa</a>');
@@ -519,8 +527,7 @@ function codeLatLng(position_lat, position_long) {
  * Salva l'indirizzo attuale dell'utente nel database come luogo preferito
  */
 function salvaIndirizzo(){
-	$('#loading').fadeIn('fast');		//schermata di caricamento
-	
+
 	nomeLuogo = $('#nome_luogo').val();
 	nomeVia = $('#Indirizzo_altro').val();
 	civico = $('#nCiv_altro').val();
@@ -528,31 +535,36 @@ function salvaIndirizzo(){
 	comune = $('#Citta_altro').val();
 	provincia = $('#Provincia_altro').val();
 	
-	//alert("proviamo: "+nomeVia+" - "+civico+" - "+cap+" - "+comune+" - "+provincia+" - "+sessionStorage.lat+" - "+sessionStorage.long+" - "+nomeLuogo);
-
-	//chiamata AJAX per salvare l'indirizzo nel database
-	 $.ajax({
-	          type: 'POST',
-	          url: 'http://95.141.45.174/addaddress/',
-	          contentType: 'application/x-www-form-urlencoded',
-	          crossDomain: true,
-	          data: {'nomevia': nomeVia, 
-	        	  'numerocivico': civico, 
-	        	  'cap': cap, 
-	        	  'comune': comune, 
-	        	  'provincia': provincia,
-	        	  'latitudine': sessionStorage.lat,
-	        	  'longitudine': sessionStorage.long,
-	        	  'etichetta': nomeLuogo,
-	        	  'isresidenza': true,
-	        	  'isattivita': false,
-	        	  'isdomicilio': false
-	        	  },
-	          complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
-	          success: ajaxIndirizzoSalvato(nomeLuogo),
-	          error: errorHandler
-	});
-		 
+	if(nomeLuogo == ''){
+		alert("Inserisi un nome per il luogo scelto.")
+	}
+	else{
+		$('#loading').fadeIn('fast');		//schermata di caricamento
+		//chiamata AJAX per salvare l'indirizzo nel database
+		 $.ajax({
+		          type: 'POST',
+		          url: 'http://95.141.45.174/addaddress/',
+		          contentType: 'application/x-www-form-urlencoded',
+		          crossDomain: true,
+		          data: {'nomevia': nomeVia, 
+		        	  'numerocivico': civico, 
+		        	  'cap': cap, 
+		        	  'comune': comune, 
+		        	  'provincia': provincia,
+		        	  'latitudine': sessionStorage.lat,
+		        	  'longitudine': sessionStorage.long,
+		        	  'etichetta': nomeLuogo,
+		        	  'isresidenza': true,
+		        	  'isattivita': false,
+		        	  'isdomicilio': false
+		        	  },
+		          complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
+		          success: ajaxIndirizzoSalvato(nomeLuogo),
+		          //error: errorHandler  //ho tolto la function error così nn stampa gli alert
+		          error: function(){}	
+		});
+	}
+			 
 }
 
 function ajaxIndirizzoSalvato(nomeLuogo){
@@ -851,6 +863,7 @@ function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
  * Funzione che cerca le coordinate GPS per la ricerca in zona
  */
 function ricercaCoordinateInZona(filtroPrecedente, ordinamento){
+	
 	//Setto una variabile controller (per la funzione initiate_geolocation() e mi geolocalizzo)
 	//alert("il filtro è: "+filtroPrecedente);
 	sessionStorage.filtroPrecedente = filtroPrecedente;
@@ -864,6 +877,9 @@ function ricercaCoordinateInZona(filtroPrecedente, ordinamento){
 function ricercaInZona(filtroPrecedente, ordinamento) {
 	$('#loading').fadeIn('fast');		//nasconde la schermata di caricamento
 	
+	//Disattivo il tasto tabAttivi e attivo il tasto tabIntorno
+	$('#link_tabAttivi').attr('class','');
+	$('#link_tabIntorno').attr('class','active');
 	//Attivo la pagina tabIntorno e disattivo tabAttivi (la class alert alert-info è per lo sfondo)
 	$('#tabAttivi').attr('class','tab-pane');
 	$('#tabIntorno').attr('class','tab-pane active'); 
@@ -1016,8 +1032,11 @@ function ricercaInZonaSuccess(xml) {
 } 
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
-	//la schermata di caricamento è abilitata dal caricamento pagina
-	//alert(localStorage.userType);
+
+	//Attivo il tasto tabAttivi e disattivo il tasto tabIntorno
+	$('#link_tabAttivi').attr('class','active');
+	$('#link_tabIntorno').attr('class','');
+	
 	if(localStorage.userType == "cliente"){
 		$.ajax({
 			async: false,
@@ -1047,16 +1066,15 @@ function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 function ricercaAttiviSuccess(xml){
 
 	$('#tabAttivi').html("");
-
 	var xmlString = $(xml);	
-
 	// cerco se ci sono interventi attivi
-	if($(xmlString).find("request")){
-		
-		
+	if($(xmlString).find("request").length > 0){
 		//Attivo la pagina tabAttivi e disattivo tabIntorno
 		$('#tabAttivi').attr('class','tab-pane active');
 		$('#tabIntorno').attr('class','tab-pane');
+		//Attivo il tasto tabAttivi e disattivo il tasto tabIntorno
+		$('#link_tabAttivi').attr('class','active');
+		$('#link_tabIntorno').attr('class','');
 
 		//cerco all'interno dell'xml tutti gli interventi attivi e gli appendo
 		$(xmlString).find("request").each(function (){
@@ -1203,7 +1221,9 @@ function ricercaAttiviSuccess(xml){
 
 	//se non ci sono interventi attivi vai su ricerca in zona
 	else{
-		ricercaInZona("Tutti","");
+		$('#tabAttivi').html("<p>Non hai interventi attivi per il momento.</p>");
+		//ricercaInZona("Tutti","");
+		ricercaCoordinateInZona('Tutti','');
 	}
 }
 
