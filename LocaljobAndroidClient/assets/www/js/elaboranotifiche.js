@@ -103,12 +103,12 @@ function cosaMostro(){
     		$.ajax({
     			async: false,
     			type: 'GET',
-    			url: 'http://95.141.45.174/status/'+sessionStorage.requestID,			
+    			url: 'http://95.141.45.174/status/'+sessionStorage.requestID+'/',			
     			crossDomain:true,
     			complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
     			success: function(data){
     				//provo la stampa dello stato
-    				alert(data);
+    				alert("lo stato è: "+data);
     				//se lo stato è maggiore di 2 vuol dire che l'intervento è già stato accettato o annullato
     				if(data > 2){
     					$('#titoloPagina').html('Richiesta di intervento già accettata o annullata');
