@@ -39,18 +39,18 @@ function partenza(){
   		// Announce the new orientation number
   		//alert('Orientation ' + window.orientation);
 
-  		if(window.orientation == 0 && (location.href).indexOf("home") == -1)) {
+  		if(window.orientation == 0 && (location.href).indexOf("home") == -1) {
   			// Non sono nella mappa, quindi non faccio niente
         //if(!(location.href).indexOf("map-landscape") == -1) {
           //history.back();
           location.href = 'interventi-attivi.html';
         //}
   		}
-  		if(window.orientation == 90 && (location.href).indexOf("home") == -1)) {
+  		if(window.orientation == 90 && (location.href).indexOf("home") == -1) {
   			//alert('Orientation 0, sono storto verso sinistra (landscape)');
         location.href = 'map-landscape.html';
   		}
-  		if(window.orientation == -90 && (location.href).indexOf("home") == -1)) {
+  		if(window.orientation == -90 && (location.href).indexOf("home") == -1) {
 			  //alert('Orientation 0, sono storto verso destra (landscape)');
         location.href = 'map-landscape.html';
   		}
