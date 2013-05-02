@@ -18,7 +18,7 @@ function elaboraNotifica(notifica) {
        case 'answer':
 	    	    sessionStorage.type = "notificaAnswer";		//variabile di controllo
 	    		sessionStorage.requestID = notifica.requestId;
-	    		sessionStorage.nickname = notifica.nickname;
+	    		sessionStorage.nicknameProfessionista = notifica.nickname;
 	    		sessionStorage.idprofessionista = notifica.idprofessionista;
 	    		sessionStorage.priceRange = notifica.priceRange;
 	    		sessionStorage.expectedTime = notifica.expectedTime;
@@ -152,7 +152,7 @@ function cosaMostro(){
     	   		
        case 'notificaAnswer':	
     	   		$('#titoloPagina').html('Nuova offerta di intervento,<br/>ecco i dettagli del preventivo:');
-    	   		$('#corpoPagina').html('<div>'+sessionStorage.nickname+' si &egrave; offerto per il lavoro.</div><br/>'+
+    	   		$('#corpoPagina').html('<div>'+sessionStorage.nicknameProfessionista+' si &egrave; offerto per il lavoro.</div><br/>'+
     	   				'<div><b>FASCIA DI PREZZO STIMATA:</b><br/>'+sessionStorage.priceRange+'</div><br/>'+
     	   				'<div><b>TEMPO DI ARRIVO STIMATO:</b><br/>'+sessionStorage.expectedTime+'</div><br/>');
     	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="javascript:accettaPreventivo()">ACCETTA PREVENTIVO</a>'+
@@ -230,7 +230,8 @@ function rifiutaPreventivo(){
         contentType: 'application/x-www-form-urlencoded',
         crossDomain: true,
         data: {'requestId': sessionStorage.requestID, 
-      	  'nickname': sessionStorage.idprofessionista	  
+      	  'professionalId': sessionStorage.idprofessionista,
+      	  'nickname': sessionStorage.nicknameProfessionista
       	  },
         complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
         success: tornaHome,
@@ -247,7 +248,8 @@ function accettaPreventivo(){
         contentType: 'application/x-www-form-urlencoded',
         crossDomain: true,
         data: {'requestId': sessionStorage.requestID,
-        	'professionistaid': sessionStorage.idprofessionista
+        	'professionalId': sessionStorage.idprofessionista,
+        	'nikname': sessionStorage.nickname
         },
         //il professionistaID non glielo passo ok?
         complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
