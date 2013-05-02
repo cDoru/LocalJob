@@ -589,7 +589,7 @@ function inviaUrgenza(luogo){
 	}
 	
 	//alert(sessionStorage.problemTitle+" - "+sessionStorage.problemDesription+" - "+sessionStorage.problemType); 
-	//alert(sessionStorage.lat+" - "+sessionStorage.long);
+	//alert(sessionStorage.problemImg+" - "+sessionStorage.lat+" - "+sessionStorage.long);
 	
 	$.ajax({
           type: 'POST',
@@ -611,6 +611,19 @@ function inviaUrgenza(luogo){
           success: ajaxEMERGENCY,
           error: errorHandler
        });
+}
+
+function funzioneMCE(){
+	$.ajax({
+		async: false,
+		type: 'GET',
+		url: 'http://95.141.45.174/mce/',			
+		crossDomain:true,
+		success: function(data){
+			alert(data);
+		},
+		error: errorHandler
+	});	
 }
 
 function ajaxEMERGENCY(data){
@@ -1103,7 +1116,7 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	//la schermata di caricamento è abilitata dal caricamento pagina
-	alert(localStorage.userType);
+	//alert(localStorage.userType);
 	if(localStorage.userType == "cliente"){
 		$.ajax({
 			async: false,
