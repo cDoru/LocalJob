@@ -236,26 +236,37 @@ function mostraPanelPreventivo(){			//mostra il modal in cui inserire in prevent
 }
 
 function sendPreventivo(){		//raccoglie i dati dal form e (per ora) non ci fa assolutamente nulla
-	cifra =  $('#cifraMin').val() +' - '+ $('#cifraMax').val();
-	tempo =  $('#tempoOre').val() +'h'+ $('#tempoMin').val();
+	cifraMin = $('#cifraMin').val();
+	cifraMax = $('#cifraMax').val();
+	tempoOre = $('#tempoOre').val();
+	tempoMin = $('#tempoMin').val();
 	
-	/*
-	 * Invia al server il preventivo
-	 */
-	$.ajax({
-        type: 'POST',
-        url: 'http://95.141.45.174/answers',
-        contentType: 'application/x-www-form-urlencoded',
-        crossDomain: true,
-        data: {'requestId': sessionStorage.requestID, 
-      	  'priceRange': cifra, 
-      	  'expectedTime': tempo, 
-      	  'nickname': localStorage.nickname    	  
-      	  },
-        complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
-        success: inviaPreventivo,
-        error: errorHandler
-	});
+	if (cifraMin == "" || cifraMax == "" || (tempoOre == "" && tempoMin == ""))
+		{
+			alert("Tutti i campi sono obbligatori");
+		}
+	else {
+			cifra =  cifraMin +' - '+ cifraMax;
+			tempo =  tempoOre +'h'+ tempoMin;
+			
+			/*
+			 * Invia al server il preventivo
+			 */
+			$.ajax({
+		        type: 'POST',
+		        url: 'http://95.141.45.174/answers',
+		        contentType: 'application/x-www-form-urlencoded',
+		        crossDomain: true,
+		        data: {'requestId': sessionStorage.requestID, 
+		      	  'priceRange': cifra, 
+		      	  'expectedTime': tempo, 
+		      	  'nickname': localStorage.nickname    	  
+		      	  },
+		        complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
+		        success: inviaPreventivo,
+		        error: errorHandler
+			});
+		}
 }
 
 function inviaPreventivo(data){

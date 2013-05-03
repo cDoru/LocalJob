@@ -1364,7 +1364,7 @@ function mostraStoricoCliSuccess(xml){
 	$('#fotoGrande').attr('src', 'http://95.141.45.174/'+foto);
 	
 	//il bottone di inserisci commento
-	if(state==15){
+	if(state==3){
 		$('#incolla').append('<button class="btn btn-large btn-block btn-success" href="commento-nuovo.html">LASCIA UN COMMENTO</button><br/>');
 	}
 	//il bottone di default
