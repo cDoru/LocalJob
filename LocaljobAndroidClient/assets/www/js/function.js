@@ -12,7 +12,6 @@ var xml_case;
 var filtroIntervento;
 
 var user;
-var logged = false;
 
 var user_signin_user;
 var	user_signin_password;
@@ -54,6 +53,7 @@ function onNotificationGCM(e) {
 			//console.log("regID = " + e.regID);
 			sessionStorage.googlecod = e.regid;
 			window.location='home.html';
+	
 		}
 		
         break;   
@@ -794,13 +794,13 @@ function ajaxLOGIN(data){
 	//alert(data);
 	if(data == "cliente"){	
 		localStorage.userType = data;
-		logged = true;
+		localStorage.logged = true;
 		localStorage.nickname = user;
 		window.location='interventi-attivi.html';		
 	}
 	else if(data == "professionista"){
 		localStorage.userType = data;
-		logged = true;
+		localStorage.logged = true;
 		localStorage.nickname = user;
 		window.location='interventi-attivi.html';	
 	}
@@ -1028,13 +1028,12 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	
-	
 	if(localStorage.notificaSalvata == ""){
-		alert("no notifica");
+		//alert("no notifica");
 	}
 	else{
-		//elaboraNotifica(e.payload);
 		alert("si notifica");
+		//elaboraNotifica(localStorage.notificaSalvata);
 	}
 	
 	//Attivo il tasto tabAttivi e disattivo il tasto tabIntorno
@@ -1508,8 +1507,21 @@ function menuTendina(){
 function exitFromApp(buttonIndex) {
    if (buttonIndex==1){
    	
-    navigator.app.exitApp();
-
+	   //prima di uscire faccio il logout
+	   $.ajax({
+			async: false,
+			type: 'GET',
+			url: 'http://95.141.45.174/logout',			
+			crossDomain:true,
+			success: function(){
+				//svuoto le variabili session e local
+				localStorage.clear();
+				sessionStorage.clear();
+				//esco dall'app
+				navigator.app.exitApp();		
+			},
+			error: errorHandler
+		});	  
 	}
 }
 
