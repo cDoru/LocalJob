@@ -211,7 +211,7 @@ function inviaNuovoCommento(){
 	
 	$.ajax({
         type: 'GET',
-        url: 'http://95.141.45.174/comment',
+        url: 'http://95.141.45.174/insertcoment',
         contentType: 'application/x-www-form-urlencoded',
         data: {'comment': commentText, 'title': commentTitle, 'qualityRating': qualityRating, 'reliabilityRating': reliabilityRating, 'kindnessRating': kindnessRating, 'jobid': sessionStorage.id},
         crossDomain: true,
