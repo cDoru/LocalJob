@@ -1134,7 +1134,8 @@ function ricercaAttiviSuccess(xml){
 							//state_bar = "width:40%;";
 							state_bar = "width:100%;";
 							state_active = "active";
-							progress_state = "progress-info";
+							// progress-info
+							progress_state = "progress-success";
 							break;
 				case "4":   state_string = "research_work_annulled"; 
 							state_string_it = "La richiesta &egrave; stata annullata";
@@ -1309,7 +1310,8 @@ function mostraStoricoCliSuccess(xml){
 						//state_bar = "width:40%;";
 						state_bar = "width:100%;";
 						state_active = "active";
-						progress_state = "progress-info";
+						// progress-info
+						progress_state = "progress-success";
 						break;
 			case "4":   state_string = "research_work_annulled"; 
 						state_string_it = "La richiesta &egrave; stata annullata";
