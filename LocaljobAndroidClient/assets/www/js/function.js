@@ -670,12 +670,6 @@ function facebook_login(){
 	
 }
 
-function facebook_login_prova(){
-	
-	
-	
-}
-
 //Registrazione utente
 function user_signin(){
 	$('#loading').fadeIn('fast');			//schermata di caricamento

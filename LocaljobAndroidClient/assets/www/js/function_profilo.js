@@ -210,7 +210,7 @@ function inviaNuovoCommento(){
 	alert(commentTitle+" "+commentText+" "+qualityRating+" "+reliabilityRating+" "+kindnessRating);
 	
 	$.ajax({
-        type: 'GET',
+        type: 'POST',
         url: 'http://95.141.45.174/insertcoment',
         contentType: 'application/x-www-form-urlencoded',
         data: {'comment': commentText, 'title': commentTitle, 'qualityRating': qualityRating, 'reliabilityRating': reliabilityRating, 'kindnessRating': kindnessRating, 'jobid': sessionStorage.id},
