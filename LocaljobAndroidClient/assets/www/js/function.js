@@ -1311,7 +1311,7 @@ function mostraStoricoCliSuccess(xml){
 						state_bar = "width:100%;";
 						state_active = "active";
 						// progress-info
-						progress_state = "progress-success";
+						progress_state = "progress-successf";
 						break;
 			case "4":   state_string = "research_work_annulled"; 
 						state_string_it = "La richiesta &egrave; stata annullata";

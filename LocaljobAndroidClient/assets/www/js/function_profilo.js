@@ -202,10 +202,15 @@ function inviaNuovoCommento(){
 	$('#loading').fadeIn('fast');			//schermata di caricamento
 	
 	commentTitle = $('#commentTitle').val();
+	alert(commentTitle);
 	commentText = $('#commentText').val();
+	alert(commentText);
 	qualityRating = $('#qualityRating').val();
+	alert(qualityRating);
 	reliabilityRating = $('#reliabilityRating').val();
+	alert(reliabilityRating);
 	kindnessRating = $('#kindnessRating').val();
+	alert(kidnessRating);
 	
 	alert(commentTitle+" "+commentText+" "+qualityRating+" "+reliabilityRating+" "+kindnessRating);
 	

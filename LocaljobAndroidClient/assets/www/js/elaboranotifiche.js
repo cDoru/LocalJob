@@ -213,7 +213,7 @@ function cosaMostro(){
     	   				'<div><b>INDIRIZZO: </b>'+sessionStorage.address+'</div><br/>');
     	   		$('#bottoniPagina').html('<a class="btn btn-large btn-success btn-block" type="button" href="tel:'+sessionStorage.number+'">'+
     	   				'<img id="icoCall" src="./img/glyphicons/white_ver/170.PNG"/>&nbsp;&nbsp;CONTATTA </a><br/>'+
-   						'<a class="btn btn-large btn-block btn-inverse" href="interventi-attivi.html">ANNULLA</a>');
+   						'<a class="btn btn-large btn-block btn-inverse" href="interventi-attivi.html">CONCLUDI</a>');
     	   		break;
         
        default:
