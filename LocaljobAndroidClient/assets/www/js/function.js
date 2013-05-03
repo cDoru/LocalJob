@@ -1088,14 +1088,16 @@ function ricercaAttiviSuccess(xml){
 
      		switch(state){
 				case "0":   state_string = "default"; 
-							state_string_it = "default";
-						    state_bar = "width:0%;";
-						    state_active = "";
+							state_string_it = "La richiesta &egrave; stata inviata. Attendi che il professionista risponda.";
+						    //state_bar = "width:10%;";
+						    state_bar = "width:30%;";
+						    state_active = "active";
 						    progress_state = "progress-info";
 							break;
 				case "1":   state_string = "research_request_init"; 
 							state_string_it = "Richiesta inviata ai professionisti in zona";
-							state_bar = "width:10%;";
+							//state_bar = "width:10%;";
+						    state_bar = "width:30%;";
 							state_active = "active";
 							progress_state = "progress-info";
 							break;
@@ -1107,7 +1109,8 @@ function ricercaAttiviSuccess(xml){
 							break;
 				case "3":   state_string = "research_professionist_accepted"; 
 							state_string_it = "Il professionista ha accettato la richiesta, guarda il suo preventivo";
-							state_bar = "width:40%;";
+							//state_bar = "width:40%;";
+							state_bar = "width:100%;";
 							state_active = "active";
 							progress_state = "progress-info";
 							break;
@@ -1259,14 +1262,16 @@ function mostraStoricoCliSuccess(xml){
 
 		switch(state){
 			case "0":   state_string = "default"; 
-						state_string_it = "default";
-					    state_bar = "width:0%;";
-					    state_active = "";
-					    progress_state = "progress-info";
+						state_string_it = "La richiesta &egrave; stata inviata. Attendi che il professionista risponda.";
+						//state_bar = "width:10%;";
+						state_bar = "width:30%;";
+						state_active = "active";
+						progress_state = "progress-info";
 						break;
 			case "1":   state_string = "research_request_init"; 
 						state_string_it = "Richiesta inviata al professionista";
-						state_bar = "width:10%;";
+						//state_bar = "width:10%;";
+						state_bar = "width:30%;";
 						state_active = "active";
 						progress_state = "progress-info";
 						break;
@@ -1278,7 +1283,8 @@ function mostraStoricoCliSuccess(xml){
 						break;
 			case "3":   state_string = "research_professionist_accepted"; 
 						state_string_it = "Il professionista ha accettato l'intervento";
-						state_bar = "width:40%;";
+						//state_bar = "width:40%;";
+						state_bar = "width:100%;";
 						state_active = "active";
 						progress_state = "progress-info";
 						break;
@@ -1372,7 +1378,7 @@ function mostraStoricoCliSuccess(xml){
 	$('#fotoGrande').attr('src', 'http://95.141.45.174/'+foto);
 	
 	//il bottone di inserisci commento
-	if(state==15){
+	if(state==3){
 		$('#incolla').append('<button class="btn btn-large btn-block btn-success" href="commento-nuovo.html">LASCIA UN COMMENTO</button><br/>');
 	}
 	//il bottone di default
