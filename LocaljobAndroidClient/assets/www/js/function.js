@@ -15,7 +15,7 @@ var user;
 var logged = false;
 
 var orderType;
-var localStorage.notificaSalvata = "";
+//localStorage.notificaSalvata = "";
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
