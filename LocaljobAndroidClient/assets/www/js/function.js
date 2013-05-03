@@ -1108,7 +1108,8 @@ function ricercaAttiviSuccess(xml){
 							progress_state = "progress-danger";
 							break;
 				case "3":   state_string = "research_professionist_accepted"; 
-							state_string_it = "Il professionista ha accettato la richiesta, guarda il suo preventivo";
+							//state_string_it = "Il professionista ha accettato la richiesta, guarda il suo preventivo";
+							state_string_it = "Sarai contattato dal professionista. Lascia un commento al termine della prestazione.";
 							//state_bar = "width:40%;";
 							state_bar = "width:100%;";
 							state_active = "active";
@@ -1282,7 +1283,8 @@ function mostraStoricoCliSuccess(xml){
 						progress_state = "progress-danger";
 						break;
 			case "3":   state_string = "research_professionist_accepted"; 
-						state_string_it = "Il professionista ha accettato l'intervento";
+						//state_string_it = "Il professionista ha accettato l'intervento";
+						state_string_it = "Sarai contattato dal professionista. Lascia un commento al termine della prestazione.";
 						//state_bar = "width:40%;";
 						state_bar = "width:100%;";
 						state_active = "active";
