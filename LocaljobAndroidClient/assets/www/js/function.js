@@ -361,29 +361,8 @@ function goTabCasa(indirizzo){
     	$('#tab_casa').attr('class','active');
     	$('#tab_casa').html('<a href="#tabCasa" data-toggle="tab" style="border:1px solid #ffffff;"> '+nome+' </a>');
     	
-    	//Ora si mostra a video la casa - si può fare con mostraCasa?
-    	
+    	//Ora si mostra a video la casa
     	mostraCasa(0);
-    	
-    	//Oppure si prendono i dati dall' xml e si mostra a video tutto
-    	//la stessa cosa viene fatta con mostraCasa()
-    	/*
-		var indirizzo = $casa.find("indirizzo").text();
-		var civ = $casa.find("civ").text();
-		var cap = $casa.find("cap").text();
-		var citta = $casa.find("citta").text(); 
-		var provincia = $casa.find("provincia").text(); 
-		sessionStorage.lat = $casa.find("latitude").text(); 
-		sessionStorage.long = $casa.find("longitude").text(); 
-    	
-    	initialize_map("casa", sessionStorage.lat, sessionStorage.long);
-    	
-    	$('#Indirizzo_casa').attr('value',indirizzo);
-    	$('#nCiv_casa').attr('value',civ);
-    	$('#CAP_casa').attr('value',cap);
-    	$('#Citta_casa').attr('value',citta);
-    	$('#Provincia_casa').attr('value',provincia);
-    	*/
 	}
 	else{
 		var $casa = $(xml_case).find("home");
@@ -927,7 +906,7 @@ function ricercaInZona(filtroPrecedente, ordinamento) {
 		                  '<li><a tabindex="-1" href="#">Antennista</a></li>'+
 		                  '<li><a tabindex="-1" href="#">Sarto</a></li>'+
 		                  '<li><a tabindex="-1" href="#">Calzolaio</a></li>'+
-		                  '<li><a tabindex="-1" href="#">Maniscalco</a></li>'+
+		                  '<li><a tabindex="-1" href="#">Meccanico</a></li>'+
 		                  '<li><a tabindex="-1" href="#">Carpentiere</a></li>'+
 		                  '<li><a tabindex="-1" href="#">Falegname</a></li>'+
 		                '</ul>'+

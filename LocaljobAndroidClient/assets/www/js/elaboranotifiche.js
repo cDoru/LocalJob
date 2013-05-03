@@ -24,13 +24,11 @@ function elaboraNotifica(notifica) {
 	    		sessionStorage.expectedTime = notifica.expectedTime;
 	    		
     	   		$('#sos_link').attr('href', 'javascript:notificaAnswer()');	//attiva il link del bottone
-    	   		alert("answer");
-				break;
+    	   		break;
        
        case 'decline':
     	   		sessionStorage.requestID = notifica.requestId;
     	   		$('#sos_link').attr('href', 'javascript:notificaDecline()');	//attiva il link del bottone
-    	   		alert("decline");
 				break;       
        
        case 'info':
@@ -42,7 +40,6 @@ function elaboraNotifica(notifica) {
     	   		sessionStorage.address = notifica.address;	
     	   		
     	   		$('#sos_link').attr('href', 'javascript:notificaInfo()');	//attiva il link del bottone
-    	   		alert("request");
 				break;
         
        default:
@@ -74,7 +71,7 @@ function notificaAnswer() {
 }
 function notificaDecline() {
 	$('#modalHeader').html('Preventivo rifiutato');
-	$('#modalBody').html('<p>Il preventivo numero '+sessionStorage.requestID+' non è stato accettato dal cliente. Grazie comunque!</p>');
+	$('#modalBody').html('<p>Il preventivo da lei inviato non \&eacute; stato accettato dal cliente. Grazie comunque!</p>');
 	$('#modalFooter').html('<a href="javascript:tornaHome()" class="btn btn-primary" data-dismiss="modal">Chiudi</a>');
 	
 	$('#panelNotifiche').modal('show');
@@ -107,8 +104,6 @@ function cosaMostro(){
     			crossDomain:true,
     			complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
     			success: function(data){
-    				//provo la stampa dello stato
-    				alert("lo stato è: "+data);
     				//se lo stato è maggiore di 2 vuol dire che l'intervento è già stato accettato o annullato
     				if(data > 2){
     					$('#titoloPagina').html('Richiesta di intervento già accettata o annullata');
@@ -134,20 +129,6 @@ function cosaMostro(){
     			error: errorHandler
     		});
     	   
-    	   	/* LA PARTE VECCHIA
-    	   	 * $('#titoloPagina').html('Nuova richiesta di intervento,<br/>ecco i dettagli del lavoro:');
-    	    	   		$('#corpoPagina').html('<a href="javascript:mostraPanelFoto()">'+
-    	    	   				'<img id="foto" src="http://95.141.45.174/'+sessionStorage.picture+'" style="width:100px;"/></a><br/>'+
-    	    					'Tappa sulla foto per ingrandirla'+
-    	    		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+sessionStorage.problemTitle+'</h5>'+
-    	    		    		'<p id="descrizione2">'+sessionStorage.description+'</p></div>'+
-    	    		    		'<div><b>RICHIESTO:</b> '+sessionStorage.job+'</div>'+
-    	    		    		'<div style="margin-bottom:20px;"><b>PRESSO:</b> '+sessionStorage.position+'</div>');
-    	    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="javascript:mostraPanelPreventivo()">FORNISCI PREVENTIVO</a>'+
-    	    	   				'<a class="btn btn-large btn-block btn-inverse" href="javascript:tornaHome()">RIFIUTA</a>');
-    	    	   		
-    	    	   		$('#fotoGrande').attr('src', 'http://95.141.45.174/'+sessionStorage.picture);		//dentro a panelFoto
-    	   	 */	
     		break;
     	   		
        case 'notificaAnswer':	
@@ -191,9 +172,6 @@ function mostraPanelPreventivo(){			//mostra il modal in cui inserire in prevent
 function sendPreventivo(){		//raccoglie i dati dal form e (per ora) non ci fa assolutamente nulla
 	cifra =  $('#cifraMin').val() +' - '+ $('#cifraMax').val();
 	tempo =  $('#tempoOre').val() +'h'+ $('#tempoMin').val();
-	//cifra = "100 - 200";
-	//tempo = "1h30";
-	//alert(cifra +" "+ tempo);
 	
 	/*
 	 * Invia al server il preventivo
