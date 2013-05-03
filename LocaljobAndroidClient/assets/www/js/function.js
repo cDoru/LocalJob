@@ -677,14 +677,19 @@ function facebook_login_prova(){
 function user_signin(){
 	$('#loading').fadeIn('fast');			//schermata di caricamento
 	
-	nome = $('#signU_name').val(); 
-	cognome = $('#signU_surname').val(); 
+	//nome = $('#signU_name').val(); 
+	//cognome = $('#signU_surname').val(); 
 	user =  $('#signU_user').val(); 
 	password =  $('#signU_password2').val();
 	mail =  $('#signU_mail').val();
 	tipoUtente = "cliente";
 	
 	//alert("user: "+user+" Password: "+password+" email "+mail+" tipo utente: "+tipoUtente);
+
+	// TODO: eliminare, fake
+	localStorage.userType = 'cliente';
+	localStorage.nickname = user;
+	logged = true;
 	
 	 $.ajax({
 	          type: 'POST',
@@ -699,6 +704,7 @@ function user_signin(){
 	          success: ajaxSIGNIN,
 	          error: errorHandler
 	})
+
 }
 
 
@@ -821,14 +827,18 @@ function ajaxLOGINFB(data){
 }
 
 function ajaxSIGNIN(data){
-	if(tipoUtente=="cliente"){
+
+	location.href = 'interventi-attivi.html';
+	
+
+	/*if(tipoUtente=="cliente"){
 		//alert("cliente registrato");
 		window.location='complete_signin_user.html';
 	}
 	else if(tipoUtente=="professionista"){
 		//alert("professionista registrato");
 		window.location='complete_signin_pro.html';
-	}
+	}*/
 }
 
 function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
