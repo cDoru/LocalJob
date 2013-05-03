@@ -1381,7 +1381,7 @@ function mostraStoricoCliSuccess(xml){
 	
 	//il bottone di inserisci commento
 	if(state==3){
-		$('#incolla').append('<button class="btn btn-large btn-block btn-success" href="commento-nuovo.html">LASCIA UN COMMENTO</button><br/>');
+		$('#incolla').append('<a class="btn btn-large btn-block btn-success" href="commento-nuovo.html">LASCIA UN COMMENTO</a><br/>');
 	}
 	//il bottone di default
 	$('#incolla').append('<button class="btn btn-large btn-block btn-inverse" onclick="javascript:history.go(-1);"">TORNA INDIETRO</button></div>');
