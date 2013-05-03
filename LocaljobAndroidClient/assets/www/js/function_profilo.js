@@ -202,16 +202,11 @@ function inviaNuovoCommento(){
 	$('#loading').fadeIn('fast');			//schermata di caricamento
 	
 	commentTitle = $('#commentTitle').val();
-	alert(commentTitle);
 	commentText = $('#commentText').val();
-	alert(commentText);
-	qualityRating = $('#qualityRating').val();
-	alert(qualityRating);
-	reliabilityRating = $('#reliabilityRating').val();
-	alert(reliabilityRating);
-	kindnessRating = $('#kindnessRating').val();
-	alert(kidnessRating);
-	
+	qualityRating = $('input:radio[name=qualityRating]:checked').val();
+	reliabilityRating = $('input:radio[name=reliabilityRating]:checked').val();
+	kindnessRating = $('input:radio[name=kindnessRating]:checked').val();
+
 	alert(commentTitle+" "+commentText+" "+qualityRating+" "+reliabilityRating+" "+kindnessRating);
 	
 	$.ajax({
