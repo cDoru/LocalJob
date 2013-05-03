@@ -1,3 +1,6 @@
+var tipoLavoro;
+
+
 function elaboraNotifica(notifica) {
 //notifica sarebbe un e.payload che contiene quindi i vocabolari JSON
 	
@@ -91,12 +94,74 @@ function notificaInfo() {
  * Cosa visualizzare in "mostraQualcosa.html"
  */
 function cosaMostro(){
+    switch( sessionStorage.job )
+    {
+       case '0':  
+
+            tipoLavoro =    "Caldaista"; 
+                break;       
+       case '1':
+                tipoLavoro =    "Idraulico"; 
+                break;
+
+        case '2':  
+
+           tipoLavoro =    "Pittore"; 
+                break;   
+
+        case '3':  
+
+            tipoLavoro =    "Elettricista";     
+                break;   
+
+        case '4':  
+
+            tipoLavoro =    "Muratore"; 
+                break;   
+
+        case '5':  
+
+            tipoLavoro =    "Antennista";     
+                break;   
+
+        case '6':  
+
+            tipoLavoro =    "Sarto";    
+                break;   
+
+        case '7':  
+
+            tipoLavoro =    "Calzolaio";     
+                break;   
+
+        case '8':  
+
+            tipoLavoro =    "Meccanico";    
+                break;  
+
+        case '9':  
+
+            tipoLavoro =    "Carpentiere";    
+                break;   
+
+        case '10':  
+
+            tipoLavoro =    "Falegname";    
+                break;    
+
+
+
+    }
+
+
 	switch(sessionStorage.type)
     {
        case 'notificaRequest':  
     	   
     	 //controllo che la richiesta non sia già stata accettata da un altro
     		
+
+
     		$.ajax({
     			async: false,
     			type: 'GET',
@@ -118,7 +183,7 @@ function cosaMostro(){
     	    					'Tappa sulla foto per ingrandirla'+
     	    		    		'<div id="descrizione"><h5 id="titoloIntervento" style="text-transform:uppercase;">'+sessionStorage.problemTitle+'</h5>'+
     	    		    		'<p id="descrizione2">'+sessionStorage.description+'</p></div>'+
-    	    		    		'<div><b>RICHIESTO:</b> '+sessionStorage.job+'</div>'+
+    	    		    		'<div><b>RICHIESTO:</b> '+tipoLavoro+'</div>'+
     	    		    		'<div style="margin-bottom:20px;"><b>PRESSO:</b> '+sessionStorage.position+'</div>');
     	    	   		$('#bottoniPagina').html('<a class="btn btn-large btn-block btn-success" href="javascript:mostraPanelPreventivo()">FORNISCI PREVENTIVO</a>'+
     	    	   				'<a class="btn btn-large btn-block btn-inverse" href="javascript:tornaHome()">RIFIUTA</a>');
