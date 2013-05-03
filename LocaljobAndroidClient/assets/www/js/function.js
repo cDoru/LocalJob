@@ -81,7 +81,7 @@ function onNotificationGCM(e) {
 			 * in questo modo nell'onload fai sempre un controllo ... se hai una notifica
 			 * accendi l'icona
 			 */
-			//localStorage.notificaSalvata = e.payload;
+			localStorage.notificaSalvata = e.payload;
 			
 			elaboraNotifica(e.payload);
 			
@@ -1011,7 +1011,9 @@ function ricercaInZonaSuccess(xml) {
 } 
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
-
+	
+	alert(localStorage.notificaSalvata);
+	
 	//Attivo il tasto tabAttivi e disattivo il tasto tabIntorno
 	$('#link_tabAttivi').attr('class','active');
 	$('#link_tabIntorno').attr('class','');
