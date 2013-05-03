@@ -15,6 +15,7 @@ var user;
 var logged = false;
 
 var orderType;
+var localStorage.notificaSalvata = "";
 //var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
@@ -1012,7 +1013,14 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	
-	alert(localStorage.notificaSalvata);
+	
+	if(localStorage.notificaSalvata == ""){
+		alert("no notifica");
+	}
+	else{
+		//elaboraNotifica(e.payload);
+		alert("si notifica");
+	}
 	
 	//Attivo il tasto tabAttivi e disattivo il tasto tabIntorno
 	$('#link_tabAttivi').attr('class','active');

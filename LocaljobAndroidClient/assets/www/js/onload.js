@@ -8,6 +8,7 @@ function partenza(){
 	
 	jQuery.support.cors = true;
 	
+	
 	//prova di cavo:
 	/*
 	if(localStorage.notificaSalvata == null){
