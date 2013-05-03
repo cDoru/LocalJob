@@ -202,16 +202,11 @@ function inviaNuovoCommento(){
 	$('#loading').fadeIn('fast');			//schermata di caricamento
 	
 	commentTitle = $('#commentTitle').val();
-	alert(commentTitle);
 	commentText = $('#commentText').val();
-	alert(commentText);
-	qualityRating = $('#qualityRating').val();
-	alert(qualityRating);
-	reliabilityRating = $('#reliabilityRating').val();
-	alert(reliabilityRating);
-	kindnessRating = $('#kindnessRating').val();
-	alert(kidnessRating);
-	
+	qualityRating = $('input:radio[name=qualityRating]:checked').val();
+	reliabilityRating = $('input:radio[name=reliabilityRating]:checked').val();
+	kindnessRating = $('input:radio[name=kindnessRating]:checked').val();
+
 	alert(commentTitle+" "+commentText+" "+qualityRating+" "+reliabilityRating+" "+kindnessRating);
 	
 	$.ajax({
@@ -224,4 +219,104 @@ function inviaNuovoCommento(){
         success: function(){window.location='intervento-concluso.html'},
         error: errorHandler
      })
+}
+
+/* Colora stelline */
+function coloraStelline(tipoRadio, valoreRadio) {
+
+	switch('' + tipoRadio + valoreRadio + '') {
+			case 'q1': document.getElementById("img_q1").src="img/starOn.png";
+			           document.getElementById("img_q2").src="img/starOff.png";
+			           document.getElementById("img_q3").src="img/starOff.png";
+			           document.getElementById("img_q4").src="img/starOff.png";
+			           document.getElementById("img_q5").src="img/starOff.png";
+							break;
+			case 'q2': document.getElementById("img_q1").src="img/starOn.png";
+			           document.getElementById("img_q2").src="img/starOn.png";
+			           document.getElementById("img_q3").src="img/starOff.png";
+			           document.getElementById("img_q4").src="img/starOff.png";
+			           document.getElementById("img_q5").src="img/starOff.png";
+							break;
+			case 'q3': document.getElementById("img_q1").src="img/starOn.png";
+			           document.getElementById("img_q2").src="img/starOn.png";
+			           document.getElementById("img_q3").src="img/starOn.png";
+			           document.getElementById("img_q4").src="img/starOff.png";
+			           document.getElementById("img_q5").src="img/starOff.png";
+							break;
+			case 'q4': document.getElementById("img_q1").src="img/starOn.png";
+			           document.getElementById("img_q2").src="img/starOn.png";
+			           document.getElementById("img_q3").src="img/starOn.png";
+			           document.getElementById("img_q4").src="img/starOn.png";
+			           document.getElementById("img_q5").src="img/starOff.png";
+							break;
+			case 'q5': document.getElementById("img_q1").src="img/starOn.png";
+			           document.getElementById("img_q2").src="img/starOn.png";
+			           document.getElementById("img_q3").src="img/starOn.png";
+			           document.getElementById("img_q4").src="img/starOn.png";
+			           document.getElementById("img_q5").src="img/starOn.png";
+							break;
+			case 'r1': document.getElementById("img_r1").src="img/starOn.png";
+			           document.getElementById("img_r2").src="img/starOff.png";
+			           document.getElementById("img_r3").src="img/starOff.png";
+			           document.getElementById("img_r4").src="img/starOff.png";
+			           document.getElementById("img_r5").src="img/starOff.png";
+							break;
+			case 'r2': document.getElementById("img_r1").src="img/starOn.png";
+			           document.getElementById("img_r2").src="img/starOn.png";
+			           document.getElementById("img_r3").src="img/starOff.png";
+			           document.getElementById("img_r4").src="img/starOff.png";
+			           document.getElementById("img_r5").src="img/starOff.png";
+							break;
+			case 'r3': document.getElementById("img_r1").src="img/starOn.png";
+			           document.getElementById("img_r2").src="img/starOn.png";
+			           document.getElementById("img_r3").src="img/starOn.png";
+			           document.getElementById("img_r4").src="img/starOff.png";
+			           document.getElementById("img_r5").src="img/starOff.png";
+							break;
+			case 'r4': document.getElementById("img_r1").src="img/starOn.png";
+			           document.getElementById("img_r2").src="img/starOn.png";
+			           document.getElementById("img_r3").src="img/starOn.png";
+			           document.getElementById("img_r4").src="img/starOn.png";
+			           document.getElementById("img_r5").src="img/starOff.png";
+							break;
+			case 'r5': document.getElementById("img_r1").src="img/starOn.png";
+			           document.getElementById("img_r2").src="img/starOn.png";
+			           document.getElementById("img_r3").src="img/starOn.png";
+			           document.getElementById("img_r4").src="img/starOn.png";
+			           document.getElementById("img_r5").src="img/starOn.png";
+							break;
+			case 'k1': document.getElementById("img_k1").src="img/starOn.png";
+			           document.getElementById("img_k2").src="img/starOff.png";
+			           document.getElementById("img_k3").src="img/starOff.png";
+			           document.getElementById("img_k4").src="img/starOff.png";
+			           document.getElementById("img_k5").src="img/starOff.png";
+							break;
+			case 'k2': document.getElementById("img_k1").src="img/starOn.png";
+			           document.getElementById("img_k2").src="img/starOn.png";
+			           document.getElementById("img_k3").src="img/starOff.png";
+			           document.getElementById("img_k4").src="img/starOff.png";
+			           document.getElementById("img_k5").src="img/starOff.png";
+							break;
+			case 'k3': document.getElementById("img_k1").src="img/starOn.png";
+			           document.getElementById("img_k2").src="img/starOn.png";
+			           document.getElementById("img_k3").src="img/starOn.png";
+			           document.getElementById("img_k4").src="img/starOff.png";
+			           document.getElementById("img_k5").src="img/starOff.png";
+							break;
+			case 'k4': document.getElementById("img_k1").src="img/starOn.png";
+			           document.getElementById("img_k2").src="img/starOn.png";
+			           document.getElementById("img_k3").src="img/starOn.png";
+			           document.getElementById("img_k4").src="img/starOn.png";
+			           document.getElementById("img_k5").src="img/starOff.png";
+							break;	
+			case 'k5': document.getElementById("img_k1").src="img/starOn.png";
+			           document.getElementById("img_k2").src="img/starOn.png";
+			           document.getElementById("img_k3").src="img/starOn.png";
+			           document.getElementById("img_k4").src="img/starOn.png";
+			           document.getElementById("img_k5").src="img/starOn.png";
+							break;											
+
+	    }
+
+
 }
