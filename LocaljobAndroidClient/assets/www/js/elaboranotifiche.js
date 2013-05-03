@@ -1,5 +1,6 @@
 function elaboraNotifica(notifica) {
 //notifica sarebbe un e.payload che contiene quindi i vocabolari JSON
+
 	
 	accendiSeNotifica(); 	//colora il bottone notifica
 	switch( notifica.notificationType )

@@ -1084,7 +1084,7 @@ function ricercaAttiviSuccess(xml){
 						    progress_state = "progress-info";
 							break;
 				case "1":   state_string = "research_request_init"; 
-							state_string_it = "Richiesta inviata al professionista";
+							state_string_it = "Richiesta inviata ai professionisti in zona";
 							state_bar = "width:10%;";
 							state_active = "active";
 							progress_state = "progress-info";
@@ -1096,7 +1096,7 @@ function ricercaAttiviSuccess(xml){
 							progress_state = "progress-danger";
 							break;
 				case "3":   state_string = "research_professionist_accepted"; 
-							state_string_it = "Il professionista ha accettato l'intervento";
+							state_string_it = "Il professionista ha accettato la richiesta, guarda il suo preventivo";
 							state_bar = "width:40%;";
 							state_active = "active";
 							progress_state = "progress-info";

@@ -17,6 +17,9 @@ function partenza(){
 		elaboraNotifica(e.payload);
 	}
 	*/
+	alert(e.payload);
+	alert(e.payload.requestId);
+	
 
 	//roba per il tooltip (notifiche)
 	$('.notifiche').popover({
