@@ -14,6 +14,9 @@ var filtroIntervento;
 var user;
 var logged = false;
 
+var user_signin_user;
+var	user_signin_password;
+
 var orderType;
 //localStorage.notificaSalvata = "";
 //var googlecod;
@@ -685,11 +688,8 @@ function user_signin(){
 	tipoUtente = "cliente";
 	
 	//alert("user: "+user+" Password: "+password+" email "+mail+" tipo utente: "+tipoUtente);
-
-	// TODO: eliminare, fake
-	localStorage.userType = 'cliente';
-	localStorage.nickname = user;
-	logged = true;
+	user_signin_user = user;
+	user_signin_password = password;
 	
 	 $.ajax({
 	          type: 'POST',
@@ -828,8 +828,19 @@ function ajaxLOGINFB(data){
 
 function ajaxSIGNIN(data){
 
-	location.href = 'interventi-attivi.html';
-	
+	// login
+
+	$.ajax({
+          type: 'POST',
+          url: 'http://95.141.45.174/login/',
+          contentType: 'application/x-www-form-urlencoded',
+          crossDomain: true,
+          data: {'userId': user_signin_user, 'password': user_signin_password, 'googlecod': sessionStorage.googlecod},
+          complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
+          success: ajaxLOGIN,
+          error: errorHandler
+       });
+
 
 	/*if(tipoUtente=="cliente"){
 		//alert("cliente registrato");
