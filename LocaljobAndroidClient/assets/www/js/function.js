@@ -699,7 +699,7 @@ function user_signin(){
 	          //prova della schermata di attesa
 	          contentType: 'application/x-www-form-urlencoded',
 	          crossDomain: true,
-	          data: {'userId': user, 'password': password, 'email': mail, 'tipoUtente': tipoUtente},
+	          data: {'userId': user, 'password': password, 'email': mail, 'userType': tipoUtente},
 	          complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento
 	          success: ajaxSIGNIN,
 	          error: errorHandler
