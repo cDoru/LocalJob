@@ -84,7 +84,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal"">Annulla</button>
+				<button class="btn" data-dismiss="modal">Annulla</button>
 				<button class="btn btn-primary" onclick="javascript:sendPreventivo();">Conferma</button>
 			</div>
 		</div>
@@ -129,22 +129,23 @@
     	<!-- BAR -->
 		<div class="navbar navbar-inverse navbar-fixed-top" style="height:10%;">
 	    	<div class="navbar-inner text-center">
+
 		          	<div class=" btn-group" style="margin:0.7% 0;">
 		          		<a class="btn btn-large btn-inverse" type="button" href="javascript:history.go(-1);">
 	      					<img src="./img/glyphicons/white_ver/225.PNG" style="height:22px;">
 	      				</a>
-	      				<a class="btn btn-large btn-primary" type="button" onclick="" style="line-height:22px;">
-	      					LJ
-	      				</a>         		
+	      				<button class="btn btn-large btn-info" type="button" style="height:47px;">
+      						<img src="./img/minilogo.png" />
+      				    </button>        		
 		                <a id="sos_link" class="btn btn-large btn-inverse" href="#">
 		               		<span id="sos" class="badge" style="margin-top:4%; margin-bottom:5%">.</span>
 		            	</a>
-			            <a  class="btn btn-large btn-inverse" type="button">
-			            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
-			            </a>
-			            <a class="btn btn-large btn-inverse" type="button">
-			            	<img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
-			            </a>
+			            <button  class="btn btn-large btn-inverse" type="button" onclick="javascript:window.location='map-landscape.html';">
+		            	<img src="./img/glyphicons/white_ver/243.PNG" style="height:22px;">
+		                </button>
+			            <button class="btn btn-large btn-inverse" type="button" onclick="javascript:window.location='professionista-gestione.html';">
+		            	<img src="./img/glyphicons/white_ver/138.PNG" style="height:22px;">
+		            </button>
 	              </div>
 		    </div>
 		</div>
