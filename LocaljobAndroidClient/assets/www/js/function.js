@@ -1025,6 +1025,7 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	
+	
 	//riprendo la variabile getItem e la riconverto in json
 	var retrievedObject = localStorage.getItem('notification');
 	cosetto = JSON.parse(retrievedObject);

@@ -96,7 +96,7 @@ function notificaInfo() {
  */
 function cosaMostro(){
 	//quando mostro la notifica svuoto la variabile localstorage in modo che non visualizzerà più la notifica
-	localStorage.setItem('notification', '');
+	//localStorage.setItem('notification', 'ciao');
 	
     switch( sessionStorage.job )
     {
@@ -329,6 +329,7 @@ function accendiSeNotifica(){		//accende la notifica
 	$('#sos').html('!');
 }
 function spegniSeNotifica(){		//spegne la notifica
+	localStorage.setItem('notification', 'ciao');
 	$('#sos').attr('class', 'badge');
 	$('#sos').html('.');
 	$('#sos_link').attr('href','#');
