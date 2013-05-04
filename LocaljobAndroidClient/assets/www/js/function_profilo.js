@@ -4,8 +4,8 @@ var cliccato = false;	//per sapere se il bottone commenti in "profilo-profession
 //rating: stelle piccole
 //var stellaVuota = "<i class='icon-star-empty'></i>";
 //var stellaPiena = "<i class='icon-star'></i>";
-var stellaVuota = "<img src='img/starOff.png' style='70%' />";
-var stellaPiena = "<img src='img/starOn.png' style='70%' />";
+var stellaVuota = "<img src='img/starOff.png' style='width:70%' />";
+var stellaPiena = "<img src='img/starOn.png' style='width:70%' />";
 //rating: stelle grandi
 //var stellaVuota = "<img src='./img/glyphicons/black_ver/glyphicons_048_dislikes.png' />";
 //var stellaPiena = "<img src='./img/glyphicons/black_ver/glyphicons_049_star.png' />";
@@ -109,12 +109,12 @@ function importaSuccesso(xml) {
 function rating(voto, categoria){			//per visualizzare le valutazioni
 	
 	switch(Math.round(voto)) {
-    case 0: stelle =  stellaVuota + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (0/5)'; break;
-    case 1: stelle =  stellaPiena + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (1/5)'; break;
-    case 2: stelle =  stellaPiena + stellaPiena + stellaVuota + stellaVuota + stellaVuota + ' (2/5)'; break;
-    case 3: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaVuota + stellaVuota + ' (3/5)'; break;
-    case 4: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaVuota + ' (4/5)'; break;
-    case 5: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaPiena + ' (5/5)'; break;
+    case 0: stelle =  stellaVuota + stellaVuota + stellaVuota + stellaVuota + stellaVuota; break;
+    case 1: stelle =  stellaPiena + stellaVuota + stellaVuota + stellaVuota + stellaVuota; break;
+    case 2: stelle =  stellaPiena + stellaPiena + stellaVuota + stellaVuota + stellaVuota; break;
+    case 3: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaVuota + stellaVuota; break;
+    case 4: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaVuota; break;
+    case 5: stelle =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaPiena; break;
     }
 	
 	switch(categoria) {
@@ -157,32 +157,32 @@ function caricaCommenti(xml) {
 		    kindness = $worker.find('kindnessRating').text();
 		    
 		    switch(Math.round(quality)) {
-		    case 0: stelle =  '0/5'; break;
-		    case 1: stelle =  '1/5'; break;
-		    case 2: stelle =  '2/5'; break;
-		    case 3: stelle =  '3/5'; break;
-		    case 4: stelle =  '4/5'; break;
-		    case 5: stelle =  '5/5'; break;
+		    case 0: stelle =  ''; break;
+		    case 1: stelle =  ''; break;
+		    case 2: stelle =  ''; break;
+		    case 3: stelle =  ''; break;
+		    case 4: stelle =  ''; break;
+		    case 5: stelle =  ''; break;
 	    }
 		quality = '<div style="width:33%; float:left;">Qualit&agrave;<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
 		
 		switch(Math.round(reliability)) {
-			case 0: stelle =  '0/5'; break;
-		    case 1: stelle =  '1/5'; break;
-		    case 2: stelle =  '2/5'; break;
-		    case 3: stelle =  '3/5'; break;
-		    case 4: stelle =  '4/5'; break;
-		    case 5: stelle =  '5/5'; break;
+			case 0: stelle =  ''; break;
+		    case 1: stelle =  ''; break;
+		    case 2: stelle =  ''; break;
+		    case 3: stelle =  ''; break;
+		    case 4: stelle =  ''; break;
+		    case 5: stelle =  ''; break;
 	    }
 		reliability = '<div style="width:33%; float:left;">Affidabilit&agrave;<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
 		
 		switch(Math.round(kindness)) {
-			case 0: stelle =  '0/5'; break;
-		    case 1: stelle =  '1/5'; break;
-		    case 2: stelle =  '2/5'; break;
-		    case 3: stelle =  '3/5'; break;
-		    case 4: stelle =  '4/5'; break;
-		    case 5: stelle =  '5/5'; break;
+			case 0: stelle =  ''; break;
+		    case 1: stelle =  ''; break;
+		    case 2: stelle =  ''; break;
+		    case 3: stelle =  ''; break;
+		    case 4: stelle =  ''; break;
+		    case 5: stelle =  ''; break;
 	    }
 		kindness = '<div style="width:33%; float:left;">Gentilezza<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
 			 

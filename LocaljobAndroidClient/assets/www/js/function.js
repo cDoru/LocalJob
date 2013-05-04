@@ -997,12 +997,12 @@ function ricercaInZonaSuccess(xml) {
     	});
         
         switch(Math.round(rating)) {
-        case 0: rating =  stellaVuota + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (0/5)'; break;
-        case 1: rating =  stellaPiena + stellaVuota + stellaVuota + stellaVuota + stellaVuota + ' (1/5)'; break;
-        case 2: rating =  stellaPiena + stellaPiena + stellaVuota + stellaVuota + stellaVuota + ' (2/5)'; break;
-        case 3: rating =  stellaPiena + stellaPiena + stellaPiena + stellaVuota + stellaVuota + ' (3/5)'; break;
-        case 4: rating =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaVuota + ' (4/5)'; break;
-        case 5: rating =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaPiena + ' (5/5)'; break;
+        case 0: rating =  stellaVuota + stellaVuota + stellaVuota + stellaVuota + stellaVuota; break;
+        case 1: rating =  stellaPiena + stellaVuota + stellaVuota + stellaVuota + stellaVuota; break;
+        case 2: rating =  stellaPiena + stellaPiena + stellaVuota + stellaVuota + stellaVuota; break;
+        case 3: rating =  stellaPiena + stellaPiena + stellaPiena + stellaVuota + stellaVuota; break;
+        case 4: rating =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaVuota; break;
+        case 5: rating =  stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaPiena; break;
         }
         
         var pagina = "javascript:profiloPro('"+nickname+"');";
