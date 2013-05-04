@@ -2,8 +2,10 @@ var nick;
 var cliccato = false;	//per sapere se il bottone commenti in "profilo-professionista" è già stato cliccato o no
 
 //rating: stelle piccole
-var stellaVuota = "<i class='icon-star-empty'></i>";
-var stellaPiena = "<i class='icon-star'></i>";
+//var stellaVuota = "<i class='icon-star-empty'></i>";
+//var stellaPiena = "<i class='icon-star'></i>";
+var stellaVuota = "<img src='img/starOff.png' />";
+var stellaPiena = "<img src='img/starOn.png' />";
 //rating: stelle grandi
 //var stellaVuota = "<img src='./img/glyphicons/black_ver/glyphicons_048_dislikes.png' />";
 //var stellaPiena = "<img src='./img/glyphicons/black_ver/glyphicons_049_star.png' />";
