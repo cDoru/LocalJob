@@ -85,7 +85,11 @@ function onNotificationGCM(e) {
 			 * in questo modo nell'onload fai sempre un controllo ... se hai una notifica
 			 * accendi l'icona
 			 */
-			localStorage.notificaSalvata = e.payload;
+			
+			localStorage.notifica = e.payload;
+			
+			alert(localStorage.notifica);
+		
 			
 			elaboraNotifica(e.payload);
 			
@@ -1028,13 +1032,14 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	
-	if(localStorage.notificaSalvata == ""){
-		//alert("no notifica");
+	//alert(localStorage.notifica);
+	
+	if(localStorage.notifica){
+		//ho la notifica
+		elaboraNotifica(localStorage.notifica);
 	}
 	else{
-		//la notifica me la legge undefined
-		//alert("si notifica");
-		//elaboraNotifica(localStorage.notificaSalvata);
+		//non ho la notifica
 	}
 	
 	//Attivo il tasto tabAttivi e disattivo il tasto tabIntorno

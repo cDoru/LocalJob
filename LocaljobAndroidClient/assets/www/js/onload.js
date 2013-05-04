@@ -7,18 +7,6 @@ document.addEventListener('deviceready', partenza, true);
 function partenza(){
 	
 	jQuery.support.cors = true;
-	
-	
-	//prova di cavo:
-	/*
-	if(localStorage.notificaSalvata == null){
-		
-	}
-	else{
-		elaboraNotifica(e.payload);
-	}
-	*/
-	
 
 	//roba per il tooltip (notifiche)
 	$('.notifiche').popover({
