@@ -95,6 +95,9 @@ function notificaInfo() {
  * Cosa visualizzare in "mostraQualcosa.html"
  */
 function cosaMostro(){
+	//quando mostro la notifica svuoto la variabile localstorage in modo che non visualizzerà più la notifica
+	localStorage.setItem = "";
+	
     switch( sessionStorage.job )
     {
        case '0':  

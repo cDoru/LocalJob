@@ -80,16 +80,9 @@ function onNotificationGCM(e) {
 			*/
         	
 			alert('Hai una nuova notifica');
-			
-			/* prova di cavo: salviamo la notifica in una variabile local.storage
-			 * in questo modo nell'onload fai sempre un controllo ... se hai una notifica
-			 * accendi l'icona
-			 */
-			
-			localStorage.notifica = e.payload;
-			
-			alert(localStorage.notifica);
-		
+
+			//salvo la notifica in setItem come stringa (per riceverla da app chiusa)
+			localStorage.setItem('notification', JSON.stringify(e.payload));
 			
 			elaboraNotifica(e.payload);
 			
@@ -1032,11 +1025,13 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	
-	//alert(localStorage.notifica);
+	//riprendo la variabile getItem e la riconverto in json
+	var retrievedObject = localStorage.getItem('notification');
+	cosetto = JSON.parse(retrievedObject);
 	
-	if(localStorage.notifica){
+	if(cosetto){
 		//ho la notifica
-		elaboraNotifica(localStorage.notifica);
+		elaboraNotifica(cosetto);
 	}
 	else{
 		//non ho la notifica
