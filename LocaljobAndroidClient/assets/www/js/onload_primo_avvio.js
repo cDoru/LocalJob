@@ -18,8 +18,11 @@ document.addEventListener('deviceready', onDeviceReady, true);
 
 function onDeviceReady() {	
 	
+	
+	
 	if(localStorage.nickname){		
 		window.location='interventi-attivi.html';
+
 	}
 	else{
 		

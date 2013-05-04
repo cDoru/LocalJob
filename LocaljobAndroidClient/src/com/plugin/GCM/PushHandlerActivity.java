@@ -64,7 +64,9 @@ public class PushHandlerActivity extends Activity
                 	}
 
                 	// now fire up our main activity
-                	startActivity(launchIntent);      
+                	startActivity(launchIntent);  
+                	
+                	
                 }
               	else
               	{

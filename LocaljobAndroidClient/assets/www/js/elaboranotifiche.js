@@ -329,7 +329,7 @@ function accendiSeNotifica(){		//accende la notifica
 	$('#sos').html('!');
 }
 function spegniSeNotifica(){		//spegne la notifica
-	localStorage.setItem('notification', 'ciao');
+	localStorage.removeItem('notification');
 	$('#sos').attr('class', 'badge');
 	$('#sos').html('.');
 	$('#sos_link').attr('href','#');

@@ -1025,17 +1025,15 @@ function ricercaInZonaSuccess(xml) {
 
 function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 	
+	//alert(localStorage.getItem('notification'));
 	
-	//riprendo la variabile getItem e la riconverto in json
-	var retrievedObject = localStorage.getItem('notification');
-	cosetto = JSON.parse(retrievedObject);
-	
-	if(cosetto){
-		//ho la notifica
+	if(localStorage.getItem('notification')){
+		var retrievedObject = localStorage.getItem('notification');
+		cosetto = JSON.parse(retrievedObject);
 		elaboraNotifica(cosetto);
 	}
 	else{
-		//non ho la notifica
+		//alert("non esiste");
 	}
 	
 	//Attivo il tasto tabAttivi e disattivo il tasto tabIntorno
