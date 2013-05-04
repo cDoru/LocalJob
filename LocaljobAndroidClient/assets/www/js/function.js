@@ -1032,7 +1032,8 @@ function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 		//alert("no notifica");
 	}
 	else{
-		alert("si notifica");
+		//la notifica me la legge undefined
+		//alert("si notifica");
 		//elaboraNotifica(localStorage.notificaSalvata);
 	}
 	
