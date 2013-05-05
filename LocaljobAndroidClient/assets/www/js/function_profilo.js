@@ -6,6 +6,7 @@ var cliccato = false;	//per sapere se il bottone commenti in "profilo-profession
 //var stellaPiena = "<i class='icon-star'></i>";
 var stellaVuota = "<img src='img/starOff.png' style='width:20px;' />";
 var stellaPiena = "<img src='img/starOn.png' style='width:20px;' />";
+var stellaPienaRiallineata = "<img src='img/starOn.png' style='width:20px;margin-top:-4px;' />";
 //rating: stelle grandi
 //var stellaVuota = "<img src='./img/glyphicons/black_ver/glyphicons_048_dislikes.png' />";
 //var stellaPiena = "<img src='./img/glyphicons/black_ver/glyphicons_049_star.png' />";
@@ -157,32 +158,32 @@ function caricaCommenti(xml) {
 		    kindness = $worker.find('kindnessRating').text();
 		    
 		    switch(Math.round(quality)) {
-		    case 0: stelle =  ''; break;
-		    case 1: stelle =  ''; break;
-		    case 2: stelle =  ''; break;
-		    case 3: stelle =  ''; break;
-		    case 4: stelle =  ''; break;
-		    case 5: stelle =  ''; break;
+		    case 0: stelle =  '0' + stellaPienaRiallineata; break;
+		    case 1: stelle =  '1' + stellaPienaRiallineata; break;
+		    case 2: stelle =  '2' + stellaPienaRiallineata; break;
+		    case 3: stelle =  '3' + stellaPienaRiallineata; break;
+		    case 4: stelle =  '4' + stellaPienaRiallineata; break;
+		    case 5: stelle =  '5' + stellaPienaRiallineata; break;
 	    }
 		quality = '<div style="width:33%; float:left;">Qualit&agrave;<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
 		
 		switch(Math.round(reliability)) {
-			case 0: stelle =  ''; break;
-		    case 1: stelle =  ''; break;
-		    case 2: stelle =  ''; break;
-		    case 3: stelle =  ''; break;
-		    case 4: stelle =  ''; break;
-		    case 5: stelle =  ''; break;
+			case 0: stelle =  '0' + stellaPienaRiallineata; break;
+		    case 1: stelle =  '1' + stellaPienaRiallineata; break;
+		    case 2: stelle =  '2' + stellaPienaRiallineata; break;
+		    case 3: stelle =  '3' + stellaPienaRiallineata; break;
+		    case 4: stelle =  '4' + stellaPienaRiallineata; break;
+		    case 5: stelle =  '5' + stellaPienaRiallineata; break;
 	    }
 		reliability = '<div style="width:33%; float:left;">Affidabilit&agrave;<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
 		
 		switch(Math.round(kindness)) {
-			case 0: stelle =  ''; break;
-		    case 1: stelle =  ''; break;
-		    case 2: stelle =  ''; break;
-		    case 3: stelle =  ''; break;
-		    case 4: stelle =  ''; break;
-		    case 5: stelle =  ''; break;
+			case 0: stelle =  '0' + stellaPienaRiallineata; break;
+		    case 1: stelle =  '1' + stellaPienaRiallineata; break;
+		    case 2: stelle =  '2' + stellaPienaRiallineata; break;
+		    case 3: stelle =  '3' + stellaPienaRiallineata; break;
+		    case 4: stelle =  '4' + stellaPienaRiallineata; break;
+		    case 5: stelle =  '5' + stellaPienaRiallineata; break;
 	    }
 		kindness = '<div style="width:33%; float:left;">Gentilezza<br/><span style="font-size:2.5em; font-weight:bold;">'+stelle+'</span></div>';
 			 
