@@ -17,8 +17,6 @@ var user_signin_user;
 var	user_signin_password;
 
 var orderType;
-//localStorage.notificaSalvata = "";
-//var googlecod;
 
 //SE SEI DA PC DECOMMENTA QUESTA VARIABILE E TI CONNETTI
 //sessionStorage.googlecod = "5";
@@ -219,17 +217,6 @@ function controlloIndirizzo(){
         },
         error: errorHandler
      })
-	
-	/*
-	if (indirizzo == false){
-		goTabAltro(indirizzo);	
-	}
-	
-	else{
-		goTabCasa(indirizzo);
-		
-	}
-	*/
 }
 
 function goTabAltro(indirizzo){
@@ -414,7 +401,6 @@ function mostraCasa(i){
 	//Mostra la casa sulla mappa
 	initialize_map("casa", sessionStorage.lat, sessionStorage.long);
 	
-	
 	$('#Indirizzo_casa').attr('value',indirizzo_mostrato);
 	$('#nCiv_casa').attr('value',civ_mostrato);
 	$('#CAP_casa').attr('value',cap_mostrato);
@@ -445,7 +431,6 @@ function initialize_map(tipo, lat, long) {
 	else if(tipo == "altro"){
 		var map = new google.maps.Map(document.getElementById('map_altro'), options);
 	}
-	
 	  
 	// inserisci il marker
 	marker = new google.maps.Marker({ position: latlng,
@@ -580,9 +565,6 @@ function inviaUrgenza(luogo){
 		sessionStorage.complete_address = $('#Indirizzo_altro').val()+", "+$('#nCiv_altro').val()+", "+$('#CAP_altro').val()+", "+$('#Citta_altro').val()+", "+$('#Provincia_altro').val();
 	}
 	
-	//alert(sessionStorage.problemTitle+" - "+sessionStorage.problemDesription+" - "+sessionStorage.problemType); 
-	//alert(sessionStorage.problemImg+" - "+sessionStorage.lat+" - "+sessionStorage.long);
-	
 	$.ajax({
           type: 'POST',
           url: 'http://95.141.45.174/request/',
@@ -632,10 +614,6 @@ function login(){			//gestisce il login dell'utente
 	
 	user =  $('#user').val(); 
 	password =  $('#password').val(); 
-	//alert(user);
-	// il googlecod per ora è prova, ma in realtà verrà preso dalla 
-	// registazione ad ogni avvio dell'app
-	//sessionStorage.googlecod = "prova";
 
 	$.ajax({
           type: 'POST',
@@ -698,11 +676,11 @@ function user_signin(){
 
 }
 
-
+/*
 //Completa la registrazione
 function update_user_profile()
 {
-	/*user =  $('#signU_user').val(); 
+	user =  $('#signU_user').val(); 
 	password =  $('#signU_password2').val();
 	mail =  $('#signU_mail').val();
 	tipoUtente = "cliente";
@@ -719,11 +697,12 @@ function update_user_profile()
 	          data: {'userId': user, 'password': password, 'email': mail, 'tipoUtente': tipoUtente},
 	          success: ajaxSIGNIN,
 	          error: errorHandler
-	})*/
+	})
 	window.location='complete_signin_user2.html';
 }
+*/
 
-
+/*
 //Registrazione Professionista
 function pro_signin()
 {
@@ -747,6 +726,7 @@ function pro_signin()
         error: errorHandler
 	})
 }
+*/
 
 function provaNotifica(){
 	$('#notifica').popover('toggle');
@@ -846,18 +826,16 @@ function ajaxSIGNIN(data){
 function errorHandler(xhr, textStatus, thrownError)		//gestione degli errori
 {
    alert(xhr.status);
-   alert(thrownError);
+   //alert(thrownError);
    //alert(textStatus);
-   alert(xhr.responseText);
+   //alert(xhr.responseText);
 }
 
 /* 
  * Funzione che cerca le coordinate GPS per la ricerca in zona
  */
-function ricercaCoordinateInZona(filtroPrecedente, ordinamento){
-	
+function ricercaCoordinateInZona(filtroPrecedente, ordinamento){	
 	//Setto una variabile controller (per la funzione initiate_geolocation() e mi geolocalizzo)
-	//alert("il filtro è: "+filtroPrecedente);
 	sessionStorage.filtroPrecedente = filtroPrecedente;
 	controller_geolocation = "ricercaInZona";
 	initiate_geolocation();
@@ -884,8 +862,7 @@ function ricercaInZona(filtroPrecedente, ordinamento) {
 	
 	$.ajax({
 			async: false,
-			type: 'GET',
-			//url: 'http://95.141.45.174/search?latitudine=44.499184&longitudine=11.353726',		
+			type: 'GET',		
 			url: 'http://95.141.45.174/search?latitudine='+sessionStorage.lat+'&longitudine='+sessionStorage.long,		
 			crossDomain:true,
 			complete: function(){$('#loading').fadeOut('fast')},		//nasconde la schermata di caricamento

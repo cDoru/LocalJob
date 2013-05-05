@@ -2,13 +2,6 @@ $(document).ready(function()	//funzioni che si avviano al caricamento della pagi
 {
 	jQuery.support.cors = true;
 	
-	//script per il form della data di nascita
-	var firstYear = 1920;
-	var lastYear = 1999;
-	for(var i =firstYear; i<=lastYear; i++) {
-	       $('#anni').append('<option>'+i+'</option>');
-	}
-	
 	
 	//roba per la validazione email
 	$('#contact-form').validate(

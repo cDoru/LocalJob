@@ -209,7 +209,7 @@ function inviaNuovoCommento(){
 	reliabilityRating = $('input:radio[name=reliabilityRating]:checked').val();
 	kindnessRating = $('input:radio[name=kindnessRating]:checked').val();
 
-	alert(commentTitle+" "+commentText+" "+qualityRating+" "+reliabilityRating+" "+kindnessRating);
+	//alert(commentTitle+" "+commentText+" "+qualityRating+" "+reliabilityRating+" "+kindnessRating);
 	
 	$.ajax({
         type: 'POST',
