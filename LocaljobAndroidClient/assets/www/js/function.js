@@ -278,7 +278,7 @@ function goTabAltro(indirizzo){
 
 function initiate_geolocation() { 
 	// get current position mi trova solo la posizione 1 volta
-    navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors);
+    navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors, { enableHighAccuracy: true });
     
     // watch position mi trova la posizione ogni tot secondi
     // navigator.geolocation.watchPosition(inCasoDiSuccesso);
@@ -504,6 +504,7 @@ function salvaIndirizzo(){
 		alert("Inserisi un nome per il luogo scelto.")
 	}
 	else{
+		//alert(nomeLuogo+" - "+nomeVia+" - "+civico+" - "+cap+" - "+comune+" - "+provincia+" - "+sessionStorage.lat+" - "+sessionStorage.long);
 		$('#loading').fadeIn('fast');		//schermata di caricamento
 		//chiamata AJAX per salvare l'indirizzo nel database
 		 $.ajax({
@@ -1035,11 +1036,181 @@ function ricercaAttivi() { //funzione per tirare giu gli interventi attivi
 			url: 'http://95.141.45.174/listjobs',			
 			crossDomain:true,
 			complete: function(){$('#loading').fadeOut('fast')},
-			success: ricercaAttiviSuccess,
+			success: ricercaAttiviSuccess_PRO,
 			error: errorHandler
 			});	
 	} 	
 
+}
+
+
+function ricercaAttiviSuccess_PRO(xml){
+
+	$('#tabAttivi').html("");
+	var xmlString = $(xml);	
+	// cerco se ci sono interventi attivi
+	if($(xmlString).find("request").length > 0){
+		//Attivo la pagina tabAttivi e disattivo tabIntorno
+		$('#tabAttivi').attr('class','tab-pane active');
+		$('#tabIntorno').attr('class','tab-pane');
+		//Attivo il tasto tabAttivi e disattivo il tasto tabIntorno
+		$('#link_tabAttivi').attr('class','active');
+		$('#link_tabIntorno').attr('class','');
+
+		//cerco all'interno dell'xml tutti gli interventi attivi e gli appendo
+		$(xmlString).find("request").each(function (){
+			var $request = $(this);
+			var id = $request.find("id").text();
+			var date = $request.find("date").text();
+			var description = $request.find("description").text();
+			var state = $request.find("state").text();
+			var picture = $request.find("picture").text(); //path della foto
+			var title = $request.find("title").text(); 
+
+
+			// IMMAGINE NOTFOUND?
+			 if (picture == 'Photo' || picture == 'photo' || picture == '') {
+        		picture = './img/missingAvatar.png';
+      		} else {
+        		picture = picture;
+     		}
+
+     		// Ricavo lo stato in stringa
+     		state_string = '';
+
+     		switch(state){
+				case "0":   state_string = "default"; 
+							state_string_it = "La richiesta &egrave; stata inviata. Attendi che il professionista risponda.";
+						    //state_bar = "width:10%;";
+						    state_bar = "width:30%;";
+						    state_active = "active";
+						    progress_state = "progress-info";
+							break;
+				case "1":   state_string = "research_request_init"; 
+							state_string_it = "Richiesta inviata ai professionisti in zona";
+							//state_bar = "width:10%;";
+						    state_bar = "width:30%;";
+							state_active = "active";
+							progress_state = "progress-info";
+							break;
+				case "2":   state_string = "research_professionist_rejected"; 
+							state_string_it = "Il professionista ha rifiutato l'intervento";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-danger";
+							break;
+				case "3":   state_string = "research_professionist_accepted"; 
+							//state_string_it = "Il professionista ha accettato la richiesta, guarda il suo preventivo";
+							state_string_it = "Il preventivo è stato accettato dal cliente.";
+							//state_bar = "width:40%;";
+							state_bar = "width:100%;";
+							state_active = "active";
+							// progress-info
+							progress_state = "progress-success";
+							break;
+				case "4":   state_string = "research_work_annulled"; 
+							state_string_it = "La richiesta &egrave; stata annullata";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-danger";
+							break;
+				case "5":   state_string = "research_payment_sent"; 
+							state_string_it = "Il pagamento &egrave; stato inviato";
+							state_bar = "width:70%;";
+							state_active = "active";
+							progress_state = "progress-info";
+							break;
+				case "6":   state_string = "research_feedback_saved";
+							state_string_it = "Il feedback &egrave; stato inviato";
+							state_bar = "width:90%;";
+							state_active = "active";
+							progress_state = "progress-info"; 
+							break;
+				case "7":   state_string = "research_hidden"; 
+							state_string_it = "Hidden";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-danger";
+							break;
+				case "8":   state_string = "research_consumer_annulled"; 
+							state_string_it = "Intervento annullato dal consumatore";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-danger";
+							break;
+				case "9":   state_string = "research_staff_closed"; 
+							state_string_it = "Intervento annullato dallo staff di LocalJob";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-danger";
+							break;
+				case "10":  state_string = "research_payment_rejected";
+							state_string_it = "Il pagamento &egrave; stato rifiutato";
+							state_bar = "width:40%;"; 
+							state_active = "active";
+							progress_state = "progress-warning";
+							break;
+				case "11":  state_string = "research_refounded"; 
+							state_string_it = "Pagamento rimborsato";
+							state_bar = "width:40%;";
+							state_active = "active";
+							progress_state = "progress-warning";
+							break;
+				case "12":  state_string = "research_sys_locked"; 
+							state_string_it = "Sys Locked";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-danger";
+							break;
+				case "13":  state_string = "emergency_request_init"; 
+							state_string_it = "Richiesta di intervento con urgenza trasmesso ai professionisti";
+							state_bar = "width:10%;";
+							state_active = "active";
+							progress_state = "progress-info";
+							break;
+				case "14":  state_string = "research_work_finished"; 
+							state_string_it = "Il lavoro &egrave; stato terminato con successo";
+							state_bar = "width:100%;";
+							state_active = "";
+							progress_state = "progress-success";
+							break;
+				case "15":  state_string = "research_feedback_needed"; 
+							state_string_it = "Il feedback non &egrave; ancora stato rilasciato";
+							state_bar = "width:70%;";
+							state_active = "active";
+							progress_state = "progress-warning";
+							break;
+			}
+
+     		var pagina = "javascript:interventoCli('"+id+"');";
+     		
+			$('#tabAttivi').append('<a class="btn btn-block text-center" href="'+pagina+'" style="padding:2%;">'+
+                            '<div class="row-fluid">'+	
+                      			'<div class="span12">'+
+                        			'<div class="progress ' + progress_state + ' progress-striped ' + state_active + '" style="margin-bottom:0;">'+
+                          				'<div class="bar" style="'+state_bar+'"></div>'+
+                        			'</div></div></div>'+
+                   			'<div class="row-fluid">'+
+               					'<div style="width:30%; float:left;">'+
+               						'<img src="http://95.141.45.174/'+picture+'" style="width:70%; margin-left:15%;" class="img-polaroid">'+
+               					'</div>'+
+	               				'<div style="width:100%; margin-top:-10px;">'+
+	               					'<h6 style="text-transform:uppercase; text-align:left; margin-bottom:0;">'+title+'</h6>'+
+	               					'<p style="text-align:left; margin-right:8%; font-size:0.8em; height:15px; overflow:hidden;">'+description+'</p>'+
+	               					'<p style="text-align:left; margin-right:8%; font-size:0.8em; height:15px; overflow:hidden;">'+ '<b>Iniziato il: </b>' + date+'</p>'+
+	               					'<p style="text-align:left; margin-right:8%; font-size:0.8em; height:65px; overflow:hidden;">'+ '<b>Stato intervento: </b>' +state_string_it+'</p>'+
+
+	               				'</div></div></a>');
+		
+		});
+	}
+
+	//se non ci sono interventi attivi vai su ricerca in zona
+	else{
+		$('#tabAttivi').html("<p>Non hai interventi attivi per il momento.</p>");
+		//ricercaInZona("Tutti","");
+		ricercaCoordinateInZona('Tutti','');
+	}
 }
 
 
@@ -1373,7 +1544,7 @@ function mostraStoricoCliSuccess(xml){
 	$('#fotoGrande').attr('src', 'http://95.141.45.174/'+foto);
 	
 	//il bottone di inserisci commento
-	if(state==3){
+	if(state==3 && localStorage.userType == "cliente"){
 		$('#incolla').append('<a class="btn btn-large btn-block btn-success" href="commento-nuovo.html">LASCIA UN COMMENTO</a><br/>');
 	}
 	//il bottone di default
