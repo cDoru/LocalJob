@@ -1,9 +1,9 @@
-$(document).ready(function()	//funzioni che si avviano al caricamento della pagina
+//AL CARICAMENTO DELLA PAGINA
+$(document).ready(function()
 {
 	jQuery.support.cors = true;
 	
-	
-	//roba per la validazione email
+	//per la validazione dell'email
 	$('#contact-form').validate(
 	{
 	rules: {
@@ -58,12 +58,7 @@ $(document).ready(function()	//funzioni che si avviano al caricamento della pagi
 	},
 	success: function(element) {
 	    element
-	    //.text('OK!').addClass('valid')
 	    .closest('.control-group').removeClass('error').addClass('success');
 	}
 	});	
 });
-
-//function getImgForm(){}
-
-

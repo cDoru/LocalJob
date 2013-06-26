@@ -90,43 +90,12 @@
   </style>
   <link href="./css/bootstrap-responsive.css" rel="stylesheet">
 
-  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../js/html5shiv.js"></script>
-      <![endif]-->
-
-      <!-- Fav and touch icons -->
-      <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./ico/apple-touch-icon-144-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
-      <link rel="shortcut icon" href="./ico/favicon.png">
-      
-      
-  	<script>
-  	function AccediFB(){
-  		my_window=window.open('http://95.141.45.174/logwhitface?googlecod='+sessionStorage.googlecod, 'my_window', 'location=yes');
-  		$("#bottone_entra_fb").removeAttr("disabled");
-  	}
-  	
-  	function funzioneDTD(){
-  		
-  		
-  		localStorage.userType = 'cliente';
-		localStorage.logged = true;
-		//localStorage.nickname = user;
-  		window.location='interventi-attivi.html';
-  		/*$.ajax({
-			async: false,
-			type: 'GET',
-			url: 'http://95.141.45.174/mce/',			
-			crossDomain:true,
-			success: vabeneDTD,
-			error: errorHandler
-			});	*/	
-  	}
-  	
-  	</script>
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="./ico/favicon.png">
     </head>
 	
     <body>
@@ -145,7 +114,7 @@
         <div class="container-narrow">
 
            <div class="jumbotron text-center" id="logone">
-             <img src="./img/logo_prova.png" style="margin:5%"/>
+             <img src="./img/logo.png" style="margin:5%"/>
            </div>
 
            <div id="contenitore" class="row-fluid text-center">
@@ -154,15 +123,10 @@
                	<!-- Tasto per registrarsi/loggarsi con FB -->
                	<p><a href="javascript:AccediFB();" class="btn btn-large btn-block btn-primary"><i class="icon-user icon-white"></i> Accedi con FB</a></p>
                 <!-- Tasto per entrare con FB -->
-                <p><button onclick="javascript:funzioneDTD();" class="btn btn-large btn-block btn-primary" id="bottone_entra_fb" disabled><i class="icon-user icon-white"></i> Entra con FB</button></p>
+                <p><button onclick="javascript:EntraFB();" class="btn btn-large btn-block btn-primary" id="bottone_entra_fb" disabled><i class="icon-user icon-white"></i> Entra con FB</button></p>
                       
-                <!-- <a href="http://95.141.45.174/login/facebook/" role="button" class="btn btn-large btn-block btn-primary" data-toggle="modal">Accedi con FB 2</a> -->
-                <!-- javascript:window.open('http://95.141.45.174/logwhitface?googlecod='+sessionStorage.googlecod+'', '_blank', 'location=no');
-                javascript:alert('http://95.141.45.174/logwhitface?googlecod='+sessionStorage.googlecod);   -->
-                
                 <hr style="border:0px;height:1px;color:#04a3bf;background-color:#04a3bf;"/>
                 <p><a class="btn btn-large btn-block btn-inverse" href="signin.html">Registrati</a></p>
-                <!--<p><a class="btn btn-large btn-block btn-success" style="height:60px" href="login.html">Login</a></p>-->
                 <p><a class="btn btn-large btn-block btn-inverse" href="javascript:cambia_login();">Login</a></p>
                 
               </div>
@@ -191,12 +155,10 @@
     <script src="./js/jquery.js"></script>
     <script src="./js/bootstrap.js"></script>
     <script src="./js/cordova-2.5.0.js"></script>
-	<script src="./js/function.js" type="text/javascript" charset="utf-8"></script>
-	<script src="./js/onload.js" type="text/javascript" charset="utf-8"></script>
     <script src="./js/PushNotification.js" type="text/javascript" charset="utf-8" ></script>
     
-    <!-- <script src="./js/falso.js"></script> -->
-    <!-- <script src="./js/notifichine.js"></script> -->
+    <script src="./js/1_generic.js"></script>
+	<script src="./js/2_start.js"></script>
 
   </body>
   </html>

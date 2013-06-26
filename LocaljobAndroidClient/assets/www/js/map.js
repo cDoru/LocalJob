@@ -1,14 +1,10 @@
-/* JS per la gestione della Mappa */
-/* https://developers.google.com/maps/documentation/javascript/controls */
-/* TOP_RIGHT RIGHT_TOP LEFT_BOTTOM BOTTOM_LEFT */
-
+//FUNZIONI PER LA GESTIONE DELLA MAPPA
 var map;
 var bologna;
 var infowindow = new google.maps.InfoWindow({ content: " "}); 
 
-
-function HomeControl(controlDiv, map) {
-
+function HomeControl(controlDiv, map)
+{
   controlDiv.style.padding = '2%';
 
   // Set CSS for the control border.
@@ -24,63 +20,51 @@ function HomeControl(controlDiv, map) {
   controlUI.appendChild(controlText);
 
   // Handling eventi
-  google.maps.event.addDomListener(controlUI, 'click', function() {
+  google.maps.event.addDomListener(controlUI, 'click', function(){
     // Ritorno alla pagina precedente prima dell'evento ORIZZONTALE
     //history.back();
     location.href = 'interventi-attivi.html';
   });
 }
 
-function initialize(position_lat, position_long) {
-	
+function initialize(position_lat, position_long)
+{	
 	var bologna = new google.maps.LatLng(position_lat,position_long);
 	
-  var mapDiv = document.getElementById('map-canvas');
-  var mapOptions = {
-    zoom: 15,
-    center: bologna,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    disableDefaultUI : true
-  }
+	var mapDiv = document.getElementById('map-canvas');
+	var mapOptions = {
+	    zoom: 15,
+	    center: bologna,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP,
+	    disableDefaultUI : true
+	}
   
-  map = new google.maps.Map(mapDiv, mapOptions);
+  	map = new google.maps.Map(mapDiv, mapOptions);
   
-  //aggiungo il marker con la mia posizione
-  //var image = './img/bluecirclemarker.png';
-  var image = './img/greencirclemarker.png';
-  /*var image = {
-		    url: './img/greencirclemarker.png',
-		    size: new google.maps.Size(30, 30),
-		    origin: new google.maps.Point(0,0),
-		    anchor: new google.maps.Point(0, 30)
-  };*/
-  var marker = new google.maps.Marker({
-      position: bologna, 
-      map: map, 
-      icon: image,
-      title:"Tu sei qui!"
-    	 
-  });
+	//aggiunge il marker con la posizione
+	var image = './img/greencirclemarker.png';
+	var marker = new google.maps.Marker({
+		position: bologna, 
+	    map: map, 
+	    icon: image,
+	    title:"Tu sei qui!"	 
+	});
 
-  // REVERT
+  //REVERT
   var homeControlDiv = document.createElement('div');
   var homeControl = new HomeControl(homeControlDiv, map);
 
   homeControlDiv.index = 1;
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(homeControlDiv);
   search(position_lat, position_long);
-
 }
 
 
 navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors);
-
-
 //google.maps.event.addDomListener(window, 'load', initialize);
 
-// Listen for orientation changes
+//Listen for orientation changes
 window.addEventListener("orientationchange", function() {
-      
     // Announce the new orientation number
     //alert('Orientation ' + window.orientation);
     if(window.orientation == 0) {
@@ -89,15 +73,12 @@ window.addEventListener("orientationchange", function() {
 
   }, false);
 
-
-function handle_geolocation_query(position){  
-	
+function handle_geolocation_query(position)
+{  	
 	position_lat = position.coords.latitude;
 	position_long = position.coords.longitude;
 	
 	initialize(position_lat, position_long);
-	
-
 }  
 
 function handle_errors(error)  
@@ -120,7 +101,8 @@ function handle_errors(error)
 /* ---------------- */
 
 
-function search(position_lat, position_long) {   
+function search(position_lat, position_long)
+{   
   $.ajax({
       async: false,
       type: 'GET',
@@ -130,13 +112,13 @@ function search(position_lat, position_long) {
       error: errorLogout
       });   
 }
-
 function errorLogout(xhr, textStatus, thrownError)    
 {
   alert('&#10006; '+xhr.status+" "+thrownError);
 }
 
-function searchSuccess(xml) {
+function searchSuccess(xml)
+{
   var xmlString = $(xml);
   
   $(xmlString).find("worker").each(function () {    
@@ -155,13 +137,12 @@ function searchSuccess(xml) {
     		  professionType = professionType+$(this).text()+" ";
     	}); 
      
-        
         createMarker(lati,longi,ragione_sociale,avt, costService, costPerHour, rating, nickname, professionType);
   });
 }
 
-function createMarker(lt,ln, ragione_sociale, avatar, costService, costPerHour, rating, nickname, professionType) {
-  
+function createMarker(lt,ln, ragione_sociale, avatar, costService, costPerHour, rating, nickname, professionType)
+{  
   var poi = new google.maps.LatLng(lt,ln);
   
   var marker = new google.maps.Marker({
@@ -194,8 +175,6 @@ function createMarker(lt,ln, ragione_sociale, avatar, costService, costPerHour, 
         avatar = "http://95.141.45.174/" + avatar;
       }
 
-
-
       // Avatar + ragioneSociale + professione = prima riga della tabella
       firstRow = "<tr><td style='height:100px;width:100px;'><img src='" + avatar + "' style='max-width:100px;padding:1px;"+
       "border:1px solid #000;background-color:#fff;' /></td>"
@@ -227,8 +206,5 @@ function createMarker(lt,ln, ragione_sociale, avatar, costService, costPerHour, 
 			infowindow.setContent(
         "<table style='vertical-align:text-top;font-family:Helvetica,Verdana,sans-serif;'>" + firstRow + secondRow + thirdRow + "</table>");
 			infowindow.open(map, this);
-
-  
 	});
-   
 }
