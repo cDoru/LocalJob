@@ -59,8 +59,9 @@ function initialize(position_lat, position_long)
   search(position_lat, position_long);
 }
 
+//navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors);
+navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors, { enableHighAccuracy: true });
 
-navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors);
 //google.maps.event.addDomListener(window, 'load', initialize);
 
 //Listen for orientation changes
