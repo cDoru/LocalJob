@@ -9,21 +9,19 @@ function bar1Insert() {
 					'<span class="icon-bar"></span>'+
 					'<span class="icon-bar"></span>'+
 				  '</button>'+
-				  '<a class="navbar-brand" href="javascript:history.go(-1);"><img src="img/minilogo.png"/></a>'+
+				  '<a class="navbar-brand" href="javascript:history.go(-1);"><span class="glyphicon glyphicon-chevron-left"></span> <img src="img/minilogo.png"/></a>'+
 				'</div>'+
 				'<div class="navbar-collapse collapse">'+
 				  '<ul class="nav navbar-nav">'+
-					'<li class="active"><a href="#">Registrazione</a></li>'+
+					'<li class="active"><a href="#">Chi sei?</a></li>'+
 				  '</ul>'+
 				  '<ul class="nav navbar-nav navbar-right">'+
-					'<li><a href="../navbar/">Indietro</a></li>'+
+					'<li><a href="../navbar/">...</a></li>'+
+					'<li><a href="../navbar/">...</a></li>'+
 					'<!--<li class="active"><a href="./">Fixed top</a></li>-->'+
 				  '</ul>'+
 				'</div><!--/.nav-collapse -->'+
 			  '</div>'+
 			'</div>');
-}
-function showInfo(){
-	$('#infoLJ').modal('show');
 }
 
