@@ -9,7 +9,7 @@
 	<link href="css/aspetto.css" rel="stylesheet">
   </head>
   
-  <body onload="bar1Insert()">
+  <body onload="bar1Insert(); cliccabile();">
   
 		<div id="bar"></div>
 
@@ -18,15 +18,19 @@
 
 				<div class="centrato">
 					<div class="jumbotron role">
-						<br/><span class="glyphicon glyphicon-user"></span>
-						Un consumatore<br/><br/>
+						<div class="role_name">
+							<br/><span class="glyphicon glyphicon-user"></span>
+							UN CONSUMATORE<a href="signin_consumer_personal.html"></a><br/><br/>
+						</div>
 						<a class="btn btn-lg btn-default btn-block" role="button" data-toggle="modal" data-target="#infoUser">
 							Perch&eacute; consumatore? <span class="glyphicon glyphicon-info-sign"></span>
 						</a>
 					</div>
 					<div class="jumbotron role">
-						<br/><span class="glyphicon glyphicon-wrench"></span>
-						Un professionista<br/><br/>
+						<div class="role_name">
+							<br/><span class="glyphicon glyphicon-wrench"></span>
+							UN PROFESSIONISTA<a href="signin_pro_personal.html"></a><br/><br/>
+						</div>
 						<a class="btn btn-lg btn-default btn-block" role="button" data-toggle="modal" data-target="#infoPro">
 							Perch&eacute; professionista? <span class="glyphicon glyphicon-info-sign"></span>
 						</a>
@@ -44,7 +48,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title">Consumatore</h4>
+						<h4 class="modal-title"> Perch&eacute; consumatore?</h4>
 					</div>
 					<div class="modal-body">
 						<p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla</p>
@@ -60,7 +64,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title">Professionista</h4>
+						<h4 class="modal-title">Perch&eacute; professionista?</h4>
 					</div>
 					<div class="modal-body">
 						<p>blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla</p>
@@ -75,5 +79,6 @@
     <script src="js/bootstrap.min.js"></script>
 	
 	<script src="js/generic.js"></script>
+	<script src="js/signin.js"></script>
   </body>
 </html>

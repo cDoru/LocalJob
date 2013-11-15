@@ -56,7 +56,7 @@ h1, h2{
 }
 
 /*LOGIN*/
-.form-signin, .centrato{
+.form-signin, .form-consumer, .centrato{
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
@@ -100,3 +100,22 @@ h1, h2{
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
+
+/*FORM NELLE VARIE PAGINE DI SIGNIN*/
+.form-consumer input {
+	margin-bottom: -1px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+ }
+ #consUser, #consName, #consMail{		/*i primi campi di ogni blocco saranno arrotondati*/
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+ }
+ #consRePsw, #consYear, #consCel{		/*gli ultimi campi di ogni blocco saranno arrotondati*/
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin-bottom:5px;
+ }
+ 
