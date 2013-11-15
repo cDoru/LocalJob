@@ -9,7 +9,7 @@
 	<link href="css/aspetto.css" rel="stylesheet">
   </head>
   
-  <body onload="bar1Insert();">
+  <body onload="bar1Insert(); <!--completeMenu();-->">
   
 		<div id="bar"></div>
 
@@ -17,16 +17,45 @@
 			<div class="container-narrow text-center">
 
 					<form class="form-consumer">
-						<input id="consUser" type="text" class="form-control" placeholder="Username" required>
-						<input id="consPsw" type="password" class="form-control" placeholder="Password" required>
-						<input id="consRePsw"type="password" class="form-control" placeholder="Ripeti password" required>
+						<div class="sx">
+							<input id="consMail" type="text" class="form-control" placeholder="Email" required>
+							<input id="consPsw" type="password" class="form-control" placeholder="Password" required>
+							<input id="consRePsw"type="password" class="form-control" placeholder="Ripeti password" required>
+						</div>
+						<div class="dx">
+							<img src="img/avatar.jpg"/>
+						</div>
+						
+						<div id="consSex" class="btn-group btn-group-lg">
+							<button type="button" class="btn btn-default">Uomo</button>
+							<button type="button" class="btn btn-default">Donna</button>
+						</div>
 
 						<input id="consName"type="text" class="form-control" placeholder="Nome" required>
 						<input id="consSurname" type="text" class="form-control" placeholder="Cognome" required>
-						<input id="consYear" type="text" class="form-control" placeholder="Anno" required>
-						
-						<input id="consMail" type="text" class="form-control" placeholder="Email" required>
-						<input id="consCel" type="text" class="form-control" placeholder="Cellulare personale" required>
+						<div class="btn-group sx">
+							<button id="consDay" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								Giorno
+								<span class="caret"></span>
+							</button>
+							<ul id="dayList" class="dropdown-menu">
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+							</ul>
+							<button id="consMonth" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								Mese
+								<span class="caret"></span>
+							</button>
+							<ul id="monthList" class="dropdown-menu">
+								<li><a href="#">Gen</a></li>
+								<li><a href="#">Feb</a></li>
+							</ul>
+						</div>
+						<div class="dx">
+							<input id="consYear" type="text" class="form-control" placeholder="Anno" required>
+						</div>
+						<input id="consCel" type="text" class="form-control" placeholder="Cellulare" required>
+						<input id="consTel" type="text" class="form-control" placeholder="Telefono di casa">
 						<br/>						
 						<button class="btn btn-lg btn-block btn-default" type="submit">CONFERMA</button>
 					</form>
@@ -40,6 +69,6 @@
     <script src="js/bootstrap.min.js"></script>
 	
 	<script src="js/generic.js"></script>
-	<!--<script src="js/signin.js"></script>-->
+	<script src="js/signin.js"></script>
   </body>
 </html>

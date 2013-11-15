@@ -109,13 +109,49 @@ h1, h2{
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
  }
- #consUser, #consName, #consMail{		/*i primi campi di ogni blocco saranno arrotondati*/
+ .form-consumer img{
+	margin:0;
+	width:100%;
+	height:100px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+ }
+ .sx{
+	float:left;
+	width:70%;
+	margin-right:0;
+ }
+ .dx{
+	float:right;
+	width:30%;
+	margin-left:0;
+ }
+ #consMail{		/*i primi campi di ogni blocco saranno arrotondati*/
+	border-top-left-radius: 5px;
+ }
+ #consRePsw{		/*gli ultimi campi di ogni blocco saranno arrotondati*/
+	border-bottom-left-radius: 5px;
+	margin-bottom:5px;
+ }
+ #consSex{
+	margin-bottom:5px;
+ }
+ #consName, #consCel{		/*i primi campi di ogni blocco saranno arrotondati*/
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
  }
- #consRePsw, #consYear, #consCel{		/*gli ultimi campi di ogni blocco saranno arrotondati*/
+ #consDay, #consMonth{
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	width:50%;
+	margin-bottom:5px;
+ }
+ #consYear{
+	border-bottom-right-radius: 5px;
+ }
+ #consTel{		/*gli ultimi campi di ogni blocco saranno arrotondati*/
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	margin-bottom:5px;
  }
- 
