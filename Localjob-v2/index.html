@@ -34,7 +34,7 @@
 
 		<div id="footer">
 			<div class="container">
-				<p class="label label" data-toggle="modal" data-target="#infoLJ">Informazioni su LocalJob</p>
+				<h4><p class="label label" data-toggle="modal" data-target="#infoLJ">Informazioni su LocalJob</p></h4>
 			</div>
 		</div>
 		
@@ -82,8 +82,9 @@
 
 	<!-- Random background -->
 	<script type="text/javascript">
-		var bg = "img/login-background-" + Math.floor((Math.random()*5)+1) + ".jpg";
-		document.body.style.background="url("+bg+")";		
+		var bg = "img/login-background-" + Math.floor((Math.random()*3)+1) + ".jpg";
+		document.body.style.background="url("+bg+") no-repeat center center fixed";
+		document.body.style['background-size']="cover";
 	</script>
   </body>
 </html>
