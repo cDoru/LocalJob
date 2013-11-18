@@ -25,3 +25,13 @@ function bar1Insert() {
 			'</div>');
 }
 
+function barNoActionInsert() {
+	$('#bar').html('<!-- Fixed navbar -->'+
+			'<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">'+
+			  '<div class="container">'+
+				'<div class="navbar-header">'+
+				  '<a class="navbar-brand" href="javascript:history.go(-1);"><span class="glyphicon glyphicon-chevron-left"></span> <img src="img/minilogo-completo.png"/></a>'+
+				'</div>'+
+			  '</div>'+
+			'</div>');
+}
