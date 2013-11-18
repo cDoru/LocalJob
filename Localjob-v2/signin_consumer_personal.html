@@ -26,38 +26,38 @@
 							<img src="img/avatar.jpg"/>
 						</div>
 						
-						<div id="consSex" class="btn-group btn-group-lg">
-							<button type="button" class="btn btn-default">Uomo</button>
-							<button type="button" class="btn btn-default">Donna</button>
-						</div>
+						<label id="consSex" class="checkbox-inline">
+							<input type="radio" id="inlineCheckbox1" name="opt" value="Uomo" /> Uomo
+							<input type="radio" id="inlineCheckbox2" name="opt" value="Donna" /> Donna
+						</label>
 
 						<input id="consName"type="text" class="form-control" placeholder="Nome" required>
 						<input id="consSurname" type="text" class="form-control" placeholder="Cognome" required>
-						<div class="btn-group sx">
-							<button id="consDay" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								Giorno
-								<span class="caret"></span>
-							</button>
-							<ul id="dayList" class="dropdown-menu">
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-							</ul>
-							<button id="consMonth" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								Mese
-								<span class="caret"></span>
-							</button>
-							<ul id="monthList" class="dropdown-menu">
-								<li><a href="#">Gen</a></li>
-								<li><a href="#">Feb</a></li>
-							</ul>
-						</div>
+							<span class="btn-group sx">
+								<button id="consDay" class="btn btn-default dropdown-toggle" data-toggle="dropdown" required>
+									Giorno <span class="caret"></span>
+								</button>
+								<ul id="dayList" class="dropdown-menu" role="menu">
+									<li><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+								</ul>
+							</span>
+							<span class="btn-group sx">
+								<button id="consMonth" class="btn btn-default dropdown-toggle" data-toggle="dropdown" required>
+									Mese <span class="caret"></span>
+								</button>
+								<ul id="monthList" class="dropdown-menu" role="menu">
+									<li><a href="#">Gen</a></li>
+									<li><a href="#">Feb</a></li>
+								</ul>
+							</span>
 						<div class="dx">
 							<input id="consYear" type="text" class="form-control" placeholder="Anno" required>
 						</div>
 						<input id="consCel" type="text" class="form-control" placeholder="Cellulare" required>
 						<input id="consTel" type="text" class="form-control" placeholder="Telefono di casa">
 						<br/>						
-						<button class="btn btn-lg btn-block btn-default" type="submit">CONFERMA</button>
+						<button class="btn btn-lg btn-block btn-default" type="submit">Conferma</button>
 					</form>
 
 			</div> <!-- /container -->
