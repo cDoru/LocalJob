@@ -129,14 +129,14 @@ h1, h2{
  #consMail{		/*i primi campi di ogni blocco saranno arrotondati*/
 	border-top-left-radius: 5px;
  }
- #consRePsw{		/*gli ultimi campi di ogni blocco saranno arrotondati*/
+ #consRePsw, #proPIVA, #proTel{		/*gli ultimi campi di ogni blocco saranno arrotondati*/
 	border-bottom-left-radius: 5px;
 	margin-bottom:5px;
  }
  #consSex{
 	margin-bottom:5px;
  }
- #consName, #consCel{		/*i primi campi di ogni blocco saranno arrotondati*/
+ #consName, #consCel, #proRS{		/*i primi campi di ogni blocco saranno arrotondati*/
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
  }
@@ -149,8 +149,15 @@ h1, h2{
  #consYear{
 	border-bottom-right-radius: 5px;
  }
- #consTel{		/*gli ultimi campi di ogni blocco saranno arrotondati*/
+ #consTel, #proPIVA{		/*gli ultimi campi di ogni blocco saranno arrotondati*/
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	margin-bottom:5px;
+ }
+ #proTel, #professione1, #professione2, #professione3{
+	margin-bottom:5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
  }

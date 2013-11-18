@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>LocalJob</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/aspetto.css" rel="stylesheet">
+  </head>
+  
+  <body onload="bar1Insert(); <!--completeMenu();-->">
+  
+		<div id="bar"></div>
+
+		<div id="wrap">
+			<div class="container-narrow text-center">
+
+					<form class="form-consumer">
+							<label class="checkbox" align="left">
+								<input id="occasionale" type="checkbox" value="occasionale"> Lavoratore occasionale
+							</label>
+							
+							<input id="proRS" type="text" class="form-control" placeholder="Ragione sociale" required/>
+							<input id="proPIVA" type="text" class="form-control" placeholder="Partita Iva" required/>
+													
+							<input id="proTel" type="text" class="form-control" placeholder="Telefono"/>
+							<hr>		
+							
+							<div id="lista"></div>
+							
+							<a id="aggiungi" class="btn btn-lg btn-block btn-default" href="javascript:qualeAttivita();"><span class="glyphicon glyphicon-plus"></span> Aggiungi professione</a>
+					</form>
+
+			</div> <!-- /container -->
+		</div>
+		
+		<div id="footer"></div>
+		
+	<script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	
+	<script src="js/generic.js"></script>
+	<script src="js/signin.js"></script>
+  </body>
+</html>

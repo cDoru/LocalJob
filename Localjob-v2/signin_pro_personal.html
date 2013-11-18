@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>LocalJob</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/aspetto.css" rel="stylesheet">
+  </head>
+  
+  <body onload="bar1Insert(); <!--completeMenu();-->">
+  
+		<div id="bar"></div>
+
+		<div id="wrap">
+			<div class="container-narrow text-center">
+
+					<form class="form-consumer" action="signin_pro_professional.html">
+						<div class="sx">
+							<input id="consMail" type="text" class="form-control" placeholder="Email" required>
+							<input id="consPsw" type="password" class="form-control" placeholder="Password" required>
+							<input id="consRePsw"type="password" class="form-control" placeholder="Ripeti password" required>
+						</div>
+						<div class="dx">
+							<img src="img/avatar.jpg"/>
+						</div>
+						
+						<label id="consSex" class="checkbox-inline">
+							<input type="radio" id="inlineCheckbox1" name="opt" value="Uomo" /> Uomo
+							<input type="radio" id="inlineCheckbox2" name="opt" value="Donna" /> Donna
+						</label>
+
+						<input id="consName"type="text" class="form-control" placeholder="Nome" required>
+						<input id="consSurname" type="text" class="form-control" placeholder="Cognome" required>
+							<span class="btn-group sx">
+								<button id="consDay" class="btn btn-default dropdown-toggle" data-toggle="dropdown" required>
+									Giorno <span class="caret"></span>
+								</button>
+								<ul id="dayList" class="dropdown-menu" role="menu">
+									<li><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+								</ul>
+							</span>
+							<span class="btn-group sx">
+								<button id="consMonth" class="btn btn-default dropdown-toggle" data-toggle="dropdown" required>
+									Mese <span class="caret"></span>
+								</button>
+								<ul id="monthList" class="dropdown-menu" role="menu">
+									<li><a href="#">Gen</a></li>
+									<li><a href="#">Feb</a></li>
+								</ul>
+							</span>
+						<div class="dx">
+							<input id="consYear" type="text" class="form-control" placeholder="Anno" required>
+						</div>
+						<input id="consCel" type="text" class="form-control" placeholder="Cellulare" required>
+						<input id="consTel" type="text" class="form-control" placeholder="Telefono di casa">
+						<br/>						
+						<button class="btn btn-lg btn-block btn-default" type="submit">Conferma</button>
+					</form>
+
+			</div> <!-- /container -->
+		</div>
+		
+		<div id="footer"></div>
+		
+	<script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	
+	<script src="js/generic.js"></script>
+	<script src="js/signin.js"></script>
+  </body>
+</html>
