@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>LocalJob</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/aspetto.css" rel="stylesheet">
+  </head>
+  
+  <body onload="barNoActionInsert();">
+  
+		<div id="bar"></div>
+
+		<div id="wrap">
+			<div class="container-narrow text-center">
+
+				<div class="centrato">
+				
+					<div class="progress progress-striped active">
+					  <div class="progress-bar progress-bar-success" style="width: 75%">
+						<span class="sr-only">Step 3</span>
+					  </div>
+					</div>
+
+					<div id="map"></div>
+					
+					<form>
+						<div class="sx">
+							<input id="via" type="text" class="form-control" placeholder="via" required>
+						</div>
+						<div class="dx">
+							<input id="civico" type="text" class="form-control" placeholder="civ" required>
+						</div>
+						<input id="citta" type="text" class="form-control" placeholder="città" required>
+						<div class="sx">
+							<input id="cap" type="text" class="form-control" placeholder="cap" required>
+						</div>
+						<div class="dx">
+							<input id="prov" type="text" class="form-control" placeholder="prov" required>
+						</div>
+						
+						<br/>
+						<button class="btn btn-lg btn-block btn-default" type="submit" >Continua</button>
+					</form>
+					
+					
+				</div>
+
+			</div> <!-- /container -->
+		</div>
+		
+		<div id="footer"></div>
+		
+		
+	<script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	
+	<script src="js/generic.js"></script>
+	<script src="js/signin.js"></script>
+  </body>
+</html>

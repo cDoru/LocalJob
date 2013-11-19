@@ -26,6 +26,12 @@ function cliccabile(){
         return false;
     });
 }
+//rende le info cliccabili
+function infoCliccabile(){
+	$(".infoClick").click(function(){
+        alert("che ci mettiamo?");
+    });
+}
 
 //funzione per gestire aggiunta professione in signin_pro_professional.html
 function qualeAttivita(){
