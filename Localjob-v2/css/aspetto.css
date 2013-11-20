@@ -120,7 +120,7 @@ h1, h2{
  .sx{
 	float:left;
 	width:70%;
-	margin-right:0;
+	margin:0;
  }
  .dx{
 	float:right;
@@ -154,7 +154,10 @@ h1, h2{
 	margin-bottom:5px;
 	margin-top:5px;
  }
- #consMonth, #proMonth, .quadro{
+ #consMonth, #proMonth{
+	border-radius:0;
+ }
+ .quadro{
 	border-radius:0;
  }
  

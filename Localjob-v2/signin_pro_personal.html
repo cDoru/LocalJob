@@ -11,7 +11,7 @@
 
   </head>
   
-  <body onload="barNoActionInsert(); infoCliccabile();">
+  <body onload="barNoActionInsert(); infoCliccabile(); completeMenu();">
   
 		<div id="bar"></div>
 
@@ -27,7 +27,7 @@
 						  </div>
 					</div>
 
-						<div class="sx">
+						<div class="sx has-success">
 							<input id="proMail" type="text" class="form-control" placeholder="La tua email">
 							<input id="proPsw" type="password" class="form-control" placeholder="Scegli una password">
 							<input id="proRePsw"type="password" class="form-control" placeholder="Ripeti la password">
@@ -51,27 +51,35 @@
 							<input id="proCel" type="text" class="form-control" placeholder="Cellulare">
 							<span class="input-group-addon infoClick quadro"><span class="glyphicon glyphicon-info-sign"></span></span>
 						</div>
+							
+							<div class="sx">
+								<span class="btn-group" style="width:50%; display:inline">
+
+									<button id="proDay" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+										Giorno <span class="caret"></span>
+									</button>
+									<ul id="dayList" class="dropdown-menu" role="menu">
+										<li><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+									</ul>
+									
+								</span>
 								
-							<span class="btn-group">
+								<span class="btn-group" style="display:inline">
 
-								<button id="proDay" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:30%;">
-									Giorno <span class="caret"></span>
-								</button>
-								<ul id="dayList" class="dropdown-menu" role="menu">
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-								</ul>
-
-								<button id="proMonth" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:30%;">
-									Mese <span class="caret"></span>
-								</button>
-								<ul id="monthList" class="dropdown-menu" role="menu">
-									<li><a href="#">Gen</a></li>
-									<li><a href="#">Feb</a></li>
-								</ul>
-
-								<input id="proYear" type="text" class="form-control" placeholder="Anno" style="width:40%;">
-
+									<button id="proMonth" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+										Mese <span class="caret"></span>
+									</button>
+									<ul id="monthList" class="dropdown-menu" role="menu">
+										<li><a href="#">Gen</a></li>
+										<li><a href="#">Feb</a></li>
+									</ul>
+								</span>
+								
+							</div>
+							
+							<span class="input-group dx" style="width:30%">
+								<input id="proYear" type="text" class="form-control" placeholder="Anno">
 							</span>
 
 						<button class="btn btn-lg btn-block btn-default" type="submit" style="margin-top:10px;">Continua</button>

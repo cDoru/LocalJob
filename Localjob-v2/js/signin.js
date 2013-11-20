@@ -77,13 +77,16 @@ function inserisciAttivita(){
 }
 
 
-/*function completeMenu(){
-	//completeDay();
-	competeMonth();
-}*/
-/*function completeDay(){
-	$("#dayList").html("<li><a href='#'>blablabla</a></li>");
-}*/
+function completeMenu(){
+	completeDay();
+	completeMonth();
+}
+function completeDay(){
+	$("#dayList").html("");
+	for ( var i = 1; i < 32; i++ ){
+		$("#dayList").append("<li><a href="+i+">"+i+"</a></li>");
+	}
+}
 function completeMonth(){
 	$("#monthList").html("<li><a href='#'>Gen</a></li>");
 	$("#monthList").append("<li><a href='#'>Feb</a></li>");
