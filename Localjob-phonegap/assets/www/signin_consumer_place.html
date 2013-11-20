@@ -7,9 +7,10 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/aspetto.css" rel="stylesheet">
+	<link href="libs/leaflet/leaflet.css" rel="stylesheet" />
   </head>
   
-  <body onload="barNoActionInsert();">
+  <body onload="barNoActionInsert(); initiate_geolocation();">
   
 		<div id="bar"></div>
 
@@ -28,17 +29,17 @@
 					
 					<form>
 						<div class="sx">
-							<input id="via" type="text" class="form-control" placeholder="via" required>
+							<input id="via" type="text" class="form-control" value="via" required>
 						</div>
 						<div class="dx">
-							<input id="civico" type="text" class="form-control" placeholder="civ" required>
+							<input id="civico" type="text" class="form-control" value="civ" required>
 						</div>
-						<input id="citta" type="text" class="form-control" placeholder="città" required>
+						<input id="citta" type="text" class="form-control" value="città" required>
 						<div class="sx">
-							<input id="cap" type="text" class="form-control" placeholder="cap" required>
+							<input id="cap" type="text" class="form-control" value="cap" required>
 						</div>
 						<div class="dx">
-							<input id="prov" type="text" class="form-control" placeholder="prov" required>
+							<input id="prov" type="text" class="form-control" value="prov" required>
 						</div>
 						
 						<br/>
@@ -53,11 +54,18 @@
 		
 		<div id="footer"></div>
 		
-		
 	<script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/phonegap.js"></script>
 	
 	<script src="js/generic.js"></script>
 	<script src="js/signin.js"></script>
+	
+	<script src="js/geolocal.js"></script>
+	<script src="libs/leaflet/leaflet.js"></script>
+	<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx8-RhXkc2itBSbo765GVrOnsaOKT8-YA&sensor=true">
+    </script>
+    
   </body>
 </html>

@@ -88,7 +88,6 @@ function creaPOI(lat,lng, testo) {
  */
 function codeLatLng(position_lat, position_long)
 {
-	alert("entra nel geocoding");
 	geocoder = new google.maps.Geocoder();
 
 	  var lat = position_lat;
