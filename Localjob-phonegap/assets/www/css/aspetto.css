@@ -1,3 +1,11 @@
+@font-face {
+   font-family: 'lobster';
+   src: url('../fonts/lobster/lobster.otf') format('opentype');
+}
+.lobster {
+   font-family: lobster, Georgia, serif;
+   font-size: 18px;
+}
 body{
 	background-color:#26a9e0;
 	padding-top: 40px;
@@ -35,7 +43,7 @@ h1, h2{
   /* Negative indent footer by its height */
   margin: 0 auto -20px;
   /* Pad bottom by footer height */
-  padding: 0 0 40px;
+  padding: 0 0 20px 0;
 }
 
 .modal-dialog{
