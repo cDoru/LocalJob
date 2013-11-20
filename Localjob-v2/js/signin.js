@@ -26,10 +26,18 @@ function cliccabile(){
         return false;
     });
 }
-//rende le info cliccabili
+//rende le info cliccabili e aggiorna il menu a tendina al click
 function infoCliccabile(){
 	$(".infoClick").click(function(){
         alert("che ci mettiamo?");
+    });
+	$(".giorno").click(function(){
+        giorno = $(this).text();
+		$("#proDay").html(giorno+" <span class='caret'></span>");
+    });
+	$(".mese").click(function(){
+        mese = $(this).text();
+		$("#proMonth").html(mese+" <span class='caret'></span>");
     });
 }
 
@@ -84,20 +92,23 @@ function completeMenu(){
 function completeDay(){
 	$("#dayList").html("");
 	for ( var i = 1; i < 32; i++ ){
-		$("#dayList").append("<li><a href="+i+">"+i+"</a></li>");
+		$("#dayList").append("<li class='giorno'>"+i+"</li>");
 	}
 }
 function completeMonth(){
-	$("#monthList").html("<li><a href='#'>Gen</a></li>");
-	$("#monthList").append("<li><a href='#'>Feb</a></li>");
-	$("#monthList").append("<li><a href='#'>Mar</a></li>");
-	$("#monthList").append("<li><a href='#'>Apr</a></li>");
-	$("#monthList").append("<li><a href='#'>Mag</a></li>");
-	$("#monthList").append("<li><a href='#'>Giu</a></li>");
-	$("#monthList").append("<li><a href='#'>Lug</a></li>");
-	$("#monthList").append("<li><a href='#'>Ago</a></li>");
-	$("#monthList").append("<li><a href='#'>Set</a></li>");
-	$("#monthList").append("<li><a href='#'>Ott</a></li>");
-	$("#monthList").append("<li><a href='#'>Nov</a></li>");
-	$("#monthList").append("<li><a href='#'>Dic</a></li>");
+	$("#monthList").html("<li class='mese'>Gen</li>");
+	$("#monthList").append("<li class='mese'>Feb</li>");
+	$("#monthList").append("<li class='mese'>Mar</li>");
+	$("#monthList").append("<li class='mese'>Apr</li>");
+	$("#monthList").append("<li class='mese'>Mag</li>");
+	$("#monthList").append("<li class='mese'>Giu</li>");
+	$("#monthList").append("<li class='mese'>Lug</li>");
+	$("#monthList").append("<li class='mese'>Ago</li>");
+	$("#monthList").append("<li class='mese'>Set</li>");
+	$("#monthList").append("<li class='mese'>Ott</li>");
+	$("#monthList").append("<li class='mese'>Nov</li>");
+	$("#monthList").append("<li class='mese'>Dic</li>");
+}
+function refreshMonth(){
+	
 }
