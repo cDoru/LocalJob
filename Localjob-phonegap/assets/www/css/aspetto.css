@@ -18,7 +18,7 @@ h1, h2{
 	color:white;
 }
 #logo{
-	max-width:330px;
+	max-width:300px;
 	padding: 10px;
 }
 #footer{
@@ -149,7 +149,7 @@ h1, h2{
 	border-bottom-left-radius: 5px;
 	margin-bottom:0px;
  }
- #proTel, #professione1, #professione2, #professione3{
+ #proTel{
 	border-radius:5px;
 	margin-bottom:5px;
 	margin-top:5px;
