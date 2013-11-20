@@ -45,14 +45,31 @@ function infoCliccabile(){
 function qualeAttivita(){
 
 	switch(contaAttivita){
-		case 0:	//mostra input
-				$("#lista").append("<input id='professione1' type='text' class='form-control' placeholder='Digita prima professione'/>");
+		case 0:	//mostra tendina
+				//$("#lista").append("<input id='professione1' class='form-control input-lg' type='text' placeholder='Prima professione'/>");
+				
+				$("#lista").append("<div class='btn-group professioni'>"+
+										"<button type='button' class='btn btn-default dropdown-toggle btn-lg' data-toggle='dropdown'>"+
+											"Prima professione <span class='caret'></span>"+
+										"</button>"+
+										"<ul class='dropdown-menu' role='menu'></ul>"+
+									"</div>");
 		break;
-		case 1:	//mostra input
-				$("#lista").append("<input id='professione2' type='text' class='form-control' placeholder='Digita seconda professione'/>");
+		case 1:	//mostra tendina
+				$("#lista").append("<div class='btn-group'>"+
+										"<button type='button' class='btn btn-default dropdown-toggle btn-lg' data-toggle='dropdown'>"+
+											"Seconda professione <span class='caret'></span>"+
+										"</button>"+
+										"<ul class='dropdown-menu' role='menu'></ul>"+
+									"</div>");
 		break;
-		case 2:	//mostra input
-				$("#lista").append("<input id='professione3' type='text' class='form-control' placeholder='Digita ultima professione'/>");
+		case 2:	//mostra tendina
+				$("#lista").append("<div class='btn-group'>"+
+										"<button type='button' class='btn btn-default dropdown-toggle btn-lg' data-toggle='dropdown'>"+
+											"Terza professione <span class='caret'></span>"+
+										"</button>"+
+										"<ul class='dropdown-menu' role='menu'></ul>"+
+									"</div>");
 		break;
 	}
 	//modifica pulsante
@@ -64,21 +81,15 @@ function qualeAttivita(){
 }
 function inserisciAttivita(){
 	switch(contaAttivita){
-		case 1:	$("#professione1").attr("disabled", "disabled");
-				professione1 = $("#professione1").val();
-				$("#aggiungi").attr("onclick", "qualeAttivita()");
+		case 1:	$("#aggiungi").attr("onclick", "qualeAttivita()");
 				$("#aggiungi").html("<span class='glyphicon glyphicon-plus'></span> Aggiungi professione");
 		
 		break;
-		case 2:	$('#professione2').attr('disabled','disabled');
-				professione2 = $("#professione2").val();
-				$("#aggiungi").attr("onclick", "qualeAttivita();");
+		case 2:	$("#aggiungi").attr("onclick", "qualeAttivita();");
 				$("#aggiungi").html("<span class='glyphicon glyphicon-plus'></span> Aggiungi professione");
 		
 		break;
-		case 3:	$('#professione3').attr('disabled','disabled');
-				professione3 = $("#professione3").val();
-				$('#aggiungi').hide();
+		case 3:	$('#aggiungi').hide();
 				$('.form-consumer').append('<button class="btn btn-lg btn-block btn-default" type="submit">Conferma</button>');
 		break;
 	}
