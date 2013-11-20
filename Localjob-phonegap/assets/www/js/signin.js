@@ -46,13 +46,17 @@ function qualeAttivita(){
 
 	switch(contaAttivita){
 		case 0:	//mostra input
-				$("#lista").append("<input id='professione1' type='text' class='form-control' placeholder='Digita prima professione'/>");
+				/*$("#lista").append("<div class='input-group'>"+
+									"<input id='professione1' class='form-control input-lg' type='text' placeholder='Digita prima professione'/>"+
+									"<span class='input-group-addon infoClick input-lg'><span class='glyphicon glyphicon-info-sign'></span></span>"+
+									"</div>");*/
+				$("#lista").append("<input id='professione1' class='form-control input-lg' type='text' placeholder='Digita prima professione'/>");
 		break;
 		case 1:	//mostra input
-				$("#lista").append("<input id='professione2' type='text' class='form-control' placeholder='Digita seconda professione'/>");
+				$("#lista").append("<input id='professione2' class='form-control input-lg' type='text' placeholder='Digita seconda professione'/>");
 		break;
 		case 2:	//mostra input
-				$("#lista").append("<input id='professione3' type='text' class='form-control' placeholder='Digita ultima professione'/>");
+				$("#lista").append("<input id='professione3' class='form-control input-lg' type='text' placeholder='Digita ultima professione'/>");
 		break;
 	}
 	//modifica pulsante
