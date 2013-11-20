@@ -11,6 +11,7 @@ html {
 a, a:hover {
 	color:white;
 	text-decoration:none;
+	font-weight:bold;
 }
 h1, h2{
 	text-align:center;
@@ -57,7 +58,7 @@ h1, h2{
 
 /*LOGIN*/
 .form-signin, .form-consumer, .centrato{
-  max-width: 330px;
+  max-width: 300px;
   padding: 15px;
   margin: 0 auto;
 }

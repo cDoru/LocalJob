@@ -49,23 +49,22 @@ function qualeAttivita(){
 	}
 	//modifica pulsante
 	$("#aggiungi").html("Aggiungi");
-	$("#aggiungi").attr("href", "javascript:inserisciAttivita();");
+	$("#aggiungi").attr("onclick", "inserisciAttivita();");
 	
 	//incrementa semaforo
 	contaAttivita = contaAttivita+1;
-	
 }
 function inserisciAttivita(){
 	switch(contaAttivita){
-		case 1:	$('#professione1').attr('disabled','disabled');
+		case 1:	$("#professione1").attr("disabled", "disabled");
 				professione1 = $("#professione1").val();
-				$("#aggiungi").attr("href", "javascript:qualeAttivita();");
+				$("#aggiungi").attr("onclick", "qualeAttivita()");
 				$("#aggiungi").html("<span class='glyphicon glyphicon-plus'></span> Aggiungi professione");
 		
 		break;
 		case 2:	$('#professione2').attr('disabled','disabled');
 				professione2 = $("#professione2").val();
-				$("#aggiungi").attr("href", "javascript:qualeAttivita();");
+				$("#aggiungi").attr("onclick", "qualeAttivita();");
 				$("#aggiungi").html("<span class='glyphicon glyphicon-plus'></span> Aggiungi professione");
 		
 		break;

@@ -16,18 +16,18 @@
 		<div id="wrap">
 			<div class="container-narrow text-center">
 
-					<form class="form-consumer">
+					<form class="form-consumer" action="signin_pro_privacy.html">
 							<label class="checkbox" align="left">
 								<input id="occasionale" type="checkbox" value="occasionale"> Lavoratore occasionale
 							</label>
 							
 							<div class="input-group">
-								<input id="proRS" type="text" class="form-control" placeholder="Ragione sociale" required/>
+								<input id="proRS" type="text" class="form-control" placeholder="Ragione sociale"/>
 								<span class="input-group-addon infoClick"><span class="glyphicon glyphicon-info-sign"></span></span>
 							</div>
 							
 							<div class="input-group">
-								<input id="proPIVA" type="text" class="form-control" placeholder="Partita Iva" required/>
+								<input id="proPIVA" type="text" class="form-control" placeholder="Partita Iva"/>
 								<span class="input-group-addon infoClick"><span class="glyphicon glyphicon-info-sign"></span></span>
 							</div>
 													
@@ -36,7 +36,7 @@
 							
 							<div id="lista"></div>
 							
-							<a id="aggiungi" class="btn btn-lg btn-block btn-default" href="javascript:qualeAttivita();"><span class="glyphicon glyphicon-plus"></span> Aggiungi professione</a>
+							<button id="aggiungi" type="button" class="btn btn-lg btn-block btn-default" onclick="qualeAttivita()"><span class="glyphicon glyphicon-plus"></span> Aggiungi professione</button>
 					</form>
 
 			</div> <!-- /container -->
