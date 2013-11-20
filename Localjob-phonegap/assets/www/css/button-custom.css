@@ -1,0 +1,54 @@
+.btn-custom-pink {
+  background-color: #ffb4e1;
+  border-color: #ffb4e1;
+}
+.btn-custom-pink:hover,
+.btn-custom-pink:focus,
+.btn-custom-pink:active,
+.btn-custom-pink.active {
+  background-color: #ff9bd7;
+  border-color: #ff81cd;
+}
+.btn-custom-pink.disabled:hover,
+.btn-custom-pink.disabled:focus,
+.btn-custom-pink.disabled:active,
+.btn-custom-pink.disabled.active,
+.btn-custom-pink[disabled]:hover,
+.btn-custom-pink[disabled]:focus,
+.btn-custom-pink[disabled]:active,
+.btn-custom-pink[disabled].active,
+fieldset[disabled] .btn-custom-pink:hover,
+fieldset[disabled] .btn-custom-pink:focus,
+fieldset[disabled] .btn-custom-pink:active,
+fieldset[disabled] .btn-custom-pink.active {
+  background-color: #ff9bd7;
+  border-color: #ff81cd;
+}
+
+
+.btn-custom-blue {
+  background-color: #b4d2ff;
+  border-color: #b4d2ff;
+}
+.btn-custom-blue:hover,
+.btn-custom-blue:focus,
+.btn-custom-blue:active,
+.btn-custom-blue.active {
+  background-color: #9bc3ff;
+  border-color: #81b3ff;
+}
+.btn-custom-blue.disabled:hover,
+.btn-custom-blue.disabled:focus,
+.btn-custom-blue.disabled:active,
+.btn-custom-blue.disabled.active,
+.btn-custom-blue[disabled]:hover,
+.btn-custom-blue[disabled]:focus,
+.btn-custom-blue[disabled]:active,
+.btn-custom-blue[disabled].active,
+fieldset[disabled] .btn-custom-blue:hover,
+fieldset[disabled] .btn-custom-blue:focus,
+fieldset[disabled] .btn-custom-blue:active,
+fieldset[disabled] .btn-custom-blue.active {
+  background-color: #b4d2ff;
+  border-color: #b4d2ff;
+}

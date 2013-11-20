@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>LocalJob</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/aspetto.css" rel="stylesheet">
+	<link href="css/button-custom.css" rel="stylesheet">
+  </head>
+  
+  <body onload="barNoActionInsert(); infoCliccabile();">
+  
+		<div id="bar"></div>
+
+		<div id="wrap">
+			<div class="container-narrow text-center">
+				<img src="./img/consumatore-registrazione.png" />
+
+					<form class="form-consumer">
+
+						<div class="progress progress-striped active">
+						  <div class="progress-bar progress-bar-success" style="width: 33%">
+						    <span class="sr-only">Step 1</span>
+						  </div>
+						</div>
+
+						<div class="sx">
+							<input id="consMail" type="text" class="form-control" placeholder="La tua email" required>
+							<input id="consPsw" type="password" class="form-control" placeholder="Scegli una password" required>
+							<input id="consRePsw"type="password" class="form-control" placeholder="Ripeti la password" required>
+						</div>
+						<div class="dx">
+							<img id="avatar" src="img/avatar.jpg"/>
+						</div>
+
+						<div class="btn-group" style="width:100%; margin:5px 0 10px 0;">
+						  <button id="uomo" type="button" class="btn btn-sm btn-custom-blue" style="width:50%;color:#FFF;font-size:15px;" 
+						  	onclick="document.getElementById('donna').disabled = true;">
+						  	&#9792 </button>
+						  <button id="donna" type="button" class="btn btn-sm btn-custom-pink" style="width:50%;color:#FFF;font-size:15px;"
+						  onclick="document.getElementById('uomo').disabled = true;">
+						  &#9794 </button>
+						</div>
+
+						<input id="consName"type="text" class="form-control" placeholder="Nome" required>
+						<input id="consSurname" type="text" class="form-control" placeholder="Cognome" required>
+						<div class="input-group">
+							<input id="consCel" type="text" class="form-control" placeholder="Cellulare" required>
+							<span class="input-group-addon infoClick quadro"><span class="glyphicon glyphicon-info-sign"></span></span>
+						</div>
+								
+							<span class="btn-group">
+
+								<button id="consDay" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:30%;" required>
+									Giorno <span class="caret"></span>
+								</button>
+								<ul id="dayList" class="dropdown-menu" role="menu">
+									<li><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+								</ul>
+
+								<button id="consMonth" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:30%;" required>
+									Mese <span class="caret"></span>
+								</button>
+								<ul id="monthList" class="dropdown-menu" role="menu">
+									<li><a href="#">Gen</a></li>
+									<li><a href="#">Feb</a></li>
+								</ul>
+
+								<input id="consYear" type="text" class="form-control" placeholder="Anno" style="width:40%;" required>
+
+							</span>
+
+						<button class="btn btn-lg btn-block btn-default" type="submit" style="margin-top:10px;">Continua</button>
+
+					</form>
+
+			</div> <!-- /container -->
+		</div>
+		
+		<div id="footer"></div>
+		
+	<script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	
+	<script src="js/generic.js"></script>
+	<script src="js/signin.js"></script>
+  </body>
+</html>

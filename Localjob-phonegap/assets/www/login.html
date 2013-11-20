@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>LocalJob</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/aspetto.css" rel="stylesheet">
+	<link href="css/login.css" rel="stylesheet">
+
+  </head>
+  
+  <body>
+		
+		<div id="wrap">
+			<div class="container-narrow text-center">
+
+				<img id="logo" src="./img/logo.png" />
+				<br />
+				<img src="./img/under-logo.png"/>
+
+				<form class="form-signin">
+					<input type="text" class="form-control" placeholder="Il tuo indirizzo email" required>
+					<input type="password" class="form-control" placeholder="La tua password" required>
+					<hr class="divisore" />
+					<div class="btn-group" onclick="location.href='#'" style="width:100%;">
+					  <button type="button" class="btn btn-lg  btn-default" style="width:20%;" onclick="location.href='index.html'">
+					    <span class="glyphicon glyphicon-chevron-left"></span>
+					  </button>
+					  <button type="submit" class="btn btn-lg btn-primary" style="width:80%;">Accedi al tuo profilo</button>
+					</div>
+				</form>
+
+			</div> <!-- /container -->
+		</div>
+		
+		<div id="footer">
+			<div class="container">
+				<h4><p class="label label-danger" data-toggle="modal" data-target="#resetpwd">Hai dimenticato la password?</p></h4>
+			</div>
+		</div>
+
+		<div id="resetpwd" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Hai dimenticato la password?</h4>
+					</div>
+					<div class="modal-body">
+						<p>Inserisci il tuo indirizzo email per resettare la password. Ti invieremo le istruzioni per impostarne una nuova.</p>
+						
+						<form>
+							<input type="text" class="form-control" placeholder="Il tuo indirizzo email" required>
+							<br />
+							<button type="submit" class="btn btn-lg btn-warning" style="width:100%;">Resetta la password</button>
+						</form>
+
+						<hr />
+						<p>Potrai contattarci in qualunque momento tramite email all'indirizzo <strong><a href="mailto:assistenza@localjob.it" style="color:darkred;">assistenza@localjob.it</a></strong>.</p>
+						<button type="button" class="btn btn-lg btn-default" data-dismiss="modal" style="width:100%;">Torna al login</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+	<script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Random background -->
+	<script type="text/javascript">
+		var bg = "img/login-background-" + Math.floor((Math.random()*3)+1) + ".jpg";
+		document.body.style.background="url("+bg+") no-repeat center center fixed";
+		document.body.style['background-size']="cover";
+	</script>
+  </body>
+</html>
