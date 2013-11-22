@@ -9,24 +9,15 @@
 	<link href="css/aspetto.css" rel="stylesheet">
   </head>
   
-  <body onload="bar1Insert(); infoCliccabile(); <!--completeMenu();-->">
+  <body onload="bar1Insert(); infoCliccabile();">
   
 		<div id="bar"></div>
 
 		<div id="wrap">
 			<div class="container-narrow text-center">
 
-				<p class="lobster">Registrazione nuovo professionista.</p>
-				<p>
-					<span class="glyphicon glyphicon-check" style="padding-right:10%;"></span>
-					<span class="glyphicon glyphicon-arrow-right" style="padding-right:10%;"></span>
-					<span class="glyphicon glyphicon-edit" style="padding-right:10%;"></span>
-					<span class="glyphicon glyphicon-arrow-right" style="padding-right:10%;"></span>
-					<span class="glyphicon glyphicon-unchecked" style="padding-right:10%;"></span>
-					<span class="glyphicon glyphicon-arrow-right" style="padding-right:10%;"></span>
-					<span class="glyphicon glyphicon-unchecked"></span>
-				</p>
-
+				<p class="lobster">Registrazione nuovo professionista</br> Fase 2/4</p>
+			
 				<form class="form-consumer" action="signin_pro_place.html">
 				
 						<label class="checkbox" align="left">
@@ -39,22 +30,73 @@
 						</div>
 						
 						<div class="input-group">
-							<input id="proPIVA" class="form-control input-lg" type="text" placeholder="Partita Iva"/>
+							<input id="proPIVA" class="form-control input-lg" type="text" placeholder="Partita IVA"/>
 							<span class="input-group-addon infoClick input-lg"><span class="glyphicon glyphicon-info-sign"></span></span>
 						</div>
 												
 						<input id="proTel" class="form-control input-lg" type="text" placeholder="Telefono"/>
 						<hr>		
 						
-						<div id="lista"></div>
+						<div id="lista">
+							<div id="prof1" class='btn-group'>
+								<button id='pulsanteProf1' type='button' class='btn btn-default dropdown-toggle btn-lg btn-block' data-toggle='dropdown' style="margin-bottom:5px;">
+								Prima professione <span class='caret'></span>
+								</button>
+								<ul id='listaProf1' class='dropdown-menu' role='menu'>
+									<li class='prima'>Pasticcere</li>
+									<li class='prima'>Brigadiere</li>
+									<li class='prima'>Giocoliere</li>
+								</ul>
+							</div>
+							
+							<div id="prof2" class='btn-group' style='width:100%'>
+								<button id='pulsanteProf2' type='button' class='btn btn-default dropdown-toggle btn-lg btn-block' data-toggle='dropdown' style="margin-top:-5px; margin-bottom:5px;">
+								Seconda professione <span class='caret'></span>
+								</button>
+								<ul id='listaProf1' class='dropdown-menu' role='menu'>
+									<li class='seconda'>Pasticcere</li>
+									<li class='seconda'>Brigadiere</li>
+									<li class='seconda'>Giocoliere</li>
+								</ul>
+							</div>
+							
+							<div id="prof3" class='btn-group' style='width:100%'>
+								<button id='pulsanteProf3' type='button' class='btn btn-default dropdown-toggle btn-lg btn-block' data-toggle='dropdown' style="margin-top:-5px; margin-bottom:5px;">
+								Ultima professione <span class='caret'></span>
+								</button>
+								<ul id='listaProf3' class='dropdown-menu' role='menu'>
+									<li class='terza'>Pasticcere</li>
+									<li class='terza'>Brigadiere</li>
+									<li class='terza'>Giocoliere</li>
+								</ul>
+							</div>
+						</div>
 						
-						<button id="aggiungi" type="button" class="btn btn-lg btn-block btn-default" onclick="qualeAttivita()" style="margin-top:5px;"><span class="glyphicon glyphicon-plus"></span> Aggiungi professione</button>
+						<button id="aggiungi" type="button" class="btn btn-lg btn-block btn-default" onclick="nuovaAttivita()"><span class="glyphicon glyphicon-plus"></span> Aggiungi professione</button>
 				</form>
 
 			</div> <!-- /container -->
 		</div>
 		
 		<div id="footer"></div>
+		
+		<div id="infoDati" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"> I tuoi dati</h4>
+					</div>
+					<div class="modal-body">
+						<p>Se eserciti una <b>professione</b> &egrave; indispensabile che tu inserisca
+						la Ragione Sociale della tua attivit&agrave; e la tua Partita IVA. Questi
+						dati ci permetteranno di identificarti e di garantire la tua professionalit&agrave;.</p>
+						<p>Se lavori in modo <b>occasionale</b> devi inserire un nome per la tua
+						attivit&agrave;. Questo nome permetteregrave; ai clienti di trovarti.</p>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->		
 		
 	<script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>

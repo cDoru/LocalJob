@@ -30,6 +30,10 @@ h1, h2{
 	text-align:center;
 	color:white;
 }
+li{
+	color:black;
+	font-size: large;
+ }
 #logo{
 	max-width:300px;
 	padding: 10px;
@@ -173,15 +177,17 @@ h1, h2{
  .quadro{
 	border-radius:0;
  }
- .mese, .giorno{
-	color:black;
- }
- #avatar{
-	height:
- }
+ /*PAGINE CON GEOLOCALIZZAZIONE*/
  #map{
 	width:100%;
 	height:200px;
 	background:url(../img/ajax-loader.gif) no-repeat center center;
 	margin-bottom:5px;
  }
+ #prof1, #prof2, #prof3{
+	display:none;
+ }
+ #lista{
+	padding-bottom:5px;
+ }
+ 

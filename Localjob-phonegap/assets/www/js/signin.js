@@ -1,6 +1,5 @@
 var occasionaleCheck = false;
 var contaAttivita = 0;
-var professioneInserita;
 
 $(document).ready(function(){
 	//se occasionale è checkato, disabilita campo partita iva
@@ -29,72 +28,65 @@ function cliccabile(){
 //rende le info cliccabili e aggiorna il menu a tendina al click
 function infoCliccabile(){
 	$(".infoClick").click(function(){
-        alert("che ci mettiamo?");
+		$('#infoDati').modal();
     });
-	$(".giorno").click(function(){
+	$(".giorno").click(function(){		//classe del .li
         giorno = $(this).text();
-		$("#proDay").html(giorno+" <span class='caret'></span>");
+		$("#proDay").html(giorno+" <span class='caret'></span>");	//bottone del menu a tendina
     });
 	$(".mese").click(function(){
         mese = $(this).text();
 		$("#proMonth").html(mese+" <span class='caret'></span>");
     });
+	//menu professioni
+	$(".prima").click(function(){
+        attivita = $(this).text();
+		$("#pulsanteProf1").html(attivita+" <span class='caret'></span>");
+    });
+	$(".seconda").click(function(){
+        attivita = $(this).text();
+		$("#pulsanteProf2").html(attivita+" <span class='caret'></span>");
+    });
+	$(".terza").click(function(){
+        attivita = $(this).text();
+		$("#pulsanteProf3").html(attivita+" <span class='caret'></span>");
+    });
 }
 
 //funzione per gestire aggiunta professione in signin_pro_professional.html
-function qualeAttivita(){
+function nuovaAttivita(){
 
-	switch(contaAttivita){
-		case 0:	//mostra tendina
-				//$("#lista").append("<input id='professione1' class='form-control input-lg' type='text' placeholder='Prima professione'/>");
-				
-				$("#lista").append("<div class='btn-group professioni'>"+
-										"<button type='button' class='btn btn-default dropdown-toggle btn-lg' data-toggle='dropdown'>"+
-											"Prima professione <span class='caret'></span>"+
-										"</button>"+
-										"<ul class='dropdown-menu' role='menu'></ul>"+
-									"</div>");
-		break;
-		case 1:	//mostra tendina
-				$("#lista").append("<div class='btn-group'>"+
-										"<button type='button' class='btn btn-default dropdown-toggle btn-lg' data-toggle='dropdown'>"+
-											"Seconda professione <span class='caret'></span>"+
-										"</button>"+
-										"<ul class='dropdown-menu' role='menu'></ul>"+
-									"</div>");
-		break;
-		case 2:	//mostra tendina
-				$("#lista").append("<div class='btn-group'>"+
-										"<button type='button' class='btn btn-default dropdown-toggle btn-lg' data-toggle='dropdown'>"+
-											"Terza professione <span class='caret'></span>"+
-										"</button>"+
-										"<ul class='dropdown-menu' role='menu'></ul>"+
-									"</div>");
-		break;
-	}
-	//modifica pulsante
-	$("#aggiungi").html("Aggiungi");
-	$("#aggiungi").attr("onclick", "inserisciAttivita();");
-	
-	//incrementa semaforo
-	contaAttivita = contaAttivita+1;
-}
-function inserisciAttivita(){
-	switch(contaAttivita){
-		case 1:	$("#aggiungi").attr("onclick", "qualeAttivita()");
-				$("#aggiungi").html("<span class='glyphicon glyphicon-plus'></span> Aggiungi professione");
+	if(contaAttivita == 0){
 		
-		break;
-		case 2:	$("#aggiungi").attr("onclick", "qualeAttivita();");
-				$("#aggiungi").html("<span class='glyphicon glyphicon-plus'></span> Aggiungi professione");
-		
-		break;
-		case 3:	$('#aggiungi').hide();
-				$('.form-consumer').append('<button class="btn btn-lg btn-block btn-default" type="submit">Conferma</button>');
-		break;
+		//mostra menu professione 1
+		$("#prof1").fadeIn();
+							
+		//incrementa semaforo
+		contaAttivita = contaAttivita+1;
 	}
-}
+	else if(contaAttivita == 1){
+		
+		//mostra menu professione 1
+		$("#prof2").fadeIn();
+		
+		//incrementa semaforo
+		contaAttivita = contaAttivita+1;
+	}
+	else if(contaAttivita == 2){
+		
+		//mostra menu professione 1
+		$("#prof3").fadeIn();		
+		
+		//incrementa semaforo
+		contaAttivita = contaAttivita+1;
+		
+		//modifica pulsante
+		$("#aggiungi").attr("onclick", "window.location='signin_pro_place.html'");
+		$("#aggiungi").attr("class", "btn btn-lg btn-block btn-primary");
+		$("#aggiungi").html("Continua");
+	}
 
+}
 
 function completeMenu(){
 	completeDay();
@@ -119,7 +111,4 @@ function completeMonth(){
 	$("#monthList").append("<li class='mese'>Ott</li>");
 	$("#monthList").append("<li class='mese'>Nov</li>");
 	$("#monthList").append("<li class='mese'>Dic</li>");
-}
-function refreshMonth(){
-	
 }
