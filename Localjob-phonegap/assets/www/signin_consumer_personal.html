@@ -10,70 +10,70 @@
 	<link href="css/button-custom.css" rel="stylesheet">
   </head>
   
-  <body onload="barNoActionInsert(); infoCliccabile();">
+  <body onload="barNoActionInsert(); completeMenu(); infoCliccabile();">
   
 		<div id="bar"></div>
 
 		<div id="wrap">
 			<div class="container-narrow text-center">
+				<p class="lobster">Registrazione nuovo consumatore</br> Fase 1/3</p>
 
-				<p class="lobster">Registrazione nuovo consumatore</p>
-				<p>
-					<span class="glyphicon glyphicon-edit" style="padding-right:10%;"></span>
-					<span class="glyphicon glyphicon-arrow-right" style="padding-right:10%;"></span>
-					<span class="glyphicon glyphicon-unchecked"></span>
-				</p>
-
-					<form class="form-consumer">
+				<form class="form-consumer" action="signin_consumer_place.html">
 
 						<div class="sx">
-							<input id="consMail" type="text" class="form-control" placeholder="La tua email" required>
-							<input id="consPsw" type="password" class="form-control" placeholder="Scegli una password" required>
-							<input id="consRePsw"type="password" class="form-control" placeholder="Ripeti la password" required>
+							<input id="mail" type="text" class="form-control input-lg" placeholder="La tua email" required>
+							<input id="psw" type="password" class="form-control input-lg" placeholder="Scegli password">
+							<input id="rePsw"type="password" class="form-control input-lg" placeholder="Ripeti password">
 						</div>
 						<div class="dx">
-							<img id="avatar" src="img/avatar.jpg"/>
+							<img src="img/avatar.jpg"/>
 						</div>
 
 						<div class="btn-group" style="width:100%; margin:5px 0 10px 0;">
-						  <button id="uomo" type="button" class="btn btn-sm btn-custom-blue" style="width:50%;color:#FFF;font-size:15px;" 
+						  <button id="uomo" type="button" class="btn btn-lg btn-custom-blue" style="width:50%;color:#FFF;font-size:15px;" 
 						  	onclick="document.getElementById('donna').disabled = true;">
 						  	&#9792 </button>
-						  <button id="donna" type="button" class="btn btn-sm btn-custom-pink" style="width:50%;color:#FFF;font-size:15px;"
+						  <button id="donna" type="button" class="btn btn-lg btn-custom-pink" style="width:50%;color:#FFF;font-size:15px;"
 						  onclick="document.getElementById('uomo').disabled = true;">
 						  &#9794 </button>
 						</div>
 
-						<input id="consName"type="text" class="form-control" placeholder="Nome" required>
-						<input id="consSurname" type="text" class="form-control" placeholder="Cognome" required>
+						<input id="name"type="text" class="form-control input-lg" placeholder="Nome">
+						<input id="surname" type="text" class="form-control input-lg" placeholder="Cognome">
 						<div class="input-group">
-							<input id="consCel" type="text" class="form-control" placeholder="Cellulare" required>
+							<input id="cel" type="text" class="form-control input-lg" placeholder="Cellulare">
 							<span class="input-group-addon infoClick quadro"><span class="glyphicon glyphicon-info-sign"></span></span>
 						</div>
+							
+							<div class="sx">
+								<span class="btn-group" style="width:50%; display:inline">
+
+									<button id="day" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown">
+										Giorno <span class="caret"></span>
+									</button>
+									<ul id="dayList" class="dropdown-menu" role="menu">
+										...
+									</ul>
+									
+								</span>
 								
-							<span class="btn-group">
+								<span class="btn-group" style="display:inline">
 
-								<button id="consDay" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:30%;" required>
-									Giorno <span class="caret"></span>
-								</button>
-								<ul id="dayList" class="dropdown-menu" role="menu">
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-								</ul>
-
-								<button id="consMonth" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:30%;" required>
-									Mese <span class="caret"></span>
-								</button>
-								<ul id="monthList" class="dropdown-menu" role="menu">
-									<li><a href="#">Gen</a></li>
-									<li><a href="#">Feb</a></li>
-								</ul>
-
-								<input id="consYear" type="text" class="form-control" placeholder="Anno" style="width:40%;" required>
-
+									<button id="month" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown">
+										Mese <span class="caret"></span>
+									</button>
+									<ul id="monthList" class="dropdown-menu" role="menu">
+										...
+									</ul>
+								</span>
+								
+							</div>
+							
+							<span class="input-group dx" style="width:30%; margin-bottom:10px;">
+								<input id="year" type="text" class="form-control input-lg" placeholder="Anno">
 							</span>
 
-						<button class="btn btn-lg btn-block btn-default" type="button" onclick="window.location='signin_consumer_place.html'" style="margin-top:10px;">Continua</button>
+						<button class="btn btn-lg btn-block btn-primary" type="submit">Continua</button>
 
 					</form>
 
@@ -81,6 +81,21 @@
 		</div>
 		
 		<div id="footer"></div>
+		
+		<div id="infoDati" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"> I tuoi dati</h4>
+					</div>
+					<div class="modal-body">
+						<p>Il tuo cellulare permetter&agrave; ai clienti di contattarti.</p>
+						
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->	
 		
 	<script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>

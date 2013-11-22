@@ -5,13 +5,13 @@ $(document).ready(function(){
 	//se occasionale è checkato, disabilita campo partita iva
 	$("#occasionale").click(function() {
 		if(occasionaleCheck){
-			$("#proPIVA").prop("disabled", false);
-			$("#proRS").attr("placeholder", "Ragione sociale");
+			$("#partIva").prop("disabled", false);
+			$("#ragSoc").attr("placeholder", "Ragione sociale");
 			occasionaleCheck = false;
 		}
 		else{
-			$("#proPIVA").prop("disabled", true);
-			$("#proRS").attr("placeholder", "Nome attività");
+			$("#partIva").prop("disabled", true);
+			$("#ragSoc").attr("placeholder", "Nome attività");
 			occasionaleCheck = true;
 		}	
 	});
@@ -32,11 +32,11 @@ function infoCliccabile(){
     });
 	$(".giorno").click(function(){		//classe del .li
         giorno = $(this).text();
-		$("#proDay").html(giorno+" <span class='caret'></span>");	//bottone del menu a tendina
+		$("#day").html(giorno+" <span class='caret'></span>");	//bottone del menu a tendina
     });
 	$(".mese").click(function(){
         mese = $(this).text();
-		$("#proMonth").html(mese+" <span class='caret'></span>");
+		$("#month").html(mese+" <span class='caret'></span>");
     });
 	//menu professioni
 	$(".prima").click(function(){

@@ -144,35 +144,35 @@ li{
 	width:30%;
 	margin-left:0;
  }
- #consMail, #proMail, #proRS{
+ #mail, #ragSoc{
 	border-top-left-radius: 5px;
  }
- #consRePsw, #proRePsw, #proPIVA, #proTel{
+ #rePsw, #tel{
 	border-bottom-left-radius: 5px;
 	margin-bottom:5px;
  }
- #consName, #proName{
+ #partIva{
+	border-bottom-left-radius: 5px;
+	margin-bottom:0;
+ }
+ #name{
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
  }
- #consDay, #proDay{
+ #day{
 	border-radius: 0 0 0 5px;
 	width:50%;
  }
- #consYear, #proYear{
+ #month{
+	border-radius:0;
+ }
+ #year{
 	border-bottom-right-radius: 5px;
  }
- #proPIVA{
-	border-bottom-left-radius: 5px;
-	margin-bottom:0px;
- }
- #proTel{
+ #tel{
 	border-radius:5px;
 	margin-bottom:5px;
 	margin-top:5px;
- }
- #consMonth, #proMonth{
-	border-radius:0;
  }
  .quadro{
 	border-radius:0;

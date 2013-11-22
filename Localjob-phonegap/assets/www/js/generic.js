@@ -1,4 +1,4 @@
-function bar1Insert() {
+/*function bar1Insert() {
 	$('#bar').html('<!-- Fixed navbar -->'+
 			'<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">'+
 			  '<div class="container">'+
@@ -23,7 +23,7 @@ function bar1Insert() {
 				'</div><!--/.nav-collapse -->'+
 			  '</div>'+
 			'</div>');
-}
+}*/
 
 function barNoActionInsert() {
 	$('#bar').html('<!-- Fixed navbar -->'+
