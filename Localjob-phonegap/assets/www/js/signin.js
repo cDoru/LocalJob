@@ -112,3 +112,12 @@ function completeMonth(){
 	$("#monthList").append("<li class='mese'>Nov</li>");
 	$("#monthList").append("<li class='mese'>Dic</li>");
 }
+
+function getDatiPro(){
+	numeroCel = $('#cel').val();
+	sessionStorage.numeroCel = numeroCel;
+	window.location='signin_pro_professional.html';
+}
+function checkCel(){
+	$("#tel").attr("value", sessionStorage.numeroCel);
+}
